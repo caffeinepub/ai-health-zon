@@ -3,146 +3,161 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --radius: 0.5rem;
-        /* McKinsey-inspired color palette - Light mode */
-        --background: 1 0 0;
-        --foreground: 0.20 0.02 250;
-        --card: 1 0 0;
-        --card-foreground: 0.20 0.02 250;
-        --popover: 1 0 0;
-        --popover-foreground: 0.20 0.02 250;
-        /* Deep navy blue primary */
-        --primary: 0.25 0.05 250;
-        --primary-foreground: 1 0 0;
-        /* Light gray secondary */
-        --secondary: 0.96 0.005 250;
-        --secondary-foreground: 0.20 0.02 250;
-        /* Muted gray tones */
-        --muted: 0.97 0.005 250;
-        --muted-foreground: 0.50 0.02 250;
-        /* Subtle accent - teal */
-        --accent: 0.65 0.08 200;
-        --accent-foreground: 1 0 0;
-        --destructive: 0.577 0.245 27.325;
-        --destructive-foreground: 0.985 0 0;
-        /* Subtle borders */
-        --border: 0.92 0.005 250;
-        --input: 0.92 0.005 250;
-        --ring: 0.25 0.05 250;
-        /* Navy header */
-        --header-bg: 0.22 0.04 250;
-        --header-fg: 1 0 0;
-        --chart-1: 0.25 0.05 250;
-        --chart-2: 0.65 0.08 200;
-        --chart-3: 0.50 0.06 220;
-        --chart-4: 0.70 0.10 180;
-        --chart-5: 0.45 0.08 240;
-        --sidebar: 1 0 0;
-        --sidebar-foreground: 0.20 0.02 250;
-        --sidebar-primary: 0.25 0.05 250;
-        --sidebar-primary-foreground: 1 0 0;
-        --sidebar-accent: 0.97 0.005 250;
-        --sidebar-accent-foreground: 0.20 0.02 250;
-        --sidebar-border: 0.92 0.005 250;
-        --sidebar-ring: 0.25 0.05 250;
-    }
-
-    .dark {
-        --background: 0.15 0.01 250;
-        --foreground: 0.95 0.01 250;
-        --card: 0.18 0.01 250;
-        --card-foreground: 0.95 0.01 250;
-        --popover: 0.20 0.01 250;
-        --popover-foreground: 0.95 0.01 250;
-        --primary: 0.60 0.08 200;
-        --primary-foreground: 0.15 0.01 250;
-        --secondary: 0.25 0.02 250;
-        --secondary-foreground: 0.95 0.01 250;
-        --muted: 0.25 0.02 250;
-        --muted-foreground: 0.65 0.02 250;
-        --accent: 0.65 0.08 200;
-        --accent-foreground: 0.15 0.01 250;
-        --destructive: 0.704 0.191 22.216;
-        --destructive-foreground: 0.95 0.01 250;
-        --border: 1 0 0 / 10%;
-        --input: 1 0 0 / 15%;
-        --ring: 0.60 0.08 200;
-        --header-bg: 0.20 0.02 250;
-        --header-fg: 1 0 0;
-        --chart-1: 0.60 0.08 200;
-        --chart-2: 0.70 0.10 180;
-        --chart-3: 0.50 0.06 220;
-        --chart-4: 0.65 0.08 200;
-        --chart-5: 0.55 0.07 210;
-        --sidebar: 0.18 0.01 250;
-        --sidebar-foreground: 0.95 0.01 250;
-        --sidebar-primary: 0.60 0.08 200;
-        --sidebar-primary-foreground: 0.15 0.01 250;
-        --sidebar-accent: 0.25 0.02 250;
-        --sidebar-accent-foreground: 0.95 0.01 250;
-        --sidebar-border: 1 0 0 / 10%;
-        --sidebar-ring: 0.60 0.08 200;
-    }
-
-    * {
-        @apply border-border;
-    }
+  :root {
+    /* McKinsey-inspired professional color palette */
+    --background: oklch(98% 0 0);
+    --foreground: oklch(20% 0 0);
+    --card: oklch(100% 0 0);
+    --card-foreground: oklch(20% 0 0);
+    --popover: oklch(100% 0 0);
+    --popover-foreground: oklch(20% 0 0);
+    --primary: oklch(35% 0.08 240);
+    --primary-foreground: oklch(98% 0 0);
+    --secondary: oklch(92% 0.01 240);
+    --secondary-foreground: oklch(20% 0 0);
+    --muted: oklch(95% 0.01 240);
+    --muted-foreground: oklch(50% 0.02 240);
+    --accent: oklch(40% 0.12 200);
+    --accent-foreground: oklch(98% 0 0);
+    --destructive: oklch(55% 0.22 25);
+    --destructive-foreground: oklch(98% 0 0);
+    --border: oklch(88% 0.01 240);
+    --input: oklch(88% 0.01 240);
+    --ring: oklch(35% 0.08 240);
+    --radius: 0.25rem;
+    --chart-1: oklch(60% 0.15 240);
+    --chart-2: oklch(65% 0.15 200);
+    --chart-3: oklch(70% 0.12 160);
+    --chart-4: oklch(75% 0.10 120);
+    --chart-5: oklch(80% 0.08 80);
     
-    body {
-        @apply bg-background text-foreground;
-        font-feature-settings: "kern" 1, "liga" 1;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
+    /* Apple Intelligence-inspired gradient colors */
+    --gradient-purple: oklch(55% 0.25 290);
+    --gradient-pink: oklch(65% 0.25 340);
+    --gradient-blue: oklch(60% 0.22 240);
+    --gradient-cyan: oklch(70% 0.18 200);
+    --gradient-orange: oklch(70% 0.20 50);
+  }
 
-    /* McKinsey-inspired typography */
-    h1, h2, h3, h4, h5, h6 {
-        @apply font-semibold tracking-tight;
-        line-height: 1.2;
-    }
+  .dark {
+    --background: oklch(15% 0.01 240);
+    --foreground: oklch(95% 0 0);
+    --card: oklch(18% 0.01 240);
+    --card-foreground: oklch(95% 0 0);
+    --popover: oklch(18% 0.01 240);
+    --popover-foreground: oklch(95% 0 0);
+    --primary: oklch(65% 0.15 240);
+    --primary-foreground: oklch(15% 0.01 240);
+    --secondary: oklch(25% 0.02 240);
+    --secondary-foreground: oklch(95% 0 0);
+    --muted: oklch(22% 0.02 240);
+    --muted-foreground: oklch(65% 0.02 240);
+    --accent: oklch(55% 0.18 200);
+    --accent-foreground: oklch(95% 0 0);
+    --destructive: oklch(55% 0.22 25);
+    --destructive-foreground: oklch(95% 0 0);
+    --border: oklch(28% 0.02 240);
+    --input: oklch(28% 0.02 240);
+    --ring: oklch(65% 0.15 240);
+    --chart-1: oklch(60% 0.15 240);
+    --chart-2: oklch(65% 0.15 200);
+    --chart-3: oklch(70% 0.12 160);
+    --chart-4: oklch(75% 0.10 120);
+    --chart-5: oklch(80% 0.08 80);
+    
+    /* Apple Intelligence-inspired gradient colors for dark mode */
+    --gradient-purple: oklch(65% 0.25 290);
+    --gradient-pink: oklch(75% 0.25 340);
+    --gradient-blue: oklch(70% 0.22 240);
+    --gradient-cyan: oklch(80% 0.18 200);
+    --gradient-orange: oklch(80% 0.20 50);
+  }
+}
 
-    h1 {
-        @apply text-4xl md:text-5xl;
-        font-weight: 600;
-    }
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* McKinsey-style typography with generous spacing */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+    line-height: 1.2;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  p {
+    line-height: 1.7;
+  }
+}
 
-    h2 {
-        @apply text-3xl md:text-4xl;
-        font-weight: 600;
-    }
-
-    h3 {
-        @apply text-2xl md:text-3xl;
-        font-weight: 600;
-    }
-
-    h4 {
-        @apply text-xl md:text-2xl;
-        font-weight: 600;
-    }
-
-    h5 {
-        @apply text-lg md:text-xl;
-        font-weight: 600;
-    }
-
-    h6 {
-        @apply text-base md:text-lg;
-        font-weight: 600;
-    }
-
-    p {
-        line-height: 1.7;
-    }
-
-    /* McKinsey-style card hover effects */
-    .card-hover-lift {
-        transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-    }
-
-    .card-hover-lift:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
-    }
+@layer utilities {
+  /* McKinsey-style smooth transitions */
+  .transition-smooth {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Professional card hover effect */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  /* Apple Intelligence-inspired multicolor gradient text */
+  .gradient-text {
+    background: linear-gradient(
+      90deg,
+      var(--gradient-purple) 0%,
+      var(--gradient-pink) 25%,
+      var(--gradient-blue) 50%,
+      var(--gradient-cyan) 75%,
+      var(--gradient-orange) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+  }
+  
+  .gradient-text-alt {
+    background: linear-gradient(
+      135deg,
+      var(--gradient-blue) 0%,
+      var(--gradient-purple) 30%,
+      var(--gradient-pink) 60%,
+      var(--gradient-orange) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+  }
+  
+  .gradient-text-vibrant {
+    background: linear-gradient(
+      120deg,
+      var(--gradient-pink) 0%,
+      var(--gradient-purple) 25%,
+      var(--gradient-blue) 50%,
+      var(--gradient-cyan) 75%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+  }
 }

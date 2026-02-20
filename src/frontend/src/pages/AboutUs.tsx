@@ -1,247 +1,180 @@
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { CheckCircle, Shield, Award, TrendingUp } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { useNavigate } from '@tanstack/react-router';
+import { Target, Eye, Award, Users, Shield, TrendingUp, CheckCircle2, Globe } from 'lucide-react';
 
 export default function AboutUs() {
+  const navigate = useNavigate();
+
+  const values = [
+    {
+      icon: Shield,
+      title: 'Trust & Integrity',
+      description: 'Building lasting relationships through transparency and ethical practices',
+    },
+    {
+      icon: Award,
+      title: 'Excellence',
+      description: 'Committed to the highest standards in healthcare delivery and service',
+    },
+    {
+      icon: Users,
+      title: 'Collaboration',
+      description: 'Fostering partnerships across the healthcare ecosystem',
+    },
+    {
+      icon: TrendingUp,
+      title: 'Innovation',
+      description: 'Leveraging technology to transform healthcare accessibility',
+    },
+  ];
+
+  const services = [
+    'Healthcare Professional Network',
+    'Corporate Healthcare Solutions',
+    'Medical Tourism Services',
+    'Vendor & Supplier Network',
+    'NGO Partnerships',
+    'Research & Development',
+    'Ambulance Services',
+    'Luxury Healthcare Services',
+  ];
+
+  const metrics = [
+    { value: '1000+', label: 'Healthcare Professionals' },
+    { value: '500+', label: 'Partner Hospitals' },
+    { value: '50+', label: 'Cities Covered' },
+    { value: '10000+', label: 'Patients Served' },
+  ];
+
   return (
-    <div className="w-full">
-      {/* Company Overview */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 py-24">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text">About AI Health Zon</h1>
+            <p className="text-xl md:text-2xl text-gray-700">
+              Transforming healthcare delivery through technology, collaboration, and excellence
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <Card className="border-2 hover:border-primary/50 transition-all">
+              <CardHeader>
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
+                  <Target className="w-8 h-8 text-primary" />
+                </div>
+                <CardTitle className="text-3xl gradient-text-alt">Our Mission</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-lg leading-relaxed">
+                  To create a comprehensive healthcare ecosystem that connects patients, professionals, and
+                  institutions, making quality healthcare accessible, affordable, and efficient for all Indians.
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 hover:border-primary/50 transition-all">
+              <CardHeader>
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
+                  <Eye className="w-8 h-8 text-primary" />
+                </div>
+                <CardTitle className="text-3xl gradient-text-alt">Our Vision</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-lg leading-relaxed">
+                  To be India's most trusted healthcare platform, revolutionizing the way healthcare services are
+                  discovered, delivered, and experienced across the nation.
+                </CardDescription>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Core Values */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 gradient-text-vibrant">Our Core Values</h2>
+            <p className="text-xl text-gray-600">The principles that guide everything we do</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {values.map((value, index) => (
+              <Card key={index} className="text-center border-2 hover:border-primary/50 transition-all hover:shadow-lg">
+                <CardHeader>
+                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                    <value.icon className="w-8 h-8 text-primary" />
+                  </div>
+                  <CardTitle className="text-xl gradient-text-alt">{value.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base">{value.description}</CardDescription>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Service Verticals */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center">About AI Health Zon</h1>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <div>
-                <img
-                  src="/assets/generated/hospital-building.dim_800x600.png"
-                  alt="Hospital Building"
-                  className="w-full h-64 object-cover rounded-lg shadow-lg"
-                />
-              </div>
-              <div className="flex flex-col justify-center">
-                <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
-                <p className="text-muted-foreground mb-4">
-                  To revolutionize healthcare delivery by creating a unified digital ecosystem that connects
-                  all stakeholders in the healthcare industry through AI-powered solutions.
-                </p>
-                <h2 className="text-2xl font-bold mb-4">Our Vision</h2>
-                <p className="text-muted-foreground mb-4">
-                  To become the leading healthcare platform that seamlessly integrates technology, services,
-                  and people to deliver exceptional patient care and operational excellence.
-                </p>
-                <h2 className="text-2xl font-bold mb-4">Core Purpose</h2>
-                <p className="text-muted-foreground">
-                  Empowering healthcare organizations with intelligent tools and connections that drive
-                  efficiency, improve outcomes, and enhance accessibility.
-                </p>
-              </div>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-4 gradient-text">Our Service Verticals</h2>
+              <p className="text-xl text-gray-600">Comprehensive healthcare solutions across multiple domains</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {services.map((service, index) => (
+                <Card key={index} className="border-l-4 border-l-primary hover:shadow-lg transition-all">
+                  <CardHeader className="flex flex-row items-center gap-4">
+                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0" />
+                    <CardTitle className="text-lg">{service}</CardTitle>
+                  </CardHeader>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-16 md:py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Why Choose Us</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            <Card>
+      {/* Compliance & Standards */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <Card className="border-2">
               <CardHeader>
-                <Shield className="h-10 w-10 text-primary mb-2" />
-                <CardTitle>For Hospitals</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Streamlined revenue cycle</li>
-                  <li>• Access to verified professionals</li>
-                  <li>• Compliance support</li>
-                  <li>• Vendor management</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Award className="h-10 w-10 text-primary mb-2" />
-                <CardTitle>For Professionals</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Career opportunities</li>
-                  <li>• Hospital connections</li>
-                  <li>• Professional visibility</li>
-                  <li>• Growth support</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <TrendingUp className="h-10 w-10 text-primary mb-2" />
-                <CardTitle>For Vendors</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Lead generation</li>
-                  <li>• Hospital partnerships</li>
-                  <li>• Market visibility</li>
-                  <li>• Business growth</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CheckCircle className="h-10 w-10 text-primary mb-2" />
-                <CardTitle>For NGOs</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Community reach</li>
-                  <li>• Program coordination</li>
-                  <li>• Volunteer management</li>
-                  <li>• Impact tracking</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Three Verticals Overview */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Our Three Verticals</h2>
-          <div className="max-w-4xl mx-auto space-y-8">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl">Revenue Cycle Management (RCM)</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Eligibility verification and pre-authorization</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Medical billing and coding services</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Claims management and tracking</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Denial prediction and follow-up</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>AR management and revenue dashboards</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl">Healthcare Technology</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>AI-powered dashboards and analytics</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>HIS/EHR integration services</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>NABH and licensing support</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Telemedicine and remote monitoring</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Data security and compliance</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl">Healthcare Connecting Platform</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Workforce (doctors, nurses, radiologists, physiotherapists, dietitians, coders, RCM staff)</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Emergency and ambulance services</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Diagnostics and labs</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Pharmacies and medicine suppliers</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Vendors and service providers</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>NGOs and community support</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span>Insurance partners and TPAs</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Compliance & Accreditation */}
-      <section className="py-16 md:py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Compliance & Accreditation</h2>
-          <div className="max-w-3xl mx-auto">
-            <Card>
-              <CardContent className="pt-6">
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">NABH Standards</h3>
-                    <p className="text-muted-foreground">
-                      We support healthcare organizations in achieving and maintaining NABH accreditation
-                      through comprehensive compliance tools and guidance.
-                    </p>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                    <Shield className="w-8 h-8 text-primary" />
                   </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Licensing Support</h3>
-                    <p className="text-muted-foreground">
-                      Our platform helps manage all licensing requirements, renewals, and documentation
-                      to ensure continuous compliance with regulatory standards.
-                    </p>
+                  <CardTitle className="text-3xl gradient-text-alt">Compliance & Standards</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-lg leading-relaxed mb-6">
+                  We adhere to the highest standards of healthcare compliance, data security, and professional ethics.
+                  Our platform is designed to meet regulatory requirements while ensuring patient privacy and data
+                  protection.
+                </CardDescription>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <p className="font-semibold text-primary">HIPAA Compliant</p>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Data Security</h3>
-                    <p className="text-muted-foreground">
-                      Enterprise-grade security measures protect sensitive healthcare data with encryption,
-                      access controls, and regular security audits.
-                    </p>
+                  <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <p className="font-semibold text-primary">ISO Certified</p>
+                  </div>
+                  <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <p className="font-semibold text-primary">Data Encrypted</p>
                   </div>
                 </div>
               </CardContent>
@@ -250,48 +183,43 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Our Impact */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Our Impact</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div>
-              <img
-                src="/assets/generated/healthcare-team.dim_800x600.png"
-                alt="Healthcare Team"
-                className="w-full h-64 object-cover rounded-lg shadow-lg mb-6"
-              />
-              <h3 className="text-2xl font-bold mb-4">Success Stories</h3>
-              <p className="text-muted-foreground mb-4">
-                Our platform has helped numerous healthcare organizations streamline their operations,
-                improve patient care, and achieve better financial outcomes.
-              </p>
-            </div>
-            <div className="space-y-6">
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-primary mb-2">500+</div>
-                    <p className="text-muted-foreground">Healthcare Professionals</p>
-                  </div>
-                </CardContent>
+      {/* Impact Metrics */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 gradient-text-vibrant">Our Impact</h2>
+            <p className="text-xl text-gray-600">Making a difference in healthcare delivery across India</p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            {metrics.map((metric, index) => (
+              <Card key={index} className="text-center border-2 hover:border-primary/50 transition-all">
+                <CardHeader>
+                  <CardTitle className="text-5xl font-bold gradient-text mb-2">{metric.value}</CardTitle>
+                  <CardDescription className="text-base font-medium">{metric.label}</CardDescription>
+                </CardHeader>
               </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-primary mb-2">100+</div>
-                    <p className="text-muted-foreground">Partner Hospitals</p>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-primary mb-2">50+</div>
-                    <p className="text-muted-foreground">Verified Vendors</p>
-                  </div>
-                </CardContent>
-              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <Globe className="w-16 h-16 mx-auto mb-6 text-primary" />
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">Join Our Healthcare Revolution</h2>
+            <p className="text-xl text-gray-700 mb-8">
+              Be part of India's most comprehensive healthcare network
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" onClick={() => navigate({ to: '/directory' })}>
+                Explore Network
+              </Button>
+              <Button size="lg" variant="outline" onClick={() => navigate({ to: '/contact' })}>
+                Contact Us
+              </Button>
             </div>
           </div>
         </div>

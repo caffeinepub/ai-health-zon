@@ -60,11 +60,11 @@ export default function Navigation() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-header backdrop-blur supports-[backdrop-filter]:bg-header/98">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/90">
       <nav className="container mx-auto px-6 h-16 flex items-center justify-between">
         <Link to="/home" className="flex items-center space-x-2.5">
-          <Heart className="h-6 w-6 text-header-foreground fill-header-foreground" />
-          <span className="font-semibold text-lg text-header-foreground tracking-tight">AI Health Zon</span>
+          <Heart className="h-6 w-6 text-primary fill-primary" />
+          <span className="font-semibold text-lg tracking-tight gradient-text">AI Health Zon</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -75,10 +75,10 @@ export default function Navigation() {
               <Link
                 key={link.to}
                 to={link.to}
-                className={`px-4 py-2 rounded-sm text-sm font-medium transition-colors relative flex items-center gap-1.5 ${
+                className={`px-3 py-2 rounded-sm text-sm font-medium transition-colors duration-200 relative flex items-center gap-1.5 ${
                   currentPath === link.to
-                    ? 'bg-header-foreground/15 text-header-foreground'
-                    : 'text-header-foreground/85 hover:bg-header-foreground/10 hover:text-header-foreground'
+                    ? 'text-foreground bg-muted'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                 }`}
               >
                 {Icon && <Icon className="h-4 w-4" />}
@@ -96,13 +96,17 @@ export default function Navigation() {
           })}
         </div>
 
-        <div className="hidden lg:flex items-center space-x-4">
+        <div className="hidden lg:flex items-center space-x-3">
           <Button
             onClick={handleAuth}
             disabled={isLoggingIn}
             variant={isAuthenticated ? 'outline' : 'default'}
             size="sm"
-            className={isAuthenticated ? 'border-header-foreground/30 text-header-foreground hover:bg-header-foreground/10 hover:border-header-foreground/50' : 'bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm'}
+            className={
+              isAuthenticated 
+                ? 'border-border hover:bg-muted hover:text-foreground transition-colors duration-200' 
+                : 'bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200'
+            }
           >
             {isLoggingIn ? 'Logging in...' : isAuthenticated ? 'Logout' : 'Login'}
           </Button>
@@ -110,7 +114,7 @@ export default function Navigation() {
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden p-2 rounded-sm hover:bg-header-foreground/10 text-header-foreground"
+          className="lg:hidden p-2 rounded-sm hover:bg-muted text-foreground transition-colors duration-200"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -120,7 +124,7 @@ export default function Navigation() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-header-foreground/15 bg-header">
+        <div className="lg:hidden border-t border-border/40 bg-background/98 backdrop-blur">
           <div className="container mx-auto px-6 py-4 space-y-1">
             {navLinks.map((link) => {
               const Icon = link.icon;
@@ -128,33 +132,29 @@ export default function Navigation() {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className={`block px-4 py-2.5 rounded-sm text-sm font-medium transition-colors relative ${
+                  className={`flex items-center gap-2 px-4 py-3 rounded-sm text-sm font-medium transition-colors duration-200 ${
                     currentPath === link.to
-                      ? 'bg-header-foreground/15 text-header-foreground'
-                      : 'text-header-foreground/85 hover:bg-header-foreground/10'
+                      ? 'bg-muted text-foreground'
+                      : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <span className="flex items-center justify-between">
-                    <span className="flex items-center gap-2">
-                      {Icon && <Icon className="h-4 w-4" />}
-                      {link.label}
-                    </span>
-                    {link.to === '/admin' && pendingCount > 0 && (
-                      <Badge variant="destructive" className="ml-2">
-                        {pendingCount}
-                      </Badge>
-                    )}
-                  </span>
+                  {Icon && <Icon className="h-4 w-4" />}
+                  {link.label}
+                  {link.to === '/admin' && pendingCount > 0 && (
+                    <Badge variant="destructive" className="ml-auto">
+                      {pendingCount}
+                    </Badge>
+                  )}
                 </Link>
               );
             })}
-            <div className="pt-3">
+            <div className="pt-4 border-t border-border/40">
               <Button
                 onClick={handleAuth}
                 disabled={isLoggingIn}
                 variant={isAuthenticated ? 'outline' : 'default'}
-                className={`w-full ${isAuthenticated ? 'border-header-foreground/30 text-header-foreground hover:bg-header-foreground/10' : 'bg-accent text-accent-foreground hover:bg-accent/90'}`}
+                className="w-full"
               >
                 {isLoggingIn ? 'Logging in...' : isAuthenticated ? 'Logout' : 'Login'}
               </Button>

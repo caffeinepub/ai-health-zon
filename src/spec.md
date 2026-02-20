@@ -1,13 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Redesign the Network Directory page to match McKinsey's Our People page professional card-based layout and filtering system.
+**Goal:** Remove multicolor gradient text styling from text overlaid on images to improve readability.
 
 **Planned changes:**
-- Update NetworkDirectory.tsx layout to use a responsive grid of profile cards matching McKinsey's design
-- Implement McKinsey-style card styling with appropriate borders, shadows, hover effects, and typography hierarchy
-- Add enhanced filtering system with stakeholder category, location, and specialty filters
-- Create profile detail views that show comprehensive stakeholder information
-- Update page spacing and whitespace to match McKinsey's generous layout structure
+- Remove gradient text effects from hero carousel text overlays on the Home page
+- Remove gradient text effects from video thumbnail text overlays on the Healthcare Support System page
+- Preserve gradient styling for text on solid backgrounds throughout the site
 
-**User-visible outcome:** Users will see a professional, McKinsey-style directory with card-based profiles, advanced filtering options, and detailed profile views when clicking on stakeholders.
+**User-visible outcome:** Text overlaid on images and media content displays in solid colors with better visibility and contrast, while maintaining gradient effects for text on solid backgrounds.

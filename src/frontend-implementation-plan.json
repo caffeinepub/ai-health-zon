@@ -1,105 +1,67 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Upgrade Network Directory to McKinsey Our People page style",
+  "title": "Remove multicolor gradient text from images",
   "requirements": [
     {
-      "id": "REQ-76",
-      "summary": "Update Network Directory layout to card-based profile design with responsive grid matching McKinsey's Our People page",
+      "id": "REQ-105",
+      "summary": "Remove multicolor gradient text styling from all text elements that appear over or within image content across the Home page hero section carousel",
       "acceptanceCriteria": [
-        "Profile cards are arranged in a responsive grid matching McKinsey's layout",
-        "Cards display stakeholder photos/avatars prominently",
-        "Each card shows name, role/title, and location information",
-        "Grid adapts to different screen sizes appropriately"
+        "Text overlaid on hero carousel images renders in solid colors without gradient effects",
+        "Hero section headings and CTA button text remain fully visible and readable over background images",
+        "Gradient text effects are preserved for non-image sections of the page"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/NetworkDirectory.tsx",
+          "path": "frontend/src/pages/Home.tsx",
           "operation": "modify",
-          "description": "Replace the current list-based layout with a responsive grid of profile cards. Implement a card-based design where each stakeholder (hospital, healthcare professional, vendor, NGO) is displayed in a card with prominent avatar/logo placement at the top, followed by name as a heading, role/category as subheading, and location information. Use CSS Grid with responsive breakpoints (1 column mobile, 2-3 columns tablet, 3-4 columns desktop) to match McKinsey's adaptive layout pattern."
+          "description": "Remove gradient text classes (bg-gradient-to-r, from-*, via-*, to-*, bg-clip-text, text-transparent) from all text elements within the hero carousel sections that overlay the hero slide images (hero-slide-1.dim_1920x800.png, hero-slide-2.dim_1920x800.png, hero-slide-3.dim_1920x800.png). Replace with solid color classes (text-white or text-gray-900) with appropriate drop shadows or backgrounds for contrast and readability. Preserve gradient styling on any text rendered over solid background sections outside the carousel."
         }
       ]
     },
     {
-      "id": "REQ-77",
-      "summary": "Update card styling to match McKinsey's professional visual design with borders, shadows, hover effects, and typography hierarchy",
+      "id": "REQ-106",
+      "summary": "Remove multicolor gradient text styling from any text overlays on the Healthcare Support System page video thumbnail sections",
       "acceptanceCriteria": [
-        "Card design matches McKinsey's visual style with appropriate borders and shadows",
-        "Hover effects provide visual feedback matching the reference",
-        "Typography hierarchy clearly distinguishes name, role, and other details",
-        "Image/avatar treatment matches McKinsey's professional presentation"
+        "Text overlaid on video thumbnails or image placeholders renders in solid colors",
+        "All text over visual media remains clearly visible without gradient styling"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/NetworkDirectory.tsx",
+          "path": "frontend/src/pages/HealthcareSupportSystem.tsx",
           "operation": "modify",
-          "description": "Apply McKinsey-inspired card styling: subtle borders (1px solid border-color), soft shadows (shadow-sm default, shadow-md on hover), smooth hover transitions with subtle lift effect (transform: translateY(-4px)), and card background with rounded corners (rounded-lg). Implement typography hierarchy with large bold font for names (text-xl font-semibold), medium weight for roles (text-base font-medium text-muted-foreground), and smaller text for location details (text-sm text-muted-foreground). Ensure avatar/image uses rounded treatment (rounded-full for people, rounded-lg for organizations) with consistent sizing."
+          "description": "Remove gradient text classes (bg-gradient-to-r, from-*, via-*, to-*, bg-clip-text, text-transparent) from any text elements that overlay the video thumbnail images (healthcare-video-thumbnail-1.dim_800x450.png, healthcare-video-thumbnail-2.dim_800x450.png, healthcare-video-thumbnail-3.dim_800x450.png, healthcare-video-thumbnail-4.dim_800x450.png). Replace with solid color classes (text-white with drop shadow or semi-transparent background overlay) to ensure readability. Preserve gradient styling on text rendered over solid backgrounds in the category cards and other non-image sections."
+        }
+      ]
+    },
+    {
+      "id": "REQ-107",
+      "summary": "Ensure multicolor gradient typography is only applied to text rendered directly on solid background colors, not on text overlaying images, photos, or video content across all pages",
+      "acceptanceCriteria": [
+        "Text on solid backgrounds displays with multicolor gradients as designed",
+        "Text over images, carousels, or media content displays in solid colors with high contrast",
+        "Visual hierarchy and readability are maintained across all page sections"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AboutUs.tsx",
+          "operation": "modify",
+          "description": "Review all text elements on the page. Remove gradient text classes from any text that overlays images (such as healthcare-team.dim_800x600.png, hospital-building.dim_800x600.png, or any stakeholder images). Replace with solid colors that maintain readability. Preserve gradient styling on headings and text over solid background sections (hero sections, card backgrounds)."
         },
         {
-          "path": "frontend/src/index.css",
+          "path": "frontend/src/pages/Onboarding.tsx",
           "operation": "modify",
-          "description": "Add custom CSS utilities for McKinsey-style card hover effects if needed, ensuring smooth transitions and professional shadow elevations. Verify existing OKLCH color system variables work well with the new card design and adjust if necessary to maintain visual consistency with the McKinsey reference."
-        }
-      ]
-    },
-    {
-      "id": "REQ-78",
-      "summary": "Implement enhanced filtering system matching McKinsey's Our People page with category, location, specialty filters and clear filter controls",
-      "acceptanceCriteria": [
-        "Filter controls are prominently displayed and easy to use",
-        "Multiple filters can be applied simultaneously",
-        "Active filters are clearly indicated",
-        "Filter UI matches McKinsey's design patterns"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/NetworkDirectory.tsx",
-          "operation": "modify",
-          "description": "Enhance the existing filter section to match McKinsey's filter UI pattern. Replace or upgrade current filtering with a prominent filter bar containing: stakeholder category dropdown (Hospital, Healthcare Professional, Vendor, NGO), location/city multi-select or dropdown, and specialty/service area filter where applicable. Implement multi-filter logic allowing users to combine filters (e.g., show only Vendors in Mumbai offering specific products). Add clear visual indicators for active filters (pill badges showing selected filters with remove icons) and a 'Clear all filters' button. Position filters above the grid in a sticky or fixed header section for easy access while scrolling."
-        }
-      ]
-    },
-    {
-      "id": "REQ-79",
-      "summary": "Add professional profile detail views with comprehensive stakeholder information matching McKinsey's interaction pattern",
-      "acceptanceCriteria": [
-        "Clicking a profile card reveals detailed information",
-        "Detail view shows comprehensive stakeholder profile",
-        "Navigation between list and detail views is intuitive",
-        "Layout matches McKinsey's profile detail presentation"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/StakeholderDetailView.tsx",
-          "operation": "create",
-          "description": "Create a new detail view component for displaying comprehensive stakeholder profiles. Include sections for: header with large avatar/logo and name, role/category badge, contact information (email, phone, website with action buttons), detailed description/bio, services offered or specialties (as a list or grid), experience/credentials, location map or address details, and verification status badge. Design the layout with generous spacing matching McKinsey's professional presentation style. Support all stakeholder types (Hospital, HealthcareProfessional, Vendor, NGO) with conditional rendering based on available data fields from the backend interface."
+          "description": "Review the onboarding animation flow. If any text overlays images during the stakeholder approval animations (ambulance-happy.dim_256x256.png, doctor-peaceful.dim_256x256.png, hospital-happy.dim_256x256.png, ngo-peaceful.dim_256x256.png, nurse-happy.dim_256x256.png, vendor-content.dim_256x256.png), remove gradient text classes and replace with solid colors for clarity. Preserve gradient styling on text over solid backgrounds."
         },
         {
-          "path": "frontend/src/pages/NetworkDirectory.tsx",
+          "path": "frontend/src/pages/Solutions.tsx",
           "operation": "modify",
-          "description": "Integrate StakeholderDetailView component with card click interactions. Implement navigation pattern: clicking a card either opens a modal overlay with the detail view or navigates to a detail route (decide based on UX preference matching McKinsey's pattern - likely modal for quick browsing). Add close/back functionality to return to the grid view. Ensure smooth transitions and maintain filter state when navigating between list and detail views. Pass the selected stakeholder data to StakeholderDetailView component."
-        }
-      ]
-    },
-    {
-      "id": "REQ-80",
-      "summary": "Update Network Directory spacing, padding, and layout structure to match McKinsey's generous whitespace and professional organization",
-      "acceptanceCriteria": [
-        "Page layout uses generous whitespace matching McKinsey's style",
-        "Section spacing creates clear visual separation",
-        "Content margins and padding match the reference design",
-        "Overall page structure feels professional and uncluttered"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/NetworkDirectory.tsx",
-          "operation": "modify",
-          "description": "Update page-level spacing and layout structure to match McKinsey's generous whitespace approach. Implement: larger top padding for the page container (py-12 or py-16), wider horizontal margins for content (max-w-7xl mx-auto px-6 lg:px-8), increased gap between filter section and grid (space-y-8 or space-y-12), larger grid gaps between cards (gap-6 lg:gap-8), and generous internal card padding (p-6). Add clear section separators if needed. Ensure the overall layout feels breathable and uncluttered by avoiding cramped spacing and maintaining consistent rhythm throughout the page."
+          "description": "Review all text elements on the Solutions page. If any text overlays the icon images (rcm-icon.dim_256x256.png, tech-icon.dim_256x256.png, network-icon.dim_256x256.png), remove gradient text classes and replace with solid colors. Preserve gradient styling on section headings and text over solid background cards."
         },
         {
-          "path": "frontend/src/index.css",
+          "path": "frontend/src/pages/NetworkMap.tsx",
           "operation": "modify",
-          "description": "Add utility classes or adjust existing spacing scale if needed to support McKinsey-style generous whitespace. Ensure container max-widths and padding values align with the professional, spacious feel of the reference design."
+          "description": "Review text overlaying the world map background image (world-map-bg.dim_1200x600.png). Remove any gradient text classes from text elements that appear over the map image and replace with solid colors (text-white with drop shadow or semi-transparent background). Preserve gradient styling on statistics or labels rendered over solid backgrounds."
         }
       ]
     }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 25,
+  "projectStateVersion": 33,
   "summary": "AI Health Zon: A comprehensive AI-powered healthcare platform website with RCM, Healthcare Technology solutions, and a Healthcare Connecting Platform linking hospitals, medical professionals, vendors, NGOs, and services",
   "architectural_notes": [
     "Multi-stakeholder platform requiring role-based authentication and dashboards",
@@ -15,9 +15,10 @@
     "PIN code-based auto-fill for city/state in registration forms using PIN code lookup API or database"
   ],
   "known_issues": [
-    "Chatbot not functioning on the website"
+    "Chatbot not functioning on the website",
+    "Text with multicolor gradient overlays on images is not displaying/visualizing properly"
   ],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-create-a-home-page-with-hero-section-displaying-the-master-brand-line-ai-health-zon-is-an-ai-powered-healthcare-platform-delivering-revenue-cycle-management-healthcare-technology-solutions-and-a-healthcare-connecting-platform-that-links-hospitals-with-doctors-nurses-radiologists-physiotherapists-dietitians-ambulance-services-diagnostics-pharmacies-vendors-insurance-partners-ngos-and-compliance-experts-on-one-unified-digital-platform-include-two-cta-buttons-request-demo-and-join-network",
@@ -586,6 +587,126 @@
         "REQ-80"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-healthcare-support-system-page-frontend-src-pages-healthcaresupportsystem-tsx-layout-to-match-mckinsey-s-center-for-us-healthcare-improvement-page-design-from-https-www-mckinsey-com-industries-healthcare-how-we-help-clients-center-for-us-healthcare-improvement-including-sections-with-video-content-text-overlays-and-professional-spacing",
+      "title": "Update the Healthcare Support System page (frontend/src/pages/HealthcareSupportSystem.tsx) layout to match McKinsey's Center for US Healthcare Improvement page design from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/center-for-us-healthcare-improvement, including sections with video content, text overlays, and professional spacing",
+      "reqIds": [
+        "REQ-81"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-video-placeholder-sections-to-the-healthcare-support-system-page-that-display-embedded-videos-or-video-thumbnails-with-play-controls-matching-the-video-presentation-style-from-https-www-mckinsey-com-industries-healthcare-how-we-help-clients-center-for-us-healthcare-improvement",
+      "title": "Add video placeholder sections to the Healthcare Support System page that display embedded videos or video thumbnails with play controls, matching the video presentation style from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/center-for-us-healthcare-improvement",
+      "reqIds": [
+        "REQ-82"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-visual-presentation-of-the-12-healthcare-support-service-categories-on-the-healthcare-support-system-page-to-integrate-with-video-content-sections-matching-the-content-rich-layout-from-https-www-mckinsey-com-industries-healthcare-how-we-help-clients-center-for-us-healthcare-improvement",
+      "title": "Update the visual presentation of the 12 healthcare support service categories on the Healthcare Support System page to integrate with video content sections, matching the content-rich layout from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/center-for-us-healthcare-improvement",
+      "reqIds": [
+        "REQ-83"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-about-us-page-frontend-src-pages-aboutus-tsx-layout-and-structure-to-match-mckinsey-s-about-us-overview-page-design-from-https-www-mckinsey-com-about-us-overview-including-hero-section-layout-content-organization-section-spacing-and-visual-hierarchy",
+      "title": "Update the About Us page (frontend/src/pages/AboutUs.tsx) layout and structure to match McKinsey's About Us overview page design from https://www.mckinsey.com/about-us/overview, including hero section layout, content organization, section spacing, and visual hierarchy",
+      "reqIds": [
+        "REQ-84"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-about-us-page-content-sections-to-include-mckinsey-style-storytelling-elements-with-clear-section-headings-descriptive-paragraphs-and-visual-content-blocks-matching-the-professional-tone-from-https-www-mckinsey-com-about-us-overview",
+      "title": "Update the About Us page content sections to include McKinsey-style storytelling elements with clear section headings, descriptive paragraphs, and visual content blocks matching the professional tone from https://www.mckinsey.com/about-us/overview",
+      "reqIds": [
+        "REQ-85"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-about-us-page-color-scheme-to-match-mckinsey-s-about-us-page-palette-from-https-www-mckinsey-com-about-us-overview-ensuring-backgrounds-text-colors-accent-colors-and-borders-align-with-their-professional-healthcare-aesthetic",
+      "title": "Update the About Us page color scheme to match McKinsey's About Us page palette from https://www.mckinsey.com/about-us/overview, ensuring backgrounds, text colors, accent colors, and borders align with their professional healthcare aesthetic",
+      "reqIds": [
+        "REQ-86"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-header-navigation-button-styling-in-the-navigation-component-frontend-src-components-navigation-tsx-to-match-the-button-design-from-mckinsey-s-about-us-page-at-https-www-mckinsey-com-about-us-overview-including-button-colors-borders-padding-typography-and-hover-states",
+      "title": "Update header navigation button styling in the Navigation component (frontend/src/components/Navigation.tsx) to match the button design from McKinsey's About Us page at https://www.mckinsey.com/about-us/overview, including button colors, borders, padding, typography, and hover states",
+      "reqIds": [
+        "REQ-87"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-about-us-page-typography-font-families-sizes-weights-line-heights-matches-mckinsey-s-text-hierarchy-from-https-www-mckinsey-com-about-us-overview-for-all-headings-body-text-and-captions",
+      "title": "Ensure the About Us page typography (font families, sizes, weights, line heights) matches McKinsey's text hierarchy from https://www.mckinsey.com/about-us/overview for all headings, body text, and captions",
+      "reqIds": [
+        "REQ-88"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-about-us-page-interactive-elements-links-buttons-cards-to-match-mckinsey-s-interaction-patterns-from-https-www-mckinsey-com-about-us-overview-with-appropriate-hover-effects-transitions-and-visual-feedback",
+      "title": "Update the About Us page interactive elements (links, buttons, cards) to match McKinsey's interaction patterns from https://www.mckinsey.com/about-us/overview with appropriate hover effects, transitions, and visual feedback",
+      "reqIds": [
+        "REQ-89"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-tailwind-config-js-to-add-custom-gradient-color-utilities-that-support-the-apple-intelligence-multicolor-typography-style-across-the-application",
+      "title": "Update frontend/tailwind.config.js to add custom gradient color utilities that support the Apple Intelligence multicolor typography style across the application",
+      "reqIds": [
+        "REQ-91"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-home-page-frontend-src-pages-home-tsx-to-apply-multicolor-gradient-typography-to-all-headings-and-main-content-points-matching-the-apple-intelligence-design-style-from-https-www-apple-com-in-apple-intelligence",
+      "title": "Update the Home page (frontend/src/pages/Home.tsx) to apply multicolor gradient typography to all headings and main content points, matching the Apple Intelligence design style from https://www.apple.com/in/apple-intelligence/",
+      "reqIds": [
+        "REQ-92"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-navigation-component-frontend-src-components-navigation-tsx-to-apply-multicolor-gradient-effects-to-the-ai-health-zon-brand-logo-text",
+      "title": "Update the Navigation component (frontend/src/components/Navigation.tsx) to apply multicolor gradient effects to the AI Health Zon brand logo text",
+      "reqIds": [
+        "REQ-104"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-multicolor-gradient-text-styling-from-all-text-elements-that-appear-over-or-within-image-content-across-the-home-page-frontend-src-pages-home-tsx-hero-section-carousel",
+      "title": "Remove multicolor gradient text styling from all text elements that appear over or within image content across the Home page (frontend/src/pages/Home.tsx) hero section carousel",
+      "reqIds": [
+        "REQ-105"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-multicolor-gradient-text-styling-from-any-text-overlays-on-the-healthcare-support-system-page-frontend-src-pages-healthcaresupportsystem-tsx-video-thumbnail-sections",
+      "title": "Remove multicolor gradient text styling from any text overlays on the Healthcare Support System page (frontend/src/pages/HealthcareSupportSystem.tsx) video thumbnail sections",
+      "reqIds": [
+        "REQ-106"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-multicolor-gradient-typography-is-only-applied-to-text-rendered-directly-on-solid-background-colors-not-on-text-overlaying-images-photos-or-video-content-across-all-pages",
+      "title": "Ensure multicolor gradient typography is only applied to text rendered directly on solid background colors, not on text overlaying images, photos, or video content across all pages",
+      "reqIds": [
+        "REQ-107"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -797,6 +918,132 @@
       "id": "AR-41",
       "summary": "Upgrade Network Directory page to match the profile directory layout and design from McKinsey's Our People page (https://www.mckinsey.com/industries/healthcare/our-people), including card-based profile layouts, filtering system, and visual presentation",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-42",
+      "summary": "Upgrade Healthcare Support System page to match McKinsey's Center for US Healthcare Improvement page design (https://www.mckinsey.com/industries/healthcare/how-we-help-clients/center-for-us-healthcare-improvement) with video content featuring Indian healthcare professionals and stakeholders",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-43",
+      "summary": "Upgrade About Us page to match McKinsey's About Us overview page design (https://www.mckinsey.com/about-us/overview), including layout, content structure, and visual presentation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-44",
+      "summary": "Update header navigation buttons styling to match McKinsey About Us page theme (https://www.mckinsey.com/about-us/overview)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-45",
+      "summary": "Update global typography to match Apple Intelligence page (https://www.apple.com/in/apple-intelligence/) with multicolour headings and main points across all pages",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-46",
+      "summary": "Replace all small images across the site to align with the new design aesthetic",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-47",
+      "summary": "Update frontend/index.css to implement a multicolor gradient typography system inspired by https://www.apple.com/in/apple-intelligence/ for headings (h1, h2, h3) and main points, using vibrant color transitions similar to Apple's design",
+      "reqIds": [
+        "REQ-90"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-50",
+      "summary": "Update the About Us page (frontend/src/pages/AboutUs.tsx) to apply multicolor gradient typography to all headings and key content points following the Apple Intelligence design pattern",
+      "reqIds": [
+        "REQ-93"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-51",
+      "summary": "Update the Solutions page (frontend/src/pages/Solutions.tsx) to apply multicolor gradient typography to all headings and main feature points in the Apple Intelligence style",
+      "reqIds": [
+        "REQ-94"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-52",
+      "summary": "Update the Healthcare Support System page (frontend/src/pages/HealthcareSupportSystem.tsx) to apply multicolor gradient typography to headings and service category titles",
+      "reqIds": [
+        "REQ-95"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-53",
+      "summary": "Update the Network Directory page (frontend/src/pages/NetworkDirectory.tsx) to apply multicolor gradient typography to the page heading and section titles",
+      "reqIds": [
+        "REQ-96"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-54",
+      "summary": "Update the Careers page (frontend/src/pages/Careers.tsx) to apply multicolor gradient typography to headings and key benefit points",
+      "reqIds": [
+        "REQ-97"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-55",
+      "summary": "Update the Vendors page (frontend/src/pages/Vendors.tsx) to apply multicolor gradient typography to headings and registration benefit points",
+      "reqIds": [
+        "REQ-98"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-56",
+      "summary": "Update the Ambulance Services page (frontend/src/pages/AmbulanceServices.tsx) to apply multicolor gradient typography to headings and service descriptions",
+      "reqIds": [
+        "REQ-99"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-57",
+      "summary": "Update the NGO Listing page (frontend/src/pages/NgoListing.tsx) to apply multicolor gradient typography to headings and program descriptions",
+      "reqIds": [
+        "REQ-100"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-58",
+      "summary": "Update the Contact page (frontend/src/pages/Contact.tsx) to apply multicolor gradient typography to the page heading and contact section titles",
+      "reqIds": [
+        "REQ-101"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-59",
+      "summary": "Update the Dashboard page (frontend/src/pages/Dashboard.tsx) to apply multicolor gradient typography to role-specific dashboard headings and metric labels",
+      "reqIds": [
+        "REQ-102"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-60",
+      "summary": "Update the Admin Dashboard page (frontend/src/pages/AdminDashboard.tsx) to apply multicolor gradient typography to page heading and status section titles",
+      "reqIds": [
+        "REQ-103"
+      ],
       "status": "pending"
     }
   ],

@@ -1,38 +1,26 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-20T10:20:12.722Z",
-  "summary": "The diff implements a comprehensive McKinsey-style redesign of the Network Directory page with card-based layouts, enhanced filtering, profile detail views, and professional styling. All five requirements (REQ-76 through REQ-80) show evidence of implementation with appropriate UI components, styling, and functionality.",
+  "generatedAt": "2026-02-20T11:21:24.821Z",
+  "summary": "The implementation successfully removes gradient text from text overlays on images across Home.tsx, HealthcareSupportSystem.tsx, NetworkMap.tsx, and Onboarding.tsx by replacing gradient classes with solid color text (white with drop-shadow for hero sections). Gradient text is preserved for headings on solid backgrounds throughout all pages. All three requirements are fully implemented.",
   "missing_requirements": [],
   "hallucinated_features": [
     {
-      "description": "WhatsApp integration functionality in StakeholderDetailView component with openWhatsApp() function",
-      "reason": "The BuildRequest does not mention WhatsApp contact functionality as a requirement. This is an additional communication feature not requested in the specifications.",
+      "description": "Modified AboutUs.tsx to preserve gradient text on solid backgrounds",
+      "reason": "AboutUs.tsx is not mentioned in any of the three requirements. The BuildRequest specifically targets Home.tsx hero carousel (REQ-105), HealthcareSupportSystem.tsx video thumbnails (REQ-106), and ensuring gradient text only on solid backgrounds across all pages (REQ-107), but does not explicitly request changes to AboutUs.tsx.",
       "evidence": [
-        "frontend/src/components/StakeholderDetailView.tsx"
-      ]
-    },
-    {
-      "description": "Dark mode color scheme implementation in index.css",
-      "reason": "The BuildRequest focuses on matching McKinsey's light mode design aesthetic. Dark mode theming was not requested in any requirement or acceptance criteria.",
-      "evidence": [
-        "frontend/src/index.css"
-      ]
-    },
-    {
-      "description": "Verified badge display functionality for stakeholders",
-      "reason": "The BuildRequest does not mention displaying verification status or badges. This appears to be an additional profile enhancement not specified in the requirements.",
-      "evidence": [
-        "frontend/src/components/StakeholderDetailView.tsx"
+        "frontend/src/pages/AboutUs.tsx"
       ]
     }
   ],
   "confidence": 0.92,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/components/StakeholderDetailView.tsx",
-    "frontend/src/index.css",
-    "frontend/src/pages/NetworkDirectory.tsx",
+    "frontend/src/pages/AboutUs.tsx",
+    "frontend/src/pages/HealthcareSupportSystem.tsx",
+    "frontend/src/pages/Home.tsx",
+    "frontend/src/pages/NetworkMap.tsx",
+    "frontend/src/pages/Onboarding.tsx",
     "project_state.json"
   ]
 }

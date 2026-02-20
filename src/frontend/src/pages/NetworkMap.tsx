@@ -1,243 +1,172 @@
-import { MapPin, Users, Truck, Building2, Heart, Loader2 } from 'lucide-react';
-import { useGetApprovedStakeholderLocations } from '../hooks/useQueries';
+import { useGetApprovedStakeholderLocations } from '@/hooks/useQueries';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import type { Location } from '../backend';
-
-interface LocationWithCount extends Location {
-  count: number;
-  types: {
-    professionals: number;
-    vendors: number;
-    ambulances: number;
-    ngos: number;
-  };
-}
+import { MapPin, Users, Building2, Ambulance, Heart } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function NetworkMap() {
-  const { data: locations = [], isLoading, error } = useGetApprovedStakeholderLocations();
+  const { data: locations, isLoading } = useGetApprovedStakeholderLocations();
 
-  // Aggregate locations by city and state
-  const aggregatedLocations: LocationWithCount[] = locations.reduce((acc: LocationWithCount[], loc: Location) => {
-    const existing = acc.find(l => l.city === loc.city && l.state === loc.state);
-    if (existing) {
-      existing.count += 1;
-    } else {
-      acc.push({
-        ...loc,
-        count: 1,
-        types: {
-          professionals: 0,
-          vendors: 0,
-          ambulances: 0,
-          ngos: 0,
-        },
-      });
-    }
-    return acc;
-  }, []);
+  // Group locations by city
+  const locationGroups = locations?.reduce(
+    (acc, location) => {
+      const key = `${location.city}, ${location.state}`;
+      if (!acc[key]) {
+        acc[key] = {
+          city: location.city,
+          state: location.state,
+          country: location.country,
+          count: 0,
+        };
+      }
+      acc[key].count++;
+      return acc;
+    },
+    {} as Record<string, { city: string; state: string; country: string; count: number }>
+  );
 
-  // Sort by count descending
-  const sortedLocations = aggregatedLocations.sort((a, b) => b.count - a.count);
-
-  const totalStakeholders = locations.length;
-  const uniqueCities = aggregatedLocations.length;
+  const uniqueLocations = locationGroups ? Object.values(locationGroups) : [];
+  const totalStakeholders = locations?.length || 0;
+  const totalCities = uniqueLocations.length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/5">
-      {/* Header Section */}
-      <section className="relative py-16 px-4 overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-10 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/assets/generated/world-map-bg.dim_1200x600.png)' }}
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section with Map Background */}
+      <section className="relative h-[400px] overflow-hidden">
+        <img
+          src="/assets/generated/world-map-bg.dim_1200x600.png"
+          alt="Network Map"
+          className="w-full h-full object-cover"
         />
-        <div className="container mx-auto relative z-10">
-          <div className="max-w-3xl mx-auto text-center space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-4">
-              <MapPin className="h-5 w-5" />
-              <span className="font-semibold">Live Network Map</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-              Our Growing Healthcare Network
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center px-6">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">
+              Our Healthcare Network
             </h1>
-            <p className="text-lg text-muted-foreground">
-              Visualizing our approved stakeholders across India. Every marker represents verified healthcare professionals, vendors, ambulance services, and NGOs committed to transforming healthcare.
+            <p className="text-xl md:text-2xl text-white/95 max-w-2xl mx-auto drop-shadow-md">
+              Connecting healthcare stakeholders across India
             </p>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-8 px-4">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Total Stakeholders</CardTitle>
+      {/* Statistics Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <Card className="text-center border-2">
+              <CardHeader>
+                <Users className="w-12 h-12 mx-auto text-primary mb-2" />
+                <CardTitle className="text-4xl gradient-text">{totalStakeholders}</CardTitle>
+                <CardDescription className="text-base">Total Stakeholders</CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-primary">{totalStakeholders}</div>
-                <p className="text-xs text-muted-foreground mt-1">Approved members</p>
-              </CardContent>
             </Card>
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Cities Covered</CardTitle>
+
+            <Card className="text-center border-2">
+              <CardHeader>
+                <MapPin className="w-12 h-12 mx-auto text-primary mb-2" />
+                <CardTitle className="text-4xl gradient-text-alt">{totalCities}</CardTitle>
+                <CardDescription className="text-base">Cities Covered</CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-primary">{uniqueCities}</div>
-                <p className="text-xs text-muted-foreground mt-1">Unique locations</p>
-              </CardContent>
             </Card>
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-muted-foreground">Network Status</CardTitle>
+
+            <Card className="text-center border-2">
+              <CardHeader>
+                <Building2 className="w-12 h-12 mx-auto text-primary mb-2" />
+                <CardTitle className="text-4xl gradient-text-vibrant">Pan India</CardTitle>
+                <CardDescription className="text-base">Coverage</CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex items-center gap-2">
-                  <div className="h-3 w-3 rounded-full bg-green-500 animate-pulse" />
-                  <span className="text-lg font-semibold">Active</span>
-                </div>
-                <p className="text-xs text-muted-foreground mt-1">Auto-updating</p>
-              </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
+      {/* Locations Grid */}
+      <section className="py-16">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4 gradient-text">Network Locations</h2>
+            <p className="text-xl text-gray-600">
+              Our verified stakeholders are present in these cities
+            </p>
+          </div>
+
+          {isLoading ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[...Array(6)].map((_, i) => (
+                <Card key={i}>
+                  <CardHeader>
+                    <Skeleton className="h-6 w-3/4 mb-2" />
+                    <Skeleton className="h-4 w-1/2" />
+                  </CardHeader>
+                  <CardContent>
+                    <Skeleton className="h-8 w-20" />
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : uniqueLocations.length === 0 ? (
+            <Card className="max-w-md mx-auto">
+              <CardHeader>
+                <CardTitle className="text-center gradient-text-alt">No Locations Yet</CardTitle>
+                <CardDescription className="text-center">
+                  Approved stakeholders will appear here
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {uniqueLocations.map((location, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow border-2">
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <CardTitle className="text-xl gradient-text-alt mb-1">
+                          {location.city}
+                        </CardTitle>
+                        <CardDescription className="text-base">
+                          {location.state}, {location.country}
+                        </CardDescription>
+                      </div>
+                      <MapPin className="w-6 h-6 text-primary flex-shrink-0" />
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <Badge variant="secondary" className="text-base px-3 py-1">
+                      {location.count} {location.count === 1 ? 'Stakeholder' : 'Stakeholders'}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
       {/* Legend Section */}
-      <section className="py-6 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Stakeholder Types</CardTitle>
-              <CardDescription>Color-coded markers represent different types of network members</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="flex items-center gap-2">
-                  <div className="h-4 w-4 rounded-full bg-blue-500" />
-                  <span className="text-sm font-medium">Healthcare Professionals</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="h-4 w-4 rounded-full bg-green-500" />
-                  <span className="text-sm font-medium">Vendors</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="h-4 w-4 rounded-full bg-red-500" />
-                  <span className="text-sm font-medium">Ambulance Services</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="h-4 w-4 rounded-full bg-purple-500" />
-                  <span className="text-sm font-medium">NGOs</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Map Visualization Section */}
-      <section className="py-8 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <MapPin className="h-5 w-5 text-primary" />
-                Network Locations
-              </CardTitle>
-              <CardDescription>
-                All approved stakeholder locations across India
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              {isLoading ? (
-                <div className="flex items-center justify-center py-16">
-                  <Loader2 className="h-8 w-8 animate-spin text-primary" />
-                  <span className="ml-3 text-muted-foreground">Loading network data...</span>
-                </div>
-              ) : error ? (
-                <div className="text-center py-16">
-                  <p className="text-destructive">Failed to load network locations</p>
-                </div>
-              ) : sortedLocations.length === 0 ? (
-                <div className="text-center py-16 space-y-4">
-                  <MapPin className="h-16 w-16 mx-auto text-muted-foreground/50" />
-                  <div>
-                    <h3 className="text-lg font-semibold">No Locations Yet</h3>
-                    <p className="text-muted-foreground">
-                      Approved stakeholders will appear here automatically
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                <ScrollArea className="h-[600px] pr-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {sortedLocations.map((location, index) => (
-                      <Card key={`${location.city}-${location.state}-${index}`} className="hover:shadow-lg transition-shadow">
-                        <CardHeader className="pb-3">
-                          <div className="flex items-start justify-between">
-                            <div className="flex-1">
-                              <CardTitle className="text-base flex items-center gap-2">
-                                <MapPin className="h-4 w-4 text-primary" />
-                                {location.city}
-                              </CardTitle>
-                              <CardDescription className="text-sm mt-1">
-                                {location.state}, {location.country}
-                              </CardDescription>
-                            </div>
-                            <Badge variant="secondary" className="ml-2">
-                              {location.count}
-                            </Badge>
-                          </div>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="space-y-2">
-                            <div className="flex items-center justify-between text-sm">
-                              <span className="text-muted-foreground flex items-center gap-1">
-                                <Users className="h-3 w-3" />
-                                Total Members
-                              </span>
-                              <span className="font-semibold">{location.count}</span>
-                            </div>
-                            <div className="flex flex-wrap gap-1 mt-2">
-                              <div className="h-2 w-2 rounded-full bg-blue-500" title="Healthcare Professionals" />
-                              <div className="h-2 w-2 rounded-full bg-green-500" title="Vendors" />
-                              <div className="h-2 w-2 rounded-full bg-red-500" title="Ambulance Services" />
-                              <div className="h-2 w-2 rounded-full bg-purple-500" title="NGOs" />
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </ScrollArea>
-              )}
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Info Section */}
-      <section className="py-12 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <Card className="bg-primary/5 border-primary/20">
-            <CardContent className="pt-6">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Heart className="h-6 w-6 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold mb-2">Admin-Approved Network</h3>
-                  <p className="text-muted-foreground">
-                    All stakeholders shown on this map have been verified and approved by our admin team. 
-                    The map updates automatically when new members join our network after approval.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold mb-8 text-center gradient-text">
+              Stakeholder Types
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { icon: Users, label: 'Healthcare Professionals', color: 'text-blue-600' },
+                { icon: Building2, label: 'Vendors', color: 'text-green-600' },
+                { icon: Ambulance, label: 'Ambulance Services', color: 'text-red-600' },
+                { icon: Heart, label: 'NGOs', color: 'text-purple-600' },
+              ].map((type, index) => (
+                <Card key={index} className="text-center border-2">
+                  <CardHeader>
+                    <type.icon className={`w-10 h-10 mx-auto mb-2 ${type.color}`} />
+                    <CardDescription className="font-medium">{type.label}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </div>

@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-network-directory-page-frontend-src-pages-networkdirectory-tsx-layout-to-match-mckinsey-s-our-people-page-card-based-profile-design-from-https-www-mckinsey-com-industries-healthcare-our-people-with-profile-cards-displaying-in-a-responsive-grid-layout",
-      "featureTitle": "Update the Network Directory page (frontend/src/pages/NetworkDirectory.tsx) layout to match McKinsey's Our People page card-based profile design from https://www.mckinsey.com/industries/healthcare/our-people, with profile cards displaying in a responsive grid layout",
+      "featureId": "feature-remove-multicolor-gradient-text-styling-from-all-text-elements-that-appear-over-or-within-image-content-across-the-home-page-frontend-src-pages-home-tsx-hero-section-carousel",
+      "featureTitle": "Remove multicolor gradient text styling from all text elements that appear over or within image content across the Home page (frontend/src/pages/Home.tsx) hero section carousel",
       "files": [
-        "frontend/src/pages/NetworkDirectory.tsx"
+        "frontend/src/pages/Home.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -18,16 +18,15 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-76"
+        "REQ-105"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-network-directory-card-styling-to-match-mckinsey-s-profile-card-design-from-https-www-mckinsey-com-industries-healthcare-our-people-including-card-borders-shadows-hover-effects-image-treatment-and-typography-hierarchy",
-      "featureTitle": "Update Network Directory card styling to match McKinsey's profile card design from https://www.mckinsey.com/industries/healthcare/our-people, including card borders, shadows, hover effects, image treatment, and typography hierarchy",
+      "featureId": "feature-remove-multicolor-gradient-text-styling-from-any-text-overlays-on-the-healthcare-support-system-page-frontend-src-pages-healthcaresupportsystem-tsx-video-thumbnail-sections",
+      "featureTitle": "Remove multicolor gradient text styling from any text overlays on the Healthcare Support System page (frontend/src/pages/HealthcareSupportSystem.tsx) video thumbnail sections",
       "files": [
-        "frontend/src/index.css",
-        "frontend/src/pages/NetworkDirectory.tsx"
+        "frontend/src/pages/HealthcareSupportSystem.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -40,15 +39,17 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-77"
+        "REQ-106"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-implement-an-enhanced-filtering-system-in-the-network-directory-matching-mckinsey-s-our-people-page-functionality-from-https-www-mckinsey-com-industries-healthcare-our-people-with-filters-for-stakeholder-category-location-specialty-service-area-and-clear-filter-controls",
-      "featureTitle": "Implement an enhanced filtering system in the Network Directory matching McKinsey's Our People page functionality from https://www.mckinsey.com/industries/healthcare/our-people, with filters for stakeholder category, location, specialty/service area, and clear filter controls",
+      "featureId": "feature-ensure-multicolor-gradient-typography-is-only-applied-to-text-rendered-directly-on-solid-background-colors-not-on-text-overlaying-images-photos-or-video-content-across-all-pages",
+      "featureTitle": "Ensure multicolor gradient typography is only applied to text rendered directly on solid background colors, not on text overlaying images, photos, or video content across all pages",
       "files": [
-        "frontend/src/pages/NetworkDirectory.tsx"
+        "frontend/src/pages/AboutUs.tsx",
+        "frontend/src/pages/NetworkMap.tsx",
+        "frontend/src/pages/Onboarding.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -61,51 +62,7 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-78"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-professional-profile-detail-views-in-the-network-directory-that-expand-or-navigate-to-show-comprehensive-stakeholder-information-including-bio-services-experience-and-contact-options-matching-the-interaction-pattern-from-https-www-mckinsey-com-industries-healthcare-our-people",
-      "featureTitle": "Add professional profile detail views in the Network Directory that expand or navigate to show comprehensive stakeholder information including bio, services, experience, and contact options, matching the interaction pattern from https://www.mckinsey.com/industries/healthcare/our-people",
-      "files": [
-        "frontend/src/components/StakeholderDetailView.tsx",
-        "frontend/src/pages/NetworkDirectory.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-79"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-network-directory-page-spacing-padding-and-overall-layout-structure-to-match-mckinsey-s-generous-whitespace-and-content-organization-from-https-www-mckinsey-com-industries-healthcare-our-people",
-      "featureTitle": "Update Network Directory page spacing, padding, and overall layout structure to match McKinsey's generous whitespace and content organization from https://www.mckinsey.com/industries/healthcare/our-people",
-      "files": [
-        "frontend/src/index.css",
-        "frontend/src/pages/NetworkDirectory.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-80"
+        "REQ-107"
       ],
       "confidence": "high"
     }

@@ -1,115 +1,71 @@
 {
   "kind": "build_request",
-  "title": "Upgrade Network Directory to McKinsey Our People page style",
+  "title": "Remove multicolor gradient text from images",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-76",
-      "text": "Update the Network Directory page (frontend/src/pages/NetworkDirectory.tsx) layout to match McKinsey's Our People page card-based profile design from https://www.mckinsey.com/industries/healthcare/our-people, with profile cards displaying in a responsive grid layout",
+      "id": "REQ-105",
+      "text": "Remove multicolor gradient text styling from all text elements that appear over or within image content across the Home page (frontend/src/pages/Home.tsx) hero section carousel",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "upgrade page Directory like https://www.mckinsey.com/industries/healthcare/our-people"
+          "dont apply on word or sentences which are on the pics. because pics are not visualizing"
         ]
       },
       "acceptanceCriteria": [
-        "Profile cards are arranged in a responsive grid matching McKinsey's layout",
-        "Cards display stakeholder photos/avatars prominently",
-        "Each card shows name, role/title, and location information",
-        "Grid adapts to different screen sizes appropriately"
+        "Text overlaid on hero carousel images renders in solid colors without gradient effects",
+        "Hero section headings and CTA button text remain fully visible and readable over background images",
+        "Gradient text effects are preserved for non-image sections of the page"
       ]
     },
     {
-      "id": "REQ-77",
-      "text": "Update Network Directory card styling to match McKinsey's profile card design from https://www.mckinsey.com/industries/healthcare/our-people, including card borders, shadows, hover effects, image treatment, and typography hierarchy",
+      "id": "REQ-106",
+      "text": "Remove multicolor gradient text styling from any text overlays on the Healthcare Support System page (frontend/src/pages/HealthcareSupportSystem.tsx) video thumbnail sections",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "upgrade page Directory like https://www.mckinsey.com/industries/healthcare/our-people"
+          "dont apply on word or sentences which are on the pics. because pics are not visualizing"
         ]
       },
       "acceptanceCriteria": [
-        "Card design matches McKinsey's visual style with appropriate borders and shadows",
-        "Hover effects provide visual feedback matching the reference",
-        "Typography hierarchy clearly distinguishes name, role, and other details",
-        "Image/avatar treatment matches McKinsey's professional presentation"
+        "Text overlaid on video thumbnails or image placeholders renders in solid colors",
+        "All text over visual media remains clearly visible without gradient styling"
       ]
     },
     {
-      "id": "REQ-78",
-      "text": "Implement an enhanced filtering system in the Network Directory matching McKinsey's Our People page functionality from https://www.mckinsey.com/industries/healthcare/our-people, with filters for stakeholder category, location, specialty/service area, and clear filter controls",
+      "id": "REQ-107",
+      "text": "Ensure multicolor gradient typography is only applied to text rendered directly on solid background colors, not on text overlaying images, photos, or video content across all pages",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "upgrade page Directory like https://www.mckinsey.com/industries/healthcare/our-people"
+          "dont apply on word or sentences which are on the pics. because pics are not visualizing"
         ]
       },
       "acceptanceCriteria": [
-        "Filter controls are prominently displayed and easy to use",
-        "Multiple filters can be applied simultaneously",
-        "Active filters are clearly indicated",
-        "Filter UI matches McKinsey's design patterns"
-      ]
-    },
-    {
-      "id": "REQ-79",
-      "text": "Add professional profile detail views in the Network Directory that expand or navigate to show comprehensive stakeholder information including bio, services, experience, and contact options, matching the interaction pattern from https://www.mckinsey.com/industries/healthcare/our-people",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-latest"
-        ],
-        "quotes": [
-          "upgrade page Directory like https://www.mckinsey.com/industries/healthcare/our-people"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Clicking a profile card reveals detailed information",
-        "Detail view shows comprehensive stakeholder profile",
-        "Navigation between list and detail views is intuitive",
-        "Layout matches McKinsey's profile detail presentation"
-      ]
-    },
-    {
-      "id": "REQ-80",
-      "text": "Update Network Directory page spacing, padding, and overall layout structure to match McKinsey's generous whitespace and content organization from https://www.mckinsey.com/industries/healthcare/our-people",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-latest"
-        ],
-        "quotes": [
-          "upgrade page Directory like https://www.mckinsey.com/industries/healthcare/our-people"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Page layout uses generous whitespace matching McKinsey's style",
-        "Section spacing creates clear visual separation",
-        "Content margins and padding match the reference design",
-        "Overall page structure feels professional and uncluttered"
+        "Text on solid backgrounds displays with multicolor gradients as designed",
+        "Text over images, carousels, or media content displays in solid colors with high contrast",
+        "Visual hierarchy and readability are maintained across all page sections"
       ]
     }
   ],
   "constraints": [
-    "Maintain existing backend data structures and API endpoints for stakeholder data",
-    "Preserve authentication and role-based access control logic",
-    "Keep existing filtering functionality while enhancing the UI",
-    "Do not modify immutable frontend paths: useInternetIdentity, useActor, main.tsx, components/ui"
+    "Preserve existing multicolor gradient styling for text on solid backgrounds",
+    "Do not modify the gradient utility classes in frontend/tailwind.config.js",
+    "Maintain all existing page layouts and content structure"
   ],
   "nonGoals": [
-    "Changing the backend data models or API structure",
-    "Modifying other pages beyond the Network Directory",
-    "Adding new stakeholder types or categories",
-    "Implementing real-time collaboration features"
+    "Removing gradient effects from all text site-wide",
+    "Changing the color scheme or typography hierarchy",
+    "Modifying image content or carousel functionality"
   ],
   "imageRequirements": {
     "required": [],

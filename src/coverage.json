@@ -1,74 +1,51 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-20T10:20:12.729Z",
+  "generatedAt": "2026-02-20T11:21:24.827Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 5,
-    "implemented": 5,
+    "total": 3,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-76",
-        "summary": "Update the Network Directory page (frontend/src/pages/NetworkDirectory.tsx) layout to match McKinsey's Our People page card-based profile design from https://www.mckinsey.com/industries/healthcare/our-people, with profile cards displaying in a responsive grid layout",
+        "id": "REQ-105",
+        "summary": "Remove multicolor gradient text styling from all text elements that appear over or within image content across the Home page (frontend/src/pages/Home.tsx) hero section carousel",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/NetworkDirectory.tsx"
+          "frontend/src/pages/Home.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/NetworkDirectory.tsx"
+          "frontend/src/pages/Home.tsx"
         ]
       },
       {
-        "id": "REQ-77",
-        "summary": "Update Network Directory card styling to match McKinsey's profile card design from https://www.mckinsey.com/industries/healthcare/our-people, including card borders, shadows, hover effects, image treatment, and typography hierarchy",
+        "id": "REQ-106",
+        "summary": "Remove multicolor gradient text styling from any text overlays on the Healthcare Support System page (frontend/src/pages/HealthcareSupportSystem.tsx) video thumbnail sections",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/NetworkDirectory.tsx",
-          "frontend/src/index.css"
+          "frontend/src/pages/HealthcareSupportSystem.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/NetworkDirectory.tsx",
-          "frontend/src/index.css"
+          "frontend/src/pages/HealthcareSupportSystem.tsx"
         ]
       },
       {
-        "id": "REQ-78",
-        "summary": "Implement an enhanced filtering system in the Network Directory matching McKinsey's Our People page functionality from https://www.mckinsey.com/industries/healthcare/our-people, with filters for stakeholder category, location, specialty/service area, and clear filter controls",
+        "id": "REQ-107",
+        "summary": "Ensure multicolor gradient typography is only applied to text rendered directly on solid background colors, not on text overlaying images, photos, or video content across all pages",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/NetworkDirectory.tsx"
+          "frontend/src/pages/AboutUs.tsx",
+          "frontend/src/pages/Onboarding.tsx",
+          "frontend/src/pages/Solutions.tsx",
+          "frontend/src/pages/NetworkMap.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/NetworkDirectory.tsx"
-        ]
-      },
-      {
-        "id": "REQ-79",
-        "summary": "Add professional profile detail views in the Network Directory that expand or navigate to show comprehensive stakeholder information including bio, services, experience, and contact options, matching the interaction pattern from https://www.mckinsey.com/industries/healthcare/our-people",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/StakeholderDetailView.tsx",
-          "frontend/src/pages/NetworkDirectory.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/StakeholderDetailView.tsx",
-          "frontend/src/pages/NetworkDirectory.tsx"
-        ]
-      },
-      {
-        "id": "REQ-80",
-        "summary": "Update Network Directory page spacing, padding, and overall layout structure to match McKinsey's generous whitespace and content organization from https://www.mckinsey.com/industries/healthcare/our-people",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/NetworkDirectory.tsx",
-          "frontend/src/index.css"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/NetworkDirectory.tsx",
-          "frontend/src/index.css"
+          "frontend/src/pages/AboutUs.tsx",
+          "frontend/src/pages/Onboarding.tsx",
+          "frontend/src/pages/NetworkMap.tsx"
         ]
       }
     ]
@@ -78,9 +55,11 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/StakeholderDetailView.tsx",
-    "frontend/src/index.css",
-    "frontend/src/pages/NetworkDirectory.tsx",
+    "frontend/src/pages/AboutUs.tsx",
+    "frontend/src/pages/HealthcareSupportSystem.tsx",
+    "frontend/src/pages/Home.tsx",
+    "frontend/src/pages/NetworkMap.tsx",
+    "frontend/src/pages/Onboarding.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",
