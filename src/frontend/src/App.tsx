@@ -1,5 +1,6 @@
 import { RouterProvider, createRouter, createRoute, createRootRoute } from '@tanstack/react-router';
 import Layout from './components/Layout';
+import Onboarding from './pages/Onboarding';
 import Home from './pages/Home';
 import AboutUs from './pages/AboutUs';
 import Solutions from './pages/Solutions';
@@ -10,6 +11,7 @@ import Vendors from './pages/Vendors';
 import AmbulanceServices from './pages/AmbulanceServices';
 import NgoListing from './pages/NgoListing';
 import Dashboard from './pages/Dashboard';
+import AdminDashboard from './pages/AdminDashboard';
 import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsConditions from './pages/TermsConditions';
@@ -22,6 +24,12 @@ const rootRoute = createRootRoute({
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
+  component: Onboarding,
+});
+
+const homeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/home',
   component: Home,
 });
 
@@ -79,6 +87,12 @@ const dashboardRoute = createRoute({
   component: Dashboard,
 });
 
+const adminRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin',
+  component: AdminDashboard,
+});
+
 const contactRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/contact',
@@ -105,6 +119,7 @@ const refundRoute = createRoute({
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
+  homeRoute,
   aboutRoute,
   solutionsRoute,
   healthcareSupportRoute,
@@ -114,6 +129,7 @@ const routeTree = rootRoute.addChildren([
   ambulanceRoute,
   ngosRoute,
   dashboardRoute,
+  adminRoute,
   contactRoute,
   privacyRoute,
   termsRoute,

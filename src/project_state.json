@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
+  "projectStateVersion": 13,
   "summary": "AI Health Zon: A comprehensive AI-powered healthcare platform website with RCM, Healthcare Technology solutions, and a Healthcare Connecting Platform linking hospitals, medical professionals, vendors, NGOs, and services",
   "architectural_notes": [
     "Multi-stakeholder platform requiring role-based authentication and dashboards",
@@ -8,12 +8,16 @@
     "Form submission system for careers, vendors, ambulance, NGO registration",
     "AI chatbot integration for contact page",
     "WhatsApp integration for contact",
-    "Multi-page website with 12 distinct pages plus dashboard variations"
+    "Multi-page website with 12 distinct pages plus dashboard variations",
+    "Interactive landing page with gamified animation showing stakeholder requests and approvals",
+    "Admin approval workflow for stakeholder registrations (careers, vendors, ambulance, NGO)",
+    "Status tracking system: Pending → Approved → Rejected",
+    "PIN code-based auto-fill for city/state in registration forms using PIN code lookup API or database"
   ],
   "known_issues": [
     "Chatbot not functioning on the website"
   ],
-  "isFixRequest": true,
+  "isFixRequest": false,
   "existing_features": [
     {
       "id": "feature-create-a-home-page-with-hero-section-displaying-the-master-brand-line-ai-health-zon-is-an-ai-powered-healthcare-platform-delivering-revenue-cycle-management-healthcare-technology-solutions-and-a-healthcare-connecting-platform-that-links-hospitals-with-doctors-nurses-radiologists-physiotherapists-dietitians-ambulance-services-diagnostics-pharmacies-vendors-insurance-partners-ngos-and-compliance-experts-on-one-unified-digital-platform-include-two-cta-buttons-request-demo-and-join-network",
@@ -238,6 +242,158 @@
         "REQ-28"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-create-a-new-interactive-onboarding-landing-page-that-displays-before-the-main-home-page-featuring-a-game-like-animation-sequence-where-different-stakeholders-hospitals-doctors-nurses-vendors-ambulance-services-ngos-pharmacies-labs-send-join-requests-to-ai-health-zon-the-platform-receives-and-approves-these-requests-with-visual-feedback-and-stakeholders-display-happy-peaceful-reactions-upon-approval",
+      "title": "Create a new interactive onboarding/landing page that displays before the main home page, featuring a game-like animation sequence where different stakeholders (hospitals, doctors, nurses, vendors, ambulance services, NGOs, pharmacies, labs) send join requests to AI Health Zon, the platform receives and approves these requests with visual feedback, and stakeholders display happy/peaceful reactions upon approval",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-application-routing-to-make-the-new-onboarding-page-the-initial-landing-page-with-automatic-or-user-triggered-progression-to-the-existing-home-page",
+      "title": "Update the application routing to make the new onboarding page the initial landing page, with automatic or user-triggered progression to the existing home page",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-admin-dashboard-page-route-at-admin-that-displays-a-comprehensive-approval-management-interface-for-all-stakeholder-registration-requests",
+      "title": "Create an Admin Dashboard page route at '/admin' that displays a comprehensive approval management interface for all stakeholder registration requests",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-pending-requests-section-in-the-admin-dashboard-that-displays-all-pending-registrations-organized-by-stakeholder-type-healthcare-professionals-doctors-nurses-radiologists-physiotherapists-dietitians-vendors-ambulance-services-and-ngos",
+      "title": "Implement a Pending Requests section in the Admin Dashboard that displays all pending registrations organized by stakeholder type: Healthcare Professionals (doctors, nurses, radiologists, physiotherapists, dietitians), Vendors, Ambulance Services, and NGOs",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-detailed-information-for-each-pending-request-including-full-name-role-category-contact-information-phone-email-experience-services-location-uploaded-documents-cv-for-professionals-and-submission-timestamp",
+      "title": "Display detailed information for each pending request including full name, role/category, contact information (phone, email), experience/services, location, uploaded documents (CV for professionals), and submission timestamp",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-approve-and-reject-action-buttons-for-each-pending-request-in-the-admin-dashboard-with-visual-confirmation-when-actions-are-taken",
+      "title": "Add Approve and Reject action buttons for each pending request in the Admin Dashboard with visual confirmation when actions are taken",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-status-filter-tabs-in-the-admin-dashboard-to-view-requests-by-status-all-pending-approved-and-rejected",
+      "title": "Add status filter tabs in the Admin Dashboard to view requests by status: All, Pending, Approved, and Rejected",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-existing-registration-forms-careers-vendors-ambulance-services-ngo-listing-pages-to-submit-requests-with-pending-status-instead-of-directly-creating-active-profiles",
+      "title": "Update existing registration forms (Careers, Vendors, Ambulance Services, NGO Listing pages) to submit requests with Pending status instead of directly creating active profiles",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-notification-badge-or-counter-in-the-admin-dashboard-navigation-link-showing-the-total-number-of-pending-requests-awaiting-approval",
+      "title": "Add a notification badge or counter in the Admin Dashboard navigation link showing the total number of pending requests awaiting approval",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-include-contact-action-buttons-in-each-request-detail-view-that-allow-opening-whatsapp-chat-or-initiating-email-with-the-stakeholder-using-their-submitted-contact-information",
+      "title": "Include contact action buttons in each request detail view that allow opening WhatsApp chat or initiating email with the stakeholder using their submitted contact information",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-pin-code-input-field-to-the-careers-registration-form-frontend-src-pages-careers-tsx-that-accepts-manual-entry-of-6-digit-postal-codes",
+      "title": "Add a PIN code input field to the Careers registration form (frontend/src/pages/Careers.tsx) that accepts manual entry of 6-digit postal codes",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-pin-code-input-field-to-the-vendors-registration-form-frontend-src-pages-vendors-tsx-that-accepts-manual-entry-of-6-digit-postal-codes",
+      "title": "Add a PIN code input field to the Vendors registration form (frontend/src/pages/Vendors.tsx) that accepts manual entry of 6-digit postal codes",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-pin-code-input-field-to-the-ambulance-services-registration-form-frontend-src-pages-ambulanceservices-tsx-that-accepts-manual-entry-of-6-digit-postal-codes",
+      "title": "Add a PIN code input field to the Ambulance Services registration form (frontend/src/pages/AmbulanceServices.tsx) that accepts manual entry of 6-digit postal codes",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-pin-code-input-field-to-the-ngo-listing-registration-form-frontend-src-pages-ngolisting-tsx-that-accepts-manual-entry-of-6-digit-postal-codes",
+      "title": "Add a PIN code input field to the NGO Listing registration form (frontend/src/pages/NgoListing.tsx) that accepts manual entry of 6-digit postal codes",
+      "reqIds": [
+        "REQ-44"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-auto-fill-functionality-that-automatically-populates-the-city-and-state-fields-when-a-valid-pin-code-is-entered-in-the-careers-registration-form",
+      "title": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the Careers registration form",
+      "reqIds": [
+        "REQ-45"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-auto-fill-functionality-that-automatically-populates-the-city-and-state-fields-when-a-valid-pin-code-is-entered-in-the-vendors-registration-form",
+      "title": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the Vendors registration form",
+      "reqIds": [
+        "REQ-46"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-auto-fill-functionality-that-automatically-populates-the-city-and-state-fields-when-a-valid-pin-code-is-entered-in-the-ambulance-services-registration-form",
+      "title": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the Ambulance Services registration form",
+      "reqIds": [
+        "REQ-47"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-auto-fill-functionality-that-automatically-populates-the-city-and-state-fields-when-a-valid-pin-code-is-entered-in-the-ngo-listing-registration-form",
+      "title": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the NGO Listing registration form",
+      "reqIds": [
+        "REQ-48"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-pin-code-lookup-utility-or-api-integration-that-maps-indian-postal-codes-to-their-corresponding-city-and-state-information-for-the-auto-fill-functionality",
+      "title": "Create a PIN code lookup utility or API integration that maps Indian postal codes to their corresponding city and state information for the auto-fill functionality",
+      "reqIds": [
+        "REQ-49"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -310,6 +466,46 @@
     {
       "id": "AR-12",
       "summary": "Legal pages: Privacy Policy, Terms & Conditions, Refund Policy",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Interactive opening/landing page with gamified stakeholder onboarding animation showing requests being received and approved",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Admin Dashboard with pending requests section, approval workflow, and status tracking for all stakeholder registrations",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Add backend data structures and storage for tracking registration requests with status field supporting Pending, Approved, and Rejected states for healthcare professionals, vendors, ambulance services, and NGO submissions",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Implement backend approval workflow that creates active stakeholder profiles (healthcare professional, vendor, ambulance service, or NGO) in the main data stores when a request is approved",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Add PIN code field to all registration forms (careers, vendors, ambulance, NGO)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Implement auto-fill functionality that populates city and state fields when PIN code is entered in registration forms",
       "reqIds": [],
       "status": "pending"
     }

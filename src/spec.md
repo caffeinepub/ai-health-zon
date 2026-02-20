@@ -1,14 +1,14 @@
 # Specification
 
 ## Summary
-**Goal:** Fix the AI chatbot functionality on the Contact page and update the platform color theme to Royal Teal and Royal White.
+**Goal:** Add PIN code field with auto-fill functionality to all registration forms (Careers, Vendors, Ambulance Services, and NGO Listing).
 
 **Planned changes:**
-- Implement a functional AI chatbot widget on the Contact page with message input, send button, and message display area
-- Update the entire platform color scheme to use Royal Teal as the primary accent color for buttons, links, and interactive elements
-- Apply Royal White as the background and neutral color throughout all pages
-- Ensure color theme consistency across all pages including Home, About Us, Solutions, Network Directory, Careers, Vendors, Ambulance Services, NGO Listing, Dashboard, Contact, and legal pages
-- Update navigation, footer, and all UI components to reflect the new color scheme
-- Maintain appropriate Royal Teal accent in dark mode variations
+- Add PIN code input field (6-digit numeric) to Careers registration form
+- Add PIN code input field (6-digit numeric) to Vendors registration form
+- Add PIN code input field (6-digit numeric) to Ambulance Services registration form
+- Add PIN code input field (6-digit numeric) to NGO Listing registration form
+- Implement auto-fill functionality that populates city and state fields when valid PIN code is entered
+- Create PIN code lookup utility for Indian postal codes to enable auto-fill
 
-**User-visible outcome:** Users can interact with a working AI chatbot on the Contact page to get assistance and support. The entire platform now features a cohesive Royal Teal and Royal White color scheme across all pages and components.
+**User-visible outcome:** Users can enter their 6-digit PIN code in any registration form, and the system will automatically fill in the corresponding city and state information. Users can still manually edit these fields if needed.

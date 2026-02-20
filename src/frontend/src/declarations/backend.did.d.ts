@@ -10,6 +10,14 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
+export interface AmbulanceRequest {
+  'id' : string,
+  'status' : RequestStatus,
+  'requester' : Principal,
+  'contact' : ContactInfo,
+  'name' : string,
+  'location' : Location,
+}
 export interface ContactInfo {
   'email' : string,
   'website' : string,
@@ -36,6 +44,18 @@ export interface HealthRecord {
 export interface HealthcareProfessional {
   'id' : string,
   'verified' : boolean,
+  'contact' : ContactInfo,
+  'name' : string,
+  'role' : string,
+  'experience' : bigint,
+  'credentials' : Array<ExternalBlob>,
+  'specialties' : Array<string>,
+  'location' : Location,
+}
+export interface HealthcareProfessionalRequest {
+  'id' : string,
+  'status' : RequestStatus,
+  'requester' : Principal,
   'contact' : ContactInfo,
   'name' : string,
   'role' : string,
@@ -86,11 +106,25 @@ export interface Ngo {
   'location' : Location,
   'services' : Array<string>,
 }
+export interface NgoRequest {
+  'id' : string,
+  'status' : RequestStatus,
+  'requester' : Principal,
+  'focusArea' : string,
+  'contact' : ContactInfo,
+  'name' : string,
+  'registrationNo' : string,
+  'location' : Location,
+  'services' : Array<string>,
+}
 export interface RecordFilter {
   'patientId' : [] | [string],
   'diagnosis' : [] | [string],
   'dateRange' : [] | [{ 'endDate' : string, 'startDate' : string }],
 }
+export type RequestStatus = { 'pending' : null } |
+  { 'approved' : null } |
+  { 'rejected' : null };
 export interface ResearchFilter {
   'institution' : [] | [string],
   'ethicsApproval' : [] | [boolean],
@@ -132,6 +166,16 @@ export interface Vendor {
   'products' : Array<string>,
   'location' : Location,
 }
+export interface VendorRequest {
+  'id' : string,
+  'status' : RequestStatus,
+  'requester' : Principal,
+  'contact' : ContactInfo,
+  'name' : string,
+  'category' : string,
+  'products' : Array<string>,
+  'location' : Location,
+}
 export interface _CaffeineStorageCreateCertificateResult {
   'method' : string,
   'blob_hash' : string,
@@ -164,14 +208,14 @@ export interface _SERVICE {
     [string, Array<string>],
     undefined
   >,
-  'addHealthcareProfessional' : ActorMethod<
-    [HealthcareProfessional],
-    undefined
-  >,
   'addNgo' : ActorMethod<[Ngo], undefined>,
   'addTourismService' : ActorMethod<[TourismService], undefined>,
   'addVendor' : ActorMethod<[Vendor], undefined>,
   'applyForLuxuryDebt' : ActorMethod<[LuxuryDebtService], undefined>,
+  'approveAmbulance' : ActorMethod<[string], undefined>,
+  'approveHealthcareProfessional' : ActorMethod<[string], undefined>,
+  'approveNgo' : ActorMethod<[string], undefined>,
+  'approveVendor' : ActorMethod<[string], undefined>,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
   'createCorporateHealthcare' : ActorMethod<[Hospital], undefined>,
   'createHealthRecord' : ActorMethod<[HealthRecord], undefined>,
@@ -212,21 +256,35 @@ export interface _SERVICE {
   'getLuxuryDebtApplications' : ActorMethod<[], Array<LuxuryDebtService>>,
   'getMyRecords' : ActorMethod<[], Array<MedicalRecord>>,
   'getNgosByFocusArea' : ActorMethod<[string], Array<Ngo>>,
+  'getPendingAmbulanceRequests' : ActorMethod<[], Array<AmbulanceRequest>>,
+  'getPendingHealthcareProfessionalRequests' : ActorMethod<
+    [],
+    Array<HealthcareProfessionalRequest>
+  >,
+  'getPendingNgoRequests' : ActorMethod<[], Array<NgoRequest>>,
+  'getPendingVendorRequests' : ActorMethod<[], Array<VendorRequest>>,
   'getRecord' : ActorMethod<[string], MedicalRecord>,
   'getResearchProject' : ActorMethod<[string], [] | [ResearchProject]>,
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'initializeSampleData' : ActorMethod<[], undefined>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
+  'rejectAmbulance' : ActorMethod<[string], undefined>,
+  'rejectHealthcareProfessional' : ActorMethod<[string], undefined>,
+  'rejectNgo' : ActorMethod<[string], undefined>,
+  'rejectVendor' : ActorMethod<[string], undefined>,
   'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
   'searchRecords' : ActorMethod<[RecordFilter], Array<MedicalRecord>>,
   'searchResearchProjects' : ActorMethod<
     [ResearchFilter],
     Array<ResearchProject>
   >,
-  'updateHealthcareProfessional' : ActorMethod<
-    [HealthcareProfessional],
+  'submitAmbulanceRegistration' : ActorMethod<[AmbulanceRequest], undefined>,
+  'submitHealthcareProfessionalRegistration' : ActorMethod<
+    [HealthcareProfessionalRequest],
     undefined
   >,
+  'submitNgoRegistration' : ActorMethod<[NgoRequest], undefined>,
+  'submitVendorRegistration' : ActorMethod<[VendorRequest], undefined>,
   'updateRecord' : ActorMethod<[MedicalRecord], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;

@@ -2,11 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-implement-a-functional-ai-chatbot-widget-on-the-contact-page-that-allows-users-to-interact-with-an-assistant-for-inquiries-and-support",
-      "featureTitle": "Implement a functional AI chatbot widget on the Contact page that allows users to interact with an assistant for inquiries and support",
+      "featureId": "feature-add-a-pin-code-input-field-to-the-careers-registration-form-frontend-src-pages-careers-tsx-that-accepts-manual-entry-of-6-digit-postal-codes",
+      "featureTitle": "Add a PIN code input field to the Careers registration form (frontend/src/pages/Careers.tsx) that accepts manual entry of 6-digit postal codes",
       "files": [
-        "frontend/src/components/Chatbot.tsx",
-        "frontend/src/pages/Contact.tsx"
+        "frontend/src/pages/Careers.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -15,19 +14,19 @@
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-27"
+        "REQ-41"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-the-entire-platform-color-theme-to-use-royal-teal-as-the-primary-accent-color-and-royal-white-as-the-background-neutral-color-throughout-all-pages",
-      "featureTitle": "Update the entire platform color theme to use Royal Teal as the primary accent color and Royal White as the background/neutral color throughout all pages",
+      "featureId": "feature-add-a-pin-code-input-field-to-the-vendors-registration-form-frontend-src-pages-vendors-tsx-that-accepts-manual-entry-of-6-digit-postal-codes",
+      "featureTitle": "Add a PIN code input field to the Vendors registration form (frontend/src/pages/Vendors.tsx) that accepts manual entry of 6-digit postal codes",
       "files": [
-        "frontend/src/index.css",
-        "frontend/src/pages/Contact.tsx"
+        "frontend/src/pages/Vendors.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -36,10 +35,158 @@
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-28"
+        "REQ-42"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-pin-code-input-field-to-the-ambulance-services-registration-form-frontend-src-pages-ambulanceservices-tsx-that-accepts-manual-entry-of-6-digit-postal-codes",
+      "featureTitle": "Add a PIN code input field to the Ambulance Services registration form (frontend/src/pages/AmbulanceServices.tsx) that accepts manual entry of 6-digit postal codes",
+      "files": [
+        "frontend/src/pages/AmbulanceServices.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-43"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-pin-code-input-field-to-the-ngo-listing-registration-form-frontend-src-pages-ngolisting-tsx-that-accepts-manual-entry-of-6-digit-postal-codes",
+      "featureTitle": "Add a PIN code input field to the NGO Listing registration form (frontend/src/pages/NgoListing.tsx) that accepts manual entry of 6-digit postal codes",
+      "files": [
+        "frontend/src/pages/NgoListing.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-44"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-auto-fill-functionality-that-automatically-populates-the-city-and-state-fields-when-a-valid-pin-code-is-entered-in-the-careers-registration-form",
+      "featureTitle": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the Careers registration form",
+      "files": [
+        "frontend/src/pages/Careers.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-45"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-auto-fill-functionality-that-automatically-populates-the-city-and-state-fields-when-a-valid-pin-code-is-entered-in-the-vendors-registration-form",
+      "featureTitle": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the Vendors registration form",
+      "files": [
+        "frontend/src/pages/Vendors.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-46"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-auto-fill-functionality-that-automatically-populates-the-city-and-state-fields-when-a-valid-pin-code-is-entered-in-the-ambulance-services-registration-form",
+      "featureTitle": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the Ambulance Services registration form",
+      "files": [
+        "frontend/src/pages/AmbulanceServices.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-47"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-auto-fill-functionality-that-automatically-populates-the-city-and-state-fields-when-a-valid-pin-code-is-entered-in-the-ngo-listing-registration-form",
+      "featureTitle": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the NGO Listing registration form",
+      "files": [
+        "frontend/src/pages/NgoListing.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-48"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-pin-code-lookup-utility-or-api-integration-that-maps-indian-postal-codes-to-their-corresponding-city-and-state-information-for-the-auto-fill-functionality",
+      "featureTitle": "Create a PIN code lookup utility or API integration that maps Indian postal codes to their corresponding city and state information for the auto-fill functionality",
+      "files": [
+        "frontend/src/utils/pinCodeLookup.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-49"
       ],
       "confidence": "high"
     }

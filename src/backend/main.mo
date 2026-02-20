@@ -10,6 +10,8 @@ import MixinAuthorization "authorization/MixinAuthorization";
 import MixinStorage "blob-storage/Mixin";
 import Storage "blob-storage/Storage";
 
+
+
 actor {
   // Role-based Access Control
   let accessControlState = AccessControl.initState();
@@ -48,6 +50,58 @@ actor {
     fundingSource : Text;
     ethicsApproval : Bool;
     dataFiles : [Storage.ExternalBlob];
+  };
+
+  // Registration Request Types
+  public type RequestStatus = {
+    #pending;
+    #approved;
+    #rejected;
+  };
+
+  public type HealthcareProfessionalRequest = {
+    id : Text;
+    name : Text;
+    role : Text;
+    specialties : [Text];
+    experience : Nat;
+    location : Location;
+    contact : ContactInfo;
+    credentials : [Storage.ExternalBlob];
+    status : RequestStatus;
+    requester : Principal;
+  };
+
+  public type VendorRequest = {
+    id : Text;
+    name : Text;
+    category : Text;
+    products : [Text];
+    contact : ContactInfo;
+    location : Location;
+    status : RequestStatus;
+    requester : Principal;
+  };
+
+  public type NgoRequest = {
+    id : Text;
+    name : Text;
+    focusArea : Text;
+    services : [Text];
+    registrationNo : Text;
+    contact : ContactInfo;
+    location : Location;
+    status : RequestStatus;
+    requester : Principal;
+  };
+
+  public type AmbulanceRequest = {
+    id : Text;
+    name : Text;
+    location : Location;
+    contact : ContactInfo;
+    status : RequestStatus;
+    requester : Principal;
   };
 
   // Profiles & Directory Types
@@ -174,6 +228,12 @@ actor {
   let tourismServices = Map.empty<Text, TourismService>();
   let luxuryDebtServices = Map.empty<Text, LuxuryDebtService>();
 
+  // New Registration Request Stores
+  let healthcareRequests = Map.empty<Text, HealthcareProfessionalRequest>();
+  let vendorRequests = Map.empty<Text, VendorRequest>();
+  let ngoRequests = Map.empty<Text, NgoRequest>();
+  let ambulanceRequests = Map.empty<Text, AmbulanceRequest>();
+
   // Required User Profile Functions
   public query ({ caller }) func getCallerUserProfile() : async ?UserProfile {
     if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
@@ -262,39 +322,324 @@ actor {
     );
   };
 
-  public shared ({ caller }) func addHealthcareProfessional(professional : HealthcareProfessional) : async () {
+  // New Registration Request Methods
+  public shared ({ caller }) func submitHealthcareProfessionalRegistration(request : HealthcareProfessionalRequest) : async () {
     if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
-      Runtime.trap("Unauthorized: Only authenticated users can add a professional profile");
+      Runtime.trap("Unauthorized: Only authenticated users can submit registration requests");
     };
 
-    // Check if caller already has a profile
-    switch (professionalProfiles.get(caller)) {
-      case (?existing) {
-        Runtime.trap("You already have a professional profile");
-      };
-      case null {
-        professionalProfiles.add(caller, professional);
+    if (healthcareRequests.containsKey(request.id)) {
+      Runtime.trap("Registration request with this ID already exists");
+    };
+
+    let requestWithPendingStatus = {
+      request with
+      status = #pending;
+      requester = caller;
+    };
+    healthcareRequests.add(request.id, requestWithPendingStatus);
+  };
+
+  public shared ({ caller }) func submitVendorRegistration(request : VendorRequest) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only authenticated users can submit vendor registration requests");
+    };
+
+    if (vendorRequests.containsKey(request.id)) {
+      Runtime.trap("Registration request with this ID already exists");
+    };
+
+    let requestWithPendingStatus = {
+      request with
+      status = #pending;
+      requester = caller;
+    };
+    vendorRequests.add(request.id, requestWithPendingStatus);
+  };
+
+  public shared ({ caller }) func submitNgoRegistration(request : NgoRequest) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only authenticated users can submit NGO registration requests");
+    };
+
+    if (ngoRequests.containsKey(request.id)) {
+      Runtime.trap("Registration request with this ID already exists");
+    };
+
+    let requestWithPendingStatus = {
+      request with
+      status = #pending;
+      requester = caller;
+    };
+    ngoRequests.add(request.id, requestWithPendingStatus);
+  };
+
+  public shared ({ caller }) func submitAmbulanceRegistration(request : AmbulanceRequest) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only authenticated users can submit ambulance registration requests");
+    };
+
+    if (ambulanceRequests.containsKey(request.id)) {
+      Runtime.trap("Registration request with this ID already exists");
+    };
+
+    let requestWithPendingStatus = {
+      request with
+      status = #pending;
+      requester = caller;
+    };
+    ambulanceRequests.add(request.id, requestWithPendingStatus);
+  };
+
+  // Admin Approval Workflow
+  public shared ({ caller }) func approveHealthcareProfessional(id : Text) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can approve registration requests");
+    };
+
+    switch (healthcareRequests.get(id)) {
+      case (null) { Runtime.trap("Registration request not found") };
+      case (?request) {
+        if (request.status != #pending) {
+          Runtime.trap("Request has already been processed");
+        };
+
+        let updatedRequest = {
+          request with
+          status = #approved;
+        };
+        healthcareRequests.add(id, updatedRequest);
+
+        // Create active professional profile using the requester's Principal
+        let professional : HealthcareProfessional = {
+          id = request.id;
+          name = request.name;
+          role = request.role;
+          specialties = request.specialties;
+          experience = request.experience;
+          location = request.location;
+          contact = request.contact;
+          verified = true;
+          credentials = request.credentials;
+        };
+        professionalProfiles.add(request.requester, professional);
       };
     };
   };
 
-  public shared ({ caller }) func updateHealthcareProfessional(professional : HealthcareProfessional) : async () {
-    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
-      Runtime.trap("Unauthorized: Only authenticated users can update profiles");
+  public shared ({ caller }) func approveVendor(id : Text) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can approve vendor registration requests");
     };
 
-    // Verify ownership
-    switch (professionalProfiles.get(caller)) {
-      case null {
-        Runtime.trap("No professional profile found for caller");
-      };
-      case (?existing) {
-        if (existing.id != professional.id) {
-          Runtime.trap("Cannot change profile ID");
+    switch (vendorRequests.get(id)) {
+      case (null) { Runtime.trap("Registration request not found") };
+      case (?request) {
+        if (request.status != #pending) {
+          Runtime.trap("Request has already been processed");
         };
-        professionalProfiles.add(caller, professional);
+
+        let updatedRequest = {
+          request with
+          status = #approved;
+        };
+        vendorRequests.add(id, updatedRequest);
+
+        // Create active vendor profile
+        let vendor : Vendor = {
+          id = request.id;
+          name = request.name;
+          category = request.category;
+          products = request.products;
+          verified = true;
+          contact = request.contact;
+          location = request.location;
+        };
+        vendors.add(id, vendor);
+        vendorOwners.add(id, request.requester);
       };
     };
+  };
+
+  public shared ({ caller }) func approveNgo(id : Text) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can approve NGO registration requests");
+    };
+
+    switch (ngoRequests.get(id)) {
+      case (null) { Runtime.trap("Registration request not found") };
+      case (?request) {
+        if (request.status != #pending) {
+          Runtime.trap("Request has already been processed");
+        };
+
+        let updatedRequest = {
+          request with
+          status = #approved;
+        };
+        ngoRequests.add(id, updatedRequest);
+
+        // Create active NGO profile
+        let ngo : Ngo = {
+          id = request.id;
+          name = request.name;
+          focusArea = request.focusArea;
+          services = request.services;
+          registrationNo = request.registrationNo;
+          verified = true;
+          contact = request.contact;
+          location = request.location;
+        };
+        ngos.add(id, ngo);
+        ngoOwners.add(id, request.requester);
+      };
+    };
+  };
+
+  public shared ({ caller }) func approveAmbulance(id : Text) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can approve ambulance registration requests");
+    };
+
+    switch (ambulanceRequests.get(id)) {
+      case (null) { Runtime.trap("Registration request not found") };
+      case (?request) {
+        if (request.status != #pending) {
+          Runtime.trap("Request has already been processed");
+        };
+
+        let updatedRequest = {
+          request with
+          status = #approved;
+        };
+        ambulanceRequests.add(id, updatedRequest);
+      };
+    };
+  };
+
+  public shared ({ caller }) func rejectHealthcareProfessional(id : Text) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can reject registration requests");
+    };
+
+    switch (healthcareRequests.get(id)) {
+      case (null) { Runtime.trap("Registration request not found") };
+      case (?request) {
+        if (request.status != #pending) {
+          Runtime.trap("Request has already been processed");
+        };
+
+        let updatedRequest = {
+          request with
+          status = #rejected;
+        };
+        healthcareRequests.add(id, updatedRequest);
+      };
+    };
+  };
+
+  public shared ({ caller }) func rejectVendor(id : Text) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can reject vendor registration requests");
+    };
+
+    switch (vendorRequests.get(id)) {
+      case (null) { Runtime.trap("Registration request not found") };
+      case (?request) {
+        if (request.status != #pending) {
+          Runtime.trap("Request has already been processed");
+        };
+
+        let updatedRequest = {
+          request with
+          status = #rejected;
+        };
+        vendorRequests.add(id, updatedRequest);
+      };
+    };
+  };
+
+  public shared ({ caller }) func rejectNgo(id : Text) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can reject NGO registration requests");
+    };
+
+    switch (ngoRequests.get(id)) {
+      case (null) { Runtime.trap("Registration request not found") };
+      case (?request) {
+        if (request.status != #pending) {
+          Runtime.trap("Request has already been processed");
+        };
+
+        let updatedRequest = {
+          request with
+          status = #rejected;
+        };
+        ngoRequests.add(id, updatedRequest);
+      };
+    };
+  };
+
+  public shared ({ caller }) func rejectAmbulance(id : Text) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can reject ambulance registration requests");
+    };
+
+    switch (ambulanceRequests.get(id)) {
+      case (null) { Runtime.trap("Registration request not found") };
+      case (?request) {
+        if (request.status != #pending) {
+          Runtime.trap("Request has already been processed");
+        };
+
+        let updatedRequest = {
+          request with
+          status = #rejected;
+        };
+        ambulanceRequests.add(id, updatedRequest);
+      };
+    };
+  };
+
+  // Methods to query pending requests (for admin dashboard)
+  public query ({ caller }) func getPendingHealthcareProfessionalRequests() : async [HealthcareProfessionalRequest] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can view pending requests");
+    };
+
+    healthcareRequests.values().toArray().filter(
+      func(r) { r.status == #pending }
+    );
+  };
+
+  public query ({ caller }) func getPendingVendorRequests() : async [VendorRequest] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can view pending requests");
+    };
+
+    vendorRequests.values().toArray().filter(
+      func(r) { r.status == #pending }
+    );
+  };
+
+  public query ({ caller }) func getPendingNgoRequests() : async [NgoRequest] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can view pending requests");
+    };
+
+    ngoRequests.values().toArray().filter(
+      func(r) { r.status == #pending }
+    );
+  };
+
+  public query ({ caller }) func getPendingAmbulanceRequests() : async [AmbulanceRequest] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can view pending requests");
+    };
+
+    ambulanceRequests.values().toArray().filter(
+      func(r) { r.status == #pending }
+    );
   };
 
   // Corporate Healthcare - Admin creates, owners manage

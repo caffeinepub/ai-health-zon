@@ -14,11 +14,6 @@ export class ExternalBlob {
     static fromBytes(blob: Uint8Array<ArrayBuffer>): ExternalBlob;
     withUploadProgress(onProgress: (percentage: number) => void): ExternalBlob;
 }
-export interface Location {
-    country: string;
-    city: string;
-    state: string;
-}
 export interface MedicalRecord {
     documents: Array<ExternalBlob>;
     patientId: string;
@@ -27,6 +22,16 @@ export interface MedicalRecord {
     patientName: string;
     recordId: string;
 }
+export interface VendorRequest {
+    id: string;
+    status: RequestStatus;
+    requester: Principal;
+    contact: ContactInfo;
+    name: string;
+    category: string;
+    products: Array<string>;
+    location: Location;
+}
 export interface RecordFilter {
     patientId?: string;
     diagnosis?: string;
@@ -34,6 +39,44 @@ export interface RecordFilter {
         endDate: string;
         startDate: string;
     };
+}
+export interface Location {
+    country: string;
+    city: string;
+    state: string;
+}
+export interface HealthcareProfessionalRequest {
+    id: string;
+    status: RequestStatus;
+    requester: Principal;
+    contact: ContactInfo;
+    name: string;
+    role: string;
+    experience: bigint;
+    credentials: Array<ExternalBlob>;
+    specialties: Array<string>;
+    location: Location;
+}
+export interface TourismService {
+    id: string;
+    verified: boolean;
+    provider: string;
+    cost: bigint;
+    name: string;
+    description: string;
+    category: string;
+    location: Location;
+}
+export interface NgoRequest {
+    id: string;
+    status: RequestStatus;
+    requester: Principal;
+    focusArea: string;
+    contact: ContactInfo;
+    name: string;
+    registrationNo: string;
+    location: Location;
+    services: Array<string>;
 }
 export interface HealthcareProfessional {
     id: string;
@@ -44,22 +87,6 @@ export interface HealthcareProfessional {
     experience: bigint;
     credentials: Array<ExternalBlob>;
     specialties: Array<string>;
-    location: Location;
-}
-export interface ContactInfo {
-    email: string;
-    website: string;
-    address: string;
-    phone: string;
-}
-export interface TourismService {
-    id: string;
-    verified: boolean;
-    provider: string;
-    cost: bigint;
-    name: string;
-    description: string;
-    category: string;
     location: Location;
 }
 export interface HealthRecord {
@@ -98,6 +125,12 @@ export interface ResearchProject {
     projectId: string;
     abstract: string;
 }
+export interface ContactInfo {
+    email: string;
+    website: string;
+    address: string;
+    phone: string;
+}
 export interface Hospital {
     id: string;
     contact: ContactInfo;
@@ -109,6 +142,14 @@ export interface Hospital {
     address: string;
     location: Location;
     services: Array<string>;
+}
+export interface AmbulanceRequest {
+    id: string;
+    status: RequestStatus;
+    requester: Principal;
+    contact: ContactInfo;
+    name: string;
+    location: Location;
 }
 export interface Vendor {
     id: string;
@@ -135,6 +176,11 @@ export interface UserProfile {
     userType: string;
     professionalProfile?: HealthcareProfessional;
 }
+export enum RequestStatus {
+    pending = "pending",
+    approved = "approved",
+    rejected = "rejected"
+}
 export enum UserRole {
     admin = "admin",
     user = "user",
@@ -142,11 +188,14 @@ export enum UserRole {
 }
 export interface backendInterface {
     addCorporateHealthcareServices(hospitalId: string, services: Array<string>): Promise<void>;
-    addHealthcareProfessional(professional: HealthcareProfessional): Promise<void>;
     addNgo(ngo: Ngo): Promise<void>;
     addTourismService(service: TourismService): Promise<void>;
     addVendor(vendor: Vendor): Promise<void>;
     applyForLuxuryDebt(application: LuxuryDebtService): Promise<void>;
+    approveAmbulance(id: string): Promise<void>;
+    approveHealthcareProfessional(id: string): Promise<void>;
+    approveNgo(id: string): Promise<void>;
+    approveVendor(id: string): Promise<void>;
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
     createCorporateHealthcare(hospital: Hospital): Promise<void>;
     createHealthRecord(record: HealthRecord): Promise<void>;
@@ -175,14 +224,25 @@ export interface backendInterface {
     getLuxuryDebtApplications(): Promise<Array<LuxuryDebtService>>;
     getMyRecords(): Promise<Array<MedicalRecord>>;
     getNgosByFocusArea(focusArea: string): Promise<Array<Ngo>>;
+    getPendingAmbulanceRequests(): Promise<Array<AmbulanceRequest>>;
+    getPendingHealthcareProfessionalRequests(): Promise<Array<HealthcareProfessionalRequest>>;
+    getPendingNgoRequests(): Promise<Array<NgoRequest>>;
+    getPendingVendorRequests(): Promise<Array<VendorRequest>>;
     getRecord(recordId: string): Promise<MedicalRecord>;
     getResearchProject(projectId: string): Promise<ResearchProject | null>;
     getUserProfile(user: Principal): Promise<UserProfile | null>;
     initializeSampleData(): Promise<void>;
     isCallerAdmin(): Promise<boolean>;
+    rejectAmbulance(id: string): Promise<void>;
+    rejectHealthcareProfessional(id: string): Promise<void>;
+    rejectNgo(id: string): Promise<void>;
+    rejectVendor(id: string): Promise<void>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
     searchRecords(filter: RecordFilter): Promise<Array<MedicalRecord>>;
     searchResearchProjects(filter: ResearchFilter): Promise<Array<ResearchProject>>;
-    updateHealthcareProfessional(professional: HealthcareProfessional): Promise<void>;
+    submitAmbulanceRegistration(request: AmbulanceRequest): Promise<void>;
+    submitHealthcareProfessionalRegistration(request: HealthcareProfessionalRequest): Promise<void>;
+    submitNgoRegistration(request: NgoRequest): Promise<void>;
+    submitVendorRegistration(request: VendorRequest): Promise<void>;
     updateRecord(record: MedicalRecord): Promise<void>;
 }

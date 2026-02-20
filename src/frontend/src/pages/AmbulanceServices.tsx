@@ -1,22 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Checkbox } from '../components/ui/checkbox';
-import { CheckCircle, Ambulance as AmbulanceIcon, MapPin } from 'lucide-react';
-import { useAddHealthcareProfessional, useGetHealthcareProfessionalsByLocation } from '../hooks/useQueries';
+import { CheckCircle, Ambulance as AmbulanceIcon, MapPin, Loader2 } from 'lucide-react';
+import { useSubmitAmbulanceRegistration, useGetHealthcareProfessionalsByLocation } from '../hooks/useQueries';
 import { toast } from 'sonner';
-import type { HealthcareProfessional } from '../backend';
+import type { AmbulanceRequest } from '../backend';
+import { lookupPinCode } from '../utils/pinCodeLookup';
 
 export default function AmbulanceServices() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
+    pinCode: '',
     city: '',
     state: '',
-    country: '',
+    country: 'India',
     services: {
       emergency: false,
       icu: false,
@@ -25,9 +27,33 @@ export default function AmbulanceServices() {
   });
   const [searchCity, setSearchCity] = useState('');
   const [showResults, setShowResults] = useState(false);
+  const [pinLookupLoading, setPinLookupLoading] = useState(false);
 
-  const addProfessional = useAddHealthcareProfessional();
+  const submitRegistration = useSubmitAmbulanceRegistration();
   const { data: ambulanceServices = [], isLoading, refetch } = useGetHealthcareProfessionalsByLocation(searchCity);
+
+  // Auto-fill city and state when PIN code is entered
+  useEffect(() => {
+    const fetchLocationFromPin = async () => {
+      if (formData.pinCode.length === 6) {
+        setPinLookupLoading(true);
+        const result = await lookupPinCode(formData.pinCode);
+        setPinLookupLoading(false);
+
+        if (result.success) {
+          setFormData(prev => ({
+            ...prev,
+            city: result.city,
+            state: result.state,
+          }));
+        } else if (result.error) {
+          toast.error(result.error);
+        }
+      }
+    };
+
+    fetchLocationFromPin();
+  }, [formData.pinCode]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,12 +67,9 @@ export default function AmbulanceServices() {
       return;
     }
 
-    const professional: HealthcareProfessional = {
+    const request: AmbulanceRequest = {
       id: `amb_${Date.now()}`,
       name: formData.name,
-      role: 'Ambulance',
-      specialties: selectedServices,
-      experience: BigInt(0),
       location: {
         city: formData.city,
         state: formData.state,
@@ -58,22 +81,23 @@ export default function AmbulanceServices() {
         address: '',
         website: '',
       },
-      verified: false,
-      credentials: [],
+      status: { __kind__: 'pending' } as any,
+      requester: null as any,
     };
 
     try {
-      await addProfessional.mutateAsync(professional);
-      toast.success('Ambulance service registered successfully!');
+      await submitRegistration.mutateAsync(request);
+      toast.success('Ambulance service registration submitted successfully! Your request is pending admin approval.');
       
       // Reset form
       setFormData({
         name: '',
         phone: '',
         email: '',
+        pinCode: '',
         city: '',
         state: '',
-        country: '',
+        country: 'India',
         services: {
           emergency: false,
           icu: false,
@@ -82,7 +106,7 @@ export default function AmbulanceServices() {
       });
     } catch (error) {
       console.error('Registration error:', error);
-      toast.error('Failed to register service. Please try again.');
+      toast.error('Failed to submit registration. Please try again.');
     }
   };
 
@@ -221,6 +245,31 @@ export default function AmbulanceServices() {
                       </div>
                     </div>
 
+                    <div>
+                      <Label htmlFor="pinCode">PIN Code *</Label>
+                      <div className="relative">
+                        <Input
+                          id="pinCode"
+                          type="text"
+                          maxLength={6}
+                          pattern="\d{6}"
+                          placeholder="Enter 6-digit PIN code"
+                          value={formData.pinCode}
+                          onChange={(e) => {
+                            const value = e.target.value.replace(/\D/g, '');
+                            setFormData({ ...formData, pinCode: value });
+                          }}
+                          required
+                        />
+                        {pinLookupLoading && (
+                          <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 animate-spin text-muted-foreground" />
+                        )}
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        City and state will be auto-filled based on PIN code
+                      </p>
+                    </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div>
                         <Label htmlFor="city">City *</Label>
@@ -251,8 +300,8 @@ export default function AmbulanceServices() {
                       </div>
                     </div>
 
-                    <Button type="submit" className="w-full" disabled={addProfessional.isPending}>
-                      {addProfessional.isPending ? 'Registering...' : 'Register Service'}
+                    <Button type="submit" className="w-full" disabled={submitRegistration.isPending}>
+                      {submitRegistration.isPending ? 'Submitting...' : 'Submit Registration'}
                     </Button>
                   </form>
                 </CardContent>

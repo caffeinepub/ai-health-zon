@@ -1,34 +1,62 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
-import { Textarea } from '../components/ui/textarea';
-import { CheckCircle, Upload, Briefcase } from 'lucide-react';
-import { useAddHealthcareProfessional } from '../hooks/useQueries';
+import { CheckCircle, Upload, Briefcase, Loader2 } from 'lucide-react';
+import { useSubmitHealthcareProfessionalRegistration } from '../hooks/useQueries';
 import { toast } from 'sonner';
-import type { HealthcareProfessional } from '../backend';
+import type { HealthcareProfessionalRequest } from '../backend';
 import { ExternalBlob } from '../backend';
+import { lookupPinCode } from '../utils/pinCodeLookup';
 
 export default function Careers() {
   const [formData, setFormData] = useState({
     name: '',
     role: '',
     experience: '',
-    location: { city: '', state: '', country: '' },
+    pinCode: '',
+    location: { city: '', state: '', country: 'India' },
     phone: '',
     email: '',
   });
   const [cvFile, setCvFile] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [pinLookupLoading, setPinLookupLoading] = useState(false);
 
-  const addProfessional = useAddHealthcareProfessional();
+  const submitRegistration = useSubmitHealthcareProfessionalRegistration();
 
   const jobRoles = [
     'Doctor', 'Nurse', 'Radiologist', 'Physiotherapist', 'Dietitian',
     'Medical Coder', 'RCM Staff', 'Insurance Staff', 'Security', 'Housekeeping', 'Admin'
   ];
+
+  // Auto-fill city and state when PIN code is entered
+  useEffect(() => {
+    const fetchLocationFromPin = async () => {
+      if (formData.pinCode.length === 6) {
+        setPinLookupLoading(true);
+        const result = await lookupPinCode(formData.pinCode);
+        setPinLookupLoading(false);
+
+        if (result.success) {
+          setFormData(prev => ({
+            ...prev,
+            location: {
+              ...prev.location,
+              city: result.city,
+              state: result.state,
+            }
+          }));
+        } else if (result.error) {
+          toast.error(result.error);
+        }
+      }
+    };
+
+    fetchLocationFromPin();
+  }, [formData.pinCode]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,7 +72,7 @@ export default function Careers() {
         setUploadProgress(percentage);
       });
 
-      const professional: HealthcareProfessional = {
+      const request: HealthcareProfessionalRequest = {
         id: `prof_${Date.now()}`,
         name: formData.name,
         role: formData.role,
@@ -57,19 +85,21 @@ export default function Careers() {
           address: '',
           website: '',
         },
-        verified: false,
         credentials: [cvBlob],
+        status: { __kind__: 'pending' } as any,
+        requester: null as any,
       };
 
-      await addProfessional.mutateAsync(professional);
-      toast.success('Application submitted successfully!');
+      await submitRegistration.mutateAsync(request);
+      toast.success('Application submitted successfully! Your request is pending admin approval.');
       
       // Reset form
       setFormData({
         name: '',
         role: '',
         experience: '',
-        location: { city: '', state: '', country: '' },
+        pinCode: '',
+        location: { city: '', state: '', country: 'India' },
         phone: '',
         email: '',
       });
@@ -149,48 +179,94 @@ export default function Careers() {
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="name">Full Name *</Label>
-                        <Input
-                          id="name"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          required
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="role">Role *</Label>
-                        <Select value={formData.role} onValueChange={(value) => setFormData({ ...formData, role: value })} required>
-                          <SelectTrigger id="role">
-                            <SelectValue placeholder="Select role" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {jobRoles.map((role) => (
-                              <SelectItem key={role} value={role}>{role}</SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
+                    <div>
+                      <Label htmlFor="name">Full Name *</Label>
+                      <Input
+                        id="name"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        required
+                      />
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="experience">Years of Experience *</Label>
+                    <div>
+                      <Label htmlFor="role">Job Role *</Label>
+                      <Select value={formData.role} onValueChange={(value) => setFormData({ ...formData, role: value })}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select your role" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {jobRoles.map((role) => (
+                            <SelectItem key={role} value={role}>
+                              {role}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="experience">Years of Experience *</Label>
+                      <Input
+                        id="experience"
+                        type="number"
+                        min="0"
+                        value={formData.experience}
+                        onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="pinCode">PIN Code *</Label>
+                      <div className="relative">
                         <Input
-                          id="experience"
-                          type="number"
-                          value={formData.experience}
-                          onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+                          id="pinCode"
+                          type="text"
+                          maxLength={6}
+                          pattern="\d{6}"
+                          placeholder="Enter 6-digit PIN code"
+                          value={formData.pinCode}
+                          onChange={(e) => {
+                            const value = e.target.value.replace(/\D/g, '');
+                            setFormData({ ...formData, pinCode: value });
+                          }}
                           required
                         />
+                        {pinLookupLoading && (
+                          <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 animate-spin text-muted-foreground" />
+                        )}
                       </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        City and state will be auto-filled based on PIN code
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div>
                         <Label htmlFor="city">City *</Label>
                         <Input
                           id="city"
                           value={formData.location.city}
                           onChange={(e) => setFormData({ ...formData, location: { ...formData.location, city: e.target.value } })}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="state">State *</Label>
+                        <Input
+                          id="state"
+                          value={formData.location.state}
+                          onChange={(e) => setFormData({ ...formData, location: { ...formData.location, state: e.target.value } })}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="country">Country *</Label>
+                        <Input
+                          id="country"
+                          value={formData.location.country}
+                          onChange={(e) => setFormData({ ...formData, location: { ...formData.location, country: e.target.value } })}
                           required
                         />
                       </div>
@@ -220,7 +296,7 @@ export default function Careers() {
                     </div>
 
                     <div>
-                      <Label htmlFor="cv">Upload CV *</Label>
+                      <Label htmlFor="cv">Upload CV/Resume *</Label>
                       <div className="mt-2">
                         <Input
                           id="cv"
@@ -229,22 +305,29 @@ export default function Careers() {
                           onChange={(e) => setCvFile(e.target.files?.[0] || null)}
                           required
                         />
+                        {cvFile && (
+                          <p className="text-sm text-muted-foreground mt-2">
+                            Selected: {cvFile.name}
+                          </p>
+                        )}
                         {uploadProgress > 0 && uploadProgress < 100 && (
                           <div className="mt-2">
-                            <div className="w-full bg-muted rounded-full h-2">
+                            <div className="w-full bg-secondary rounded-full h-2">
                               <div
                                 className="bg-primary h-2 rounded-full transition-all"
                                 style={{ width: `${uploadProgress}%` }}
                               />
                             </div>
-                            <p className="text-sm text-muted-foreground mt-1">{uploadProgress}% uploaded</p>
+                            <p className="text-sm text-muted-foreground mt-1">
+                              Uploading: {uploadProgress}%
+                            </p>
                           </div>
                         )}
                       </div>
                     </div>
 
-                    <Button type="submit" className="w-full" disabled={addProfessional.isPending}>
-                      {addProfessional.isPending ? 'Submitting...' : 'Submit Application'}
+                    <Button type="submit" className="w-full" disabled={submitRegistration.isPending}>
+                      {submitRegistration.isPending ? 'Submitting...' : 'Submit Application'}
                     </Button>
                   </form>
                 </CardContent>

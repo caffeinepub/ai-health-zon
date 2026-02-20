@@ -1,9 +1,11 @@
 import { Link, useRouterState } from '@tanstack/react-router';
 import { useState } from 'react';
-import { Menu, X, Heart } from 'lucide-react';
+import { Menu, X, Heart, Shield } from 'lucide-react';
 import { Button } from './ui/button';
+import { Badge } from './ui/badge';
 import { useInternetIdentity } from '../hooks/useInternetIdentity';
 import { useQueryClient } from '@tanstack/react-query';
+import { useIsCallerAdmin, useGetPendingRequestCount } from '../hooks/useQueries';
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -11,6 +13,9 @@ export default function Navigation() {
   const queryClient = useQueryClient();
   const routerState = useRouterState();
   const currentPath = routerState.location.pathname;
+
+  const { data: isAdmin = false } = useIsCallerAdmin();
+  const { data: pendingCount = 0 } = useGetPendingRequestCount();
 
   const isAuthenticated = !!identity;
   const isLoggingIn = loginStatus === 'logging-in';
@@ -33,7 +38,7 @@ export default function Navigation() {
   };
 
   const navLinks = [
-    { to: '/', label: 'Home' },
+    { to: '/home', label: 'Home' },
     { to: '/about', label: 'About Us' },
     { to: '/solutions', label: 'Solutions' },
     { to: '/healthcare-support', label: 'Support System' },
@@ -49,10 +54,14 @@ export default function Navigation() {
     navLinks.push({ to: '/dashboard', label: 'Dashboard' });
   }
 
+  if (isAuthenticated && isAdmin) {
+    navLinks.push({ to: '/admin', label: 'Admin' });
+  }
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
+        <Link to="/home" className="flex items-center space-x-2">
           <Heart className="h-7 w-7 text-primary fill-primary" />
           <span className="font-bold text-xl">AI Health Zon</span>
         </Link>
@@ -63,13 +72,21 @@ export default function Navigation() {
             <Link
               key={link.to}
               to={link.to}
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors relative ${
                 currentPath === link.to
                   ? 'bg-accent text-accent-foreground'
                   : 'text-foreground/80 hover:bg-accent/50 hover:text-accent-foreground'
               }`}
             >
               {link.label}
+              {link.to === '/admin' && pendingCount > 0 && (
+                <Badge 
+                  variant="destructive" 
+                  className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
+                >
+                  {pendingCount}
+                </Badge>
+              )}
             </Link>
           ))}
         </div>
@@ -103,14 +120,21 @@ export default function Navigation() {
               <Link
                 key={link.to}
                 to={link.to}
-                className={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`block px-3 py-2 rounded-md text-sm font-medium transition-colors relative ${
                   currentPath === link.to
                     ? 'bg-accent text-accent-foreground'
                     : 'text-foreground/80 hover:bg-accent/50'
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {link.label}
+                <span className="flex items-center justify-between">
+                  {link.label}
+                  {link.to === '/admin' && pendingCount > 0 && (
+                    <Badge variant="destructive" className="ml-2">
+                      {pendingCount}
+                    </Badge>
+                  )}
+                </span>
               </Link>
             ))}
             <div className="pt-2">

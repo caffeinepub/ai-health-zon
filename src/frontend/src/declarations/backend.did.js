@@ -25,22 +25,10 @@ export const ContactInfo = IDL.Record({
   'address' : IDL.Text,
   'phone' : IDL.Text,
 });
-export const ExternalBlob = IDL.Vec(IDL.Nat8);
 export const Location = IDL.Record({
   'country' : IDL.Text,
   'city' : IDL.Text,
   'state' : IDL.Text,
-});
-export const HealthcareProfessional = IDL.Record({
-  'id' : IDL.Text,
-  'verified' : IDL.Bool,
-  'contact' : ContactInfo,
-  'name' : IDL.Text,
-  'role' : IDL.Text,
-  'experience' : IDL.Nat,
-  'credentials' : IDL.Vec(ExternalBlob),
-  'specialties' : IDL.Vec(IDL.Text),
-  'location' : Location,
 });
 export const Ngo = IDL.Record({
   'id' : IDL.Text,
@@ -95,6 +83,7 @@ export const Hospital = IDL.Record({
   'location' : Location,
   'services' : IDL.Vec(IDL.Text),
 });
+export const ExternalBlob = IDL.Vec(IDL.Nat8);
 export const MedicalRecord = IDL.Record({
   'documents' : IDL.Vec(ExternalBlob),
   'patientId' : IDL.Text,
@@ -129,9 +118,66 @@ export const ResearchProject = IDL.Record({
   'projectId' : IDL.Text,
   'abstract' : IDL.Text,
 });
+export const HealthcareProfessional = IDL.Record({
+  'id' : IDL.Text,
+  'verified' : IDL.Bool,
+  'contact' : ContactInfo,
+  'name' : IDL.Text,
+  'role' : IDL.Text,
+  'experience' : IDL.Nat,
+  'credentials' : IDL.Vec(ExternalBlob),
+  'specialties' : IDL.Vec(IDL.Text),
+  'location' : Location,
+});
 export const UserProfile = IDL.Record({
   'userType' : IDL.Text,
   'professionalProfile' : IDL.Opt(HealthcareProfessional),
+});
+export const RequestStatus = IDL.Variant({
+  'pending' : IDL.Null,
+  'approved' : IDL.Null,
+  'rejected' : IDL.Null,
+});
+export const AmbulanceRequest = IDL.Record({
+  'id' : IDL.Text,
+  'status' : RequestStatus,
+  'requester' : IDL.Principal,
+  'contact' : ContactInfo,
+  'name' : IDL.Text,
+  'location' : Location,
+});
+export const HealthcareProfessionalRequest = IDL.Record({
+  'id' : IDL.Text,
+  'status' : RequestStatus,
+  'requester' : IDL.Principal,
+  'contact' : ContactInfo,
+  'name' : IDL.Text,
+  'role' : IDL.Text,
+  'experience' : IDL.Nat,
+  'credentials' : IDL.Vec(ExternalBlob),
+  'specialties' : IDL.Vec(IDL.Text),
+  'location' : Location,
+});
+export const NgoRequest = IDL.Record({
+  'id' : IDL.Text,
+  'status' : RequestStatus,
+  'requester' : IDL.Principal,
+  'focusArea' : IDL.Text,
+  'contact' : ContactInfo,
+  'name' : IDL.Text,
+  'registrationNo' : IDL.Text,
+  'location' : Location,
+  'services' : IDL.Vec(IDL.Text),
+});
+export const VendorRequest = IDL.Record({
+  'id' : IDL.Text,
+  'status' : RequestStatus,
+  'requester' : IDL.Principal,
+  'contact' : ContactInfo,
+  'name' : IDL.Text,
+  'category' : IDL.Text,
+  'products' : IDL.Vec(IDL.Text),
+  'location' : Location,
 });
 export const RecordFilter = IDL.Record({
   'patientId' : IDL.Opt(IDL.Text),
@@ -179,11 +225,14 @@ export const idlService = IDL.Service({
       [],
       [],
     ),
-  'addHealthcareProfessional' : IDL.Func([HealthcareProfessional], [], []),
   'addNgo' : IDL.Func([Ngo], [], []),
   'addTourismService' : IDL.Func([TourismService], [], []),
   'addVendor' : IDL.Func([Vendor], [], []),
   'applyForLuxuryDebt' : IDL.Func([LuxuryDebtService], [], []),
+  'approveAmbulance' : IDL.Func([IDL.Text], [], []),
+  'approveHealthcareProfessional' : IDL.Func([IDL.Text], [], []),
+  'approveNgo' : IDL.Func([IDL.Text], [], []),
+  'approveVendor' : IDL.Func([IDL.Text], [], []),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
   'createCorporateHealthcare' : IDL.Func([Hospital], [], []),
   'createHealthRecord' : IDL.Func([HealthRecord], [], []),
@@ -238,6 +287,22 @@ export const idlService = IDL.Service({
     ),
   'getMyRecords' : IDL.Func([], [IDL.Vec(MedicalRecord)], ['query']),
   'getNgosByFocusArea' : IDL.Func([IDL.Text], [IDL.Vec(Ngo)], ['query']),
+  'getPendingAmbulanceRequests' : IDL.Func(
+      [],
+      [IDL.Vec(AmbulanceRequest)],
+      ['query'],
+    ),
+  'getPendingHealthcareProfessionalRequests' : IDL.Func(
+      [],
+      [IDL.Vec(HealthcareProfessionalRequest)],
+      ['query'],
+    ),
+  'getPendingNgoRequests' : IDL.Func([], [IDL.Vec(NgoRequest)], ['query']),
+  'getPendingVendorRequests' : IDL.Func(
+      [],
+      [IDL.Vec(VendorRequest)],
+      ['query'],
+    ),
   'getRecord' : IDL.Func([IDL.Text], [MedicalRecord], ['query']),
   'getResearchProject' : IDL.Func(
       [IDL.Text],
@@ -251,6 +316,10 @@ export const idlService = IDL.Service({
     ),
   'initializeSampleData' : IDL.Func([], [], []),
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+  'rejectAmbulance' : IDL.Func([IDL.Text], [], []),
+  'rejectHealthcareProfessional' : IDL.Func([IDL.Text], [], []),
+  'rejectNgo' : IDL.Func([IDL.Text], [], []),
+  'rejectVendor' : IDL.Func([IDL.Text], [], []),
   'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
   'searchRecords' : IDL.Func(
       [RecordFilter],
@@ -262,7 +331,14 @@ export const idlService = IDL.Service({
       [IDL.Vec(ResearchProject)],
       ['query'],
     ),
-  'updateHealthcareProfessional' : IDL.Func([HealthcareProfessional], [], []),
+  'submitAmbulanceRegistration' : IDL.Func([AmbulanceRequest], [], []),
+  'submitHealthcareProfessionalRegistration' : IDL.Func(
+      [HealthcareProfessionalRequest],
+      [],
+      [],
+    ),
+  'submitNgoRegistration' : IDL.Func([NgoRequest], [], []),
+  'submitVendorRegistration' : IDL.Func([VendorRequest], [], []),
   'updateRecord' : IDL.Func([MedicalRecord], [], []),
 });
 
@@ -286,22 +362,10 @@ export const idlFactory = ({ IDL }) => {
     'address' : IDL.Text,
     'phone' : IDL.Text,
   });
-  const ExternalBlob = IDL.Vec(IDL.Nat8);
   const Location = IDL.Record({
     'country' : IDL.Text,
     'city' : IDL.Text,
     'state' : IDL.Text,
-  });
-  const HealthcareProfessional = IDL.Record({
-    'id' : IDL.Text,
-    'verified' : IDL.Bool,
-    'contact' : ContactInfo,
-    'name' : IDL.Text,
-    'role' : IDL.Text,
-    'experience' : IDL.Nat,
-    'credentials' : IDL.Vec(ExternalBlob),
-    'specialties' : IDL.Vec(IDL.Text),
-    'location' : Location,
   });
   const Ngo = IDL.Record({
     'id' : IDL.Text,
@@ -356,6 +420,7 @@ export const idlFactory = ({ IDL }) => {
     'location' : Location,
     'services' : IDL.Vec(IDL.Text),
   });
+  const ExternalBlob = IDL.Vec(IDL.Nat8);
   const MedicalRecord = IDL.Record({
     'documents' : IDL.Vec(ExternalBlob),
     'patientId' : IDL.Text,
@@ -390,9 +455,66 @@ export const idlFactory = ({ IDL }) => {
     'projectId' : IDL.Text,
     'abstract' : IDL.Text,
   });
+  const HealthcareProfessional = IDL.Record({
+    'id' : IDL.Text,
+    'verified' : IDL.Bool,
+    'contact' : ContactInfo,
+    'name' : IDL.Text,
+    'role' : IDL.Text,
+    'experience' : IDL.Nat,
+    'credentials' : IDL.Vec(ExternalBlob),
+    'specialties' : IDL.Vec(IDL.Text),
+    'location' : Location,
+  });
   const UserProfile = IDL.Record({
     'userType' : IDL.Text,
     'professionalProfile' : IDL.Opt(HealthcareProfessional),
+  });
+  const RequestStatus = IDL.Variant({
+    'pending' : IDL.Null,
+    'approved' : IDL.Null,
+    'rejected' : IDL.Null,
+  });
+  const AmbulanceRequest = IDL.Record({
+    'id' : IDL.Text,
+    'status' : RequestStatus,
+    'requester' : IDL.Principal,
+    'contact' : ContactInfo,
+    'name' : IDL.Text,
+    'location' : Location,
+  });
+  const HealthcareProfessionalRequest = IDL.Record({
+    'id' : IDL.Text,
+    'status' : RequestStatus,
+    'requester' : IDL.Principal,
+    'contact' : ContactInfo,
+    'name' : IDL.Text,
+    'role' : IDL.Text,
+    'experience' : IDL.Nat,
+    'credentials' : IDL.Vec(ExternalBlob),
+    'specialties' : IDL.Vec(IDL.Text),
+    'location' : Location,
+  });
+  const NgoRequest = IDL.Record({
+    'id' : IDL.Text,
+    'status' : RequestStatus,
+    'requester' : IDL.Principal,
+    'focusArea' : IDL.Text,
+    'contact' : ContactInfo,
+    'name' : IDL.Text,
+    'registrationNo' : IDL.Text,
+    'location' : Location,
+    'services' : IDL.Vec(IDL.Text),
+  });
+  const VendorRequest = IDL.Record({
+    'id' : IDL.Text,
+    'status' : RequestStatus,
+    'requester' : IDL.Principal,
+    'contact' : ContactInfo,
+    'name' : IDL.Text,
+    'category' : IDL.Text,
+    'products' : IDL.Vec(IDL.Text),
+    'location' : Location,
   });
   const RecordFilter = IDL.Record({
     'patientId' : IDL.Opt(IDL.Text),
@@ -440,11 +562,14 @@ export const idlFactory = ({ IDL }) => {
         [],
         [],
       ),
-    'addHealthcareProfessional' : IDL.Func([HealthcareProfessional], [], []),
     'addNgo' : IDL.Func([Ngo], [], []),
     'addTourismService' : IDL.Func([TourismService], [], []),
     'addVendor' : IDL.Func([Vendor], [], []),
     'applyForLuxuryDebt' : IDL.Func([LuxuryDebtService], [], []),
+    'approveAmbulance' : IDL.Func([IDL.Text], [], []),
+    'approveHealthcareProfessional' : IDL.Func([IDL.Text], [], []),
+    'approveNgo' : IDL.Func([IDL.Text], [], []),
+    'approveVendor' : IDL.Func([IDL.Text], [], []),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
     'createCorporateHealthcare' : IDL.Func([Hospital], [], []),
     'createHealthRecord' : IDL.Func([HealthRecord], [], []),
@@ -503,6 +628,22 @@ export const idlFactory = ({ IDL }) => {
       ),
     'getMyRecords' : IDL.Func([], [IDL.Vec(MedicalRecord)], ['query']),
     'getNgosByFocusArea' : IDL.Func([IDL.Text], [IDL.Vec(Ngo)], ['query']),
+    'getPendingAmbulanceRequests' : IDL.Func(
+        [],
+        [IDL.Vec(AmbulanceRequest)],
+        ['query'],
+      ),
+    'getPendingHealthcareProfessionalRequests' : IDL.Func(
+        [],
+        [IDL.Vec(HealthcareProfessionalRequest)],
+        ['query'],
+      ),
+    'getPendingNgoRequests' : IDL.Func([], [IDL.Vec(NgoRequest)], ['query']),
+    'getPendingVendorRequests' : IDL.Func(
+        [],
+        [IDL.Vec(VendorRequest)],
+        ['query'],
+      ),
     'getRecord' : IDL.Func([IDL.Text], [MedicalRecord], ['query']),
     'getResearchProject' : IDL.Func(
         [IDL.Text],
@@ -516,6 +657,10 @@ export const idlFactory = ({ IDL }) => {
       ),
     'initializeSampleData' : IDL.Func([], [], []),
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+    'rejectAmbulance' : IDL.Func([IDL.Text], [], []),
+    'rejectHealthcareProfessional' : IDL.Func([IDL.Text], [], []),
+    'rejectNgo' : IDL.Func([IDL.Text], [], []),
+    'rejectVendor' : IDL.Func([IDL.Text], [], []),
     'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
     'searchRecords' : IDL.Func(
         [RecordFilter],
@@ -527,7 +672,14 @@ export const idlFactory = ({ IDL }) => {
         [IDL.Vec(ResearchProject)],
         ['query'],
       ),
-    'updateHealthcareProfessional' : IDL.Func([HealthcareProfessional], [], []),
+    'submitAmbulanceRegistration' : IDL.Func([AmbulanceRequest], [], []),
+    'submitHealthcareProfessionalRegistration' : IDL.Func(
+        [HealthcareProfessionalRequest],
+        [],
+        [],
+      ),
+    'submitNgoRegistration' : IDL.Func([NgoRequest], [], []),
+    'submitVendorRegistration' : IDL.Func([VendorRequest], [], []),
     'updateRecord' : IDL.Func([MedicalRecord], [], []),
   });
 };

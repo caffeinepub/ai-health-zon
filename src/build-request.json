@@ -1,58 +1,182 @@
 {
   "kind": "build_request",
-  "title": "Fix AI chatbot functionality on Contact page",
+  "title": "Add PIN code field with manual entry to all registration forms",
   "projectName": "AI Health Zon",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-27",
-      "text": "Implement a functional AI chatbot widget on the Contact page that allows users to interact with an assistant for inquiries and support",
+      "id": "REQ-41",
+      "text": "Add a PIN code input field to the Careers registration form (frontend/src/pages/Careers.tsx) that accepts manual entry of 6-digit postal codes",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "chatboat is not working in the website"
+          "ok Pin will be manual. once pin number entered rest information will auth filled"
         ]
       },
       "acceptanceCriteria": [
-        "Chatbot interface is visible on the Contact page",
-        "Users can type messages and receive responses",
-        "Chat interface includes input field, send button, and message display area",
-        "Chatbot remains accessible and functional throughout the user session"
+        "PIN code field is visible in the careers registration form",
+        "Field accepts 6-digit numeric input",
+        "Field is labeled clearly as 'PIN Code' or 'Postal Code'"
       ]
     },
     {
-      "id": "REQ-28",
-      "text": "Update the entire platform color theme to use Royal Teal as the primary accent color and Royal White as the background/neutral color throughout all pages",
+      "id": "REQ-42",
+      "text": "Add a PIN code input field to the Vendors registration form (frontend/src/pages/Vendors.tsx) that accepts manual entry of 6-digit postal codes",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "change color theme Royal Teal and Royal White"
+          "ok Pin will be manual. once pin number entered rest information will auth filled"
         ]
       },
       "acceptanceCriteria": [
-        "Primary action buttons, links, and interactive elements use Royal Teal",
-        "Background colors and neutral surfaces use Royal White",
-        "Color updates are applied consistently across all pages including Home, About Us, Solutions, Network Directory, Careers, Vendors, Ambulance Services, NGO Listing, Dashboard, Contact, and legal pages",
-        "Navigation, footer, and all UI components reflect the new color scheme",
-        "Dark mode variations maintain the Royal Teal accent appropriately"
+        "PIN code field is visible in the vendors registration form",
+        "Field accepts 6-digit numeric input",
+        "Field is labeled clearly as 'PIN Code' or 'Postal Code'"
+      ]
+    },
+    {
+      "id": "REQ-43",
+      "text": "Add a PIN code input field to the Ambulance Services registration form (frontend/src/pages/AmbulanceServices.tsx) that accepts manual entry of 6-digit postal codes",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "ok Pin will be manual. once pin number entered rest information will auth filled"
+        ]
+      },
+      "acceptanceCriteria": [
+        "PIN code field is visible in the ambulance registration form",
+        "Field accepts 6-digit numeric input",
+        "Field is labeled clearly as 'PIN Code' or 'Postal Code'"
+      ]
+    },
+    {
+      "id": "REQ-44",
+      "text": "Add a PIN code input field to the NGO Listing registration form (frontend/src/pages/NgoListing.tsx) that accepts manual entry of 6-digit postal codes",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "ok Pin will be manual. once pin number entered rest information will auth filled"
+        ]
+      },
+      "acceptanceCriteria": [
+        "PIN code field is visible in the NGO registration form",
+        "Field accepts 6-digit numeric input",
+        "Field is labeled clearly as 'PIN Code' or 'Postal Code'"
+      ]
+    },
+    {
+      "id": "REQ-45",
+      "text": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the Careers registration form",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "once pin number entered rest information will auth filled"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When a 6-digit PIN code is entered, city and state fields are automatically populated",
+        "Invalid PIN codes show appropriate error or leave fields empty",
+        "Auto-filled fields are editable by the user if needed"
+      ]
+    },
+    {
+      "id": "REQ-46",
+      "text": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the Vendors registration form",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "once pin number entered rest information will auth filled"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When a 6-digit PIN code is entered, city and state fields are automatically populated",
+        "Invalid PIN codes show appropriate error or leave fields empty",
+        "Auto-filled fields are editable by the user if needed"
+      ]
+    },
+    {
+      "id": "REQ-47",
+      "text": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the Ambulance Services registration form",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "once pin number entered rest information will auth filled"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When a 6-digit PIN code is entered, city and state fields are automatically populated",
+        "Invalid PIN codes show appropriate error or leave fields empty",
+        "Auto-filled fields are editable by the user if needed"
+      ]
+    },
+    {
+      "id": "REQ-48",
+      "text": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the NGO Listing registration form",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "once pin number entered rest information will auth filled"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When a 6-digit PIN code is entered, city and state fields are automatically populated",
+        "Invalid PIN codes show appropriate error or leave fields empty",
+        "Auto-filled fields are editable by the user if needed"
+      ]
+    },
+    {
+      "id": "REQ-49",
+      "text": "Create a PIN code lookup utility or API integration that maps Indian postal codes to their corresponding city and state information for the auto-fill functionality",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "once pin number entered rest information will auth filled",
+          "update all country codes sothat pincode will be easily executed"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Utility can accept a 6-digit PIN code and return city and state",
+        "Covers major Indian postal codes",
+        "Returns appropriate response for invalid or unknown PIN codes"
       ]
     }
   ],
   "constraints": [
-    "Maintain existing Internet Identity authentication flow",
-    "Preserve all existing page routes and navigation structure",
-    "Keep backend actor unchanged unless chatbot requires data persistence"
+    "PIN code entry must be manual (user types it in)",
+    "PIN code should be 6 digits for Indian postal codes",
+    "Auto-fill should not prevent users from manually editing city and state fields"
   ],
   "nonGoals": [
-    "Integrating external AI services like OpenAI or Anthropic",
-    "Adding real-time WebSocket communication",
-    "Modifying backend data models or CRUD operations"
+    "Automatic PIN code detection or validation beyond format checking",
+    "International postal code formats beyond Indian PIN codes",
+    "Real-time address verification with external postal services"
   ],
   "imageRequirements": {
     "required": [],

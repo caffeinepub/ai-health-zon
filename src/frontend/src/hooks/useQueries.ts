@@ -7,6 +7,10 @@ import type {
   Ngo,
   UserProfile,
   Location,
+  HealthcareProfessionalRequest,
+  VendorRequest,
+  NgoRequest,
+  AmbulanceRequest,
 } from '../backend';
 
 export function useGetCallerUserProfile() {
@@ -41,6 +45,19 @@ export function useSaveCallerUserProfile() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['currentUserProfile'] });
     },
+  });
+}
+
+export function useIsCallerAdmin() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<boolean>({
+    queryKey: ['isAdmin'],
+    queryFn: async () => {
+      if (!actor) return false;
+      return actor.isCallerAdmin();
+    },
+    enabled: !!actor && !isFetching,
   });
 }
 
@@ -83,21 +100,6 @@ export function useGetHealthcareProfessionalsByLocation(city: string) {
   });
 }
 
-export function useAddHealthcareProfessional() {
-  const { actor } = useActor();
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (professional: HealthcareProfessional) => {
-      if (!actor) throw new Error('Actor not available');
-      return actor.addHealthcareProfessional(professional);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['professionals'] });
-    },
-  });
-}
-
 export function useGetAllVendors() {
   const { actor, isFetching } = useActor();
 
@@ -108,21 +110,6 @@ export function useGetAllVendors() {
       return actor.getAllVendors();
     },
     enabled: !!actor && !isFetching,
-  });
-}
-
-export function useAddVendor() {
-  const { actor } = useActor();
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (vendor: Vendor) => {
-      if (!actor) throw new Error('Actor not available');
-      return actor.addVendor(vendor);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['vendors'] });
-    },
   });
 }
 
@@ -139,21 +126,6 @@ export function useGetAllNgos() {
   });
 }
 
-export function useAddNgo() {
-  const { actor } = useActor();
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (ngo: Ngo) => {
-      if (!actor) throw new Error('Actor not available');
-      return actor.addNgo(ngo);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['ngos'] });
-    },
-  });
-}
-
 export function useFilterDataByLocation(location: Location | null) {
   const { actor, isFetching } = useActor();
 
@@ -164,5 +136,254 @@ export function useFilterDataByLocation(location: Location | null) {
       return actor.filterDataByLocation(location);
     },
     enabled: !!actor && !isFetching && !!location,
+  });
+}
+
+// Registration Request Submission Mutations
+export function useSubmitHealthcareProfessionalRegistration() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (request: HealthcareProfessionalRequest) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.submitHealthcareProfessionalRegistration(request);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pendingHealthcareProfessionals'] });
+    },
+  });
+}
+
+export function useSubmitVendorRegistration() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (request: VendorRequest) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.submitVendorRegistration(request);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pendingVendors'] });
+    },
+  });
+}
+
+export function useSubmitNgoRegistration() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (request: NgoRequest) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.submitNgoRegistration(request);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pendingNgos'] });
+    },
+  });
+}
+
+export function useSubmitAmbulanceRegistration() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (request: AmbulanceRequest) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.submitAmbulanceRegistration(request);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pendingAmbulances'] });
+    },
+  });
+}
+
+// Pending Requests Queries
+export function useGetPendingHealthcareProfessionalRequests() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<HealthcareProfessionalRequest[]>({
+    queryKey: ['pendingHealthcareProfessionals'],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getPendingHealthcareProfessionalRequests();
+    },
+    enabled: !!actor && !isFetching,
+  });
+}
+
+export function useGetPendingVendorRequests() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<VendorRequest[]>({
+    queryKey: ['pendingVendors'],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getPendingVendorRequests();
+    },
+    enabled: !!actor && !isFetching,
+  });
+}
+
+export function useGetPendingNgoRequests() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<NgoRequest[]>({
+    queryKey: ['pendingNgos'],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getPendingNgoRequests();
+    },
+    enabled: !!actor && !isFetching,
+  });
+}
+
+export function useGetPendingAmbulanceRequests() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<AmbulanceRequest[]>({
+    queryKey: ['pendingAmbulances'],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getPendingAmbulanceRequests();
+    },
+    enabled: !!actor && !isFetching,
+  });
+}
+
+export function useGetPendingRequestCount() {
+  const { data: professionals = [] } = useGetPendingHealthcareProfessionalRequests();
+  const { data: vendors = [] } = useGetPendingVendorRequests();
+  const { data: ngos = [] } = useGetPendingNgoRequests();
+  const { data: ambulances = [] } = useGetPendingAmbulanceRequests();
+
+  return {
+    data: professionals.length + vendors.length + ngos.length + ambulances.length,
+  };
+}
+
+// Approval/Rejection Mutations
+export function useApproveHealthcareProfessional() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.approveHealthcareProfessional(id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pendingHealthcareProfessionals'] });
+      queryClient.invalidateQueries({ queryKey: ['professionals'] });
+    },
+  });
+}
+
+export function useRejectHealthcareProfessional() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.rejectHealthcareProfessional(id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pendingHealthcareProfessionals'] });
+    },
+  });
+}
+
+export function useApproveVendor() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.approveVendor(id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pendingVendors'] });
+      queryClient.invalidateQueries({ queryKey: ['vendors'] });
+    },
+  });
+}
+
+export function useRejectVendor() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.rejectVendor(id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pendingVendors'] });
+    },
+  });
+}
+
+export function useApproveNgo() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.approveNgo(id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pendingNgos'] });
+      queryClient.invalidateQueries({ queryKey: ['ngos'] });
+    },
+  });
+}
+
+export function useRejectNgo() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.rejectNgo(id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pendingNgos'] });
+    },
+  });
+}
+
+export function useApproveAmbulance() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.approveAmbulance(id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pendingAmbulances'] });
+    },
+  });
+}
+
+export function useRejectAmbulance() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.rejectAmbulance(id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['pendingAmbulances'] });
+    },
   });
 }
