@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 23,
+  "projectStateVersion": 25,
   "summary": "AI Health Zon: A comprehensive AI-powered healthcare platform website with RCM, Healthcare Technology solutions, and a Healthcare Connecting Platform linking hospitals, medical professionals, vendors, NGOs, and services",
   "architectural_notes": [
     "Multi-stakeholder platform requiring role-based authentication and dashboards",
@@ -546,6 +546,46 @@
         "REQ-75"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-network-directory-page-frontend-src-pages-networkdirectory-tsx-layout-to-match-mckinsey-s-our-people-page-card-based-profile-design-from-https-www-mckinsey-com-industries-healthcare-our-people-with-profile-cards-displaying-in-a-responsive-grid-layout",
+      "title": "Update the Network Directory page (frontend/src/pages/NetworkDirectory.tsx) layout to match McKinsey's Our People page card-based profile design from https://www.mckinsey.com/industries/healthcare/our-people, with profile cards displaying in a responsive grid layout",
+      "reqIds": [
+        "REQ-76"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-network-directory-card-styling-to-match-mckinsey-s-profile-card-design-from-https-www-mckinsey-com-industries-healthcare-our-people-including-card-borders-shadows-hover-effects-image-treatment-and-typography-hierarchy",
+      "title": "Update Network Directory card styling to match McKinsey's profile card design from https://www.mckinsey.com/industries/healthcare/our-people, including card borders, shadows, hover effects, image treatment, and typography hierarchy",
+      "reqIds": [
+        "REQ-77"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-enhanced-filtering-system-in-the-network-directory-matching-mckinsey-s-our-people-page-functionality-from-https-www-mckinsey-com-industries-healthcare-our-people-with-filters-for-stakeholder-category-location-specialty-service-area-and-clear-filter-controls",
+      "title": "Implement an enhanced filtering system in the Network Directory matching McKinsey's Our People page functionality from https://www.mckinsey.com/industries/healthcare/our-people, with filters for stakeholder category, location, specialty/service area, and clear filter controls",
+      "reqIds": [
+        "REQ-78"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-professional-profile-detail-views-in-the-network-directory-that-expand-or-navigate-to-show-comprehensive-stakeholder-information-including-bio-services-experience-and-contact-options-matching-the-interaction-pattern-from-https-www-mckinsey-com-industries-healthcare-our-people",
+      "title": "Add professional profile detail views in the Network Directory that expand or navigate to show comprehensive stakeholder information including bio, services, experience, and contact options, matching the interaction pattern from https://www.mckinsey.com/industries/healthcare/our-people",
+      "reqIds": [
+        "REQ-79"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-network-directory-page-spacing-padding-and-overall-layout-structure-to-match-mckinsey-s-generous-whitespace-and-content-organization-from-https-www-mckinsey-com-industries-healthcare-our-people",
+      "title": "Update Network Directory page spacing, padding, and overall layout structure to match McKinsey's generous whitespace and content organization from https://www.mckinsey.com/industries/healthcare/our-people",
+      "reqIds": [
+        "REQ-80"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -751,6 +791,12 @@
       "reqIds": [
         "REQ-72"
       ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-41",
+      "summary": "Upgrade Network Directory page to match the profile directory layout and design from McKinsey's Our People page (https://www.mckinsey.com/industries/healthcare/our-people), including card-based profile layouts, filtering system, and visual presentation",
+      "reqIds": [],
       "status": "pending"
     }
   ],

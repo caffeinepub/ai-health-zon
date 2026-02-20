@@ -1,185 +1,115 @@
 {
   "kind": "build_request",
-  "title": "Update site theme and colors to match McKinsey healthcare business-building page style",
-  "projectName": "AI Health Zon",
+  "title": "Upgrade Network Directory to McKinsey Our People page style",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-67",
-      "text": "Update the global color scheme in frontend/index.css to match the McKinsey healthcare page color palette from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, replacing the current orange and teal colors with McKinsey's professional color scheme",
+      "id": "REQ-76",
+      "text": "Update the Network Directory page (frontend/src/pages/NetworkDirectory.tsx) layout to match McKinsey's Our People page card-based profile design from https://www.mckinsey.com/industries/healthcare/our-people, with profile cards displaying in a responsive grid layout",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
+          "upgrade page Directory like https://www.mckinsey.com/industries/healthcare/our-people"
         ]
       },
       "acceptanceCriteria": [
-        "CSS custom properties in frontend/index.css reflect McKinsey's color palette",
-        "Primary, secondary, accent, and background colors match McKinsey's style",
-        "Color scheme works for both light and dark mode variants"
+        "Profile cards are arranged in a responsive grid matching McKinsey's layout",
+        "Cards display stakeholder photos/avatars prominently",
+        "Each card shows name, role/title, and location information",
+        "Grid adapts to different screen sizes appropriately"
       ]
     },
     {
-      "id": "REQ-68",
-      "text": "Update frontend/tailwind.config.js to configure Tailwind CSS with the McKinsey-inspired color palette, ensuring all color tokens align with the professional healthcare business aesthetic from the reference page",
+      "id": "REQ-77",
+      "text": "Update Network Directory card styling to match McKinsey's profile card design from https://www.mckinsey.com/industries/healthcare/our-people, including card borders, shadows, hover effects, image treatment, and typography hierarchy",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
+          "upgrade page Directory like https://www.mckinsey.com/industries/healthcare/our-people"
         ]
       },
       "acceptanceCriteria": [
-        "Tailwind color configuration matches McKinsey's color scheme",
-        "All existing color utility classes work with new palette",
-        "Custom color extensions preserve functional color roles"
+        "Card design matches McKinsey's visual style with appropriate borders and shadows",
+        "Hover effects provide visual feedback matching the reference",
+        "Typography hierarchy clearly distinguishes name, role, and other details",
+        "Image/avatar treatment matches McKinsey's professional presentation"
       ]
     },
     {
-      "id": "REQ-69",
-      "text": "Update typography settings across the site in frontend/index.css and frontend/tailwind.config.js to match McKinsey's font family, font weights, line heights, and text sizing hierarchy from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building",
+      "id": "REQ-78",
+      "text": "Implement an enhanced filtering system in the Network Directory matching McKinsey's Our People page functionality from https://www.mckinsey.com/industries/healthcare/our-people, with filters for stakeholder category, location, specialty/service area, and clear filter controls",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
+          "upgrade page Directory like https://www.mckinsey.com/industries/healthcare/our-people"
         ]
       },
       "acceptanceCriteria": [
-        "Font family matches McKinsey's professional typography",
-        "Heading hierarchy (h1-h6) follows McKinsey's sizing and weight patterns",
-        "Body text line-height and spacing match reference style"
+        "Filter controls are prominently displayed and easy to use",
+        "Multiple filters can be applied simultaneously",
+        "Active filters are clearly indicated",
+        "Filter UI matches McKinsey's design patterns"
       ]
     },
     {
-      "id": "REQ-70",
-      "text": "Update the Navigation component (frontend/src/components/Navigation.tsx) to match McKinsey's navigation bar style from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including background color, text colors, spacing, and hover states",
+      "id": "REQ-79",
+      "text": "Add professional profile detail views in the Network Directory that expand or navigate to show comprehensive stakeholder information including bio, services, experience, and contact options, matching the interaction pattern from https://www.mckinsey.com/industries/healthcare/our-people",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
+          "upgrade page Directory like https://www.mckinsey.com/industries/healthcare/our-people"
         ]
       },
       "acceptanceCriteria": [
-        "Navigation background color matches McKinsey's header",
-        "Navigation link colors and hover states follow McKinsey patterns",
-        "Mobile menu styling consistent with McKinsey's responsive design"
+        "Clicking a profile card reveals detailed information",
+        "Detail view shows comprehensive stakeholder profile",
+        "Navigation between list and detail views is intuitive",
+        "Layout matches McKinsey's profile detail presentation"
       ]
     },
     {
-      "id": "REQ-71",
-      "text": "Update the Home page (frontend/src/pages/Home.tsx) hero section styling to match McKinsey's hero design from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including layout, spacing, text styling, and button design",
+      "id": "REQ-80",
+      "text": "Update Network Directory page spacing, padding, and overall layout structure to match McKinsey's generous whitespace and content organization from https://www.mckinsey.com/industries/healthcare/our-people",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
+          "upgrade page Directory like https://www.mckinsey.com/industries/healthcare/our-people"
         ]
       },
       "acceptanceCriteria": [
-        "Hero section layout matches McKinsey's structure",
-        "CTA buttons follow McKinsey's button styling",
-        "Hero text colors and sizing align with McKinsey's design"
-      ]
-    },
-    {
-      "id": "REQ-72",
-      "text": "Update card component styling across all pages to match McKinsey's card design patterns from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including borders, shadows, padding, and hover effects",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-latest"
-        ],
-        "quotes": [
-          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Card borders and shadows match McKinsey's subtle style",
-        "Card padding and spacing follow McKinsey's proportions",
-        "Card hover effects align with McKinsey's interaction patterns"
-      ]
-    },
-    {
-      "id": "REQ-73",
-      "text": "Update button styling throughout the application to match McKinsey's button design from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including primary, secondary, and outline button variants with appropriate colors, borders, and hover states",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-latest"
-        ],
-        "quotes": [
-          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Primary buttons match McKinsey's primary CTA style",
-        "Secondary and outline buttons follow McKinsey's design system",
-        "Button hover and active states consistent with McKinsey patterns"
-      ]
-    },
-    {
-      "id": "REQ-74",
-      "text": "Update section spacing, padding, and layout grid system across all pages to match McKinsey's generous whitespace and content organization from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-latest"
-        ],
-        "quotes": [
-          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Section padding matches McKinsey's spacious layout",
-        "Content max-width and centering follow McKinsey's grid",
-        "Vertical rhythm between sections consistent with McKinsey design"
-      ]
-    },
-    {
-      "id": "REQ-75",
-      "text": "Update the Footer component (frontend/src/components/Footer.tsx) styling to match McKinsey's footer design from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including background color, text colors, link styling, and layout structure",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-latest"
-        ],
-        "quotes": [
-          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Footer background matches McKinsey's footer color",
-        "Footer text and link colors follow McKinsey's hierarchy",
-        "Footer column layout and spacing consistent with McKinsey design"
+        "Page layout uses generous whitespace matching McKinsey's style",
+        "Section spacing creates clear visual separation",
+        "Content margins and padding match the reference design",
+        "Overall page structure feels professional and uncluttered"
       ]
     }
   ],
   "constraints": [
-    "Do not modify backend/main.mo or backend data structures",
-    "Preserve all existing functionality while updating visual styling",
-    "Maintain accessibility standards (contrast ratios, focus states) with new colors",
-    "Do not change frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, or frontend/src/main.tsx",
-    "Keep all existing routes and navigation structure intact"
+    "Maintain existing backend data structures and API endpoints for stakeholder data",
+    "Preserve authentication and role-based access control logic",
+    "Keep existing filtering functionality while enhancing the UI",
+    "Do not modify immutable frontend paths: useInternetIdentity, useActor, main.tsx, components/ui"
   ],
   "nonGoals": [
-    "Adding new pages or features beyond styling updates",
-    "Changing backend logic or data models",
-    "Modifying authentication flow",
-    "Altering existing component functionality",
-    "Redesigning page layouts or information architecture"
+    "Changing the backend data models or API structure",
+    "Modifying other pages beyond the Network Directory",
+    "Adding new stakeholder types or categories",
+    "Implementing real-time collaboration features"
   ],
   "imageRequirements": {
     "required": [],

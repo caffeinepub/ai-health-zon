@@ -1,15 +1,24 @@
 import { useState } from 'react';
 import { Input } from '../components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
-import { Search, MapPin, Phone, Mail, ExternalLink } from 'lucide-react';
+import { Badge } from '../components/ui/badge';
+import { Avatar, AvatarFallback } from '../components/ui/avatar';
+import { Search, MapPin, X, Building2, Briefcase, Heart, Users } from 'lucide-react';
 import { useGetAllHospitals, useGetAllVendors, useGetAllNgos } from '../hooks/useQueries';
+import StakeholderDetailView from '../components/StakeholderDetailView';
+import type { Hospital, Vendor, Ngo } from '../backend';
+
+type StakeholderEntity = (Hospital | Vendor | Ngo) & {
+  type: 'Hospital' | 'Vendor' | 'NGO';
+  category: string;
+};
 
 export default function NetworkDirectory() {
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [locationFilter, setLocationFilter] = useState('');
+  const [selectedStakeholder, setSelectedStakeholder] = useState<StakeholderEntity | null>(null);
 
   const { data: hospitals = [], isLoading: hospitalsLoading } = useGetAllHospitals();
   const { data: vendors = [], isLoading: vendorsLoading } = useGetAllVendors();
@@ -17,10 +26,10 @@ export default function NetworkDirectory() {
 
   const isLoading = hospitalsLoading || vendorsLoading || ngosLoading;
 
-  const allEntities = [
-    ...hospitals.map(h => ({ ...h, type: 'Hospital', category: 'Hospitals & Clinics' })),
-    ...vendors.map(v => ({ ...v, type: 'Vendor', category: v.category })),
-    ...ngos.map(n => ({ ...n, type: 'NGO', category: n.focusArea }))
+  const allEntities: StakeholderEntity[] = [
+    ...hospitals.map(h => ({ ...h, type: 'Hospital' as const, category: 'Healthcare Facility' })),
+    ...vendors.map(v => ({ ...v, type: 'Vendor' as const, category: v.category })),
+    ...ngos.map(n => ({ ...n, type: 'NGO' as const, category: n.focusArea }))
   ];
 
   const filteredEntities = allEntities.filter(entity => {
@@ -30,104 +39,217 @@ export default function NetworkDirectory() {
     return matchesSearch && matchesCategory && matchesLocation;
   });
 
+  const activeFiltersCount = [
+    categoryFilter !== 'all',
+    locationFilter !== '',
+    searchTerm !== ''
+  ].filter(Boolean).length;
+
+  const clearAllFilters = () => {
+    setSearchTerm('');
+    setCategoryFilter('all');
+    setLocationFilter('');
+  };
+
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(word => word[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
+  const getTypeIcon = (type: string) => {
+    switch (type) {
+      case 'Hospital':
+        return <Building2 className="h-5 w-5" />;
+      case 'Vendor':
+        return <Briefcase className="h-5 w-5" />;
+      case 'NGO':
+        return <Heart className="h-5 w-5" />;
+      default:
+        return <Users className="h-5 w-5" />;
+    }
+  };
+
   return (
-    <div className="w-full">
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center">Network Directory</h1>
-          <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-12">
-            Search and connect with healthcare professionals, hospitals, vendors, and service providers
-            in our comprehensive network.
+    <div className="w-full bg-background">
+      {/* Header Section */}
+      <section className="py-12 lg:py-16 border-b">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <h1 className="text-4xl md:text-5xl font-semibold mb-4 tracking-tight">Network Directory</h1>
+          <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
+            Connect with healthcare professionals, hospitals, vendors, and service providers in our comprehensive network.
           </p>
-
-          {/* Search and Filters */}
-          <div className="max-w-5xl mx-auto mb-12">
-            <Card>
-              <CardContent className="pt-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      placeholder="Search by name..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10"
-                    />
-                  </div>
-                  <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Categories</SelectItem>
-                      <SelectItem value="hospital">Hospitals & Clinics</SelectItem>
-                      <SelectItem value="vendor">Vendors</SelectItem>
-                      <SelectItem value="ngo">NGOs</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Input
-                    placeholder="Filter by location..."
-                    value={locationFilter}
-                    onChange={(e) => setLocationFilter(e.target.value)}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Results */}
-          <div className="max-w-5xl mx-auto">
-            {isLoading ? (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground">Loading directory...</p>
-              </div>
-            ) : filteredEntities.length === 0 ? (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground">No results found. Try adjusting your filters.</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {filteredEntities.map((entity, index) => (
-                  <Card key={index} className="hover:shadow-lg transition-shadow">
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <CardTitle className="text-xl mb-1">{entity.name}</CardTitle>
-                          <p className="text-sm text-muted-foreground">{entity.type} • {entity.category}</p>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      <div className="flex items-start text-sm">
-                        <MapPin className="h-4 w-4 text-muted-foreground mr-2 flex-shrink-0 mt-0.5" />
-                        <span className="text-muted-foreground">
-                          {entity.location.city}, {entity.location.state}, {entity.location.country}
-                        </span>
-                      </div>
-                      {entity.contact && (
-                        <>
-                          <div className="flex items-center text-sm">
-                            <Phone className="h-4 w-4 text-muted-foreground mr-2 flex-shrink-0" />
-                            <span className="text-muted-foreground">{entity.contact.phone}</span>
-                          </div>
-                          <div className="flex items-center text-sm">
-                            <Mail className="h-4 w-4 text-muted-foreground mr-2 flex-shrink-0" />
-                            <span className="text-muted-foreground">{entity.contact.email}</span>
-                          </div>
-                        </>
-                      )}
-                      <Button variant="outline" size="sm" className="w-full mt-4">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        View Profile
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            )}
-          </div>
         </div>
       </section>
+
+      {/* Filters Section */}
+      <section className="sticky top-0 z-10 bg-background border-b shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search by name..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 h-11"
+              />
+            </div>
+            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+              <SelectTrigger className="h-11">
+                <SelectValue placeholder="All Categories" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Categories</SelectItem>
+                <SelectItem value="hospital">Healthcare Facilities</SelectItem>
+                <SelectItem value="vendor">Vendors</SelectItem>
+                <SelectItem value="ngo">NGOs</SelectItem>
+              </SelectContent>
+            </Select>
+            <div className="relative">
+              <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Filter by location..."
+                value={locationFilter}
+                onChange={(e) => setLocationFilter(e.target.value)}
+                className="pl-10 h-11"
+              />
+            </div>
+          </div>
+
+          {/* Active Filters */}
+          {activeFiltersCount > 0 && (
+            <div className="flex items-center gap-3 flex-wrap">
+              <span className="text-sm text-muted-foreground">Active filters:</span>
+              {categoryFilter !== 'all' && (
+                <Badge variant="secondary" className="gap-1">
+                  {categoryFilter === 'hospital' ? 'Healthcare Facilities' : categoryFilter === 'vendor' ? 'Vendors' : 'NGOs'}
+                  <button
+                    onClick={() => setCategoryFilter('all')}
+                    className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                </Badge>
+              )}
+              {locationFilter && (
+                <Badge variant="secondary" className="gap-1">
+                  Location: {locationFilter}
+                  <button
+                    onClick={() => setLocationFilter('')}
+                    className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                </Badge>
+              )}
+              {searchTerm && (
+                <Badge variant="secondary" className="gap-1">
+                  Search: {searchTerm}
+                  <button
+                    onClick={() => setSearchTerm('')}
+                    className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                </Badge>
+              )}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={clearAllFilters}
+                className="text-sm h-7"
+              >
+                Clear all
+              </Button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Results Section */}
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          {isLoading ? (
+            <div className="text-center py-16">
+              <p className="text-muted-foreground text-lg">Loading directory...</p>
+            </div>
+          ) : filteredEntities.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-muted-foreground text-lg mb-2">No results found</p>
+              <p className="text-sm text-muted-foreground">Try adjusting your filters or search terms</p>
+            </div>
+          ) : (
+            <>
+              <div className="mb-6">
+                <p className="text-sm text-muted-foreground">
+                  Showing {filteredEntities.length} {filteredEntities.length === 1 ? 'result' : 'results'}
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                {filteredEntities.map((entity, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedStakeholder(entity)}
+                    className="group bg-card border border-border rounded-lg p-6 text-left transition-all duration-200 hover:shadow-md hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                  >
+                    {/* Avatar/Logo */}
+                    <div className="flex items-start gap-4 mb-4">
+                      <Avatar className="h-16 w-16 flex-shrink-0">
+                        <AvatarFallback className="bg-primary/10 text-primary text-lg font-semibold">
+                          {getInitials(entity.name)}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-xl font-semibold mb-1 group-hover:text-primary transition-colors line-clamp-2">
+                          {entity.name}
+                        </h3>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          {getTypeIcon(entity.type)}
+                          <span>{entity.type}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Category Badge */}
+                    <Badge variant="secondary" className="mb-3">
+                      {entity.category}
+                    </Badge>
+
+                    {/* Location */}
+                    <div className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <MapPin className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                      <span className="line-clamp-2">
+                        {entity.location.city}, {entity.location.state}
+                      </span>
+                    </div>
+
+                    {/* Verified Badge */}
+                    {'verified' in entity && entity.verified && (
+                      <div className="mt-4 pt-4 border-t">
+                        <Badge variant="outline" className="text-xs">
+                          ✓ Verified
+                        </Badge>
+                      </div>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </section>
+
+      {/* Detail View Modal */}
+      {selectedStakeholder && (
+        <StakeholderDetailView
+          stakeholder={selectedStakeholder}
+          onClose={() => setSelectedStakeholder(null)}
+        />
+      )}
     </div>
   );
 }

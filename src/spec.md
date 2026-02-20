@@ -1,16 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Update the entire site's visual theme and color scheme to match the professional McKinsey healthcare business-building page style.
+**Goal:** Redesign the Network Directory page to match McKinsey's Our People page professional card-based layout and filtering system.
 
 **Planned changes:**
-- Replace current orange and teal color palette with McKinsey's professional color scheme in CSS and Tailwind configuration
-- Update typography (font family, weights, sizing hierarchy) to match McKinsey's style
-- Update Navigation component styling to match McKinsey's header design
-- Update Home page hero section to match McKinsey's hero layout and button design
-- Update card components across all pages to match McKinsey's card design patterns
-- Update all button variants (primary, secondary, outline) to match McKinsey's button styling
-- Update section spacing, padding, and layout grid to match McKinsey's generous whitespace
-- Update Footer component styling to match McKinsey's footer design
+- Update NetworkDirectory.tsx layout to use a responsive grid of profile cards matching McKinsey's design
+- Implement McKinsey-style card styling with appropriate borders, shadows, hover effects, and typography hierarchy
+- Add enhanced filtering system with stakeholder category, location, and specialty filters
+- Create profile detail views that show comprehensive stakeholder information
+- Update page spacing and whitespace to match McKinsey's generous layout structure
 
-**User-visible outcome:** The entire site will have a refined, professional appearance matching McKinsey's healthcare business page aesthetic, with consistent colors, typography, spacing, and component styling throughout.
+**User-visible outcome:** Users will see a professional, McKinsey-style directory with card-based profiles, advanced filtering options, and detailed profile views when clicking on stakeholders.
