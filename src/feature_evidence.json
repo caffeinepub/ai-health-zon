@@ -1,0 +1,47 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-implement-a-functional-ai-chatbot-widget-on-the-contact-page-that-allows-users-to-interact-with-an-assistant-for-inquiries-and-support",
+      "featureTitle": "Implement a functional AI chatbot widget on the Contact page that allows users to interact with an assistant for inquiries and support",
+      "files": [
+        "frontend/src/components/Chatbot.tsx",
+        "frontend/src/pages/Contact.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-27"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-entire-platform-color-theme-to-use-royal-teal-as-the-primary-accent-color-and-royal-white-as-the-background-neutral-color-throughout-all-pages",
+      "featureTitle": "Update the entire platform color theme to use Royal Teal as the primary accent color and Royal White as the background/neutral color throughout all pages",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/src/pages/Contact.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-28"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

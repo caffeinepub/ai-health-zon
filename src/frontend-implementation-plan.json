@@ -1,0 +1,137 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Fix AI chatbot functionality on Contact page and update platform color theme to Royal Teal and Royal White",
+  "requirements": [
+    {
+      "id": "REQ-27",
+      "summary": "Implement a functional AI chatbot widget on the Contact page that allows users to interact with an assistant for inquiries and support",
+      "acceptanceCriteria": [
+        "Chatbot interface is visible on the Contact page",
+        "Users can type messages and receive responses",
+        "Chat interface includes input field, send button, and message display area",
+        "Chatbot remains accessible and functional throughout the user session"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Chatbot.tsx",
+          "operation": "create",
+          "description": "Create a Chatbot component with message display area, input field, and send button. Implement local state management for chat messages and responses. Include a mock AI response function that generates contextual replies to user inquiries about healthcare services, contact information, and platform features. Style using Royal Teal accent colors for chat bubbles and buttons."
+        },
+        {
+          "path": "frontend/src/pages/Contact.tsx",
+          "operation": "modify",
+          "description": "Import and integrate the Chatbot component into the Contact page layout. Position the chatbot widget in a fixed or prominent location (e.g., bottom-right corner or embedded section) to ensure visibility and accessibility throughout the user session on the Contact page."
+        }
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "summary": "Update the entire platform color theme to use Royal Teal as the primary accent color and Royal White as the background/neutral color throughout all pages",
+      "acceptanceCriteria": [
+        "Primary action buttons, links, and interactive elements use Royal Teal",
+        "Background colors and neutral surfaces use Royal White",
+        "Color updates are applied consistently across all pages including Home, About Us, Solutions, Network Directory, Careers, Vendors, Ambulance Services, NGO Listing, Dashboard, Contact, and legal pages",
+        "Navigation, footer, and all UI components reflect the new color scheme",
+        "Dark mode variations maintain the Royal Teal accent appropriately"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Update the Tailwind color configuration to define Royal Teal (approximate OKLCH value: oklch(52% 0.15 200)) as the primary color and Royal White (oklch(98% 0.01 200)) as the background/neutral color. Replace or extend the existing primary, accent, and background color definitions in the theme.extend.colors section to use these Royal Teal and Royal White values across light and dark modes."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update CSS custom properties for light and dark themes to incorporate Royal Teal and Royal White. Set --primary and --accent variables to Royal Teal OKLCH values, and --background, --card, and neutral surface variables to Royal White values. Ensure dark mode variations maintain Royal Teal accent appropriately with adjusted lightness for contrast."
+        },
+        {
+          "path": "frontend/src/components/Navigation.tsx",
+          "operation": "modify",
+          "description": "Update the Navigation component to use Royal Teal for active link states, hover effects, and the login button. Replace existing color classes (e.g., bg-blue-600, text-blue-600) with Tailwind classes that reference the updated primary color (Royal Teal). Ensure Royal White is used for background and neutral surfaces."
+        },
+        {
+          "path": "frontend/src/components/Footer.tsx",
+          "operation": "modify",
+          "description": "Update the Footer component to use Royal Teal for links, social media icons, and interactive elements. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for background and neutral text colors."
+        },
+        {
+          "path": "frontend/src/pages/Home.tsx",
+          "operation": "modify",
+          "description": "Update the Home page to use Royal Teal for CTA buttons, card accents, and interactive elements. Replace existing color classes (e.g., bg-blue-600, border-blue-500) with Tailwind classes that reference the updated primary color. Ensure Royal White is used for card backgrounds and neutral surfaces."
+        },
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Update the Dashboard page to use Royal Teal for metric highlights, card borders, and action buttons. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for card backgrounds and neutral surfaces."
+        },
+        {
+          "path": "frontend/src/pages/AboutUs.tsx",
+          "operation": "modify",
+          "description": "Update the About Us page to use Royal Teal for section headers, card borders, and icon accents. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for card backgrounds and neutral surfaces."
+        },
+        {
+          "path": "frontend/src/pages/Solutions.tsx",
+          "operation": "modify",
+          "description": "Update the Solutions page to use Royal Teal for checkmarks, card accents, and section highlights. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for card backgrounds and neutral surfaces."
+        },
+        {
+          "path": "frontend/src/pages/NetworkDirectory.tsx",
+          "operation": "modify",
+          "description": "Update the Network Directory page to use Royal Teal for filter buttons, search inputs, and card highlights. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for card backgrounds and neutral surfaces."
+        },
+        {
+          "path": "frontend/src/pages/Careers.tsx",
+          "operation": "modify",
+          "description": "Update the Careers page to use Royal Teal for form submit buttons, input focus states, and success indicators. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for form backgrounds and neutral surfaces."
+        },
+        {
+          "path": "frontend/src/pages/Vendors.tsx",
+          "operation": "modify",
+          "description": "Update the Vendors page to use Royal Teal for form buttons, verification badges, and card accents. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for card backgrounds and neutral surfaces."
+        },
+        {
+          "path": "frontend/src/pages/AmbulanceServices.tsx",
+          "operation": "modify",
+          "description": "Update the Ambulance Services page to use Royal Teal for form buttons, service type badges, and search highlights. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for form and card backgrounds."
+        },
+        {
+          "path": "frontend/src/pages/NgoListing.tsx",
+          "operation": "modify",
+          "description": "Update the NGO Listing page to use Royal Teal for form buttons, focus area tags, and card highlights. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for card backgrounds and neutral surfaces."
+        },
+        {
+          "path": "frontend/src/pages/Contact.tsx",
+          "operation": "modify",
+          "description": "Update the Contact page to use Royal Teal for form submit buttons, contact icons, and link highlights. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for form backgrounds and neutral surfaces. This operation should be combined with the REQ-27 modification to avoid duplicate changes."
+        },
+        {
+          "path": "frontend/src/pages/PrivacyPolicy.tsx",
+          "operation": "modify",
+          "description": "Update the Privacy Policy page to use Royal Teal for section headers and link colors. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for page background and neutral surfaces."
+        },
+        {
+          "path": "frontend/src/pages/TermsConditions.tsx",
+          "operation": "modify",
+          "description": "Update the Terms & Conditions page to use Royal Teal for section headers and link colors. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for page background and neutral surfaces."
+        },
+        {
+          "path": "frontend/src/pages/RefundPolicy.tsx",
+          "operation": "modify",
+          "description": "Update the Refund Policy page to use Royal Teal for section headers and link colors. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for page background and neutral surfaces."
+        },
+        {
+          "path": "frontend/src/pages/HealthcareSupportSystem.tsx",
+          "operation": "modify",
+          "description": "Update the Healthcare Support System page to use Royal Teal for category card borders, icons, and highlights. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for card backgrounds and neutral surfaces."
+        },
+        {
+          "path": "frontend/src/components/ProfileSetup.tsx",
+          "operation": "modify",
+          "description": "Update the ProfileSetup component to use Royal Teal for form buttons, radio button selected states, and input focus borders. Replace existing color classes with Tailwind classes that reference the updated primary color. Ensure Royal White is used for modal background and neutral surfaces."
+        }
+      ]
+    }
+  ]
+}

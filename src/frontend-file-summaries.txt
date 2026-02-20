@@ -1,0 +1,11 @@
+{
+  "frontend/src/App.tsx": "Main application router configuration with all page routes defined using TanStack Router, including home, about, solutions, directory, careers, vendors, ambulance, NGOs, dashboard, contact, and legal pages.",
+  "frontend/src/pages/Dashboard.tsx": "Role-based dashboard page that displays different metrics and features based on user type (hospital, professional, vendor, or NGO), with authentication check and profile setup flow.",
+  "frontend/src/pages/Contact.tsx": "Contact page with company information cards, inquiry form, and integrated Chatbot component positioned as a floating widget.",
+  "frontend/src/pages/PrivacyPolicy.tsx": "Privacy policy legal page displaying information collection, usage, sharing, security, and user rights policies.",
+  "frontend/src/pages/TermsConditions.tsx": "Terms and conditions legal page outlining service usage terms, user responsibilities, intellectual property, liability limitations, and modifications policy.",
+  "frontend/src/pages/RefundPolicy.tsx": "Refund policy legal page explaining refund eligibility, request process, processing time, non-refundable items, and cancellation terms.",
+  "frontend/src/index.css": "Global styles with OKLCH color system updated to Royal Teal (hue 200) as primary color and Royal White as background/neutral colors for both light and dark modes.",
+  "frontend/src/main.tsx": "Application entry point that sets up React Query, Internet Identity provider, and Sonner toast notifications.",
+  "frontend/src/components/Chatbot.tsx": "AI chatbot component with floating button, expandable chat interface, message history, and contextual responses about healthcare services, contact info, and platform features using Royal Teal accent colors."
+}

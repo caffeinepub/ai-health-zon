@@ -1,0 +1,61 @@
+{
+  "kind": "build_request",
+  "title": "Fix AI chatbot functionality on Contact page",
+  "projectName": "AI Health Zon",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-27",
+      "text": "Implement a functional AI chatbot widget on the Contact page that allows users to interact with an assistant for inquiries and support",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "chatboat is not working in the website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Chatbot interface is visible on the Contact page",
+        "Users can type messages and receive responses",
+        "Chat interface includes input field, send button, and message display area",
+        "Chatbot remains accessible and functional throughout the user session"
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "text": "Update the entire platform color theme to use Royal Teal as the primary accent color and Royal White as the background/neutral color throughout all pages",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "change color theme Royal Teal and Royal White"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Primary action buttons, links, and interactive elements use Royal Teal",
+        "Background colors and neutral surfaces use Royal White",
+        "Color updates are applied consistently across all pages including Home, About Us, Solutions, Network Directory, Careers, Vendors, Ambulance Services, NGO Listing, Dashboard, Contact, and legal pages",
+        "Navigation, footer, and all UI components reflect the new color scheme",
+        "Dark mode variations maintain the Royal Teal accent appropriately"
+      ]
+    }
+  ],
+  "constraints": [
+    "Maintain existing Internet Identity authentication flow",
+    "Preserve all existing page routes and navigation structure",
+    "Keep backend actor unchanged unless chatbot requires data persistence"
+  ],
+  "nonGoals": [
+    "Integrating external AI services like OpenAI or Anthropic",
+    "Adding real-time WebSocket communication",
+    "Modifying backend data models or CRUD operations"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

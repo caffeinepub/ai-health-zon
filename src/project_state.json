@@ -1,0 +1,321 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "AI Health Zon: A comprehensive AI-powered healthcare platform website with RCM, Healthcare Technology solutions, and a Healthcare Connecting Platform linking hospitals, medical professionals, vendors, NGOs, and services",
+  "architectural_notes": [
+    "Multi-stakeholder platform requiring role-based authentication and dashboards",
+    "Searchable directory with filters (location, category, services)",
+    "Form submission system for careers, vendors, ambulance, NGO registration",
+    "AI chatbot integration for contact page",
+    "WhatsApp integration for contact",
+    "Multi-page website with 12 distinct pages plus dashboard variations"
+  ],
+  "known_issues": [
+    "Chatbot not functioning on the website"
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-create-a-home-page-with-hero-section-displaying-the-master-brand-line-ai-health-zon-is-an-ai-powered-healthcare-platform-delivering-revenue-cycle-management-healthcare-technology-solutions-and-a-healthcare-connecting-platform-that-links-hospitals-with-doctors-nurses-radiologists-physiotherapists-dietitians-ambulance-services-diagnostics-pharmacies-vendors-insurance-partners-ngos-and-compliance-experts-on-one-unified-digital-platform-include-two-cta-buttons-request-demo-and-join-network",
+      "title": "Create a Home page with hero section displaying the master brand line: 'AI Health Zon is an AI-powered healthcare platform delivering Revenue Cycle Management, Healthcare Technology solutions, and a Healthcare Connecting Platform that links hospitals with doctors, nurses, radiologists, physiotherapists, dietitians, ambulance services, diagnostics, pharmacies, vendors, insurance partners, NGOs, and compliance experts on one unified digital platform.' Include two CTA buttons: 'Request Demo' and 'Join Network'.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-three-vertical-overview-section-on-the-home-page-with-cards-for-1-rcm-ai-powered-billing-claims-denial-management-revenue-optimization-2-healthcare-technology-ai-dashboards-system-integration-compliance-support-3-connecting-platform-workforce-ambulance-labs-pharmacies-vendors-ngos",
+      "title": "Add a Three Vertical Overview section on the Home page with cards for: (1) RCM - AI-powered billing, claims, denial management, revenue optimization; (2) Healthcare Technology - AI dashboards, system integration, compliance support; (3) Connecting Platform - Workforce, ambulance, labs, pharmacies, vendors, NGOs.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-how-it-works-section-on-the-home-page-showing-three-steps-register-verified-start-using-with-visual-indicators-or-icons-for-each-step",
+      "title": "Create a 'How It Works' section on the Home page showing three steps: Register → Verified → Start using, with visual indicators or icons for each step.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-quick-links-section-on-the-home-page-with-navigation-to-careers-vendors-ambulance-and-ngo-registration-pages",
+      "title": "Add quick links section on the Home page with navigation to: Careers, Vendors, Ambulance, and NGO registration pages.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-include-a-testimonials-placeholder-section-on-the-home-page-with-space-for-future-testimonial-content",
+      "title": "Include a testimonials placeholder section on the Home page with space for future testimonial content.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-future-vision-snippet-on-the-home-page-displaying-future-ready-ai-healthcare-ecosystem",
+      "title": "Add a future vision snippet on the Home page displaying: 'Future-ready AI healthcare ecosystem'.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-about-us-page-with-company-overview-section-covering-mission-vision-and-core-purpose",
+      "title": "Create an About Us page with Company Overview section covering mission, vision, and core purpose.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-why-choose-us-section-to-the-about-us-page-highlighting-benefits-for-hospitals-professionals-vendors-and-ngos",
+      "title": "Add 'Why Choose Us' section to the About Us page highlighting benefits for hospitals, professionals, vendors, and NGOs.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-include-three-verticals-overview-on-the-about-us-page-with-bullet-points-for-rcm-technology-and-connecting-platform-verticals",
+      "title": "Include Three Verticals Overview on the About Us page with bullet points for: RCM, Technology, and Connecting Platform verticals.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-compliance-accreditation-section-to-the-about-us-page-covering-nabh-licensing-and-data-security",
+      "title": "Add Compliance & Accreditation section to the About Us page covering NABH, Licensing, and data security.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-include-our-impact-section-on-the-about-us-page-with-success-stories-and-placeholders-for-metrics",
+      "title": "Include 'Our Impact' section on the About Us page with success stories and placeholders for metrics.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-solutions-page-with-vertical-1-revenue-cycle-management-rcm-section-detailing-eligibility-pre-authorization-medical-billing-coding-claims-management-tracking-denial-prediction-follow-up-ar-revenue-dashboards",
+      "title": "Create a Solutions page with Vertical 1 - Revenue Cycle Management (RCM) section detailing: Eligibility & pre-authorization, Medical billing & coding, Claims management & tracking, Denial prediction & follow-up, AR & revenue dashboards.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-vertical-2-healthcare-technology-section-to-the-solutions-page-covering-ai-dashboards-analytics-his-ehr-integration-nabh-licensing-support-telemedicine-remote-monitoring-data-security-compliance",
+      "title": "Add Vertical 2 - Healthcare Technology section to the Solutions page covering: AI dashboards & analytics, HIS/EHR integration, NABH & Licensing support, Telemedicine & remote monitoring, Data security & compliance.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-vertical-3-healthcare-connecting-platform-section-to-the-solutions-page-listing-workforce-doctors-nurses-radiologists-physiotherapists-dietitians-coders-rcm-staff-emergency-ambulance-services-diagnostics-labs-pharmacies-medicine-suppliers-vendors-service-providers-ngos-community-support-insurance-partners-tpas",
+      "title": "Add Vertical 3 - Healthcare Connecting Platform section to the Solutions page listing: Workforce (doctors, nurses, radiologists, physiotherapists, dietitians, coders, RCM staff), Emergency & ambulance services, Diagnostics & labs, Pharmacies & medicine suppliers, Vendors & service providers, NGOs & community support, Insurance partners & TPAs.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-healthcare-support-system-page-with-sections-for-workforce-support-all-clinical-administrative-staff-emergency-ambulance-services-icu-transport-event-support-diagnostics-labs-pathology-radiology-imaging-home-sample-collection-pharmacy-medicines-hospital-retail-supply-chain-home-healthcare-home-nursing-physiotherapy-elderly-care-mental-health-wellness-counselors-rehab-psychological-support-vendors-suppliers-equipment-it-facility-services-ngos-community-support-blood-banks-ngos-volunteers-compliance-quality-support-nabh-licensing-audit-support-insurance-tpa-coordination-training-education-logistics-supply-chain",
+      "title": "Create a Healthcare Support System page with sections for: Workforce Support (all clinical & administrative staff), Emergency & Ambulance (services, ICU transport, event support), Diagnostics & Labs (pathology, radiology, imaging, home sample collection), Pharmacy & Medicines (hospital, retail, supply chain), Home Healthcare (home nursing, physiotherapy, elderly care), Mental Health & Wellness (counselors, rehab, psychological support), Vendors & Suppliers (equipment, IT, facility services), NGOs & Community Support (blood banks, NGOs, volunteers), Compliance & Quality Support (NABH, licensing, audit support), Insurance & TPA Coordination, Training & Education, Logistics & Supply Chain.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-network-directory-page-with-searchable-directory-listings-for-hospitals-clinics-workforce-doctors-nurses-radiologists-physios-dietitians-ambulance-emergency-services-diagnostics-labs-pharmacies-vendors-suppliers-insurance-tpas-ngos-community-organizations-compliance-experts-include-filters-for-location-category-and-services-each-profile-should-show-services-contact-information-and-partnership-option",
+      "title": "Create a Network Directory page with searchable directory listings for: Hospitals & Clinics, Workforce (Doctors, Nurses, Radiologists, Physios, Dietitians), Ambulance & Emergency Services, Diagnostics & Labs, Pharmacies, Vendors & Suppliers, Insurance & TPAs, NGOs & Community Organizations, Compliance Experts. Include filters for Location, Category, and Services. Each profile should show Services, Contact information, and Partnership Option.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-careers-profile-submission-page-listing-job-opportunities-for-doctors-nurses-radiologists-physiotherapists-dietitians-medical-coders-rcm-staff-insurance-staff-security-housekeeping-admin-include-an-application-form-with-fields-name-role-experience-location-phone-email-upload-cv-display-benefits-visibility-hospital-connections-career-growth",
+      "title": "Create a Careers & Profile Submission page listing job opportunities for: Doctors, Nurses, Radiologists, Physiotherapists, Dietitians, Medical Coders, RCM Staff, Insurance Staff, Security, Housekeeping, Admin. Include an application form with fields: Name, Role, Experience, Location, Phone, Email, Upload CV. Display benefits: Visibility, Hospital connections, Career growth.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-vendors-page-with-vendor-registration-for-equipment-it-software-pharmacy-facility-services-display-benefits-leads-hospital-tie-ups-visibility-include-a-vendor-directory-listing",
+      "title": "Create a Vendors page with vendor registration for: Equipment, IT & Software, Pharmacy, Facility Services. Display benefits: Leads, Hospital tie-ups, Visibility. Include a vendor directory listing.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-ambulance-services-page-with-registration-for-ambulance-services-covering-emergency-icu-event-support-display-benefits-faster-response-hospital-requests-network-listing-implement-location-based-search-functionality",
+      "title": "Create an Ambulance Services page with registration for ambulance services covering: Emergency, ICU, Event support. Display benefits: Faster response, Hospital requests, Network listing. Implement location-based search functionality.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-ngo-listing-page-with-ngo-directory-for-health-ngos-blood-banks-relief-organizations-include-filters-for-location-focus-area-and-services-add-ngo-registration-form-with-fields-name-registration-no-focus-area-services-contact-display-programs-section-covering-blood-drives-camps-awareness-disaster-support",
+      "title": "Create an NGO Listing page with NGO directory for: Health NGOs, Blood banks, Relief organizations. Include filters for Location, Focus Area, and Services. Add NGO registration form with fields: Name, Registration No, Focus Area, Services, Contact. Display programs section covering: Blood drives, Camps, Awareness, Disaster support.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-dashboard-page-with-role-based-sections-for-logged-in-users-hospitals-revenue-dashboard-claim-status-staff-requests-vendor-management-compliance-tracking-professionals-profile-job-leads-assignments-vendors-leads-orders-payments-ngos-programs-volunteer-coordination",
+      "title": "Create a Dashboard page with role-based sections for logged-in users: Hospitals (Revenue dashboard, Claim status, Staff requests, Vendor management, Compliance tracking), Professionals (Profile, Job leads, Assignments), Vendors (Leads, Orders, Payments), NGOs (Programs, Volunteer coordination).",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-contact-page-with-sections-for-address-email-phone-whatsapp-button-ai-chatbot-and-inquiry-form",
+      "title": "Create a Contact page with sections for: Address, Email, Phone, WhatsApp Button, AI Chatbot, and Inquiry Form.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-three-legal-pages-privacy-policy-terms-conditions-and-refund-policy-each-page-should-be-accessible-from-the-footer",
+      "title": "Create three legal pages: Privacy Policy, Terms & Conditions, and Refund Policy. Each page should be accessible from the footer.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-main-navigation-system-that-provides-access-to-all-pages-home-about-us-solutions-healthcare-support-system-network-directory-careers-vendors-ambulance-services-ngo-listing-dashboard-when-logged-in-and-contact-include-footer-navigation-to-legal-pages",
+      "title": "Implement a main navigation system that provides access to all pages: Home, About Us, Solutions, Healthcare Support System, Network Directory, Careers, Vendors, Ambulance Services, NGO Listing, Dashboard (when logged in), and Contact. Include footer navigation to legal pages.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-a-cohesive-visual-theme-for-the-ai-health-zon-platform-that-conveys-professionalism-trust-and-innovation-in-healthcare-technology-use-a-modern-clean-design-with-healthcare-appropriate-colors-avoid-blue-purple-clear-typography-and-consistent-spacing-apply-this-theme-uniformly-across-all-pages-with-appropriate-use-of-whitespace-card-layouts-for-content-sections-and-clear-visual-hierarchy",
+      "title": "Design a cohesive visual theme for the AI Health Zon platform that conveys professionalism, trust, and innovation in healthcare technology. Use a modern, clean design with healthcare-appropriate colors (avoid blue & purple), clear typography, and consistent spacing. Apply this theme uniformly across all pages with appropriate use of whitespace, card layouts for content sections, and clear visual hierarchy.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-phone-number-displayed-on-the-contact-page-to-91-8696766966",
+      "title": "Update the phone number displayed on the Contact page to +91-8696766966",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-functional-ai-chatbot-widget-on-the-contact-page-that-allows-users-to-interact-with-an-assistant-for-inquiries-and-support",
+      "title": "Implement a functional AI chatbot widget on the Contact page that allows users to interact with an assistant for inquiries and support",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-entire-platform-color-theme-to-use-royal-teal-as-the-primary-accent-color-and-royal-white-as-the-background-neutral-color-throughout-all-pages",
+      "title": "Update the entire platform color theme to use Royal Teal as the primary accent color and Royal White as the background/neutral color throughout all pages",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Home page with hero section, three verticals overview, how it works, testimonials",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "About Us page with company overview, why choose us, verticals, compliance, impact",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Solutions page detailing RCM, Healthcare Technology, and Connecting Platform verticals",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Healthcare Support System page covering workforce, emergency, diagnostics, pharmacy, vendors, NGOs, compliance",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Network Directory page with searchable listings and filters for all stakeholders",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Careers & Profile Submission page with job opportunities and application form",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Vendors page with registration, benefits, and directory",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Ambulance Services page with registration and location-based search",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "NGO Listing page with directory, filters, registration, and programs",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Dashboard page with role-based views for hospitals, professionals, vendors, NGOs",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Contact page with address, WhatsApp, AI chatbot, inquiry form",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Legal pages: Privacy Policy, Terms & Conditions, Refund Policy",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "AI Health Zon",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
