@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 13,
+  "projectStateVersion": 23,
   "summary": "AI Health Zon: A comprehensive AI-powered healthcare platform website with RCM, Healthcare Technology solutions, and a Healthcare Connecting Platform linking hospitals, medical professionals, vendors, NGOs, and services",
   "architectural_notes": [
     "Multi-stakeholder platform requiring role-based authentication and dashboards",
@@ -394,6 +394,158 @@
         "REQ-49"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-create-a-networkmap-page-component-at-frontend-src-pages-networkmap-tsx-that-displays-an-interactive-world-map-visualization-showing-the-geographical-distribution-of-approved-stakeholders",
+      "title": "Create a NetworkMap page component at frontend/src/pages/NetworkMap.tsx that displays an interactive world map visualization showing the geographical distribution of approved stakeholders",
+      "reqIds": [
+        "REQ-51"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-real-time-map-updates-using-react-query-that-automatically-refreshes-the-map-visualization-when-new-stakeholders-are-approved-by-admin",
+      "title": "Implement real-time map updates using React Query that automatically refreshes the map visualization when new stakeholders are approved by admin",
+      "reqIds": [
+        "REQ-52"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-network-map-navigation-link-in-the-main-navigation-component-that-routes-to-the-new-networkmap-page",
+      "title": "Add a 'Network Map' navigation link in the main Navigation component that routes to the new NetworkMap page",
+      "reqIds": [
+        "REQ-53"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-route-definition-for-network-map-in-frontend-src-app-tsx-that-renders-the-networkmap-page-component",
+      "title": "Add a route definition for '/network-map' in frontend/src/App.tsx that renders the NetworkMap page component",
+      "reqIds": [
+        "REQ-54"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-invalidate-the-network-map-query-cache-in-the-admin-approval-mutations-so-the-map-auto-updates-when-stakeholders-are-approved-or-rejected",
+      "title": "Invalidate the network map query cache in the admin approval mutations so the map auto-updates when stakeholders are approved or rejected",
+      "reqIds": [
+        "REQ-55"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-hero-section-image-and-visual-design-on-the-home-page-frontend-src-pages-home-tsx-to-match-the-style-and-layout-shown-on-www-ttphealth-in",
+      "title": "Update the hero section image and visual design on the Home page (frontend/src/pages/Home.tsx) to match the style and layout shown on www.ttphealth.in",
+      "reqIds": [
+        "REQ-56"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-3-white-themed-hero-images-for-the-home-page-hero-section-animation-sequence-similar-to-the-rotating-images-on-ttphealth-in-each-image-should-feature-healthcare-medical-themes-suitable-for-display-in-a-hero-section-carousel",
+      "title": "Create 3 white-themed hero images for the home page hero section animation sequence, similar to the rotating images on ttphealth.in. Each image should feature healthcare/medical themes suitable for display in a hero section carousel.",
+      "reqIds": [
+        "REQ-57"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-auto-rotating-image-carousel-in-the-home-page-hero-section-frontend-src-pages-home-tsx-that-cycles-through-the-3-generated-hero-images-with-smooth-fade-or-slide-transitions-matching-the-animation-style-from-ttphealth-in",
+      "title": "Implement an auto-rotating image carousel in the home page hero section (frontend/src/pages/Home.tsx) that cycles through the 3 generated hero images with smooth fade or slide transitions, matching the animation style from ttphealth.in.",
+      "reqIds": [
+        "REQ-58"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-text-content-heading-subheading-cta-buttons-remains-visible-over-the-animating-hero-images-in-frontend-src-pages-home-tsx-text-should-be-rendered-in-teal-color-with-sufficient-contrast-against-the-white-hero-images",
+      "title": "Ensure text content (heading, subheading, CTA buttons) remains visible over the animating hero images in frontend/src/pages/Home.tsx. Text should be rendered in teal color with sufficient contrast against the white hero images.",
+      "reqIds": [
+        "REQ-59"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-global-color-scheme-in-frontend-index-css-and-frontend-tailwind-config-js-to-use-white-as-the-primary-background-color-and-teal-as-the-primary-accent-text-color-throughout-the-entire-site",
+      "title": "Update the global color scheme in frontend/index.css and frontend/tailwind.config.js to use white as the primary background color and teal as the primary accent/text color throughout the entire site.",
+      "reqIds": [
+        "REQ-60"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-navigation-component-frontend-src-components-navigation-tsx-to-use-orange-as-the-background-color-for-the-header-navigation-bar",
+      "title": "Update the Navigation component (frontend/src/components/Navigation.tsx) to use orange as the background color for the header/navigation bar.",
+      "reqIds": [
+        "REQ-61"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-global-color-scheme-in-frontend-index-css-to-match-the-mckinsey-healthcare-page-color-palette-from-https-www-mckinsey-com-industries-healthcare-how-we-help-clients-americas-business-building-replacing-the-current-orange-and-teal-colors-with-mckinsey-s-professional-color-scheme",
+      "title": "Update the global color scheme in frontend/index.css to match the McKinsey healthcare page color palette from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, replacing the current orange and teal colors with McKinsey's professional color scheme",
+      "reqIds": [
+        "REQ-67"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-tailwind-config-js-to-configure-tailwind-css-with-the-mckinsey-inspired-color-palette-ensuring-all-color-tokens-align-with-the-professional-healthcare-business-aesthetic-from-the-reference-page",
+      "title": "Update frontend/tailwind.config.js to configure Tailwind CSS with the McKinsey-inspired color palette, ensuring all color tokens align with the professional healthcare business aesthetic from the reference page",
+      "reqIds": [
+        "REQ-68"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-typography-settings-across-the-site-in-frontend-index-css-and-frontend-tailwind-config-js-to-match-mckinsey-s-font-family-font-weights-line-heights-and-text-sizing-hierarchy-from-https-www-mckinsey-com-industries-healthcare-how-we-help-clients-americas-business-building",
+      "title": "Update typography settings across the site in frontend/index.css and frontend/tailwind.config.js to match McKinsey's font family, font weights, line heights, and text sizing hierarchy from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building",
+      "reqIds": [
+        "REQ-69"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-navigation-component-frontend-src-components-navigation-tsx-to-match-mckinsey-s-navigation-bar-style-from-https-www-mckinsey-com-industries-healthcare-how-we-help-clients-americas-business-building-including-background-color-text-colors-spacing-and-hover-states",
+      "title": "Update the Navigation component (frontend/src/components/Navigation.tsx) to match McKinsey's navigation bar style from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including background color, text colors, spacing, and hover states",
+      "reqIds": [
+        "REQ-70"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-home-page-frontend-src-pages-home-tsx-hero-section-styling-to-match-mckinsey-s-hero-design-from-https-www-mckinsey-com-industries-healthcare-how-we-help-clients-americas-business-building-including-layout-spacing-text-styling-and-button-design",
+      "title": "Update the Home page (frontend/src/pages/Home.tsx) hero section styling to match McKinsey's hero design from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including layout, spacing, text styling, and button design",
+      "reqIds": [
+        "REQ-71"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-button-styling-throughout-the-application-to-match-mckinsey-s-button-design-from-https-www-mckinsey-com-industries-healthcare-how-we-help-clients-americas-business-building-including-primary-secondary-and-outline-button-variants-with-appropriate-colors-borders-and-hover-states",
+      "title": "Update button styling throughout the application to match McKinsey's button design from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including primary, secondary, and outline button variants with appropriate colors, borders, and hover states",
+      "reqIds": [
+        "REQ-73"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-section-spacing-padding-and-layout-grid-system-across-all-pages-to-match-mckinsey-s-generous-whitespace-and-content-organization-from-https-www-mckinsey-com-industries-healthcare-how-we-help-clients-americas-business-building",
+      "title": "Update section spacing, padding, and layout grid system across all pages to match McKinsey's generous whitespace and content organization from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building",
+      "reqIds": [
+        "REQ-74"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-footer-component-frontend-src-components-footer-tsx-styling-to-match-mckinsey-s-footer-design-from-https-www-mckinsey-com-industries-healthcare-how-we-help-clients-americas-business-building-including-background-color-text-colors-link-styling-and-layout-structure",
+      "title": "Update the Footer component (frontend/src/components/Footer.tsx) styling to match McKinsey's footer design from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including background color, text colors, link styling, and layout structure",
+      "reqIds": [
+        "REQ-75"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -507,6 +659,98 @@
       "id": "AR-22",
       "summary": "Implement auto-fill functionality that populates city and state fields when PIN code is entered in registration forms",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-23",
+      "summary": "Add a world map visualization that auto-updates when stakeholders join the network (after admin approval)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-24",
+      "summary": "Add a backend method to retrieve all approved stakeholder locations (city, state, PIN code) aggregated from healthcare professionals, vendors, ambulance services, and NGOs with 'Approved' status",
+      "reqIds": [
+        "REQ-50"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-25",
+      "summary": "Update home page hero image/design to match style from www.ttphealth.in",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-26",
+      "summary": "Add 3 animating images in hero section of home page with text overlay, similar to ttphealth.in animation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-27",
+      "summary": "Update entire site color scheme to white background with teal text/accents, and orange header color",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-28",
+      "summary": "Update font color throughout the site to orange",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-29",
+      "summary": "Update the global color scheme in frontend/index.css to change all primary text colors from teal to orange throughout the entire site",
+      "reqIds": [
+        "REQ-62"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-30",
+      "summary": "Update frontend/tailwind.config.js to set orange as the default text color in the Tailwind configuration",
+      "reqIds": [
+        "REQ-63"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-31",
+      "summary": "Update all page components (Home, About, Solutions, Dashboard, Contact, etc.) to ensure text elements render in orange color, replacing any existing teal text colors",
+      "reqIds": [
+        "REQ-64"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-32",
+      "summary": "Update the Navigation component (frontend/src/components/Navigation.tsx) to use orange text color for navigation links and menu items",
+      "reqIds": [
+        "REQ-65"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-33",
+      "summary": "Update the Footer component (frontend/src/components/Footer.tsx) to use orange text color for all footer text, links, and headings",
+      "reqIds": [
+        "REQ-66"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-34",
+      "summary": "Update the entire site theme and color scheme to match the professional style from McKinsey's business-building healthcare page (https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building), including color palette, typography, spacing, and visual design patterns",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-40",
+      "summary": "Update card component styling across all pages to match McKinsey's card design patterns from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including borders, shadows, padding, and hover effects",
+      "reqIds": [
+        "REQ-72"
+      ],
       "status": "pending"
     }
   ],

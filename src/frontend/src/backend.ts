@@ -307,6 +307,7 @@ export interface backendInterface {
     getAllRecords(): Promise<Array<MedicalRecord>>;
     getAllTourismServices(): Promise<Array<TourismService>>;
     getAllVendors(): Promise<Array<Vendor>>;
+    getApprovedStakeholderLocations(): Promise<Array<Location>>;
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
     getHealthRecord(recordId: string): Promise<HealthRecord>;
@@ -737,6 +738,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.getAllVendors();
+            return result;
+        }
+    }
+    async getApprovedStakeholderLocations(): Promise<Array<Location>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getApprovedStakeholderLocations();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getApprovedStakeholderLocations();
             return result;
         }
     }

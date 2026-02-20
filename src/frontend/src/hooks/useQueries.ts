@@ -277,6 +277,7 @@ export function useApproveHealthcareProfessional() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingHealthcareProfessionals'] });
       queryClient.invalidateQueries({ queryKey: ['professionals'] });
+      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
@@ -292,6 +293,7 @@ export function useRejectHealthcareProfessional() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingHealthcareProfessionals'] });
+      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
@@ -308,6 +310,7 @@ export function useApproveVendor() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingVendors'] });
       queryClient.invalidateQueries({ queryKey: ['vendors'] });
+      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
@@ -323,6 +326,7 @@ export function useRejectVendor() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingVendors'] });
+      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
@@ -339,6 +343,7 @@ export function useApproveNgo() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingNgos'] });
       queryClient.invalidateQueries({ queryKey: ['ngos'] });
+      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
@@ -354,6 +359,7 @@ export function useRejectNgo() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingNgos'] });
+      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
@@ -369,6 +375,7 @@ export function useApproveAmbulance() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingAmbulances'] });
+      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
@@ -384,6 +391,23 @@ export function useRejectAmbulance() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingAmbulances'] });
+      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
+  });
+}
+
+// Network Map Query
+export function useGetApprovedStakeholderLocations() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<Location[]>({
+    queryKey: ['approvedStakeholderLocations'],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getApprovedStakeholderLocations();
+    },
+    enabled: !!actor && !isFetching,
+    refetchOnWindowFocus: true,
+    staleTime: 1000 * 60 * 5, // 5 minutes
   });
 }

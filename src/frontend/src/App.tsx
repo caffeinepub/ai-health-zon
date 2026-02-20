@@ -6,6 +6,7 @@ import AboutUs from './pages/AboutUs';
 import Solutions from './pages/Solutions';
 import HealthcareSupportSystem from './pages/HealthcareSupportSystem';
 import NetworkDirectory from './pages/NetworkDirectory';
+import NetworkMap from './pages/NetworkMap';
 import Careers from './pages/Careers';
 import Vendors from './pages/Vendors';
 import AmbulanceServices from './pages/AmbulanceServices';
@@ -55,6 +56,12 @@ const directoryRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/directory',
   component: NetworkDirectory,
+});
+
+const networkMapRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/network-map',
+  component: NetworkMap,
 });
 
 const careersRoute = createRoute({
@@ -124,6 +131,7 @@ const routeTree = rootRoute.addChildren([
   solutionsRoute,
   healthcareSupportRoute,
   directoryRoute,
+  networkMapRoute,
   careersRoute,
   vendorsRoute,
   ambulanceRoute,

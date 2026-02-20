@@ -1,182 +1,185 @@
 {
   "kind": "build_request",
-  "title": "Add PIN code field with manual entry to all registration forms",
+  "title": "Update site theme and colors to match McKinsey healthcare business-building page style",
   "projectName": "AI Health Zon",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-41",
-      "text": "Add a PIN code input field to the Careers registration form (frontend/src/pages/Careers.tsx) that accepts manual entry of 6-digit postal codes",
+      "id": "REQ-67",
+      "text": "Update the global color scheme in frontend/index.css to match the McKinsey healthcare page color palette from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, replacing the current orange and teal colors with McKinsey's professional color scheme",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "ok Pin will be manual. once pin number entered rest information will auth filled"
+          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
         ]
       },
       "acceptanceCriteria": [
-        "PIN code field is visible in the careers registration form",
-        "Field accepts 6-digit numeric input",
-        "Field is labeled clearly as 'PIN Code' or 'Postal Code'"
+        "CSS custom properties in frontend/index.css reflect McKinsey's color palette",
+        "Primary, secondary, accent, and background colors match McKinsey's style",
+        "Color scheme works for both light and dark mode variants"
       ]
     },
     {
-      "id": "REQ-42",
-      "text": "Add a PIN code input field to the Vendors registration form (frontend/src/pages/Vendors.tsx) that accepts manual entry of 6-digit postal codes",
+      "id": "REQ-68",
+      "text": "Update frontend/tailwind.config.js to configure Tailwind CSS with the McKinsey-inspired color palette, ensuring all color tokens align with the professional healthcare business aesthetic from the reference page",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "ok Pin will be manual. once pin number entered rest information will auth filled"
+          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
         ]
       },
       "acceptanceCriteria": [
-        "PIN code field is visible in the vendors registration form",
-        "Field accepts 6-digit numeric input",
-        "Field is labeled clearly as 'PIN Code' or 'Postal Code'"
+        "Tailwind color configuration matches McKinsey's color scheme",
+        "All existing color utility classes work with new palette",
+        "Custom color extensions preserve functional color roles"
       ]
     },
     {
-      "id": "REQ-43",
-      "text": "Add a PIN code input field to the Ambulance Services registration form (frontend/src/pages/AmbulanceServices.tsx) that accepts manual entry of 6-digit postal codes",
+      "id": "REQ-69",
+      "text": "Update typography settings across the site in frontend/index.css and frontend/tailwind.config.js to match McKinsey's font family, font weights, line heights, and text sizing hierarchy from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "ok Pin will be manual. once pin number entered rest information will auth filled"
+          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
         ]
       },
       "acceptanceCriteria": [
-        "PIN code field is visible in the ambulance registration form",
-        "Field accepts 6-digit numeric input",
-        "Field is labeled clearly as 'PIN Code' or 'Postal Code'"
+        "Font family matches McKinsey's professional typography",
+        "Heading hierarchy (h1-h6) follows McKinsey's sizing and weight patterns",
+        "Body text line-height and spacing match reference style"
       ]
     },
     {
-      "id": "REQ-44",
-      "text": "Add a PIN code input field to the NGO Listing registration form (frontend/src/pages/NgoListing.tsx) that accepts manual entry of 6-digit postal codes",
+      "id": "REQ-70",
+      "text": "Update the Navigation component (frontend/src/components/Navigation.tsx) to match McKinsey's navigation bar style from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including background color, text colors, spacing, and hover states",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "ok Pin will be manual. once pin number entered rest information will auth filled"
+          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
         ]
       },
       "acceptanceCriteria": [
-        "PIN code field is visible in the NGO registration form",
-        "Field accepts 6-digit numeric input",
-        "Field is labeled clearly as 'PIN Code' or 'Postal Code'"
+        "Navigation background color matches McKinsey's header",
+        "Navigation link colors and hover states follow McKinsey patterns",
+        "Mobile menu styling consistent with McKinsey's responsive design"
       ]
     },
     {
-      "id": "REQ-45",
-      "text": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the Careers registration form",
+      "id": "REQ-71",
+      "text": "Update the Home page (frontend/src/pages/Home.tsx) hero section styling to match McKinsey's hero design from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including layout, spacing, text styling, and button design",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "once pin number entered rest information will auth filled"
+          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
         ]
       },
       "acceptanceCriteria": [
-        "When a 6-digit PIN code is entered, city and state fields are automatically populated",
-        "Invalid PIN codes show appropriate error or leave fields empty",
-        "Auto-filled fields are editable by the user if needed"
+        "Hero section layout matches McKinsey's structure",
+        "CTA buttons follow McKinsey's button styling",
+        "Hero text colors and sizing align with McKinsey's design"
       ]
     },
     {
-      "id": "REQ-46",
-      "text": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the Vendors registration form",
+      "id": "REQ-72",
+      "text": "Update card component styling across all pages to match McKinsey's card design patterns from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including borders, shadows, padding, and hover effects",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "once pin number entered rest information will auth filled"
+          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
         ]
       },
       "acceptanceCriteria": [
-        "When a 6-digit PIN code is entered, city and state fields are automatically populated",
-        "Invalid PIN codes show appropriate error or leave fields empty",
-        "Auto-filled fields are editable by the user if needed"
+        "Card borders and shadows match McKinsey's subtle style",
+        "Card padding and spacing follow McKinsey's proportions",
+        "Card hover effects align with McKinsey's interaction patterns"
       ]
     },
     {
-      "id": "REQ-47",
-      "text": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the Ambulance Services registration form",
+      "id": "REQ-73",
+      "text": "Update button styling throughout the application to match McKinsey's button design from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including primary, secondary, and outline button variants with appropriate colors, borders, and hover states",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "once pin number entered rest information will auth filled"
+          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
         ]
       },
       "acceptanceCriteria": [
-        "When a 6-digit PIN code is entered, city and state fields are automatically populated",
-        "Invalid PIN codes show appropriate error or leave fields empty",
-        "Auto-filled fields are editable by the user if needed"
+        "Primary buttons match McKinsey's primary CTA style",
+        "Secondary and outline buttons follow McKinsey's design system",
+        "Button hover and active states consistent with McKinsey patterns"
       ]
     },
     {
-      "id": "REQ-48",
-      "text": "Implement auto-fill functionality that automatically populates the city and state fields when a valid PIN code is entered in the NGO Listing registration form",
+      "id": "REQ-74",
+      "text": "Update section spacing, padding, and layout grid system across all pages to match McKinsey's generous whitespace and content organization from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "once pin number entered rest information will auth filled"
+          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
         ]
       },
       "acceptanceCriteria": [
-        "When a 6-digit PIN code is entered, city and state fields are automatically populated",
-        "Invalid PIN codes show appropriate error or leave fields empty",
-        "Auto-filled fields are editable by the user if needed"
+        "Section padding matches McKinsey's spacious layout",
+        "Content max-width and centering follow McKinsey's grid",
+        "Vertical rhythm between sections consistent with McKinsey design"
       ]
     },
     {
-      "id": "REQ-49",
-      "text": "Create a PIN code lookup utility or API integration that maps Indian postal codes to their corresponding city and state information for the auto-fill functionality",
+      "id": "REQ-75",
+      "text": "Update the Footer component (frontend/src/components/Footer.tsx) styling to match McKinsey's footer design from https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building, including background color, text colors, link styling, and layout structure",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "once pin number entered rest information will auth filled",
-          "update all country codes sothat pincode will be easily executed"
+          "change theme and colour like the link ahead https://www.mckinsey.com/industries/healthcare/how-we-help-clients/americas/business-building"
         ]
       },
       "acceptanceCriteria": [
-        "Utility can accept a 6-digit PIN code and return city and state",
-        "Covers major Indian postal codes",
-        "Returns appropriate response for invalid or unknown PIN codes"
+        "Footer background matches McKinsey's footer color",
+        "Footer text and link colors follow McKinsey's hierarchy",
+        "Footer column layout and spacing consistent with McKinsey design"
       ]
     }
   ],
   "constraints": [
-    "PIN code entry must be manual (user types it in)",
-    "PIN code should be 6 digits for Indian postal codes",
-    "Auto-fill should not prevent users from manually editing city and state fields"
+    "Do not modify backend/main.mo or backend data structures",
+    "Preserve all existing functionality while updating visual styling",
+    "Maintain accessibility standards (contrast ratios, focus states) with new colors",
+    "Do not change frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, or frontend/src/main.tsx",
+    "Keep all existing routes and navigation structure intact"
   ],
   "nonGoals": [
-    "Automatic PIN code detection or validation beyond format checking",
-    "International postal code formats beyond Indian PIN codes",
-    "Real-time address verification with external postal services"
+    "Adding new pages or features beyond styling updates",
+    "Changing backend logic or data models",
+    "Modifying authentication flow",
+    "Altering existing component functionality",
+    "Redesigning page layouts or information architecture"
   ],
   "imageRequirements": {
     "required": [],

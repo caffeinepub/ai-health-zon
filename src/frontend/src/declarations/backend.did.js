@@ -257,6 +257,11 @@ export const idlService = IDL.Service({
   'getAllRecords' : IDL.Func([], [IDL.Vec(MedicalRecord)], ['query']),
   'getAllTourismServices' : IDL.Func([], [IDL.Vec(TourismService)], ['query']),
   'getAllVendors' : IDL.Func([], [IDL.Vec(Vendor)], ['query']),
+  'getApprovedStakeholderLocations' : IDL.Func(
+      [],
+      [IDL.Vec(Location)],
+      ['query'],
+    ),
   'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
   'getHealthRecord' : IDL.Func([IDL.Text], [HealthRecord], ['query']),
@@ -598,6 +603,11 @@ export const idlFactory = ({ IDL }) => {
         ['query'],
       ),
     'getAllVendors' : IDL.Func([], [IDL.Vec(Vendor)], ['query']),
+    'getApprovedStakeholderLocations' : IDL.Func(
+        [],
+        [IDL.Vec(Location)],
+        ['query'],
+      ),
     'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
     'getHealthRecord' : IDL.Func([IDL.Text], [HealthRecord], ['query']),

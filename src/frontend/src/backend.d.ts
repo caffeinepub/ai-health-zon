@@ -214,6 +214,7 @@ export interface backendInterface {
     getAllRecords(): Promise<Array<MedicalRecord>>;
     getAllTourismServices(): Promise<Array<TourismService>>;
     getAllVendors(): Promise<Array<Vendor>>;
+    getApprovedStakeholderLocations(): Promise<Array<Location>>;
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
     getHealthRecord(recordId: string): Promise<HealthRecord>;

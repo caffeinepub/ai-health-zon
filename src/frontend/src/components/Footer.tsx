@@ -7,19 +7,19 @@ export default function Footer() {
   const appIdentifier = encodeURIComponent(window.location.hostname || 'ai-health-zon');
 
   return (
-    <footer className="border-t border-border/40 bg-muted/30">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="border-t border-border bg-muted/20">
+      <div className="container mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
+            <div className="flex items-center space-x-2.5 mb-5">
               <Heart className="h-6 w-6 text-primary fill-primary" />
-              <span className="font-bold text-lg">AI Health Zon</span>
+              <span className="font-semibold text-lg tracking-tight">AI Health Zon</span>
             </div>
-            <p className="text-sm text-muted-foreground mb-4">
+            <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
               AI-powered healthcare platform connecting hospitals, professionals, and services.
             </p>
-            <div className="flex space-x-3">
+            <div className="flex space-x-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <SiFacebook className="h-5 w-5" />
               </a>
@@ -37,25 +37,25 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="font-semibold mb-5 text-sm tracking-tight">Quick Links</h3>
+            <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/solutions" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/solutions" className="text-muted-foreground hover:text-foreground transition-colors">
                   Solutions
                 </Link>
               </li>
               <li>
-                <Link to="/directory" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/directory" className="text-muted-foreground hover:text-foreground transition-colors">
                   Network Directory
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
                   Contact Us
                 </Link>
               </li>
@@ -64,25 +64,25 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="font-semibold mb-4">Services</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="font-semibold mb-5 text-sm tracking-tight">Services</h3>
+            <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/careers" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/careers" className="text-muted-foreground hover:text-foreground transition-colors">
                   Careers
                 </Link>
               </li>
               <li>
-                <Link to="/vendors" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/vendors" className="text-muted-foreground hover:text-foreground transition-colors">
                   Vendors
                 </Link>
               </li>
               <li>
-                <Link to="/ambulance" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/ambulance" className="text-muted-foreground hover:text-foreground transition-colors">
                   Ambulance Services
                 </Link>
               </li>
               <li>
-                <Link to="/ngos" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/ngos" className="text-muted-foreground hover:text-foreground transition-colors">
                   NGO Listing
                 </Link>
               </li>
@@ -91,20 +91,20 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="font-semibold mb-5 text-sm tracking-tight">Legal</h3>
+            <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link to="/refund" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/refund" className="text-muted-foreground hover:text-foreground transition-colors">
                   Refund Policy
                 </Link>
               </li>
@@ -112,19 +112,21 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-border/40 text-center text-sm text-muted-foreground">
-          <p>
-            © {currentYear} AI Health Zon. All rights reserved. Built with{' '}
-            <Heart className="inline h-4 w-4 text-primary fill-primary" /> using{' '}
-            <a
-              href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${appIdentifier}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              caffeine.ai
-            </a>
-          </p>
+        <div className="mt-12 pt-8 border-t border-border">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+            <p>© {currentYear} AI Health Zon. All rights reserved.</p>
+            <p>
+              Built with <Heart className="inline h-3.5 w-3.5 text-primary fill-primary mx-0.5" /> using{' '}
+              <a
+                href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${appIdentifier}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground hover:text-primary transition-colors font-medium"
+              >
+                caffeine.ai
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,149 +1,259 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add PIN code field with manual entry and auto-fill to all registration forms",
+  "title": "Update site theme and colors to match McKinsey healthcare business-building page style",
   "requirements": [
     {
-      "id": "REQ-41",
-      "summary": "Add PIN code input field to Careers registration form with 6-digit validation",
+      "id": "REQ-67",
+      "summary": "Update the global color scheme in frontend/index.css to match the McKinsey healthcare page color palette, replacing the current orange and teal colors with McKinsey's professional color scheme",
       "acceptanceCriteria": [
-        "PIN code field is visible in the careers registration form",
-        "Field accepts 6-digit numeric input",
-        "Field is labeled clearly as 'PIN Code' or 'Postal Code'"
+        "CSS custom properties in frontend/index.css reflect McKinsey's color palette",
+        "Primary, secondary, accent, and background colors match McKinsey's style",
+        "Color scheme works for both light and dark mode variants"
       ],
       "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Replace the current OKLCH color system custom properties with McKinsey's professional color palette. Update --background, --foreground, --primary, --secondary, --accent, --muted, --destructive, --border, and --card colors for both light and dark themes to match the neutral grays, deep blues, and subdued accent colors from the McKinsey healthcare page. Maintain the OKLCH color space format while adapting the lightness, chroma, and hue values to achieve McKinsey's sophisticated, business-professional aesthetic."
+        }
+      ]
+    },
+    {
+      "id": "REQ-68",
+      "summary": "Update frontend/tailwind.config.js to configure Tailwind CSS with the McKinsey-inspired color palette, ensuring all color tokens align with the professional healthcare business aesthetic",
+      "acceptanceCriteria": [
+        "Tailwind color configuration matches McKinsey's color scheme",
+        "All existing color utility classes work with new palette",
+        "Custom color extensions preserve functional color roles"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Update the theme.extend.colors section to align with the McKinsey color palette. Modify the color definitions for background, foreground, primary, secondary, accent, muted, destructive, border, card, sidebar, and chart colors to use the new OKLCH values that match McKinsey's professional design system. Ensure all color variants (DEFAULT, foreground) are updated consistently and maintain the existing structure for compatibility with existing utility classes."
+        }
+      ]
+    },
+    {
+      "id": "REQ-69",
+      "summary": "Update typography settings across the site in frontend/index.css and frontend/tailwind.config.js to match McKinsey's font family, font weights, line heights, and text sizing hierarchy",
+      "acceptanceCriteria": [
+        "Font family matches McKinsey's professional typography",
+        "Heading hierarchy (h1-h6) follows McKinsey's sizing and weight patterns",
+        "Body text line-height and spacing match reference style"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update the @layer base section to include McKinsey-inspired typography rules. Add or modify font-family declarations to use professional sans-serif fonts (similar to McKinsey's use of refined system fonts). Define heading styles (h1-h6) with appropriate font-size, font-weight, line-height, and letter-spacing values that match McKinsey's clear typographic hierarchy. Update body text line-height to match McKinsey's generous spacing (typically 1.6-1.8). Add any global text color and weight adjustments needed for the professional aesthetic."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Update theme.extend.fontFamily to include McKinsey-style professional font stacks (e.g., system-ui, -apple-system, sans-serif fallbacks). Add or modify theme.extend.fontSize to define a comprehensive type scale matching McKinsey's hierarchy. Update theme.extend.lineHeight if needed to support McKinsey's generous line spacing. Add theme.extend.letterSpacing values if McKinsey's design uses specific letter-spacing patterns for headings or body text."
+        }
+      ]
+    },
+    {
+      "id": "REQ-70",
+      "summary": "Update the Navigation component to match McKinsey's navigation bar style, including background color, text colors, spacing, and hover states",
+      "acceptanceCriteria": [
+        "Navigation background color matches McKinsey's header",
+        "Navigation link colors and hover states follow McKinsey patterns",
+        "Mobile menu styling consistent with McKinsey's responsive design"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Navigation.tsx",
+          "operation": "modify",
+          "description": "Update the Navigation component styling to match McKinsey's professional navigation design. Modify the background color classes to use the new primary or background colors from the updated palette. Update link text colors to match McKinsey's navigation link styling (typically dark text on light backgrounds). Adjust hover states to use subtle color shifts or underlines consistent with McKinsey's interaction patterns. Update spacing and padding classes to match McKinsey's generous whitespace approach. Ensure mobile menu styling (hamburger menu, overlay) follows McKinsey's clean, minimal responsive design patterns. Maintain existing functionality while updating all visual styling."
+        }
+      ]
+    },
+    {
+      "id": "REQ-71",
+      "summary": "Update the Home page hero section styling to match McKinsey's hero design, including layout, spacing, text styling, and button design",
+      "acceptanceCriteria": [
+        "Hero section layout matches McKinsey's structure",
+        "CTA buttons follow McKinsey's button styling",
+        "Hero text colors and sizing align with McKinsey's design"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/Home.tsx",
+          "operation": "modify",
+          "description": "Update the hero section styling in the Home page to match McKinsey's professional hero design. Modify the carousel slides' text styling to use the new typography hierarchy (larger, bold headings with appropriate line-height). Update hero text colors to match McKinsey's contrast patterns (typically dark text on light/neutral backgrounds). Adjust CTA button classes to follow McKinsey's button design (covered in REQ-73, but ensure hero buttons reference the correct updated classes). Update spacing and padding around hero content to match McKinsey's generous whitespace and balanced layout. Maintain the auto-rotating carousel functionality while updating all visual styling elements."
+        }
+      ]
+    },
+    {
+      "id": "REQ-72",
+      "summary": "Update card component styling across all pages to match McKinsey's card design patterns, including borders, shadows, padding, and hover effects",
+      "acceptanceCriteria": [
+        "Card borders and shadows match McKinsey's subtle style",
+        "Card padding and spacing follow McKinsey's proportions",
+        "Card hover effects align with McKinsey's interaction patterns"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AboutUs.tsx",
+          "operation": "modify",
+          "description": "Update card styling in the AboutUs page to match McKinsey's card design. Modify border, shadow, and padding classes to use subtle, professional styling (e.g., lighter borders, softer shadows, generous padding). Update hover effects to use subtle scale or shadow transitions consistent with McKinsey's interaction patterns. Apply consistent card styling to value proposition cards and stakeholder cards throughout the page."
+        },
+        {
+          "path": "frontend/src/pages/Solutions.tsx",
+          "operation": "modify",
+          "description": "Update card styling in the Solutions page to match McKinsey's card design patterns. Apply the same border, shadow, padding, and hover effect updates to solution category cards and feature list cards, ensuring consistency with the McKinsey aesthetic established in other pages."
+        },
+        {
+          "path": "frontend/src/pages/HealthcareSupportSystem.tsx",
+          "operation": "modify",
+          "description": "Update the 12 healthcare support category cards to match McKinsey's card design. Modify border-radius, shadow depth, padding, and hover effects to align with McKinsey's subtle, professional card styling. Ensure icon sizing and spacing within cards follow McKinsey's balanced proportions."
+        },
+        {
+          "path": "frontend/src/pages/NetworkDirectory.tsx",
+          "operation": "modify",
+          "description": "Update entity card styling in the NetworkDirectory page to match McKinsey's card design patterns. Apply consistent border, shadow, padding, and hover effect updates to hospital, vendor, and NGO cards in the directory grid."
+        },
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Update dashboard widget cards to match McKinsey's card design. Modify metric cards and role-specific dashboard cards to use McKinsey's professional styling with subtle borders, soft shadows, and generous padding. Ensure consistency across all user type dashboards."
+        },
+        {
+          "path": "frontend/src/pages/Contact.tsx",
+          "operation": "modify",
+          "description": "Update contact information cards and form container styling to match McKinsey's card design patterns. Apply consistent border, shadow, and padding updates to maintain visual cohesion with other pages."
+        },
+        {
+          "path": "frontend/src/components/RequestDetailCard.tsx",
+          "operation": "modify",
+          "description": "Update the RequestDetailCard component styling to match McKinsey's card design. Modify expandable card borders, shadows, padding, and interaction states to align with McKinsey's professional aesthetic while maintaining existing expand/collapse functionality."
+        }
+      ]
+    },
+    {
+      "id": "REQ-73",
+      "summary": "Update button styling throughout the application to match McKinsey's button design, including primary, secondary, and outline button variants with appropriate colors, borders, and hover states",
+      "acceptanceCriteria": [
+        "Primary buttons match McKinsey's primary CTA style",
+        "Secondary and outline buttons follow McKinsey's design system",
+        "Button hover and active states consistent with McKinsey patterns"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add or update button base styles in the @layer components section (if present) or @layer base section to define McKinsey-inspired button styling. Create classes or update existing button styles to include primary buttons (solid background with new primary color, white text, subtle rounded corners), secondary buttons (lighter background or outline variant), and hover states (subtle color darkening or shadow addition). Ensure buttons use McKinsey's professional color palette and have appropriate padding, font-weight, and transition effects for smooth interactions."
+        },
+        {
+          "path": "frontend/src/pages/Home.tsx",
+          "operation": "modify",
+          "description": "Update CTA button classes in the Home page to use the new McKinsey-inspired button styles. Ensure hero CTA buttons and other action buttons throughout the page use the updated primary and secondary button classes with consistent styling."
+        },
         {
           "path": "frontend/src/pages/Careers.tsx",
           "operation": "modify",
-          "description": "Add a PIN code input field to the careers registration form that accepts manual entry of 6-digit postal codes. Include validation to ensure only numeric input with exactly 6 digits. Position the field appropriately in the existing form layout before city and state fields."
-        }
-      ]
-    },
-    {
-      "id": "REQ-42",
-      "summary": "Add PIN code input field to Vendors registration form with 6-digit validation",
-      "acceptanceCriteria": [
-        "PIN code field is visible in the vendors registration form",
-        "Field accepts 6-digit numeric input",
-        "Field is labeled clearly as 'PIN Code' or 'Postal Code'"
-      ],
-      "file_operations": [
+          "description": "Update form submission and action button classes in the Careers page to use McKinsey-inspired button styles, ensuring consistency with the global button design system."
+        },
         {
           "path": "frontend/src/pages/Vendors.tsx",
           "operation": "modify",
-          "description": "Add a PIN code input field to the vendors registration form that accepts manual entry of 6-digit postal codes. Include validation to ensure only numeric input with exactly 6 digits. Position the field appropriately in the existing form layout before city and state fields."
-        }
-      ]
-    },
-    {
-      "id": "REQ-43",
-      "summary": "Add PIN code input field to Ambulance Services registration form with 6-digit validation",
-      "acceptanceCriteria": [
-        "PIN code field is visible in the ambulance registration form",
-        "Field accepts 6-digit numeric input",
-        "Field is labeled clearly as 'PIN Code' or 'Postal Code'"
-      ],
-      "file_operations": [
+          "description": "Update vendor registration form buttons to match McKinsey's button design, using the new primary and secondary button classes."
+        },
         {
           "path": "frontend/src/pages/AmbulanceServices.tsx",
           "operation": "modify",
-          "description": "Add a PIN code input field to the ambulance services registration form that accepts manual entry of 6-digit postal codes. Include validation to ensure only numeric input with exactly 6 digits. Position the field appropriately in the existing form layout before city and state fields."
-        }
-      ]
-    },
-    {
-      "id": "REQ-44",
-      "summary": "Add PIN code input field to NGO Listing registration form with 6-digit validation",
-      "acceptanceCriteria": [
-        "PIN code field is visible in the NGO registration form",
-        "Field accepts 6-digit numeric input",
-        "Field is labeled clearly as 'PIN Code' or 'Postal Code'"
-      ],
-      "file_operations": [
+          "description": "Update ambulance service form submission buttons to use McKinsey-inspired button styling for visual consistency."
+        },
         {
           "path": "frontend/src/pages/NgoListing.tsx",
           "operation": "modify",
-          "description": "Add a PIN code input field to the NGO listing registration form that accepts manual entry of 6-digit postal codes. Include validation to ensure only numeric input with exactly 6 digits. Position the field appropriately in the existing form layout before city and state fields."
-        }
-      ]
-    },
-    {
-      "id": "REQ-45",
-      "summary": "Implement PIN code auto-fill functionality for Careers form city and state fields",
-      "acceptanceCriteria": [
-        "When a 6-digit PIN code is entered, city and state fields are automatically populated",
-        "Invalid PIN codes show appropriate error or leave fields empty",
-        "Auto-filled fields are editable by the user if needed"
-      ],
-      "file_operations": [
+          "description": "Update NGO registration form buttons to match the McKinsey button design system established in other components."
+        },
         {
-          "path": "frontend/src/pages/Careers.tsx",
+          "path": "frontend/src/pages/AdminDashboard.tsx",
           "operation": "modify",
-          "description": "Implement auto-fill logic that triggers when a valid 6-digit PIN code is entered. Use the PIN code lookup utility to fetch city and state information and populate the corresponding form fields. Handle loading states during lookup and error states for invalid PIN codes. Ensure auto-filled fields remain editable by users."
-        }
-      ]
-    },
-    {
-      "id": "REQ-46",
-      "summary": "Implement PIN code auto-fill functionality for Vendors form city and state fields",
-      "acceptanceCriteria": [
-        "When a 6-digit PIN code is entered, city and state fields are automatically populated",
-        "Invalid PIN codes show appropriate error or leave fields empty",
-        "Auto-filled fields are editable by the user if needed"
-      ],
-      "file_operations": [
+          "description": "Update approve/reject action buttons in the AdminDashboard to use McKinsey-inspired button styles with appropriate color variants (primary for approve, destructive or secondary for reject)."
+        },
         {
-          "path": "frontend/src/pages/Vendors.tsx",
+          "path": "frontend/src/components/ProfileSetup.tsx",
           "operation": "modify",
-          "description": "Implement auto-fill logic that triggers when a valid 6-digit PIN code is entered. Use the PIN code lookup utility to fetch city and state information and populate the corresponding form fields. Handle loading states during lookup and error states for invalid PIN codes. Ensure auto-filled fields remain editable by users."
-        }
-      ]
-    },
-    {
-      "id": "REQ-47",
-      "summary": "Implement PIN code auto-fill functionality for Ambulance Services form city and state fields",
-      "acceptanceCriteria": [
-        "When a 6-digit PIN code is entered, city and state fields are automatically populated",
-        "Invalid PIN codes show appropriate error or leave fields empty",
-        "Auto-filled fields are editable by the user if needed"
-      ],
-      "file_operations": [
+          "description": "Update profile setup form submission button to match McKinsey's primary button styling for consistency across the authentication flow."
+        },
         {
-          "path": "frontend/src/pages/AmbulanceServices.tsx",
+          "path": "frontend/src/components/Navigation.tsx",
           "operation": "modify",
-          "description": "Implement auto-fill logic that triggers when a valid 6-digit PIN code is entered. Use the PIN code lookup utility to fetch city and state information and populate the corresponding form fields. Handle loading states during lookup and error states for invalid PIN codes. Ensure auto-filled fields remain editable by users."
+          "description": "Update the login/logout button styling in the Navigation component to use McKinsey-inspired button classes, ensuring the authentication controls follow the professional design system."
         }
       ]
     },
     {
-      "id": "REQ-48",
-      "summary": "Implement PIN code auto-fill functionality for NGO Listing form city and state fields",
+      "id": "REQ-74",
+      "summary": "Update section spacing, padding, and layout grid system across all pages to match McKinsey's generous whitespace and content organization",
       "acceptanceCriteria": [
-        "When a 6-digit PIN code is entered, city and state fields are automatically populated",
-        "Invalid PIN codes show appropriate error or leave fields empty",
-        "Auto-filled fields are editable by the user if needed"
+        "Section padding matches McKinsey's spacious layout",
+        "Content max-width and centering follow McKinsey's grid",
+        "Vertical rhythm between sections consistent with McKinsey design"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/NgoListing.tsx",
+          "path": "frontend/src/pages/Home.tsx",
           "operation": "modify",
-          "description": "Implement auto-fill logic that triggers when a valid 6-digit PIN code is entered. Use the PIN code lookup utility to fetch city and state information and populate the corresponding form fields. Handle loading states during lookup and error states for invalid PIN codes. Ensure auto-filled fields remain editable by users."
+          "description": "Update section spacing and padding throughout the Home page to match McKinsey's generous whitespace approach. Increase vertical spacing between sections (hero, value propositions, business verticals, user types, features, testimonials) to match McKinsey's breathing room. Adjust container max-width and horizontal padding to follow McKinsey's content centering and grid system. Update grid layouts to use McKinsey-appropriate gap spacing."
+        },
+        {
+          "path": "frontend/src/pages/AboutUs.tsx",
+          "operation": "modify",
+          "description": "Update section padding and spacing in the AboutUs page to match McKinsey's layout proportions. Increase vertical spacing between mission/vision sections and stakeholder cards. Adjust content max-width and ensure consistent horizontal centering."
+        },
+        {
+          "path": "frontend/src/pages/Solutions.tsx",
+          "operation": "modify",
+          "description": "Update section spacing and grid gaps in the Solutions page to follow McKinsey's generous whitespace patterns. Ensure solution category sections have appropriate vertical rhythm and content cards use McKinsey-style gap spacing."
+        },
+        {
+          "path": "frontend/src/pages/HealthcareSupportSystem.tsx",
+          "operation": "modify",
+          "description": "Update the grid layout spacing for the 12 support category cards to match McKinsey's whitespace approach. Increase gap between cards and adjust section padding to create a more spacious, professional layout."
+        },
+        {
+          "path": "frontend/src/pages/NetworkDirectory.tsx",
+          "operation": "modify",
+          "description": "Update grid spacing and section padding in the NetworkDirectory page to match McKinsey's layout system. Adjust card grid gaps and container padding for consistent whitespace."
+        },
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Update dashboard section padding and widget grid spacing to follow McKinsey's generous whitespace patterns, ensuring consistent vertical rhythm between dashboard sections."
+        },
+        {
+          "path": "frontend/src/pages/Contact.tsx",
+          "operation": "modify",
+          "description": "Update section spacing and form layout padding in the Contact page to match McKinsey's spacious design approach."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Review and adjust the main content container spacing and padding in the Layout component to ensure consistent max-width and centering across all pages, following McKinsey's content organization principles."
         }
       ]
     },
     {
-      "id": "REQ-49",
-      "summary": "Create PIN code lookup utility for mapping Indian postal codes to city and state",
+      "id": "REQ-75",
+      "summary": "Update the Footer component styling to match McKinsey's footer design, including background color, text colors, link styling, and layout structure",
       "acceptanceCriteria": [
-        "Utility can accept a 6-digit PIN code and return city and state",
-        "Covers major Indian postal codes",
-        "Returns appropriate response for invalid or unknown PIN codes"
+        "Footer background matches McKinsey's footer color",
+        "Footer text and link colors follow McKinsey's hierarchy",
+        "Footer column layout and spacing consistent with McKinsey design"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/utils/pinCodeLookup.ts",
-          "operation": "create",
-          "description": "Create a utility module that provides PIN code lookup functionality for Indian postal codes. Implement a function that accepts a 6-digit PIN code string and returns city and state information. Use a public API service (such as India Post API or postal.co.in) to fetch location data. Include proper error handling for invalid PIN codes, network failures, and unknown postal codes. Export a typed interface for the lookup response containing city and state fields. Consider caching frequently looked-up PIN codes to improve performance."
+          "path": "frontend/src/components/Footer.tsx",
+          "operation": "modify",
+          "description": "Update the Footer component styling to match McKinsey's professional footer design. Modify the background color to use a neutral color from the updated palette (typically a light gray or subtle tone). Update text colors to ensure appropriate contrast and hierarchy (lighter text for labels, standard text for links). Adjust link hover states to match McKinsey's subtle interaction patterns. Update column spacing and padding to follow McKinsey's generous whitespace approach. Ensure social media icon colors and sizes align with McKinsey's minimal icon style. Maintain the existing four-column grid structure while updating all visual styling elements."
         }
       ]
     }

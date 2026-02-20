@@ -237,6 +237,7 @@ export interface _SERVICE {
   'getAllRecords' : ActorMethod<[], Array<MedicalRecord>>,
   'getAllTourismServices' : ActorMethod<[], Array<TourismService>>,
   'getAllVendors' : ActorMethod<[], Array<Vendor>>,
+  'getApprovedStakeholderLocations' : ActorMethod<[], Array<Location>>,
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
   'getHealthRecord' : ActorMethod<[string], HealthRecord>,

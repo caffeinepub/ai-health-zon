@@ -11,7 +11,6 @@ import MixinStorage "blob-storage/Mixin";
 import Storage "blob-storage/Storage";
 
 
-
 actor {
   // Role-based Access Control
   let accessControlState = AccessControl.initState();
@@ -1021,5 +1020,26 @@ actor {
       ngos = filteredNgos;
       services = filteredServices;
     };
+  };
+
+  // New location-based cities endpoint - Public access for directory browsing
+  public query func getApprovedStakeholderLocations() : async [Location] {
+    let healthcareLocations = healthcareRequests.values().toArray().filter(
+      func(r) { r.status == #approved }
+    ).map(func(r) { r.location });
+
+    let vendorLocations = vendorRequests.values().toArray().filter(
+      func(r) { r.status == #approved }
+    ).map(func(r) { r.location });
+
+    let ambulanceLocations = ambulanceRequests.values().toArray().filter(
+      func(r) { r.status == #approved }
+    ).map(func(r) { r.location });
+
+    let ngoLocations = ngoRequests.values().toArray().filter(
+      func(r) { r.status == #approved }
+    ).map(func(r) { r.location });
+
+    healthcareLocations.concat(vendorLocations).concat(ambulanceLocations).concat(ngoLocations);
   };
 };

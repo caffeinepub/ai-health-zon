@@ -65,6 +65,10 @@ export default {
                     'accent-foreground': 'oklch(var(--sidebar-accent-foreground))',
                     border: 'oklch(var(--sidebar-border))',
                     ring: 'oklch(var(--sidebar-ring))'
+                },
+                header: {
+                    DEFAULT: 'oklch(var(--header-bg))',
+                    foreground: 'oklch(var(--header-fg))'
                 }
             },
             borderRadius: {
@@ -73,7 +77,56 @@ export default {
                 sm: 'calc(var(--radius) - 4px)'
             },
             boxShadow: {
-                xs: '0 1px 2px 0 rgba(0,0,0,0.05)'
+                xs: '0 1px 2px 0 rgba(0,0,0,0.03)',
+                sm: '0 1px 3px 0 rgba(0,0,0,0.06), 0 1px 2px -1px rgba(0,0,0,0.04)',
+                DEFAULT: '0 2px 4px -1px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.04)',
+                md: '0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.04)',
+                lg: '0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04)',
+                xl: '0 20px 25px -5px rgba(0,0,0,0.10), 0 8px 10px -6px rgba(0,0,0,0.04)',
+                '2xl': '0 25px 50px -12px rgba(0,0,0,0.15)',
+                inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.04)'
+            },
+            fontFamily: {
+                sans: [
+                    'system-ui',
+                    '-apple-system',
+                    'BlinkMacSystemFont',
+                    '"Segoe UI"',
+                    'Roboto',
+                    '"Helvetica Neue"',
+                    'Arial',
+                    'sans-serif',
+                    '"Apple Color Emoji"',
+                    '"Segoe UI Emoji"',
+                    '"Segoe UI Symbol"'
+                ],
+                display: [
+                    'system-ui',
+                    '-apple-system',
+                    'BlinkMacSystemFont',
+                    '"Segoe UI"',
+                    'Roboto',
+                    'sans-serif'
+                ]
+            },
+            fontSize: {
+                xs: ['0.75rem', { lineHeight: '1.5' }],
+                sm: ['0.875rem', { lineHeight: '1.6' }],
+                base: ['1rem', { lineHeight: '1.7' }],
+                lg: ['1.125rem', { lineHeight: '1.7' }],
+                xl: ['1.25rem', { lineHeight: '1.6' }],
+                '2xl': ['1.5rem', { lineHeight: '1.5' }],
+                '3xl': ['1.875rem', { lineHeight: '1.4' }],
+                '4xl': ['2.25rem', { lineHeight: '1.3' }],
+                '5xl': ['3rem', { lineHeight: '1.2' }],
+                '6xl': ['3.75rem', { lineHeight: '1.1' }],
+            },
+            letterSpacing: {
+                tighter: '-0.02em',
+                tight: '-0.01em',
+                normal: '0',
+                wide: '0.01em',
+                wider: '0.02em',
             },
             keyframes: {
                 'accordion-down': {
