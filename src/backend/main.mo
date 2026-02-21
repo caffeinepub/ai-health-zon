@@ -4,13 +4,11 @@ import Principal "mo:core/Principal";
 import Text "mo:core/Text";
 import Time "mo:core/Time";
 import Runtime "mo:core/Runtime";
-import Iter "mo:core/Iter";
 import Order "mo:core/Order";
 import AccessControl "authorization/access-control";
 import MixinAuthorization "authorization/MixinAuthorization";
 import MixinStorage "blob-storage/Mixin";
 import Storage "blob-storage/Storage";
-
 
 actor {
   // Role-based Access Control
@@ -267,6 +265,40 @@ actor {
     summary : Text;
   };
 
+  // New Types for Demo Booking & Blogs
+
+  public type DemoBookingStatus = {
+    #pending;
+    #contacted;
+    #completed;
+  };
+
+  public type DemoBookingRequest = {
+    name : Text;
+    hospitalName : Text;
+    designation : Text;
+    mobile : Text;
+    email : Text;
+    city : Text;
+    message : Text;
+    timestamp : Time.Time;
+    status : DemoBookingStatus;
+  };
+
+  public type BlogArticle = {
+    title : Text;
+    slug : Text;
+    excerpt : Text;
+    content : Text;
+    category : Text;
+    tags : [Text];
+    author : Text;
+    publishDate : Time.Time;
+    metaTitle : Text;
+    metaDescription : Text;
+    published : Bool;
+  };
+
   // Storage Maps
 
   let userProfiles = Map.empty<Principal, UserProfile>();
@@ -284,6 +316,8 @@ actor {
   let healthRecordOwners = Map.empty<Text, Principal>();
   let tourismServices = Map.empty<Text, TourismService>();
   let luxuryDebtServices = Map.empty<Text, LuxuryDebtService>();
+  let demoBookingRequests = Map.empty<Time.Time, DemoBookingRequest>();
+  let blogArticles = Map.empty<Text, BlogArticle>();
 
   // New Registration Request Stores
   let healthcareRequests = Map.empty<Text, HealthcareProfessionalRequest>();
@@ -421,11 +455,17 @@ actor {
 
   module HealthcareProfessional {
     public func compare(a : HealthcareProfessional, b : HealthcareProfessional) : Order.Order {
-      Text.compare(a.name, b.name);
+      switch (Text.compare(a.name, b.name)) {
+        case (#equal) { Text.compare(a.name, b.name) };
+        case (result) { result };
+      };
     };
 
     public func compareByRole(a : HealthcareProfessional, b : HealthcareProfessional) : Order.Order {
-      Text.compare(a.role, b.role);
+      switch (Text.compare(a.role, b.role)) {
+        case (#equal) { Text.compare(a.role, b.role) };
+        case (result) { result };
+      };
     };
   };
 
@@ -792,7 +832,7 @@ actor {
   public shared ({ caller }) func addCorporateHealthcareServices(hospitalId : Text, services : [Text]) : async () {
     // Check ownership or admin
     let isOwner = switch (hospitalOwners.get(hospitalId)) {
-      case null { false };
+      case (null) { false };
       case (?owner) { owner == caller };
     };
 
@@ -801,7 +841,7 @@ actor {
     };
 
     switch (hospitals.get(hospitalId)) {
-      case null { Runtime.trap("Hospital not found") };
+      case (null) { Runtime.trap("Hospital not found") };
       case (?hospital) {
         let updatedHospital : Hospital = {
           id = hospital.id;
@@ -881,7 +921,7 @@ actor {
   public shared ({ caller }) func updateRecord(record : MedicalRecord) : async () {
     // Check ownership or admin
     let isOwner = switch (recordOwners.get(record.recordId)) {
-      case null { false };
+      case (null) { false };
       case (?owner) { owner == caller };
     };
 
@@ -902,7 +942,7 @@ actor {
 
     // Check ownership or admin
     let isOwner = switch (recordOwners.get(recordId)) {
-      case null { false };
+      case (null) { false };
       case (?owner) { owner == caller };
     };
 
@@ -919,7 +959,7 @@ actor {
   public shared ({ caller }) func deleteRecord(recordId : Text) : async () {
     // Check ownership or admin
     let isOwner = switch (recordOwners.get(recordId)) {
-      case null { false };
+      case (null) { false };
       case (?owner) { owner == caller };
     };
 
@@ -953,7 +993,7 @@ actor {
     myRecordIds.map(
       func(id) {
         switch (records.get(id)) {
-          case null { Runtime.trap("Record not found") };
+          case (null) { Runtime.trap("Record not found") };
           case (?record) { record };
         };
       }
@@ -1062,7 +1102,7 @@ actor {
 
     // Check ownership or admin
     let isOwner = switch (healthRecordOwners.get(recordId)) {
-      case null { false };
+      case (null) { false };
       case (?owner) { owner == caller };
     };
 
@@ -1246,5 +1286,94 @@ actor {
         ?doc;
       };
     };
+  };
+
+  // Demo Booking Functions
+  // Public inquiry form - accessible to everyone including anonymous guests
+  // No authorization check required as this is a public contact form
+  public shared ({ caller }) func saveDemoBookingRequest(request : {
+    name : Text;
+    hospitalName : Text;
+    designation : Text;
+    mobile : Text;
+    email : Text;
+    city : Text;
+    message : Text;
+  }) : async () {
+    let newRequest : DemoBookingRequest = {
+      name = request.name;
+      hospitalName = request.hospitalName;
+      designation = request.designation;
+      mobile = request.mobile;
+      email = request.email;
+      city = request.city;
+      message = request.message;
+      timestamp = Time.now();
+      status = #pending;
+    };
+    demoBookingRequests.add(newRequest.timestamp, newRequest);
+  };
+
+  public query ({ caller }) func getAllDemoBookingRequests(statusFilter : ?DemoBookingStatus) : async [DemoBookingRequest] {
+    if (not AccessControl.isAdmin(accessControlState, caller)) {
+      Runtime.trap("Unauthorized: Only admins can access all demo booking requests");
+    };
+
+    let allRequests = demoBookingRequests.values().toArray();
+    switch (statusFilter) {
+      case (null) { allRequests };
+      case (?status) {
+        allRequests.filter(func(request) { request.status == status });
+      };
+    };
+  };
+
+  // Blog Article Functions
+  public shared ({ caller }) func createBlogArticle(article : BlogArticle) : async () {
+    if (not AccessControl.isAdmin(accessControlState, caller)) {
+      Runtime.trap("Unauthorized: Only admins can create blog articles");
+    };
+
+    if (blogArticles.containsKey(article.slug)) {
+      Runtime.trap("Blog article with this slug already exists");
+    };
+
+    blogArticles.add(article.slug, article);
+  };
+
+  public shared ({ caller }) func updateBlogArticle(slug : Text, updatedArticle : BlogArticle) : async () {
+    if (not AccessControl.isAdmin(accessControlState, caller)) {
+      Runtime.trap("Unauthorized: Only admins can update blog articles");
+    };
+
+    if (not blogArticles.containsKey(slug)) {
+      Runtime.trap("Blog article not found");
+    };
+
+    blogArticles.add(slug, updatedArticle);
+  };
+
+  public query ({ caller }) func getBlogArticle(slug : Text) : async ?BlogArticle {
+    blogArticles.get(slug);
+  };
+
+  public query ({ caller }) func getAllBlogArticles() : async [BlogArticle] {
+    blogArticles.values().toArray();
+  };
+
+  public query ({ caller }) func getBlogArticlesByCategory(category : Text) : async [BlogArticle] {
+    blogArticles.values().toArray().filter(
+      func(article) {
+        article.category.contains(#text category);
+      }
+    );
+  };
+
+  public query ({ caller }) func searchBlogArticles(searchTerm : Text) : async [BlogArticle] {
+    blogArticles.values().toArray().filter(
+      func(article) {
+        article.title.contains(#text searchTerm) or article.excerpt.contains(#text searchTerm) or article.content.contains(#text searchTerm);
+      }
+    );
   };
 };

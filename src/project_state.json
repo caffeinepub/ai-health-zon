@@ -1,25 +1,26 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 51,
-  "summary": "AI Health Zon: A comprehensive AI-powered healthcare platform website with RCM, Healthcare Technology solutions, and a Healthcare Connecting Platform. The opening animation displays a 10-phase healthcare revenue cycle management workflow from patient registration through payment reconciliation and closure.",
+  "projectStateVersion": 67,
+  "summary": "AI Health Zon: Professional healthcare enterprise website with RCM-first positioning targeting hospital decision-makers. The platform features 10-phase revenue cycle management workflow, Healthcare Technology solutions, and Healthcare Connecting Platform. Primary goal: Generate Demo Bookings for RCM through strong CTA-driven conversion.",
   "architectural_notes": [
-    "Multi-stakeholder platform requiring role-based authentication and dashboards",
     "Searchable directory with filters (location, category, services)",
-    "Form submission system for careers, vendors, ambulance, NGO registration",
     "AI chatbot integration for contact page",
     "WhatsApp integration for contact",
-    "Multi-page website with 12 distinct pages plus dashboard variations",
     "Admin approval workflow for stakeholder registrations (careers, vendors, ambulance, NGO)",
     "Status tracking system: Pending → Approved → Rejected",
     "PIN code-based auto-fill for city/state in registration forms using PIN code lookup API or database",
-    "Opening animation showcases 10-phase RCM workflow: Registration & Eligibility → Pre-Authorization → Admission & Documentation → Medical Coding → Billing & Claims → Submission → Query Management → Adjudication → Payment Posting → Reconciliation & Closure"
+    "Opening animation showcases 10-phase RCM workflow: Registration & Eligibility → Pre-Authorization → Admission & Documentation → Medical Coding → Billing & Claims → Submission → Query Management → Adjudication → Payment Posting → Reconciliation & Closure",
+    "RCM-first positioning: Revenue Cycle Management is the primary focus with highest visual weight and placement",
+    "Enterprise target audience: Hospital decision-makers, CFOs, administrators",
+    "Knowledge Board page replaces Dashboard, focusing on educational content about hospital licenses and regulatory requirements"
   ],
   "known_issues": [
     "Chatbot not functioning on the website",
     "Text with multicolor gradient overlays on images is not displaying/visualizing properly",
     "Content not displaying completely on small/mobile viewports - layout overflow or sizing issue"
   ],
-  "isFixRequest": true,
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Professional illustration showing hospital license documents and regulatory compliance (hospital-licenses-hero.dim_1920x1080.png)\n- Icon or illustration representing healthcare regulatory compliance and accreditation (compliance-standards.dim_800x600.png)\n- Visual representation of hospital registration and licensing process flowchart (licensing-process.dim_1200x800.png)",
   "existing_features": [
     {
       "id": "feature-create-a-home-page-with-hero-section-displaying-the-master-brand-line-ai-health-zon-is-an-ai-powered-healthcare-platform-delivering-revenue-cycle-management-healthcare-technology-solutions-and-a-healthcare-connecting-platform-that-links-hospitals-with-doctors-nurses-radiologists-physiotherapists-dietitians-ambulance-services-diagnostics-pharmacies-vendors-insurance-partners-ngos-and-compliance-experts-on-one-unified-digital-platform-include-two-cta-buttons-request-demo-and-join-network",
@@ -1124,6 +1125,438 @@
         "REQ-180"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-global-color-scheme-in-frontend-index-css-to-use-white-as-the-primary-background-color-deep-blue-as-the-primary-text-color-and-light-grey-as-secondary-neutral-colors-throughout-the-entire-site-removing-all-existing-orange-and-teal-colors",
+      "title": "Update the global color scheme in frontend/index.css to use White as the primary background color, Deep Blue as the primary text color, and Light Grey as secondary/neutral colors throughout the entire site, removing all existing orange and teal colors",
+      "reqIds": [
+        "REQ-181"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-tailwind-config-js-to-configure-the-color-palette-with-white-background-deep-blue-primary-text-accent-and-light-grey-secondary-neutral-color-tokens-ensuring-all-tailwind-classes-use-this-enterprise-color-scheme",
+      "title": "Update frontend/tailwind.config.js to configure the color palette with White (background), Deep Blue (primary text/accent), and Light Grey (secondary/neutral) color tokens, ensuring all Tailwind classes use this enterprise color scheme",
+      "reqIds": [
+        "REQ-182"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-typography-settings-in-frontend-index-css-and-frontend-tailwind-config-js-to-use-bold-headlines-medium-weight-body-text-and-modern-sans-serif-font-inter-or-poppins-style-throughout-the-site",
+      "title": "Update typography settings in frontend/index.css and frontend/tailwind.config.js to use bold headlines, medium-weight body text, and modern sans-serif font (Inter or Poppins style) throughout the site",
+      "reqIds": [
+        "REQ-183"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-restructure-the-home-page-frontend-src-pages-home-tsx-hero-section-to-display-a-strong-headline-with-two-cta-buttons-book-a-demo-primary-and-explore-solutions-replacing-the-existing-request-demo-and-join-network-buttons",
+      "title": "Restructure the Home page (frontend/src/pages/Home.tsx) hero section to display a strong headline with two CTA buttons: 'Book a Demo' (Primary) and 'Explore Solutions', replacing the existing 'Request Demo' and 'Join Network' buttons",
+      "reqIds": [
+        "REQ-184"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-why-choose-us-section-to-the-home-page-frontend-src-pages-home-tsx-displaying-4-6-icon-based-benefits-with-icons-and-concise-descriptions",
+      "title": "Add a 'Why Choose Us' section to the Home page (frontend/src/pages/Home.tsx) displaying 4-6 icon-based benefits with icons and concise descriptions",
+      "reqIds": [
+        "REQ-185"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-solutions-overview-section-on-the-home-page-frontend-src-pages-home-tsx-to-display-3-cards-in-a-horizontal-layout-for-rcm-technology-and-network-with-rcm-card-given-larger-visual-weight-and-more-prominent-placement",
+      "title": "Update the Solutions Overview section on the Home page (frontend/src/pages/Home.tsx) to display 3 cards in a horizontal layout for RCM, Technology, and Network, with RCM card given larger visual weight and more prominent placement",
+      "reqIds": [
+        "REQ-186"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-rcm-highlight-section-to-the-home-page-frontend-src-pages-home-tsx-with-bigger-visual-weight-featuring-key-rcm-benefits-revenue-impact-messaging-and-a-prominent-cta-to-the-rcm-page",
+      "title": "Add an 'RCM Highlight' section to the Home page (frontend/src/pages/Home.tsx) with bigger visual weight, featuring key RCM benefits, revenue impact messaging, and a prominent CTA to the RCM page",
+      "reqIds": [
+        "REQ-187"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-impact-metrics-section-to-the-home-page-frontend-src-pages-home-tsx-displaying-key-performance-indicators-with-animated-counters-optional-animation-showing-metrics-like-claims-processed-revenue-recovered-or-hospitals-served",
+      "title": "Add an 'Impact Metrics' section to the Home page (frontend/src/pages/Home.tsx) displaying key performance indicators with animated counters (optional animation), showing metrics like claims processed, revenue recovered, or hospitals served",
+      "reqIds": [
+        "REQ-188"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-schedule-consultation-cta-banner-section-to-the-home-page-frontend-src-pages-home-tsx-above-the-footer-encouraging-demo-bookings-with-a-strong-call-to-action-button",
+      "title": "Add a 'Schedule Consultation' CTA banner section to the Home page (frontend/src/pages/Home.tsx) above the footer, encouraging demo bookings with a strong call-to-action button",
+      "reqIds": [
+        "REQ-189"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-transform-the-solutions-page-revenue-cycle-management-section-frontend-src-pages-solutions-tsx-into-a-comprehensive-rcm-product-landing-page-with-banner-with-cta-problem-statement-section-highlighting-denials-delays-revenue-leakage-modular-feature-blocks-workflow-diagram-section-revenue-impact-metrics-faq-section-and-demo-booking-cta",
+      "title": "Transform the Solutions page Revenue Cycle Management section (frontend/src/pages/Solutions.tsx) into a comprehensive RCM product landing page with: Banner with CTA, Problem Statement section highlighting denials/delays/revenue leakage, Modular Feature Blocks, Workflow Diagram Section, Revenue Impact Metrics, FAQ section, and Demo Booking CTA",
+      "reqIds": [
+        "REQ-190"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-demo-booking-form-component-with-fields-name-hospital-name-designation-mobile-email-city-message-style-as-a-professional-enterprise-form-with-validation",
+      "title": "Create a Demo Booking Form component with fields: Name, Hospital Name, Designation, Mobile, Email, City, Message. Style as a professional enterprise form with validation",
+      "reqIds": [
+        "REQ-191"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-react-query-mutation-hook-in-frontend-src-hooks-usequeries-ts-for-submitting-demo-booking-form-data-to-the-backend-with-success-error-toast-notifications",
+      "title": "Add React Query mutation hook in frontend/src/hooks/useQueries.ts for submitting demo booking form data to the backend with success/error toast notifications",
+      "reqIds": [
+        "REQ-194"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-the-demo-booking-form-on-the-rcm-section-of-the-solutions-page-in-a-modal-dialog-or-dedicated-section-triggered-by-book-demo-cta-buttons-throughout-the-page",
+      "title": "Display the Demo Booking Form on the RCM section of the Solutions page, in a modal dialog or dedicated section, triggered by 'Book Demo' CTA buttons throughout the page",
+      "reqIds": [
+        "REQ-195"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-floating-whatsapp-button-fixed-to-the-bottom-right-corner-of-all-pages-that-opens-whatsapp-chat-with-the-phone-number-91-8696766966",
+      "title": "Add a floating WhatsApp button fixed to the bottom-right corner of all pages that opens WhatsApp chat with the phone number +91-8696766966",
+      "reqIds": [
+        "REQ-196"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-blog-page-component-at-frontend-src-pages-blog-tsx-with-dynamic-article-listings-category-based-filtering-search-functionality-and-seo-optimized-structure-with-h1-h2-h3-hierarchy",
+      "title": "Create a Blog page component at frontend/src/pages/Blog.tsx with dynamic article listings, category-based filtering, search functionality, and SEO-optimized structure with H1/H2/H3 hierarchy",
+      "reqIds": [
+        "REQ-197"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-react-query-hooks-in-frontend-src-hooks-usequeries-ts-for-fetching-blog-article-lists-with-category-search-filters-fetching-individual-articles-by-slug-and-admin-operations-create-update-delete-articles",
+      "title": "Add React Query hooks in frontend/src/hooks/useQueries.ts for fetching blog article lists (with category/search filters), fetching individual articles by slug, and admin operations (create, update, delete articles)",
+      "reqIds": [
+        "REQ-200"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-blogarticle-page-component-at-frontend-src-pages-blogarticle-tsx-that-displays-full-article-content-with-proper-heading-hierarchy-h1-for-title-h2-h3-for-content-sections-formatted-paragraphs-and-seo-meta-tags",
+      "title": "Create a BlogArticle page component at frontend/src/pages/BlogArticle.tsx that displays full article content with proper heading hierarchy (H1 for title, H2/H3 for content sections), formatted paragraphs, and SEO meta tags",
+      "reqIds": [
+        "REQ-201"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-route-definitions-in-frontend-src-app-tsx-for-blog-article-list-and-blog-slug-individual-article-view-both-rendering-within-the-layout-wrapper",
+      "title": "Add route definitions in frontend/src/App.tsx for '/blog' (article list) and '/blog/:slug' (individual article view), both rendering within the Layout wrapper",
+      "reqIds": [
+        "REQ-202"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-case-studies-page-component-at-frontend-src-pages-casestudies-tsx-as-a-future-ready-placeholder-with-hero-section-empty-state-message-and-structure-for-displaying-success-stories-when-content-is-added",
+      "title": "Create a Case Studies page component at frontend/src/pages/CaseStudies.tsx as a future-ready placeholder with hero section, empty state message, and structure for displaying success stories when content is added",
+      "reqIds": [
+        "REQ-203"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-route-definition-for-case-studies-in-frontend-src-app-tsx-rendering-the-casestudies-page-component-within-the-layout-wrapper-and-add-case-studies-link-to-main-navigation",
+      "title": "Add route definition for '/case-studies' in frontend/src/App.tsx rendering the CaseStudies page component within the Layout wrapper, and add 'Case Studies' link to main navigation",
+      "reqIds": [
+        "REQ-204"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-navigation-component-frontend-src-components-navigation-tsx-to-reorder-navigation-links-following-enterprise-hierarchy-home-solutions-case-studies-blog-about-us-contact-us-with-conditional-dashboard-admin-links-when-authenticated",
+      "title": "Update the Navigation component (frontend/src/components/Navigation.tsx) to reorder navigation links following enterprise hierarchy: Home, Solutions, Case Studies, Blog, About Us, Contact Us, with conditional Dashboard/Admin links when authenticated",
+      "reqIds": [
+        "REQ-205"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-major-pages-home-solutions-rcm-section-about-us-case-studies-blog-contact-to-include-at-least-three-ctas-top-cta-in-hero-banner-mid-page-cta-in-content-section-and-bottom-cta-before-footer-all-encouraging-demo-bookings",
+      "title": "Update all major pages (Home, Solutions RCM section, About Us, Case Studies, Blog, Contact) to include at least three CTAs: Top CTA (in hero/banner), Mid-page CTA (in content section), and Bottom CTA (before footer), all encouraging demo bookings",
+      "reqIds": [
+        "REQ-206"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-reduce-all-animations-across-the-site-to-minimal-professional-transitions-remove-flashy-or-heavy-animations-in-favor-of-subtle-fade-slide-effects-with-short-durations",
+      "title": "Reduce all animations across the site to minimal, professional transitions. Remove flashy or heavy animations in favor of subtle fade/slide effects with short durations",
+      "reqIds": [
+        "REQ-207"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-optimize-all-images-across-the-site-for-web-delivery-compress-images-use-appropriate-formats-webp-where-supported-implement-lazy-loading-and-ensure-images-are-properly-sized-for-their-display-contexts",
+      "title": "Optimize all images across the site for web delivery: compress images, use appropriate formats (WebP where supported), implement lazy loading, and ensure images are properly sized for their display contexts",
+      "reqIds": [
+        "REQ-208"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-all-pages-follow-seo-best-practices-clean-url-structure-no-special-characters-lowercase-hyphens-proper-h1-h2-h3-heading-hierarchy-descriptive-page-titles-meta-descriptions-for-all-pages-and-semantic-html-structure",
+      "title": "Ensure all pages follow SEO best practices: clean URL structure (no special characters, lowercase, hyphens), proper H1/H2/H3 heading hierarchy, descriptive page titles, meta descriptions for all pages, and semantic HTML structure",
+      "reqIds": [
+        "REQ-209"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-schema-org-structured-data-markup-to-key-pages-home-solutions-rcm-about-contact-using-healthcare-organization-and-medical-business-schemas-to-improve-search-engine-understanding",
+      "title": "Add schema.org structured data markup to key pages (Home, Solutions RCM, About, Contact) using Healthcare Organization and Medical Business schemas to improve search engine understanding",
+      "reqIds": [
+        "REQ-210"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-comprehensive-mobile-responsive-design-across-all-pages-ensuring-layouts-adapt-properly-for-viewports-from-320px-to-768px-width-with-touch-friendly-interactive-elements-and-readable-text-sizes",
+      "title": "Implement comprehensive mobile responsive design across all pages ensuring layouts adapt properly for viewports from 320px to 768px width, with touch-friendly interactive elements and readable text sizes",
+      "reqIds": [
+        "REQ-211"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-optimize-frontend-performance-to-achieve-page-load-times-under-3-seconds-and-pass-core-web-vitals-metrics-lcp-2-5s-fid-100ms-cls-0-1",
+      "title": "Optimize frontend performance to achieve page load times under 3 seconds and pass Core Web Vitals metrics (LCP < 2.5s, FID < 100ms, CLS < 0.1)",
+      "reqIds": [
+        "REQ-212"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-react-query-hook-in-frontend-src-hooks-usequeries-ts-for-fetching-demo-booking-requests-admin-only-with-automatic-refetching-when-new-submissions-occur",
+      "title": "Add React Query hook in frontend/src/hooks/useQueries.ts for fetching demo booking requests (admin only) with automatic refetching when new submissions occur",
+      "reqIds": [
+        "REQ-215"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-form-components-across-the-application-careers-vendors-ambulance-services-ngo-listing-demo-booking-contact-inquiry-to-display-with-royal-teal-background-color-and-royal-white-text-color-for-all-form-fields-labels-and-submit-buttons",
+      "title": "Update all form components across the application (Careers, Vendors, Ambulance Services, NGO Listing, Demo Booking, Contact inquiry) to display with Royal Teal background color and Royal White text color for all form fields, labels, and submit buttons",
+      "reqIds": [
+        "REQ-216"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-onboarding-page-frontend-src-pages-onboarding-tsx-title-and-hero-heading-to-display-healthcare-revenue-cycle-management-complete-10-phase-journey-from-patient-registration-to-payment-closure-ai-health-zon",
+      "title": "Update the Onboarding page (frontend/src/pages/Onboarding.tsx) title and hero heading to display 'Healthcare Revenue Cycle Management - Complete 10-Phase Journey from Patient Registration to Payment Closure - AI Health Zon'",
+      "reqIds": [
+        "REQ-217"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-members-page-component-at-frontend-src-pages-members-tsx-that-displays-a-photo-grid-of-all-approved-network-members-healthcare-professionals-vendors-ngos-ambulance-services-with-type-category-labels-visible-on-each-card",
+      "title": "Create a Members page component at frontend/src/pages/Members.tsx that displays a photo grid of all approved network members (healthcare professionals, vendors, NGOs, ambulance services) with type/category labels visible on each card",
+      "reqIds": [
+        "REQ-218"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-click-to-view-functionality-on-the-members-page-that-opens-a-detailed-profile-modal-or-navigates-to-a-profile-detail-view-when-a-member-card-is-clicked-displaying-comprehensive-information-including-bio-services-experience-and-contact-options",
+      "title": "Implement click-to-view functionality on the Members page that opens a detailed profile modal or navigates to a profile detail view when a member card is clicked, displaying comprehensive information including bio, services, experience, and contact options",
+      "reqIds": [
+        "REQ-219"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-react-query-hook-in-frontend-src-hooks-usequeries-ts-for-fetching-all-approved-members-across-all-stakeholder-types-healthcare-professionals-vendors-ngos-ambulance-services-for-display-on-the-members-page",
+      "title": "Add React Query hook in frontend/src/hooks/useQueries.ts for fetching all approved members across all stakeholder types (healthcare professionals, vendors, NGOs, ambulance services) for display on the Members page",
+      "reqIds": [
+        "REQ-220"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-members-navigation-link-in-the-navigation-component-frontend-src-components-navigation-tsx-that-routes-to-the-new-members-page",
+      "title": "Add a 'Members' navigation link in the Navigation component (frontend/src/components/Navigation.tsx) that routes to the new Members page",
+      "reqIds": [
+        "REQ-221"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-route-definition-for-members-in-frontend-src-app-tsx-that-renders-the-members-page-component-within-the-layout-wrapper",
+      "title": "Add route definition for '/members' in frontend/src/App.tsx that renders the Members page component within the Layout wrapper",
+      "reqIds": [
+        "REQ-222"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-careers-page-frontend-src-pages-careers-tsx-role-selection-dropdown-select-component-to-display-with-royal-teal-background-color-and-white-text-color-for-the-dropdown-options-when-the-menu-is-open-matching-the-contact-form-styling",
+      "title": "Update the Careers page (frontend/src/pages/Careers.tsx) role selection dropdown/select component to display with Royal Teal background color and white text color for the dropdown options when the menu is open, matching the Contact form styling",
+      "reqIds": [
+        "REQ-224"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-verify-and-ensure-all-form-elements-on-the-careers-page-frontend-src-pages-careers-tsx-including-labels-input-fields-select-dropdowns-textareas-and-submit-buttons-display-with-royal-teal-background-and-royal-white-text-colors-maintaining-visual-consistency-with-the-contact-form",
+      "title": "Verify and ensure all form elements on the Careers page (frontend/src/pages/Careers.tsx) including labels, input fields, select dropdowns, textareas, and submit buttons display with Royal Teal background and Royal White text colors, maintaining visual consistency with the Contact form",
+      "reqIds": [
+        "REQ-225"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-vendors-page-frontend-src-pages-vendors-tsx-category-select-dropdown-to-display-with-royal-teal-background-color-and-white-text-color-for-all-dropdown-options-when-the-menu-is-open",
+      "title": "Update the Vendors page (frontend/src/pages/Vendors.tsx) category select dropdown to display with Royal Teal background color and white text color for all dropdown options when the menu is open",
+      "reqIds": [
+        "REQ-226"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-ngo-listing-page-frontend-src-pages-ngolisting-tsx-focus-area-select-dropdown-to-display-with-royal-teal-background-color-and-white-text-color-for-all-dropdown-options-when-the-menu-is-open",
+      "title": "Update the NGO Listing page (frontend/src/pages/NgoListing.tsx) focus area select dropdown to display with Royal Teal background color and white text color for all dropdown options when the menu is open",
+      "reqIds": [
+        "REQ-227"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-verify-all-form-dropdowns-across-the-application-maintain-consistent-royal-teal-background-with-white-text-styling-including-vendors-category-dropdown-and-ngo-focus-area-dropdown",
+      "title": "Verify all form dropdowns across the application maintain consistent Royal Teal background with white text styling, including Vendors category dropdown and NGO focus area dropdown",
+      "reqIds": [
+        "REQ-228"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-footer-component-frontend-src-components-footer-tsx-to-display-info-aihealthzon-com-as-the-contact-email-in-the-footer-section",
+      "title": "Update the Footer component (frontend/src/components/Footer.tsx) to display info@aihealthzon.com as the contact email in the footer section",
+      "reqIds": [
+        "REQ-230"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-chatbot-component-frontend-src-components-chatbot-tsx-to-provide-info-aihealthzon-com-when-users-ask-for-contact-information-or-email-address",
+      "title": "Update the Chatbot component (frontend/src/components/Chatbot.tsx) to provide info@aihealthzon.com when users ask for contact information or email address",
+      "reqIds": [
+        "REQ-231"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-any-inquiry-forms-across-the-application-to-configure-auto-reply-emails-with-info-aihealthzon-com-as-the-sender-or-reply-to-address",
+      "title": "Update any inquiry forms across the application to configure auto-reply emails with info@aihealthzon.com as the sender or reply-to address",
+      "reqIds": [
+        "REQ-232"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-all-12-service-category-images-on-the-healthcare-support-system-page-frontend-src-pages-healthcaresupportsystem-tsx-with-contextually-relevant-high-quality-images-that-visually-represent-each-healthcare-support-service-area-workforce-support-emergency-ambulance-services-diagnostics-labs-pharmacy-medicines-home-healthcare-mental-health-wellness-vendors-suppliers-ngos-community-support-compliance-quality-support-insurance-tpa-coordination-training-education-and-logistics-supply-chain",
+      "title": "Replace all 12 service category images on the Healthcare Support System page (frontend/src/pages/HealthcareSupportSystem.tsx) with contextually relevant, high-quality images that visually represent each healthcare support service area: Workforce Support, Emergency & Ambulance Services, Diagnostics & Labs, Pharmacy & Medicines, Home Healthcare, Mental Health & Wellness, Vendors & Suppliers, NGOs & Community Support, Compliance & Quality Support, Insurance & TPA Coordination, Training & Education, and Logistics & Supply Chain",
+      "reqIds": [
+        "REQ-233"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-all-hero-carousel-images-on-the-home-page-frontend-src-pages-home-tsx-with-hd-or-4k-resolution-versions-minimum-1920x1080-preferably-3840x2160-for-4k-representing-rcm-healthcare-technology-solutions-and-connecting-platform-services",
+      "title": "Replace all hero carousel images on the Home page (frontend/src/pages/Home.tsx) with HD or 4K resolution versions (minimum 1920x1080, preferably 3840x2160 for 4K) representing RCM, Healthcare Technology solutions, and connecting platform services",
+      "reqIds": [
+        "REQ-234"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-all-section-images-on-the-home-page-frontend-src-pages-home-tsx-including-why-choose-us-solutions-overview-rcm-highlight-and-impact-metrics-sections-with-hd-or-4k-resolution-versions-minimum-1920x1080-preferably-3840x2160-for-4k",
+      "title": "Replace all section images on the Home page (frontend/src/pages/Home.tsx) including Why Choose Us, Solutions Overview, RCM Highlight, and Impact Metrics sections with HD or 4K resolution versions (minimum 1920x1080, preferably 3840x2160 for 4K)",
+      "reqIds": [
+        "REQ-235"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-knowledgeboard-page-component-at-frontend-src-pages-knowledgeboard-tsx-that-displays-comprehensive-information-about-hospital-licenses-and-regulatory-requirements",
+      "title": "Create a KnowledgeBoard page component at frontend/src/pages/KnowledgeBoard.tsx that displays comprehensive information about hospital licenses and regulatory requirements",
+      "reqIds": [
+        "REQ-236"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-hospital-license-types-and-categories-on-the-knowledge-board-page-including-license-classifications-regulatory-bodies-and-compliance-requirements-based-on-the-reference-document-from-https-www-researchgate-net-publication-398379014-licence-required-for-hospitals",
+      "title": "Display hospital license types and categories on the Knowledge Board page including license classifications, regulatory bodies, and compliance requirements based on the reference document from https://www.researchgate.net/publication/398379014_LICENCE_REQUIRED_FOR_HOSPITALS",
+      "reqIds": [
+        "REQ-237"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-regulatory-compliance-requirements-on-the-knowledge-board-page-covering-hospital-registration-accreditation-standards-nabh-iso-and-legal-obligations-for-healthcare-facilities",
+      "title": "Display regulatory compliance requirements on the Knowledge Board page covering hospital registration, accreditation standards (NABH, ISO), and legal obligations for healthcare facilities",
+      "reqIds": [
+        "REQ-238"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-route-configuration-in-frontend-src-app-tsx-to-replace-the-existing-dashboard-route-with-a-knowledge-board-route-that-renders-the-knowledgeboard-page-component",
+      "title": "Update the route configuration in frontend/src/App.tsx to replace the existing '/dashboard' route with a '/knowledge-board' route that renders the KnowledgeBoard page component",
+      "reqIds": [
+        "REQ-239"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-navigation-component-frontend-src-components-navigation-tsx-to-replace-the-dashboard-link-with-a-knowledge-board-link-that-routes-to-knowledge-board",
+      "title": "Update the Navigation component (frontend/src/components/Navigation.tsx) to replace the 'Dashboard' link with a 'Knowledge Board' link that routes to '/knowledge-board'",
+      "reqIds": [
+        "REQ-240"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-the-existing-enterprise-design-theme-white-background-deep-blue-text-professional-typography-to-the-knowledge-board-page-ensuring-visual-consistency-with-other-pages",
+      "title": "Apply the existing enterprise design theme (White background, Deep Blue text, professional typography) to the Knowledge Board page ensuring visual consistency with other pages",
+      "reqIds": [
+        "REQ-241"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-multiple-ctas-on-the-knowledge-board-page-including-top-cta-in-hero-section-mid-page-cta-in-content-area-and-bottom-cta-before-footer-all-encouraging-demo-bookings",
+      "title": "Add multiple CTAs on the Knowledge Board page including top CTA in hero section, mid-page CTA in content area, and bottom CTA before footer, all encouraging demo bookings",
+      "reqIds": [
+        "REQ-242"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -1178,12 +1611,6 @@
     {
       "id": "AR-9",
       "summary": "NGO Listing page with directory, filters, registration, and programs",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-10",
-      "summary": "Dashboard page with role-based views for hospitals, professionals, vendors, NGOs",
       "reqIds": [],
       "status": "pending"
     },
@@ -1700,6 +2127,214 @@
     {
       "id": "AR-108",
       "summary": "Update dropdown styling to display options with white text on Royal Teal background",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-109",
+      "summary": "Restructure homepage with enterprise focus: hero section with Book Demo + Explore Solutions CTAs, Why Choose Us section with 4-6 icon-based benefits, 3-card Solutions Overview (RCM, Technology, Network), RCM Highlight section with bigger visual weight, Impact Metrics section with animated counters, CTA Banner for Schedule Consultation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-110",
+      "summary": "Create enterprise-focused RCM landing page with sections: Banner with CTA, Problem Statement (Denials/Delays/Revenue Leakage), Modular Feature Blocks, Workflow Diagram, Revenue Impact Metrics, FAQ, Demo Booking CTA",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-111",
+      "summary": "Implement Demo Booking Form with fields: Name, Hospital Name, Designation, Mobile, Email, City, Message. Include auto email confirmation, database capture, and admin email notification",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-112",
+      "summary": "Add floating WhatsApp button (bottom-right corner) for instant communication",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-113",
+      "summary": "Create dynamic Blog section with CMS capabilities: category-based filtering, search functionality, editable meta titles/descriptions for SEO",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-114",
+      "summary": "Create Case Studies page placeholder (future-ready) for showcasing success stories",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-115",
+      "summary": "Update entire site color palette to: White + Deep Blue + Light Grey. Remove current orange/teal colors. Apply corporate dashboard-style design influence with clean healthcare enterprise theme",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-116",
+      "summary": "Update typography: bold headlines, medium-weight body text, modern sans-serif font (Inter or Poppins style). Minimal animations for professional look",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-117",
+      "summary": "Implement comprehensive SEO: clean URL structure, proper H1/H2/H3 hierarchy, schema markup (Healthcare/Business), fast loading speed, mobile responsive, Core Web Vitals optimization",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-118",
+      "summary": "Implement performance requirements: page load < 3 seconds, optimized images, CDN enabled, lightweight animations (no heavy JS libraries)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-119",
+      "summary": "Implement security: HTTPS mandatory, reCAPTCHA on forms, admin panel role-based login, daily backup integration",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-120",
+      "summary": "Build modular architecture for future scalability: support for new solution pages, landing pages, case study uploads, video testimonials, partner logos",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-121",
+      "summary": "Implement CTA strategy: every major page must include Top CTA, Mid-page CTA, and Bottom CTA. Primary conversion event: Demo Request",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-122",
+      "summary": "Prioritize content hierarchy: RCM gets highest visual weight and best placement, followed by Technology Integration and Ecosystem Network",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-134",
+      "summary": "Add backend data structure in backend/main.mo to store demo booking requests with fields: name, hospitalName, designation, mobile, email, city, message, timestamp, and status",
+      "reqIds": [
+        "REQ-192"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-135",
+      "summary": "Implement backend method in backend/main.mo to save demo booking form submissions with automatic timestamp generation",
+      "reqIds": [
+        "REQ-193"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-140",
+      "summary": "Add backend data structure in backend/main.mo to store blog articles with fields: title, slug, excerpt, content, category, tags, author, publishDate, metaTitle, metaDescription, and published status",
+      "reqIds": [
+        "REQ-198"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-141",
+      "summary": "Implement backend methods in backend/main.mo to create, update, retrieve, and delete blog articles, with query methods supporting filtering by category and search terms",
+      "reqIds": [
+        "REQ-199"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-155",
+      "summary": "Update the Admin Dashboard page (frontend/src/pages/AdminDashboard.tsx) to include a section for reviewing demo booking requests with approve/contact/archive actions",
+      "reqIds": [
+        "REQ-213"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-156",
+      "summary": "Implement backend query method in backend/main.mo to retrieve all demo booking requests with optional filtering by status, accessible only to admin users",
+      "reqIds": [
+        "REQ-214"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-157",
+      "summary": "Update all forms across the site to use Royal Teal background color with Royal White text",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-158",
+      "summary": "Update onboarding page title to 'Healthcare Revenue Cycle Management - Complete 10-Phase Journey from Patient Registration to Payment Closure - AI Health Zon'",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-159",
+      "summary": "Create Members page displaying photo grid of all network members with type/category labels and click-to-view-profile functionality",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-167",
+      "summary": "Update global CSS in frontend/index.css to define form styling rules that set Royal Teal background color and Royal White text color for all form elements (input, select, textarea, button[type=submit])",
+      "reqIds": [
+        "REQ-223"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-168",
+      "summary": "Update the Careers page form styling (frontend/src/pages/Careers.tsx) to ensure the dropdown/select role picker displays with Royal Teal background and white text, matching the Contact form styling across all form elements including labels, input fields, select dropdowns, and submit buttons",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-169",
+      "summary": "Update the Vendors page (frontend/src/pages/Vendors.tsx) category select dropdown to display with Royal Teal background and white text for the dropdown options when the menu is open",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-170",
+      "summary": "Update the NGO Listing page (frontend/src/pages/NgoListing.tsx) focus area select dropdown to display with Royal Teal background and white text for the dropdown options when the menu is open",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-171",
+      "summary": "Update the Contact page (frontend/src/pages/Contact.tsx) to display info@aihealthzon.com as the primary contact email address instead of any existing email",
+      "reqIds": [
+        "REQ-229"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-172",
+      "summary": "Update images on the Healthcare Support System page (frontend/src/pages/HealthcareSupportSystem.tsx) to match the 12 service category headings with high-quality, contextually relevant images representing each healthcare support service area",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-173",
+      "summary": "Update Home page images to HD or 4K resolution",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-174",
+      "summary": "Create Knowledge Board page displaying information about hospital licenses and regulatory requirements, replacing the existing Dashboard page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-175",
+      "summary": "Add content section on Knowledge Board covering hospital license types and requirements based on reference: https://www.researchgate.net/publication/398379014_LICENCE_REQUIRED_FOR_HOSPITALS",
       "reqIds": [],
       "status": "pending"
     }

@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-all-dropdown-select-components-across-the-application-to-display-option-text-in-white-color-when-the-dropdown-menu-is-open",
-      "featureTitle": "Update all dropdown/select components across the application to display option text in white color when the dropdown menu is open",
+      "featureId": "feature-create-a-knowledgeboard-page-component-at-frontend-src-pages-knowledgeboard-tsx-that-displays-comprehensive-information-about-hospital-licenses-and-regulatory-requirements",
+      "featureTitle": "Create a KnowledgeBoard page component at frontend/src/pages/KnowledgeBoard.tsx that displays comprehensive information about hospital licenses and regulatory requirements",
       "files": [
-        "frontend/src/index.css"
+        "frontend/src/pages/KnowledgeBoard.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -18,15 +18,15 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-177"
+        "REQ-236"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-all-dropdown-select-components-across-the-application-to-display-royal-teal-background-color-for-the-entire-dropdown-menu-when-opened",
-      "featureTitle": "Update all dropdown/select components across the application to display Royal Teal background color for the entire dropdown menu when opened",
+      "featureId": "feature-display-hospital-license-types-and-categories-on-the-knowledge-board-page-including-license-classifications-regulatory-bodies-and-compliance-requirements-based-on-the-reference-document-from-https-www-researchgate-net-publication-398379014-licence-required-for-hospitals",
+      "featureTitle": "Display hospital license types and categories on the Knowledge Board page including license classifications, regulatory bodies, and compliance requirements based on the reference document from https://www.researchgate.net/publication/398379014_LICENCE_REQUIRED_FOR_HOSPITALS",
       "files": [
-        "frontend/src/index.css"
+        "frontend/src/pages/KnowledgeBoard.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -39,15 +39,15 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-178"
+        "REQ-237"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-global-css-in-frontend-index-css-to-define-dropdown-styling-rules-that-set-white-text-color-and-royal-teal-background-for-all-select-dropdown-option-elements",
-      "featureTitle": "Update global CSS in frontend/index.css to define dropdown styling rules that set white text color and Royal Teal background for all select/dropdown option elements",
+      "featureId": "feature-display-regulatory-compliance-requirements-on-the-knowledge-board-page-covering-hospital-registration-accreditation-standards-nabh-iso-and-legal-obligations-for-healthcare-facilities",
+      "featureTitle": "Display regulatory compliance requirements on the Knowledge Board page covering hospital registration, accreditation standards (NABH, ISO), and legal obligations for healthcare facilities",
       "files": [
-        "frontend/src/index.css"
+        "frontend/src/pages/KnowledgeBoard.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -60,15 +60,15 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-179"
+        "REQ-238"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-tailwind-configuration-in-frontend-tailwind-config-js-to-ensure-royal-teal-color-is-available-for-dropdown-styling-and-matches-existing-color-tokens",
-      "featureTitle": "Update Tailwind configuration in frontend/tailwind.config.js to ensure Royal Teal color is available for dropdown styling and matches existing color tokens",
+      "featureId": "feature-update-the-route-configuration-in-frontend-src-app-tsx-to-replace-the-existing-dashboard-route-with-a-knowledge-board-route-that-renders-the-knowledgeboard-page-component",
+      "featureTitle": "Update the route configuration in frontend/src/App.tsx to replace the existing '/dashboard' route with a '/knowledge-board' route that renders the KnowledgeBoard page component",
       "files": [
-        "frontend/tailwind.config.js"
+        "frontend/src/App.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -81,7 +81,70 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-180"
+        "REQ-239"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-navigation-component-frontend-src-components-navigation-tsx-to-replace-the-dashboard-link-with-a-knowledge-board-link-that-routes-to-knowledge-board",
+      "featureTitle": "Update the Navigation component (frontend/src/components/Navigation.tsx) to replace the 'Dashboard' link with a 'Knowledge Board' link that routes to '/knowledge-board'",
+      "files": [
+        "frontend/src/components/Navigation.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-240"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-the-existing-enterprise-design-theme-white-background-deep-blue-text-professional-typography-to-the-knowledge-board-page-ensuring-visual-consistency-with-other-pages",
+      "featureTitle": "Apply the existing enterprise design theme (White background, Deep Blue text, professional typography) to the Knowledge Board page ensuring visual consistency with other pages",
+      "files": [
+        "frontend/src/pages/KnowledgeBoard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-241"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-multiple-ctas-on-the-knowledge-board-page-including-top-cta-in-hero-section-mid-page-cta-in-content-area-and-bottom-cta-before-footer-all-encouraging-demo-bookings",
+      "featureTitle": "Add multiple CTAs on the Knowledge Board page including top CTA in hero section, mid-page CTA in content area, and bottom CTA before footer, all encouraging demo bookings",
+      "files": [
+        "frontend/src/pages/KnowledgeBoard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-242"
       ],
       "confidence": "high"
     }

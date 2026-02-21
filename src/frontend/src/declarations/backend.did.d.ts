@@ -18,12 +18,39 @@ export interface AmbulanceRequest {
   'name' : string,
   'location' : Location,
 }
+export interface BlogArticle {
+  'metaDescription' : string,
+  'title' : string,
+  'content' : string,
+  'publishDate' : Time,
+  'published' : boolean,
+  'slug' : string,
+  'tags' : Array<string>,
+  'author' : string,
+  'metaTitle' : string,
+  'excerpt' : string,
+  'category' : string,
+}
 export interface ContactInfo {
   'email' : string,
   'website' : string,
   'address' : string,
   'phone' : string,
 }
+export interface DemoBookingRequest {
+  'status' : DemoBookingStatus,
+  'city' : string,
+  'name' : string,
+  'designation' : string,
+  'email' : string,
+  'message' : string,
+  'timestamp' : Time,
+  'hospitalName' : string,
+  'mobile' : string,
+}
+export type DemoBookingStatus = { 'pending' : null } |
+  { 'completed' : null } |
+  { 'contacted' : null };
 export interface DocumentMetadata {
   'status' : string,
   'blob' : ExternalBlob,
@@ -256,6 +283,7 @@ export interface _SERVICE {
   'approveNgo' : ActorMethod<[string], undefined>,
   'approveVendor' : ActorMethod<[string], undefined>,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
+  'createBlogArticle' : ActorMethod<[BlogArticle], undefined>,
   'createCorporateHealthcare' : ActorMethod<[Hospital], undefined>,
   'createHealthRecord' : ActorMethod<[HealthRecord], undefined>,
   'createRecord' : ActorMethod<[MedicalRecord], undefined>,
@@ -271,6 +299,11 @@ export interface _SERVICE {
       'services' : Array<TourismService>,
     }
   >,
+  'getAllBlogArticles' : ActorMethod<[], Array<BlogArticle>>,
+  'getAllDemoBookingRequests' : ActorMethod<
+    [[] | [DemoBookingStatus]],
+    Array<DemoBookingRequest>
+  >,
   'getAllHospitals' : ActorMethod<[], Array<Hospital>>,
   'getAllNgos' : ActorMethod<[], Array<Ngo>>,
   'getAllPatientJourneySampleDocuments' : ActorMethod<
@@ -281,6 +314,8 @@ export interface _SERVICE {
   'getAllTourismServices' : ActorMethod<[], Array<TourismService>>,
   'getAllVendors' : ActorMethod<[], Array<Vendor>>,
   'getApprovedStakeholderLocations' : ActorMethod<[], Array<Location>>,
+  'getBlogArticle' : ActorMethod<[string], [] | [BlogArticle]>,
+  'getBlogArticlesByCategory' : ActorMethod<[string], Array<BlogArticle>>,
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
   'getHealthRecord' : ActorMethod<[string], HealthRecord>,
@@ -326,6 +361,21 @@ export interface _SERVICE {
   'rejectNgo' : ActorMethod<[string], undefined>,
   'rejectVendor' : ActorMethod<[string], undefined>,
   'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
+  'saveDemoBookingRequest' : ActorMethod<
+    [
+      {
+        'city' : string,
+        'name' : string,
+        'designation' : string,
+        'email' : string,
+        'message' : string,
+        'hospitalName' : string,
+        'mobile' : string,
+      },
+    ],
+    undefined
+  >,
+  'searchBlogArticles' : ActorMethod<[string], Array<BlogArticle>>,
   'searchRecords' : ActorMethod<[RecordFilter], Array<MedicalRecord>>,
   'searchResearchProjects' : ActorMethod<
     [ResearchFilter],
@@ -338,6 +388,7 @@ export interface _SERVICE {
   >,
   'submitNgoRegistration' : ActorMethod<[NgoRequest], undefined>,
   'submitVendorRegistration' : ActorMethod<[VendorRequest], undefined>,
+  'updateBlogArticle' : ActorMethod<[string, BlogArticle], undefined>,
   'updateRecord' : ActorMethod<[MedicalRecord], undefined>,
   'uploadDocument' : ActorMethod<
     [string, string, string, ExternalBlob],

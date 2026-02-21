@@ -144,36 +144,39 @@ export default function NgoListing() {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="name">Organization Name *</Label>
-                      <Input
-                        id="name"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="registrationNo">Registration Number *</Label>
-                      <Input
-                        id="registrationNo"
-                        value={formData.registrationNo}
-                        onChange={(e) => setFormData({ ...formData, registrationNo: e.target.value })}
-                        required
-                      />
-                    </div>
+                  <div>
+                    <Label htmlFor="name">Organization Name *</Label>
+                    <Input
+                      id="name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="registrationNo">Registration Number *</Label>
+                    <Input
+                      id="registrationNo"
+                      value={formData.registrationNo}
+                      onChange={(e) => setFormData({ ...formData, registrationNo: e.target.value })}
+                      required
+                    />
                   </div>
 
                   <div>
                     <Label htmlFor="focusArea">Focus Area *</Label>
                     <Select value={formData.focusArea} onValueChange={(value) => setFormData({ ...formData, focusArea: value })}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select focus area" />
+                      <SelectTrigger className="bg-[#006B7D] text-white border-white/30 focus:border-white [&>span]:text-white">
+                        <SelectValue placeholder="Select focus area" className="text-white placeholder:text-white/70" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="bg-[#006B7D] text-white border-white/30">
                         {focusAreas.map((area) => (
-                          <SelectItem key={area} value={area}>
+                          <SelectItem 
+                            key={area} 
+                            value={area}
+                            className="text-white focus:bg-white/20 focus:text-white"
+                          >
                             {area}
                           </SelectItem>
                         ))}
@@ -280,32 +283,29 @@ export default function NgoListing() {
 
           {/* NGO Directory */}
           <div className="max-w-6xl mx-auto">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-3xl font-bold">Verified NGOs</h2>
-              <Filter className="h-5 w-5 text-muted-foreground" />
-            </div>
-
-            {/* Filters */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-              <div>
-                <Label htmlFor="locationFilter">Filter by Location</Label>
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+              <h2 className="text-3xl font-bold">NGO Directory</h2>
+              <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
                 <Input
-                  id="locationFilter"
-                  placeholder="Enter city..."
+                  placeholder="Filter by location..."
                   value={locationFilter}
                   onChange={(e) => setLocationFilter(e.target.value)}
+                  className="w-full sm:w-64"
                 />
-              </div>
-              <div>
-                <Label htmlFor="focusAreaFilter">Filter by Focus Area</Label>
                 <Select value={focusAreaFilter} onValueChange={setFocusAreaFilter}>
-                  <SelectTrigger>
-                    <SelectValue />
+                  <SelectTrigger className="w-full sm:w-48 bg-[#006B7D] text-white border-white/30 focus:border-white [&>span]:text-white">
+                    <SelectValue placeholder="All Focus Areas" className="text-white" />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Focus Areas</SelectItem>
+                  <SelectContent className="bg-[#006B7D] text-white border-white/30">
+                    <SelectItem value="all" className="text-white focus:bg-white/20 focus:text-white">
+                      All Focus Areas
+                    </SelectItem>
                     {focusAreas.map((area) => (
-                      <SelectItem key={area} value={area}>
+                      <SelectItem 
+                        key={area} 
+                        value={area}
+                        className="text-white focus:bg-white/20 focus:text-white"
+                      >
                         {area}
                       </SelectItem>
                     ))}
@@ -314,7 +314,6 @@ export default function NgoListing() {
               </div>
             </div>
 
-            {/* NGO List */}
             {isLoading ? (
               <p className="text-center text-muted-foreground">Loading NGOs...</p>
             ) : filteredNgos.length === 0 ? (
@@ -327,7 +326,7 @@ export default function NgoListing() {
                       <CardTitle className="flex items-center justify-between">
                         <span>{ngo.name}</span>
                         {ngo.verified && (
-                          <Heart className="h-5 w-5 text-primary" />
+                          <Heart className="h-5 w-5 text-primary fill-primary" />
                         )}
                       </CardTitle>
                       <CardDescription>{ngo.focusArea}</CardDescription>
@@ -335,10 +334,10 @@ export default function NgoListing() {
                     <CardContent>
                       <div className="space-y-2 text-sm">
                         <p className="text-muted-foreground">
-                          <strong>Services:</strong> {ngo.services.join(', ')}
+                          <strong>Registration:</strong> {ngo.registrationNo}
                         </p>
                         <p className="text-muted-foreground">
-                          <strong>Registration:</strong> {ngo.registrationNo}
+                          <strong>Services:</strong> {ngo.services.join(', ')}
                         </p>
                         <p className="text-muted-foreground">
                           <strong>Location:</strong> {ngo.location.city}, {ngo.location.state}

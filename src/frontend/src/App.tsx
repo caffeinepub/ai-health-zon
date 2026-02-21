@@ -1,26 +1,36 @@
 import { RouterProvider, createRouter, createRoute, createRootRoute } from '@tanstack/react-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { InternetIdentityProvider } from './hooks/useInternetIdentity';
+import { Toaster } from './components/ui/sonner';
 import Layout from './components/Layout';
-import Onboarding from './pages/Onboarding';
 import Home from './pages/Home';
 import AboutUs from './pages/AboutUs';
 import Solutions from './pages/Solutions';
-import HealthcareSupportSystem from './pages/HealthcareSupportSystem';
-import NetworkDirectory from './pages/NetworkDirectory';
-import NetworkMap from './pages/NetworkMap';
+import Onboarding from './pages/Onboarding';
 import Careers from './pages/Careers';
 import Vendors from './pages/Vendors';
 import AmbulanceServices from './pages/AmbulanceServices';
 import NgoListing from './pages/NgoListing';
-import Dashboard from './pages/Dashboard';
+import NetworkDirectory from './pages/NetworkDirectory';
+import NetworkMap from './pages/NetworkMap';
+import KnowledgeBoard from './pages/KnowledgeBoard';
 import AdminDashboard from './pages/AdminDashboard';
 import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsConditions from './pages/TermsConditions';
 import RefundPolicy from './pages/RefundPolicy';
-import DocumentHome from './pages/DocumentHome';
-import Documents from './pages/Documents';
-import DocumentViewer from './pages/DocumentViewer';
+import HealthcareSupportSystem from './pages/HealthcareSupportSystem';
 import PatientJourney from './pages/PatientJourney';
+import Members from './pages/Members';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -29,12 +39,6 @@ const rootRoute = createRootRoute({
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: Onboarding,
-});
-
-const homeRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/home',
   component: Home,
 });
 
@@ -50,22 +54,10 @@ const solutionsRoute = createRoute({
   component: Solutions,
 });
 
-const healthcareSupportRoute = createRoute({
+const onboardingRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/healthcare-support',
-  component: HealthcareSupportSystem,
-});
-
-const directoryRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/directory',
-  component: NetworkDirectory,
-});
-
-const networkMapRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/network-map',
-  component: NetworkMap,
+  path: '/onboarding',
+  component: Onboarding,
 });
 
 const careersRoute = createRoute({
@@ -86,19 +78,37 @@ const ambulanceRoute = createRoute({
   component: AmbulanceServices,
 });
 
-const ngosRoute = createRoute({
+const ngoRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/ngos',
   component: NgoListing,
 });
 
-const dashboardRoute = createRoute({
+const networkDirectoryRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/dashboard',
-  component: Dashboard,
+  path: '/network-directory',
+  component: NetworkDirectory,
 });
 
-const adminRoute = createRoute({
+const networkMapRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/network-map',
+  component: NetworkMap,
+});
+
+const membersRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/members',
+  component: Members,
+});
+
+const knowledgeBoardRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/knowledge-board',
+  component: KnowledgeBoard,
+});
+
+const adminDashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin',
   component: AdminDashboard,
@@ -112,38 +122,26 @@ const contactRoute = createRoute({
 
 const privacyRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/privacy',
+  path: '/privacy-policy',
   component: PrivacyPolicy,
 });
 
 const termsRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/terms',
+  path: '/terms-conditions',
   component: TermsConditions,
 });
 
 const refundRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/refund',
+  path: '/refund-policy',
   component: RefundPolicy,
 });
 
-const documentHomeRoute = createRoute({
+const supportSystemRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/document-home',
-  component: DocumentHome,
-});
-
-const documentsRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/documents',
-  component: Documents,
-});
-
-const documentViewerRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/documents/$documentId',
-  component: DocumentViewer,
+  path: '/healthcare-support-system',
+  component: HealthcareSupportSystem,
 });
 
 const patientJourneyRoute = createRoute({
@@ -154,25 +152,23 @@ const patientJourneyRoute = createRoute({
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
-  homeRoute,
   aboutRoute,
   solutionsRoute,
-  healthcareSupportRoute,
-  directoryRoute,
-  networkMapRoute,
+  onboardingRoute,
   careersRoute,
   vendorsRoute,
   ambulanceRoute,
-  ngosRoute,
-  dashboardRoute,
-  adminRoute,
+  ngoRoute,
+  networkDirectoryRoute,
+  networkMapRoute,
+  membersRoute,
+  knowledgeBoardRoute,
+  adminDashboardRoute,
   contactRoute,
   privacyRoute,
   termsRoute,
   refundRoute,
-  documentHomeRoute,
-  documentsRoute,
-  documentViewerRoute,
+  supportSystemRoute,
   patientJourneyRoute,
 ]);
 
@@ -185,5 +181,12 @@ declare module '@tanstack/react-router' {
 }
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <InternetIdentityProvider>
+        <RouterProvider router={router} />
+        <Toaster />
+      </InternetIdentityProvider>
+    </QueryClientProvider>
+  );
 }

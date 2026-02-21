@@ -1,29 +1,21 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useActor } from './useActor';
 import type {
-  HealthcareProfessional,
-  Hospital,
-  Vendor,
-  Ngo,
-  UserProfile,
-  Location,
   HealthcareProfessionalRequest,
   VendorRequest,
   NgoRequest,
   AmbulanceRequest,
-  ProcessedDocument,
-  DocumentSection,
-  PatientJourneySampleDocument,
-  DocumentPhase,
-  DocumentType,
-  DocumentMetadata,
+  Location,
+  HealthcareProfessional,
+  Vendor,
+  Ngo,
 } from '../backend';
-import { ExternalBlob } from '../backend';
 
+// User Profile Queries
 export function useGetCallerUserProfile() {
   const { actor, isFetching: actorFetching } = useActor();
 
-  const query = useQuery<UserProfile | null>({
+  const query = useQuery({
     queryKey: ['currentUserProfile'],
     queryFn: async () => {
       if (!actor) throw new Error('Actor not available');
@@ -45,7 +37,7 @@ export function useSaveCallerUserProfile() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (profile: UserProfile) => {
+    mutationFn: async (profile: any) => {
       if (!actor) throw new Error('Actor not available');
       return actor.saveCallerUserProfile(profile);
     },
@@ -55,11 +47,12 @@ export function useSaveCallerUserProfile() {
   });
 }
 
+// Admin Check
 export function useIsCallerAdmin() {
   const { actor, isFetching } = useActor();
 
-  return useQuery<boolean>({
-    queryKey: ['isAdmin'],
+  return useQuery({
+    queryKey: ['isCallerAdmin'],
     queryFn: async () => {
       if (!actor) return false;
       return actor.isCallerAdmin();
@@ -68,98 +61,7 @@ export function useIsCallerAdmin() {
   });
 }
 
-export function useGetAllHospitals() {
-  const { actor, isFetching } = useActor();
-
-  return useQuery<Hospital[]>({
-    queryKey: ['hospitals'],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getAllHospitals();
-    },
-    enabled: !!actor && !isFetching,
-  });
-}
-
-export function useGetHealthcareProfessionalsByRole(role: string) {
-  const { actor, isFetching } = useActor();
-
-  return useQuery<HealthcareProfessional[]>({
-    queryKey: ['professionals', role],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getHealthcareProfessionalsByRole(role);
-    },
-    enabled: !!actor && !isFetching && !!role,
-  });
-}
-
-export function useGetHealthcareProfessionalsByLocation(city: string) {
-  const { actor, isFetching } = useActor();
-
-  return useQuery<HealthcareProfessional[]>({
-    queryKey: ['professionals', 'location', city],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getHealthcareProfessionalsByLocation(city);
-    },
-    enabled: !!actor && !isFetching && !!city,
-  });
-}
-
-export function useGetAllVendors() {
-  const { actor, isFetching } = useActor();
-
-  return useQuery<Vendor[]>({
-    queryKey: ['vendors'],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getAllVendors();
-    },
-    enabled: !!actor && !isFetching,
-  });
-}
-
-export function useGetAllNgos() {
-  const { actor, isFetching } = useActor();
-
-  return useQuery<Ngo[]>({
-    queryKey: ['ngos'],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getAllNgos();
-    },
-    enabled: !!actor && !isFetching,
-  });
-}
-
-export function useFilterDataByLocation(location: Location | null) {
-  const { actor, isFetching } = useActor();
-
-  return useQuery({
-    queryKey: ['filterByLocation', location],
-    queryFn: async () => {
-      if (!actor || !location) return null;
-      return actor.filterDataByLocation(location);
-    },
-    enabled: !!actor && !isFetching && !!location,
-  });
-}
-
-export function useGetApprovedStakeholderLocations() {
-  const { actor, isFetching } = useActor();
-
-  return useQuery<Location[]>({
-    queryKey: ['approvedStakeholderLocations'],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getApprovedStakeholderLocations();
-    },
-    enabled: !!actor && !isFetching,
-  });
-}
-
-// Registration Request Submission Mutations
+// Registration Request Mutations
 export function useSubmitHealthcareProfessionalRegistration() {
   const { actor } = useActor();
   const queryClient = useQueryClient();
@@ -220,11 +122,11 @@ export function useSubmitAmbulanceRegistration() {
   });
 }
 
-// Pending Requests Queries
-export function useGetPendingHealthcareProfessionalRequests() {
+// Admin Queries - Pending Requests
+export function useGetPendingHealthcareProfessionals() {
   const { actor, isFetching } = useActor();
 
-  return useQuery<HealthcareProfessionalRequest[]>({
+  return useQuery({
     queryKey: ['pendingHealthcareProfessionals'],
     queryFn: async () => {
       if (!actor) return [];
@@ -234,10 +136,10 @@ export function useGetPendingHealthcareProfessionalRequests() {
   });
 }
 
-export function useGetPendingVendorRequests() {
+export function useGetPendingVendors() {
   const { actor, isFetching } = useActor();
 
-  return useQuery<VendorRequest[]>({
+  return useQuery({
     queryKey: ['pendingVendors'],
     queryFn: async () => {
       if (!actor) return [];
@@ -247,10 +149,10 @@ export function useGetPendingVendorRequests() {
   });
 }
 
-export function useGetPendingNgoRequests() {
+export function useGetPendingNgos() {
   const { actor, isFetching } = useActor();
 
-  return useQuery<NgoRequest[]>({
+  return useQuery({
     queryKey: ['pendingNgos'],
     queryFn: async () => {
       if (!actor) return [];
@@ -260,10 +162,10 @@ export function useGetPendingNgoRequests() {
   });
 }
 
-export function useGetPendingAmbulanceRequests() {
+export function useGetPendingAmbulances() {
   const { actor, isFetching } = useActor();
 
-  return useQuery<AmbulanceRequest[]>({
+  return useQuery({
     queryKey: ['pendingAmbulances'],
     queryFn: async () => {
       if (!actor) return [];
@@ -271,17 +173,6 @@ export function useGetPendingAmbulanceRequests() {
     },
     enabled: !!actor && !isFetching,
   });
-}
-
-export function useGetPendingRequestCount() {
-  const { data: professionals = [] } = useGetPendingHealthcareProfessionalRequests();
-  const { data: vendors = [] } = useGetPendingVendorRequests();
-  const { data: ngos = [] } = useGetPendingNgoRequests();
-  const { data: ambulances = [] } = useGetPendingAmbulanceRequests();
-
-  return {
-    data: professionals.length + vendors.length + ngos.length + ambulances.length,
-  };
 }
 
 // Approval/Rejection Mutations
@@ -296,6 +187,8 @@ export function useApproveHealthcareProfessional() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingHealthcareProfessionals'] });
+      queryClient.invalidateQueries({ queryKey: ['healthcareProfessionals'] });
+      queryClient.invalidateQueries({ queryKey: ['approvedMembers'] });
     },
   });
 }
@@ -327,6 +220,7 @@ export function useApproveVendor() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingVendors'] });
       queryClient.invalidateQueries({ queryKey: ['vendors'] });
+      queryClient.invalidateQueries({ queryKey: ['approvedMembers'] });
     },
   });
 }
@@ -358,6 +252,7 @@ export function useApproveNgo() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingNgos'] });
       queryClient.invalidateQueries({ queryKey: ['ngos'] });
+      queryClient.invalidateQueries({ queryKey: ['approvedMembers'] });
     },
   });
 }
@@ -407,127 +302,101 @@ export function useRejectAmbulance() {
   });
 }
 
-// Document Management Hooks
-export function useUploadDocument() {
-  const { actor } = useActor();
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async ({
-      id,
-      filename,
-      filetype,
-      blob,
-    }: {
-      id: string;
-      filename: string;
-      filetype: string;
-      blob: ExternalBlob;
-    }) => {
-      if (!actor) throw new Error('Actor not available');
-      return actor.uploadDocument(id, filename, filetype, blob);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['documents'] });
-    },
-  });
-}
-
-// Type for document with metadata and id
-type DocumentWithMetadata = {
-  id: string;
-  metadata: DocumentMetadata;
-};
-
-export function useGetDocuments() {
+// Directory Queries
+export function useGetHealthcareProfessionalsByRole(role: string) {
   const { actor, isFetching } = useActor();
 
-  return useQuery<DocumentWithMetadata[]>({
-    queryKey: ['documents'],
+  return useQuery({
+    queryKey: ['healthcareProfessionals', role],
     queryFn: async () => {
       if (!actor) return [];
-      // Since the backend doesn't have a getDocuments method, we return empty array
-      // In a real implementation, you would need to add this method to the backend
-      return [];
+      return actor.getHealthcareProfessionalsByRole(role);
     },
     enabled: !!actor && !isFetching,
   });
 }
 
-export function useProcessDocument() {
-  const { actor } = useActor();
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async ({
-      id,
-      sections,
-      summary,
-    }: {
-      id: string;
-      sections: DocumentSection[];
-      summary: string;
-    }) => {
-      if (!actor) throw new Error('Actor not available');
-      return actor.processDocument(id, sections, summary);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['documents'] });
-      queryClient.invalidateQueries({ queryKey: ['processedDocument'] });
-    },
-  });
-}
-
-export function useGetProcessedDocument(id: string) {
+export function useGetAllVendors() {
   const { actor, isFetching } = useActor();
 
-  return useQuery<ProcessedDocument | null>({
-    queryKey: ['processedDocument', id],
+  return useQuery({
+    queryKey: ['vendors'],
     queryFn: async () => {
-      if (!actor) return null;
-      return actor.getProcessedDocument(id);
+      if (!actor) return [];
+      return actor.getAllVendors();
     },
-    enabled: !!actor && !isFetching && !!id,
+    enabled: !!actor && !isFetching,
   });
 }
 
-// Patient Journey Sample Document Hooks
-export function useUploadPatientJourneySampleDocument() {
+export function useGetAllNgos() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery({
+    queryKey: ['ngos'],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getAllNgos();
+    },
+    enabled: !!actor && !isFetching,
+  });
+}
+
+export function useGetAllHospitals() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery({
+    queryKey: ['hospitals'],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getAllHospitals();
+    },
+    enabled: !!actor && !isFetching,
+  });
+}
+
+// Location-based Query
+export function useGetApprovedStakeholderLocations() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<Location[]>({
+    queryKey: ['approvedStakeholderLocations'],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getApprovedStakeholderLocations();
+    },
+    enabled: !!actor && !isFetching,
+  });
+}
+
+// Demo Booking
+export function useSaveDemoBookingRequest() {
   const { actor } = useActor();
-  const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({
-      id,
-      phase,
-      documentType,
-      hospitalId,
-      filename,
-      blob,
-    }: {
-      id: string;
-      phase: DocumentPhase;
-      documentType: DocumentType;
-      hospitalId: string;
-      filename: string;
-      blob: ExternalBlob;
+    mutationFn: async (request: {
+      name: string;
+      hospitalName: string;
+      designation: string;
+      mobile: string;
+      email: string;
+      city: string;
+      message: string;
     }) => {
       if (!actor) throw new Error('Actor not available');
-      return actor.uploadPatientJourneySampleDocument(id, phase, documentType, hospitalId, filename, blob);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['patientJourneySampleDocuments'] });
+      return actor.saveDemoBookingRequest(request);
     },
   });
 }
 
+// Patient Journey Sample Documents
 export function useGetHospitalPatientJourneySampleDocuments(hospitalId: string, phaseNumber?: number) {
   const { actor, isFetching } = useActor();
 
-  return useQuery<PatientJourneySampleDocument[]>({
+  return useQuery({
     queryKey: ['patientJourneySampleDocuments', hospitalId, phaseNumber],
     queryFn: async () => {
-      if (!actor || !hospitalId) return [];
+      if (!actor) return [];
       return actor.getHospitalPatientJourneySampleDocuments(
         hospitalId,
         phaseNumber !== undefined ? BigInt(phaseNumber) : null
@@ -537,14 +406,45 @@ export function useGetHospitalPatientJourneySampleDocuments(hospitalId: string, 
   });
 }
 
-export function useGetAllPatientJourneySampleDocuments() {
+// Unified Members Query
+export function useGetAllApprovedMembers() {
   const { actor, isFetching } = useActor();
 
-  return useQuery<PatientJourneySampleDocument[]>({
-    queryKey: ['allPatientJourneySampleDocuments'],
+  return useQuery({
+    queryKey: ['approvedMembers'],
     queryFn: async () => {
       if (!actor) return [];
-      return actor.getAllPatientJourneySampleDocuments();
+
+      // Fetch all approved stakeholders
+      const [professionals, vendors, ngos] = await Promise.all([
+        actor.getHealthcareProfessionalsByRole(''),
+        actor.getAllVendors(),
+        actor.getAllNgos(),
+      ]);
+
+      // Filter for verified members only and create unified structure
+      const unifiedMembers = [
+        ...professionals
+          .filter((p: HealthcareProfessional) => p.verified)
+          .map((p: HealthcareProfessional) => ({
+            memberType: 'professional' as const,
+            data: p,
+          })),
+        ...vendors
+          .filter((v: Vendor) => v.verified)
+          .map((v: Vendor) => ({
+            memberType: 'vendor' as const,
+            data: v,
+          })),
+        ...ngos
+          .filter((n: Ngo) => n.verified)
+          .map((n: Ngo) => ({
+            memberType: 'ngo' as const,
+            data: n,
+          })),
+      ];
+
+      return unifiedMembers;
     },
     enabled: !!actor && !isFetching,
   });

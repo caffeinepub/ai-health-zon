@@ -87,6 +87,19 @@ export interface DocumentMetadata {
     uploader: Principal;
     uploadTime: bigint;
 }
+export interface BlogArticle {
+    metaDescription: string;
+    title: string;
+    content: string;
+    publishDate: Time;
+    published: boolean;
+    slug: string;
+    tags: Array<string>;
+    author: string;
+    metaTitle: string;
+    excerpt: string;
+    category: string;
+}
 export interface ListContent {
     items: Array<string>;
 }
@@ -109,6 +122,17 @@ export interface ResearchProject {
     fundingSource: string;
     projectId: string;
     abstract: string;
+}
+export interface DemoBookingRequest {
+    status: DemoBookingStatus;
+    city: string;
+    name: string;
+    designation: string;
+    email: string;
+    message: string;
+    timestamp: Time;
+    hospitalName: string;
+    mobile: string;
 }
 export interface Vendor {
     id: string;
@@ -223,6 +247,11 @@ export interface HealthcareProfessionalRequest {
     specialties: Array<string>;
     location: Location;
 }
+export enum DemoBookingStatus {
+    pending = "pending",
+    completed = "completed",
+    contacted = "contacted"
+}
 export enum RequestStatus {
     pending = "pending",
     approved = "approved",
@@ -244,6 +273,7 @@ export interface backendInterface {
     approveNgo(id: string): Promise<void>;
     approveVendor(id: string): Promise<void>;
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
+    createBlogArticle(article: BlogArticle): Promise<void>;
     createCorporateHealthcare(hospital: Hospital): Promise<void>;
     createHealthRecord(record: HealthRecord): Promise<void>;
     createRecord(record: MedicalRecord): Promise<void>;
@@ -256,6 +286,8 @@ export interface backendInterface {
         hospitals: Array<Hospital>;
         services: Array<TourismService>;
     }>;
+    getAllBlogArticles(): Promise<Array<BlogArticle>>;
+    getAllDemoBookingRequests(statusFilter: DemoBookingStatus | null): Promise<Array<DemoBookingRequest>>;
     getAllHospitals(): Promise<Array<Hospital>>;
     getAllNgos(): Promise<Array<Ngo>>;
     getAllPatientJourneySampleDocuments(): Promise<Array<PatientJourneySampleDocument>>;
@@ -263,6 +295,8 @@ export interface backendInterface {
     getAllTourismServices(): Promise<Array<TourismService>>;
     getAllVendors(): Promise<Array<Vendor>>;
     getApprovedStakeholderLocations(): Promise<Array<Location>>;
+    getBlogArticle(slug: string): Promise<BlogArticle | null>;
+    getBlogArticlesByCategory(category: string): Promise<Array<BlogArticle>>;
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
     getHealthRecord(recordId: string): Promise<HealthRecord>;
@@ -290,12 +324,23 @@ export interface backendInterface {
     rejectNgo(id: string): Promise<void>;
     rejectVendor(id: string): Promise<void>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
+    saveDemoBookingRequest(request: {
+        city: string;
+        name: string;
+        designation: string;
+        email: string;
+        message: string;
+        hospitalName: string;
+        mobile: string;
+    }): Promise<void>;
+    searchBlogArticles(searchTerm: string): Promise<Array<BlogArticle>>;
     searchRecords(filter: RecordFilter): Promise<Array<MedicalRecord>>;
     searchResearchProjects(filter: ResearchFilter): Promise<Array<ResearchProject>>;
     submitAmbulanceRegistration(request: AmbulanceRequest): Promise<void>;
     submitHealthcareProfessionalRegistration(request: HealthcareProfessionalRequest): Promise<void>;
     submitNgoRegistration(request: NgoRequest): Promise<void>;
     submitVendorRegistration(request: VendorRequest): Promise<void>;
+    updateBlogArticle(slug: string, updatedArticle: BlogArticle): Promise<void>;
     updateRecord(record: MedicalRecord): Promise<void>;
     uploadDocument(id: string, filename: string, filetype: string, blob: ExternalBlob): Promise<void>;
     uploadPatientJourneySampleDocument(id: string, phase: DocumentPhase, documentType: DocumentType, hospitalId: string, filename: string, blob: ExternalBlob): Promise<void>;

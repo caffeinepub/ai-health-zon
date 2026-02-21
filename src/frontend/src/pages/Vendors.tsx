@@ -170,12 +170,16 @@ export default function Vendors() {
                     <div>
                       <Label htmlFor="category">Category *</Label>
                       <Select value={formData.category} onValueChange={(value) => setFormData({ ...formData, category: value })}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select category" />
+                        <SelectTrigger className="bg-[#006B7D] text-white border-white/30 focus:border-white [&>span]:text-white">
+                          <SelectValue placeholder="Select category" className="text-white placeholder:text-white/70" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-[#006B7D] text-white border-white/30">
                           {categories.map((cat) => (
-                            <SelectItem key={cat} value={cat}>
+                            <SelectItem 
+                              key={cat} 
+                              value={cat}
+                              className="text-white focus:bg-white/20 focus:text-white"
+                            >
                               {cat}
                             </SelectItem>
                           ))}

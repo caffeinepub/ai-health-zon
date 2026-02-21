@@ -180,24 +180,29 @@ export default function Careers() {
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <Label htmlFor="name">Full Name *</Label>
+                      <Label htmlFor="name" className="text-white">Full Name *</Label>
                       <Input
                         id="name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="bg-[#006B7D] text-white placeholder:text-white/70 border-white/30 focus:border-white"
                         required
                       />
                     </div>
 
                     <div>
-                      <Label htmlFor="role">Job Role *</Label>
+                      <Label htmlFor="role" className="text-white">Job Role *</Label>
                       <Select value={formData.role} onValueChange={(value) => setFormData({ ...formData, role: value })}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select your role" />
+                        <SelectTrigger className="bg-[#006B7D] text-white border-white/30 focus:border-white [&>span]:text-white">
+                          <SelectValue placeholder="Select your role" className="text-white placeholder:text-white/70" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-[#006B7D] text-white border-white/30">
                           {jobRoles.map((role) => (
-                            <SelectItem key={role} value={role}>
+                            <SelectItem 
+                              key={role} 
+                              value={role}
+                              className="text-white focus:bg-white/20 focus:text-white"
+                            >
                               {role}
                             </SelectItem>
                           ))}
@@ -206,19 +211,20 @@ export default function Careers() {
                     </div>
 
                     <div>
-                      <Label htmlFor="experience">Years of Experience *</Label>
+                      <Label htmlFor="experience" className="text-white">Years of Experience *</Label>
                       <Input
                         id="experience"
                         type="number"
                         min="0"
                         value={formData.experience}
                         onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+                        className="bg-[#006B7D] text-white placeholder:text-white/70 border-white/30 focus:border-white"
                         required
                       />
                     </div>
 
                     <div>
-                      <Label htmlFor="pinCode">PIN Code *</Label>
+                      <Label htmlFor="pinCode" className="text-white">PIN Code *</Label>
                       <div className="relative">
                         <Input
                           id="pinCode"
@@ -231,42 +237,46 @@ export default function Careers() {
                             const value = e.target.value.replace(/\D/g, '');
                             setFormData({ ...formData, pinCode: value });
                           }}
+                          className="bg-[#006B7D] text-white placeholder:text-white/70 border-white/30 focus:border-white"
                           required
                         />
                         {pinLookupLoading && (
-                          <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 animate-spin text-muted-foreground" />
+                          <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 animate-spin text-white" />
                         )}
                       </div>
-                      <p className="text-xs text-muted-foreground mt-1">
+                      <p className="text-xs text-white/70 mt-1">
                         City and state will be auto-filled based on PIN code
                       </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div>
-                        <Label htmlFor="city">City *</Label>
+                        <Label htmlFor="city" className="text-white">City *</Label>
                         <Input
                           id="city"
                           value={formData.location.city}
                           onChange={(e) => setFormData({ ...formData, location: { ...formData.location, city: e.target.value } })}
+                          className="bg-[#006B7D] text-white placeholder:text-white/70 border-white/30 focus:border-white"
                           required
                         />
                       </div>
                       <div>
-                        <Label htmlFor="state">State *</Label>
+                        <Label htmlFor="state" className="text-white">State *</Label>
                         <Input
                           id="state"
                           value={formData.location.state}
                           onChange={(e) => setFormData({ ...formData, location: { ...formData.location, state: e.target.value } })}
+                          className="bg-[#006B7D] text-white placeholder:text-white/70 border-white/30 focus:border-white"
                           required
                         />
                       </div>
                       <div>
-                        <Label htmlFor="country">Country *</Label>
+                        <Label htmlFor="country" className="text-white">Country *</Label>
                         <Input
                           id="country"
                           value={formData.location.country}
                           onChange={(e) => setFormData({ ...formData, location: { ...formData.location, country: e.target.value } })}
+                          className="bg-[#006B7D] text-white placeholder:text-white/70 border-white/30 focus:border-white"
                           required
                         />
                       </div>
@@ -274,51 +284,54 @@ export default function Careers() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="phone">Phone *</Label>
+                        <Label htmlFor="phone" className="text-white">Phone *</Label>
                         <Input
                           id="phone"
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          className="bg-[#006B7D] text-white placeholder:text-white/70 border-white/30 focus:border-white"
                           required
                         />
                       </div>
                       <div>
-                        <Label htmlFor="email">Email *</Label>
+                        <Label htmlFor="email" className="text-white">Email *</Label>
                         <Input
                           id="email"
                           type="email"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="bg-[#006B7D] text-white placeholder:text-white/70 border-white/30 focus:border-white"
                           required
                         />
                       </div>
                     </div>
 
                     <div>
-                      <Label htmlFor="cv">Upload CV/Resume *</Label>
+                      <Label htmlFor="cv" className="text-white">Upload CV/Resume *</Label>
                       <div className="mt-2">
                         <Input
                           id="cv"
                           type="file"
                           accept=".pdf,.doc,.docx"
                           onChange={(e) => setCvFile(e.target.files?.[0] || null)}
+                          className="bg-[#006B7D] text-white file:text-white file:bg-white/20 file:border-0 file:mr-4 file:py-2 file:px-4 file:rounded-md hover:file:bg-white/30 border-white/30 focus:border-white"
                           required
                         />
                         {cvFile && (
-                          <p className="text-sm text-muted-foreground mt-2">
+                          <p className="text-sm text-white/70 mt-2">
                             Selected: {cvFile.name}
                           </p>
                         )}
                         {uploadProgress > 0 && uploadProgress < 100 && (
                           <div className="mt-2">
-                            <div className="w-full bg-secondary rounded-full h-2">
+                            <div className="w-full bg-white/20 rounded-full h-2">
                               <div
-                                className="bg-primary h-2 rounded-full transition-all"
+                                className="bg-white h-2 rounded-full transition-all"
                                 style={{ width: `${uploadProgress}%` }}
                               />
                             </div>
-                            <p className="text-sm text-muted-foreground mt-1">
+                            <p className="text-sm text-white/70 mt-1">
                               Uploading: {uploadProgress}%
                             </p>
                           </div>
@@ -326,7 +339,11 @@ export default function Careers() {
                       </div>
                     </div>
 
-                    <Button type="submit" className="w-full" disabled={submitRegistration.isPending}>
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-white text-[#006B7D] hover:bg-white/90 font-bold" 
+                      disabled={submitRegistration.isPending}
+                    >
                       {submitRegistration.isPending ? 'Submitting...' : 'Submit Application'}
                     </Button>
                   </form>

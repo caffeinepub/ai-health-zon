@@ -1,12 +1,14 @@
 # Specification
 
 ## Summary
-**Goal:** Update dropdown/select component styling to display white text on Royal Teal background when opened.
+**Goal:** Replace the Dashboard with a Knowledge Board page that displays comprehensive information about hospital licenses and regulatory requirements.
 
 **Planned changes:**
-- Add global CSS rules in frontend/index.css to style dropdown option elements with white text color and Royal Teal background
-- Update Tailwind configuration in frontend/tailwind.config.js to ensure Royal Teal color token is defined and available
-- Apply styling consistently across all dropdown components including Careers, Vendors, Ambulance Services, NGO Listing, and Admin Dashboard pages
-- Ensure hover and focus states maintain white text visibility against Royal Teal background
+- Create new KnowledgeBoard page component displaying hospital licensing information
+- Display license types, categories, and regulatory compliance requirements based on reference document from ResearchGate
+- Update routing to replace '/dashboard' with '/knowledge-board'
+- Update Navigation component to show 'Knowledge Board' link instead of 'Dashboard'
+- Apply existing enterprise design theme (white background, deep blue text) to Knowledge Board
+- Add multiple CTAs throughout the page (hero, mid-content, footer) encouraging demo bookings
 
-**User-visible outcome:** All dropdown menus across the application display options with white text on a Royal Teal background when opened, providing consistent visual styling that matches the platform's color scheme.
+**User-visible outcome:** Users can navigate to a Knowledge Board page that provides detailed information about hospital licenses, regulatory requirements, and compliance standards, with multiple opportunities to book a demo or consultation.

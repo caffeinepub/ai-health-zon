@@ -42,7 +42,7 @@ export default function Chatbot() {
 
     // Contact information
     if (lowerMessage.includes('contact') || lowerMessage.includes('phone') || lowerMessage.includes('email')) {
-      return 'You can reach us at:\n📞 Phone: +91-8696766966\n📧 Email: info@aihealthzon.com or support@aihealthzon.com\n💬 WhatsApp: +91-8696766966\n📍 Address: 123 Healthcare Avenue, Medical District';
+      return 'You can reach us at:\n📞 Phone: +91-8696766966\n📧 Email: info@aihealthzon.com\n💬 WhatsApp: +91-8696766966\n📍 Location: India';
     }
 
     // RCM services
@@ -212,10 +212,10 @@ export default function Chatbot() {
               {isTyping && (
                 <div className="flex justify-start">
                   <div className="bg-muted text-foreground rounded-lg px-4 py-2">
-                    <div className="flex gap-1">
-                      <span className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                      <span className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                      <span className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                    <div className="flex space-x-2">
+                      <div className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce" />
+                      <div className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce delay-100" />
+                      <div className="w-2 h-2 bg-foreground/50 rounded-full animate-bounce delay-200" />
                     </div>
                   </div>
                 </div>

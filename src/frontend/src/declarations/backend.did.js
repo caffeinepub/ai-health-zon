@@ -71,6 +71,20 @@ export const UserRole = IDL.Variant({
   'user' : IDL.Null,
   'guest' : IDL.Null,
 });
+export const Time = IDL.Int;
+export const BlogArticle = IDL.Record({
+  'metaDescription' : IDL.Text,
+  'title' : IDL.Text,
+  'content' : IDL.Text,
+  'publishDate' : Time,
+  'published' : IDL.Bool,
+  'slug' : IDL.Text,
+  'tags' : IDL.Vec(IDL.Text),
+  'author' : IDL.Text,
+  'metaTitle' : IDL.Text,
+  'excerpt' : IDL.Text,
+  'category' : IDL.Text,
+});
 export const Hospital = IDL.Record({
   'id' : IDL.Text,
   'contact' : ContactInfo,
@@ -129,6 +143,22 @@ export const HealthcareProfessional = IDL.Record({
   'specialties' : IDL.Vec(IDL.Text),
   'location' : Location,
 });
+export const DemoBookingStatus = IDL.Variant({
+  'pending' : IDL.Null,
+  'completed' : IDL.Null,
+  'contacted' : IDL.Null,
+});
+export const DemoBookingRequest = IDL.Record({
+  'status' : DemoBookingStatus,
+  'city' : IDL.Text,
+  'name' : IDL.Text,
+  'designation' : IDL.Text,
+  'email' : IDL.Text,
+  'message' : IDL.Text,
+  'timestamp' : Time,
+  'hospitalName' : IDL.Text,
+  'mobile' : IDL.Text,
+});
 export const DocumentType = IDL.Record({
   'name' : IDL.Text,
   'description' : IDL.Text,
@@ -137,7 +167,6 @@ export const DocumentPhase = IDL.Record({
   'name' : IDL.Text,
   'phaseNumber' : IDL.Nat,
 });
-export const Time = IDL.Int;
 export const PatientJourneySampleDocument = IDL.Record({
   'id' : IDL.Text,
   'hospital' : IDL.Principal,
@@ -279,6 +308,7 @@ export const idlService = IDL.Service({
   'approveNgo' : IDL.Func([IDL.Text], [], []),
   'approveVendor' : IDL.Func([IDL.Text], [], []),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+  'createBlogArticle' : IDL.Func([BlogArticle], [], []),
   'createCorporateHealthcare' : IDL.Func([Hospital], [], []),
   'createHealthRecord' : IDL.Func([HealthRecord], [], []),
   'createRecord' : IDL.Func([MedicalRecord], [], []),
@@ -297,6 +327,12 @@ export const idlService = IDL.Service({
       ],
       ['query'],
     ),
+  'getAllBlogArticles' : IDL.Func([], [IDL.Vec(BlogArticle)], ['query']),
+  'getAllDemoBookingRequests' : IDL.Func(
+      [IDL.Opt(DemoBookingStatus)],
+      [IDL.Vec(DemoBookingRequest)],
+      ['query'],
+    ),
   'getAllHospitals' : IDL.Func([], [IDL.Vec(Hospital)], ['query']),
   'getAllNgos' : IDL.Func([], [IDL.Vec(Ngo)], ['query']),
   'getAllPatientJourneySampleDocuments' : IDL.Func(
@@ -310,6 +346,12 @@ export const idlService = IDL.Service({
   'getApprovedStakeholderLocations' : IDL.Func(
       [],
       [IDL.Vec(Location)],
+      ['query'],
+    ),
+  'getBlogArticle' : IDL.Func([IDL.Text], [IDL.Opt(BlogArticle)], ['query']),
+  'getBlogArticlesByCategory' : IDL.Func(
+      [IDL.Text],
+      [IDL.Vec(BlogArticle)],
       ['query'],
     ),
   'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
@@ -391,6 +433,26 @@ export const idlService = IDL.Service({
   'rejectNgo' : IDL.Func([IDL.Text], [], []),
   'rejectVendor' : IDL.Func([IDL.Text], [], []),
   'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+  'saveDemoBookingRequest' : IDL.Func(
+      [
+        IDL.Record({
+          'city' : IDL.Text,
+          'name' : IDL.Text,
+          'designation' : IDL.Text,
+          'email' : IDL.Text,
+          'message' : IDL.Text,
+          'hospitalName' : IDL.Text,
+          'mobile' : IDL.Text,
+        }),
+      ],
+      [],
+      [],
+    ),
+  'searchBlogArticles' : IDL.Func(
+      [IDL.Text],
+      [IDL.Vec(BlogArticle)],
+      ['query'],
+    ),
   'searchRecords' : IDL.Func(
       [RecordFilter],
       [IDL.Vec(MedicalRecord)],
@@ -409,6 +471,7 @@ export const idlService = IDL.Service({
     ),
   'submitNgoRegistration' : IDL.Func([NgoRequest], [], []),
   'submitVendorRegistration' : IDL.Func([VendorRequest], [], []),
+  'updateBlogArticle' : IDL.Func([IDL.Text, BlogArticle], [], []),
   'updateRecord' : IDL.Func([MedicalRecord], [], []),
   'uploadDocument' : IDL.Func(
       [IDL.Text, IDL.Text, IDL.Text, ExternalBlob],
@@ -488,6 +551,20 @@ export const idlFactory = ({ IDL }) => {
     'user' : IDL.Null,
     'guest' : IDL.Null,
   });
+  const Time = IDL.Int;
+  const BlogArticle = IDL.Record({
+    'metaDescription' : IDL.Text,
+    'title' : IDL.Text,
+    'content' : IDL.Text,
+    'publishDate' : Time,
+    'published' : IDL.Bool,
+    'slug' : IDL.Text,
+    'tags' : IDL.Vec(IDL.Text),
+    'author' : IDL.Text,
+    'metaTitle' : IDL.Text,
+    'excerpt' : IDL.Text,
+    'category' : IDL.Text,
+  });
   const Hospital = IDL.Record({
     'id' : IDL.Text,
     'contact' : ContactInfo,
@@ -546,6 +623,22 @@ export const idlFactory = ({ IDL }) => {
     'specialties' : IDL.Vec(IDL.Text),
     'location' : Location,
   });
+  const DemoBookingStatus = IDL.Variant({
+    'pending' : IDL.Null,
+    'completed' : IDL.Null,
+    'contacted' : IDL.Null,
+  });
+  const DemoBookingRequest = IDL.Record({
+    'status' : DemoBookingStatus,
+    'city' : IDL.Text,
+    'name' : IDL.Text,
+    'designation' : IDL.Text,
+    'email' : IDL.Text,
+    'message' : IDL.Text,
+    'timestamp' : Time,
+    'hospitalName' : IDL.Text,
+    'mobile' : IDL.Text,
+  });
   const DocumentType = IDL.Record({
     'name' : IDL.Text,
     'description' : IDL.Text,
@@ -554,7 +647,6 @@ export const idlFactory = ({ IDL }) => {
     'name' : IDL.Text,
     'phaseNumber' : IDL.Nat,
   });
-  const Time = IDL.Int;
   const PatientJourneySampleDocument = IDL.Record({
     'id' : IDL.Text,
     'hospital' : IDL.Principal,
@@ -696,6 +788,7 @@ export const idlFactory = ({ IDL }) => {
     'approveNgo' : IDL.Func([IDL.Text], [], []),
     'approveVendor' : IDL.Func([IDL.Text], [], []),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+    'createBlogArticle' : IDL.Func([BlogArticle], [], []),
     'createCorporateHealthcare' : IDL.Func([Hospital], [], []),
     'createHealthRecord' : IDL.Func([HealthRecord], [], []),
     'createRecord' : IDL.Func([MedicalRecord], [], []),
@@ -712,6 +805,12 @@ export const idlFactory = ({ IDL }) => {
             'services' : IDL.Vec(TourismService),
           }),
         ],
+        ['query'],
+      ),
+    'getAllBlogArticles' : IDL.Func([], [IDL.Vec(BlogArticle)], ['query']),
+    'getAllDemoBookingRequests' : IDL.Func(
+        [IDL.Opt(DemoBookingStatus)],
+        [IDL.Vec(DemoBookingRequest)],
         ['query'],
       ),
     'getAllHospitals' : IDL.Func([], [IDL.Vec(Hospital)], ['query']),
@@ -731,6 +830,12 @@ export const idlFactory = ({ IDL }) => {
     'getApprovedStakeholderLocations' : IDL.Func(
         [],
         [IDL.Vec(Location)],
+        ['query'],
+      ),
+    'getBlogArticle' : IDL.Func([IDL.Text], [IDL.Opt(BlogArticle)], ['query']),
+    'getBlogArticlesByCategory' : IDL.Func(
+        [IDL.Text],
+        [IDL.Vec(BlogArticle)],
         ['query'],
       ),
     'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
@@ -812,6 +917,26 @@ export const idlFactory = ({ IDL }) => {
     'rejectNgo' : IDL.Func([IDL.Text], [], []),
     'rejectVendor' : IDL.Func([IDL.Text], [], []),
     'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+    'saveDemoBookingRequest' : IDL.Func(
+        [
+          IDL.Record({
+            'city' : IDL.Text,
+            'name' : IDL.Text,
+            'designation' : IDL.Text,
+            'email' : IDL.Text,
+            'message' : IDL.Text,
+            'hospitalName' : IDL.Text,
+            'mobile' : IDL.Text,
+          }),
+        ],
+        [],
+        [],
+      ),
+    'searchBlogArticles' : IDL.Func(
+        [IDL.Text],
+        [IDL.Vec(BlogArticle)],
+        ['query'],
+      ),
     'searchRecords' : IDL.Func(
         [RecordFilter],
         [IDL.Vec(MedicalRecord)],
@@ -830,6 +955,7 @@ export const idlFactory = ({ IDL }) => {
       ),
     'submitNgoRegistration' : IDL.Func([NgoRequest], [], []),
     'submitVendorRegistration' : IDL.Func([VendorRequest], [], []),
+    'updateBlogArticle' : IDL.Func([IDL.Text, BlogArticle], [], []),
     'updateRecord' : IDL.Func([MedicalRecord], [], []),
     'uploadDocument' : IDL.Func(
         [IDL.Text, IDL.Text, IDL.Text, ExternalBlob],

@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { Heart } from 'lucide-react';
+import { Heart, Mail } from 'lucide-react';
 import { SiFacebook, SiX, SiLinkedin, SiInstagram } from 'react-icons/si';
 
 export default function Footer() {
@@ -19,6 +19,15 @@ export default function Footer() {
             <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
               AI-powered healthcare platform connecting hospitals, professionals, and services.
             </p>
+            <div className="mb-6">
+              <a 
+                href="mailto:info@aihealthzon.com" 
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Mail className="h-4 w-4" />
+                <span>info@aihealthzon.com</span>
+              </a>
+            </div>
             <div className="flex space-x-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <SiFacebook className="h-5 w-5" />
@@ -50,7 +59,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/directory" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/network-directory" className="text-muted-foreground hover:text-foreground transition-colors">
                   Network Directory
                 </Link>
               </li>
@@ -94,17 +103,17 @@ export default function Footer() {
             <h3 className="font-semibold mb-5 text-sm tracking-tight">Legal</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/privacy-policy" className="text-muted-foreground hover:text-foreground transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/terms-conditions" className="text-muted-foreground hover:text-foreground transition-colors">
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link to="/refund" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link to="/refund-policy" className="text-muted-foreground hover:text-foreground transition-colors">
                   Refund Policy
                 </Link>
               </li>

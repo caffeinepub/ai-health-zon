@@ -1,18 +1,19 @@
 import { useState } from 'react';
-import { Link, useNavigate } from '@tanstack/react-router';
-import { Button } from '@/components/ui/button';
-import { Menu, X, Activity, Heart } from 'lucide-react';
+import { Link, useLocation } from '@tanstack/react-router';
+import { Button } from './ui/button';
+import { Menu, X } from 'lucide-react';
 import { useInternetIdentity } from '../hooks/useInternetIdentity';
 import { useQueryClient } from '@tanstack/react-query';
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  const location = useLocation();
   const { login, clear, loginStatus, identity } = useInternetIdentity();
   const queryClient = useQueryClient();
 
   const isAuthenticated = !!identity;
   const disabled = loginStatus === 'logging-in';
+  const authText = loginStatus === 'logging-in' ? 'Logging in...' : isAuthenticated ? 'Logout' : 'Login';
 
   const handleAuth = async () => {
     if (isAuthenticated) {
@@ -32,28 +33,34 @@ export default function Navigation() {
   };
 
   const navLinks = [
-    { to: '/home', label: 'Home' },
+    { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
     { to: '/solutions', label: 'Solutions' },
-    { to: '/directory', label: 'Directory' },
-    { to: '/healthcare-support', label: 'Support' },
+    { to: '/onboarding', label: 'RCM Onboarding' },
+    { to: '/healthcare-support-system', label: 'Support System' },
+    { to: '/network-directory', label: 'Network Directory' },
+    { to: '/network-map', label: 'Network Map' },
+    { to: '/members', label: 'Members' },
+    { to: '/knowledge-board', label: 'Knowledge Board' },
     { to: '/contact', label: 'Contact' },
   ];
 
-  const authenticatedLinks = [
-    { to: '/patient-journey', label: 'Patient Journey', icon: Activity },
-  ];
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex h-16 items-center justify-between">
+    <nav className="bg-background border-b sticky top-0 z-50">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2.5 shrink-0">
-            <Heart className="h-6 w-6 text-primary fill-primary" />
-            <span className="font-semibold text-lg tracking-tight gradient-text whitespace-nowrap">
-              AI Health Zon
-            </span>
+          <Link to="/" className="flex items-center space-x-2">
+            <img
+              src="/assets/generated/platform-emblem.dim_200x200.png"
+              alt="AI Health Zon"
+              className="h-10 w-10"
+            />
+            <span className="text-xl font-bold">AI Health Zon</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -62,75 +69,57 @@ export default function Navigation() {
               <Link
                 key={link.to}
                 to={link.to}
-                className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted/50"
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isActive(link.to)
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-foreground hover:bg-accent hover:text-accent-foreground'
+                }`}
               >
                 {link.label}
               </Link>
             ))}
-            {isAuthenticated &&
-              authenticatedLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted/50 flex items-center gap-1.5"
-                >
-                  <link.icon className="h-4 w-4" />
-                  {link.label}
-                </Link>
-              ))}
           </div>
 
-          {/* Desktop Auth Button */}
+          {/* Auth Button - Desktop */}
           <div className="hidden lg:block">
             <Button
               onClick={handleAuth}
               disabled={disabled}
               variant={isAuthenticated ? 'outline' : 'default'}
               size="sm"
-              className="min-w-[80px]"
             >
-              {disabled ? 'Loading...' : isAuthenticated ? 'Logout' : 'Login'}
+              {authText}
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-md hover:bg-muted/50 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+            className="lg:hidden p-2 rounded-md hover:bg-accent min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden border-t bg-white overflow-x-hidden max-h-screen overflow-y-auto">
-          <div className="container mx-auto px-4 py-4 space-y-2">
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden py-4 space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex px-4 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-md transition-colors"
+                className={`block px-4 py-3 rounded-md text-sm font-medium transition-colors min-h-[44px] ${
+                  isActive(link.to)
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-foreground hover:bg-accent hover:text-accent-foreground'
+                }`}
               >
                 {link.label}
               </Link>
             ))}
-            {isAuthenticated &&
-              authenticatedLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-2 px-4 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-md transition-colors"
-                >
-                  <link.icon className="h-5 w-5" />
-                  {link.label}
-                </Link>
-              ))}
-            <div className="pt-4 border-t">
+            <div className="px-4 pt-2">
               <Button
                 onClick={() => {
                   handleAuth();
@@ -138,14 +127,14 @@ export default function Navigation() {
                 }}
                 disabled={disabled}
                 variant={isAuthenticated ? 'outline' : 'default'}
-                className="w-full"
+                className="w-full min-h-[44px]"
               >
-                {disabled ? 'Loading...' : isAuthenticated ? 'Logout' : 'Login'}
+                {authText}
               </Button>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </nav>
   );
 }

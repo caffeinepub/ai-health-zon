@@ -5,7 +5,7 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Checkbox } from '../components/ui/checkbox';
 import { CheckCircle, Ambulance as AmbulanceIcon, MapPin, Loader2 } from 'lucide-react';
-import { useSubmitAmbulanceRegistration, useGetHealthcareProfessionalsByLocation } from '../hooks/useQueries';
+import { useSubmitAmbulanceRegistration } from '../hooks/useQueries';
 import { toast } from 'sonner';
 import type { AmbulanceRequest } from '../backend';
 import { lookupPinCode } from '../utils/pinCodeLookup';
@@ -25,12 +25,9 @@ export default function AmbulanceServices() {
       event: false,
     },
   });
-  const [searchCity, setSearchCity] = useState('');
-  const [showResults, setShowResults] = useState(false);
   const [pinLookupLoading, setPinLookupLoading] = useState(false);
 
   const submitRegistration = useSubmitAmbulanceRegistration();
-  const { data: ambulanceServices = [], isLoading, refetch } = useGetHealthcareProfessionalsByLocation(searchCity);
 
   // Auto-fill city and state when PIN code is entered
   useEffect(() => {
@@ -110,25 +107,16 @@ export default function AmbulanceServices() {
     }
   };
 
-  const handleSearch = () => {
-    if (searchCity) {
-      setShowResults(true);
-      refetch();
-    }
-  };
-
-  const filteredAmbulances = ambulanceServices.filter(s => s.role === 'Ambulance');
-
   return (
     <div className="w-full">
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center">Ambulance Services</h1>
           <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-12">
-            Register your ambulance service or search for emergency medical transport in your area.
+            Register your ambulance service to join our healthcare network.
           </p>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Benefits */}
             <div className="lg:col-span-1">
               <Card>
@@ -307,66 +295,6 @@ export default function AmbulanceServices() {
                 </CardContent>
               </Card>
             </div>
-          </div>
-
-          {/* Location-based Search */}
-          <div className="max-w-4xl mx-auto">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <MapPin className="h-5 w-5 mr-2" />
-                  Find Ambulance Services
-                </CardTitle>
-                <CardDescription>Search for ambulance services in your area</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex gap-4">
-                  <Input
-                    placeholder="Enter city name..."
-                    value={searchCity}
-                    onChange={(e) => setSearchCity(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                  />
-                  <Button onClick={handleSearch} disabled={!searchCity || isLoading}>
-                    Search
-                  </Button>
-                </div>
-
-                {showResults && (
-                  <div className="mt-6">
-                    {isLoading ? (
-                      <p className="text-center text-muted-foreground">Searching...</p>
-                    ) : filteredAmbulances.length === 0 ? (
-                      <p className="text-center text-muted-foreground">No ambulance services found in this location.</p>
-                    ) : (
-                      <div className="space-y-4">
-                        {filteredAmbulances.map((service) => (
-                          <Card key={service.id}>
-                            <CardContent className="pt-6">
-                              <div className="flex items-start justify-between">
-                                <div>
-                                  <h3 className="font-semibold text-lg mb-1">{service.name}</h3>
-                                  <p className="text-sm text-muted-foreground mb-2">
-                                    {service.location.city}, {service.location.state}
-                                  </p>
-                                  <p className="text-sm text-muted-foreground">
-                                    Services: {service.specialties.join(', ')}
-                                  </p>
-                                  <p className="text-sm text-muted-foreground mt-2">
-                                    📞 {service.contact.phone}
-                                  </p>
-                                </div>
-                                <AmbulanceIcon className="h-8 w-8 text-primary" />
-                              </div>
-                            </CardContent>
-                          </Card>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>

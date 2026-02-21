@@ -15,6 +15,13 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'Poppins', 'system-ui', '-apple-system', 'sans-serif'],
+      },
+      fontWeight: {
+        medium: '500',
+        bold: '700',
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -51,7 +58,11 @@ export default {
         },
         success: 'hsl(var(--success))',
         warning: 'hsl(var(--warning))',
-        'royal-teal': 'oklch(55% 0.12 195)',
+        'enterprise-white': 'oklch(100% 0 0)',
+        'enterprise-blue': 'oklch(28% 0.08 240)',
+        'enterprise-grey': 'oklch(94% 0.005 240)',
+        'royal-teal': '#006B7D',
+        'royal-white': '#FFFFFF',
         chart: {
           1: 'hsl(var(--chart-1))',
           2: 'hsl(var(--chart-2))',
@@ -78,14 +89,6 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-      },
-      backgroundImage: {
-        'gradient-apple-multi':
-          'linear-gradient(90deg, var(--gradient-purple) 0%, var(--gradient-pink) 25%, var(--gradient-blue) 50%, var(--gradient-cyan) 75%, var(--gradient-orange) 100%)',
-        'gradient-apple-alt':
-          'linear-gradient(135deg, var(--gradient-blue) 0%, var(--gradient-purple) 50%, var(--gradient-pink) 100%)',
-        'gradient-apple-vibrant':
-          'linear-gradient(90deg, var(--gradient-orange) 0%, var(--gradient-pink) 33%, var(--gradient-purple) 66%, var(--gradient-cyan) 100%)',
       },
     },
   },

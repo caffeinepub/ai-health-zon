@@ -3,15 +3,15 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../co
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Badge } from '../components/ui/badge';
 import { Shield, Users, Building2, Ambulance, Heart, AlertCircle } from 'lucide-react';
-import { useIsCallerAdmin, useGetPendingHealthcareProfessionalRequests, useGetPendingVendorRequests, useGetPendingNgoRequests, useGetPendingAmbulanceRequests } from '../hooks/useQueries';
+import { useIsCallerAdmin, useGetPendingHealthcareProfessionals, useGetPendingVendors, useGetPendingNgos, useGetPendingAmbulances } from '../hooks/useQueries';
 import PendingRequestsList from '../components/PendingRequestsList';
 
 export default function AdminDashboard() {
   const { data: isAdmin = false, isLoading: adminCheckLoading } = useIsCallerAdmin();
-  const { data: professionalRequests = [], isLoading: profLoading } = useGetPendingHealthcareProfessionalRequests();
-  const { data: vendorRequests = [], isLoading: vendorLoading } = useGetPendingVendorRequests();
-  const { data: ngoRequests = [], isLoading: ngoLoading } = useGetPendingNgoRequests();
-  const { data: ambulanceRequests = [], isLoading: ambulanceLoading } = useGetPendingAmbulanceRequests();
+  const { data: professionalRequests = [], isLoading: profLoading } = useGetPendingHealthcareProfessionals();
+  const { data: vendorRequests = [], isLoading: vendorLoading } = useGetPendingVendors();
+  const { data: ngoRequests = [], isLoading: ngoLoading } = useGetPendingNgos();
+  const { data: ambulanceRequests = [], isLoading: ambulanceLoading } = useGetPendingAmbulances();
 
   const [activeTab, setActiveTab] = useState('professionals');
 
@@ -152,32 +152,32 @@ export default function AdminDashboard() {
 
             <TabsContent value="professionals" className="mt-6">
               <PendingRequestsList
-                type="professional"
                 requests={professionalRequests}
+                type="professional"
                 isLoading={profLoading}
               />
             </TabsContent>
 
             <TabsContent value="vendors" className="mt-6">
               <PendingRequestsList
-                type="vendor"
                 requests={vendorRequests}
+                type="vendor"
                 isLoading={vendorLoading}
               />
             </TabsContent>
 
             <TabsContent value="ambulances" className="mt-6">
               <PendingRequestsList
-                type="ambulance"
                 requests={ambulanceRequests}
+                type="ambulance"
                 isLoading={ambulanceLoading}
               />
             </TabsContent>
 
             <TabsContent value="ngos" className="mt-6">
               <PendingRequestsList
-                type="ngo"
                 requests={ngoRequests}
+                type="ngo"
                 isLoading={ngoLoading}
               />
             </TabsContent>

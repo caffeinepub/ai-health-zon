@@ -1,69 +1,124 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update dropdown styling with white text and Royal Teal background",
+  "title": "Replace Dashboard with Knowledge Board for Hospital Licenses",
   "requirements": [
     {
-      "id": "REQ-177",
-      "summary": "Update all dropdown/select components to display option text in white color when opened",
+      "id": "REQ-236",
+      "summary": "Create KnowledgeBoard page component displaying comprehensive hospital license and regulatory information",
       "acceptanceCriteria": [
-        "All dropdown option text displays in white color (#FFFFFF or equivalent)",
-        "Text color applies to options in open dropdown state",
-        "White text remains readable against Royal Teal background"
+        "KnowledgeBoard.tsx component exists at frontend/src/pages/KnowledgeBoard.tsx",
+        "Component displays hero section explaining hospital licensing information",
+        "Content is sourced from or references https://www.researchgate.net/publication/398379014_LICENCE_REQUIRED_FOR_HOSPITALS",
+        "Page follows the existing McKinsey-inspired professional design theme"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Add CSS rules targeting select option elements to set color: white for dropdown options. Use selectors that apply to native select elements and custom dropdown implementations across the application including form selects in Careers, Vendors, Ambulance Services, NGO Listing, and Admin Dashboard pages."
+          "path": "frontend/src/pages/KnowledgeBoard.tsx",
+          "operation": "create",
+          "description": "Create KnowledgeBoard page component with hero section featuring generated image frontend/public/assets/generated/hospital-licenses-hero.dim_1920x1080.png. Include introduction explaining hospital licensing importance with reference to the ResearchGate publication. Structure the page with professional typography and enterprise color scheme matching existing pages. Use card-based layout for organizing license information sections."
         }
       ]
     },
     {
-      "id": "REQ-178",
-      "summary": "Update all dropdown/select components to display Royal Teal background when opened",
+      "id": "REQ-237",
+      "summary": "Display hospital license types and categories with classifications, regulatory bodies, and compliance requirements",
       "acceptanceCriteria": [
-        "Dropdown menu background displays in Royal Teal color when opened",
-        "Background color applies to entire dropdown panel including all options",
-        "Royal Teal background matches the existing platform color scheme"
+        "Knowledge Board displays organized sections covering license types",
+        "Content references the ResearchGate publication on hospital licenses",
+        "Information is structured with clear headings and bullet points",
+        "Sections are visually organized with cards or expandable panels"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/index.css",
+          "path": "frontend/src/pages/KnowledgeBoard.tsx",
           "operation": "modify",
-          "description": "Add CSS rules targeting select dropdown panels and option elements to set background-color using the Royal Teal color value. Apply to both the dropdown container and individual options to ensure complete Royal Teal coverage when the dropdown is open."
+          "description": "Add license types section with cards displaying different hospital license classifications (Clinical Establishments Act, State Medical Council registrations, AERB for radiation facilities). Include regulatory bodies information (State Health Departments, Medical Council of India, Drug Controller). Use generated image frontend/public/assets/generated/compliance-standards.dim_800x600.png to illustrate compliance standards. Structure content with clear headings, bullet points, and organized card layout for easy scanning."
         }
       ]
     },
     {
-      "id": "REQ-179",
-      "summary": "Define comprehensive dropdown styling rules in global CSS with white text and Royal Teal background",
+      "id": "REQ-238",
+      "summary": "Display regulatory compliance requirements covering registration, accreditation standards, and legal obligations",
       "acceptanceCriteria": [
-        "CSS rules target dropdown option elements across all form components",
-        "Styling applies consistently to dropdowns in Careers, Vendors, Ambulance Services, NGO Listing, and Admin Dashboard pages",
-        "Hover and focus states maintain white text visibility"
+        "Regulatory compliance section is visible on Knowledge Board",
+        "Content covers registration processes and accreditation standards",
+        "Legal obligations and requirements are clearly outlined",
+        "Information is presented in a scannable, easy-to-read format"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/index.css",
+          "path": "frontend/src/pages/KnowledgeBoard.tsx",
           "operation": "modify",
-          "description": "Add comprehensive CSS rules for select elements including hover and focus states. Target select, select option, and any custom dropdown class patterns used in the application. Ensure white text color (#FFFFFF) and Royal Teal background are applied consistently across all dropdown states including :hover and :focus pseudo-classes for accessibility and visibility."
+          "description": "Add regulatory compliance section featuring hospital registration processes, NABH (National Accreditation Board for Hospitals) and ISO accreditation standards, and legal obligations under Clinical Establishments Act. Include generated image frontend/public/assets/generated/licensing-process.dim_1200x800.png to visualize the licensing process flowchart. Present information in expandable accordion panels or card grids with clear headings, bullet lists, and scannable formatting for quick reference."
         }
       ]
     },
     {
-      "id": "REQ-180",
-      "summary": "Ensure Royal Teal color token is defined in Tailwind configuration for dropdown styling",
+      "id": "REQ-239",
+      "summary": "Update route configuration to replace '/dashboard' with '/knowledge-board' route",
       "acceptanceCriteria": [
-        "Royal Teal color token is defined in Tailwind theme",
-        "Color value matches existing Royal Teal usage in the platform",
-        "Dropdown components can reference the color token consistently"
+        "Route '/knowledge-board' exists in frontend/src/App.tsx",
+        "Route renders KnowledgeBoard page component within Layout wrapper",
+        "Previous '/dashboard' route is removed or replaced",
+        "Route is accessible to authenticated users"
       ],
       "file_operations": [
         {
-          "path": "frontend/tailwind.config.js",
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Verify that Royal Teal color is defined in the Tailwind theme.extend.colors configuration. If not already present, add a 'royal-teal' color token with the appropriate color value that matches existing platform usage. This ensures the color can be referenced consistently in CSS and Tailwind utility classes for dropdown styling."
+          "description": "Replace the existing '/dashboard' route with '/knowledge-board' route that renders the KnowledgeBoard component wrapped in Layout. Import KnowledgeBoard from './pages/KnowledgeBoard'. Ensure route follows the same authentication and layout pattern as other authenticated pages. Remove or replace the Dashboard route registration to avoid conflicts."
+        }
+      ]
+    },
+    {
+      "id": "REQ-240",
+      "summary": "Update Navigation component to replace 'Dashboard' link with 'Knowledge Board' link",
+      "acceptanceCriteria": [
+        "Navigation displays 'Knowledge Board' link instead of 'Dashboard'",
+        "Link routes to '/knowledge-board' path",
+        "Link is conditionally displayed based on authentication state",
+        "Active route highlighting works for Knowledge Board link"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Navigation.tsx",
+          "operation": "modify",
+          "description": "Replace the 'Dashboard' navigation link with 'Knowledge Board' link that routes to '/knowledge-board'. Update both desktop and mobile navigation menus. Ensure the link maintains conditional rendering based on authentication state using the existing isAuthenticated check. Verify active route highlighting works correctly for the '/knowledge-board' path using the existing active link logic."
+        }
+      ]
+    },
+    {
+      "id": "REQ-241",
+      "summary": "Apply existing enterprise design theme to Knowledge Board ensuring visual consistency",
+      "acceptanceCriteria": [
+        "Knowledge Board uses consistent color scheme with rest of site",
+        "Typography matches enterprise design standards",
+        "Spacing and layout follow existing design patterns",
+        "Page is fully responsive on mobile and desktop viewports"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/KnowledgeBoard.tsx",
+          "operation": "modify",
+          "description": "Apply enterprise design theme using existing Tailwind classes and CSS variables from frontend/src/index.css. Use white backgrounds, deep blue text (text-[#003366]), and the enterprise color palette. Match typography patterns from other pages using existing heading classes (text-4xl, text-2xl, font-bold). Ensure consistent spacing with existing pages using standard Tailwind spacing utilities (p-6, py-12, space-y-8). Implement responsive design with mobile-first approach using sm:, md:, lg: breakpoints matching existing responsive patterns across the site."
+        }
+      ]
+    },
+    {
+      "id": "REQ-242",
+      "summary": "Add multiple CTAs encouraging demo bookings strategically placed throughout Knowledge Board",
+      "acceptanceCriteria": [
+        "At least three CTAs are present on Knowledge Board page",
+        "CTAs are strategically placed (top, middle, bottom)",
+        "All CTAs encourage demo booking or consultation",
+        "CTAs follow existing button styling and interaction patterns"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/KnowledgeBoard.tsx",
+          "operation": "modify",
+          "description": "Add three CTAs for demo booking: one in the hero section below the title, one mid-page after the license types section, and one at the bottom before the footer. Use the existing DemoBookingForm component pattern from other pages. Style CTAs with consistent button classes matching existing CTA buttons across the site (bg-[#008B8B], hover effects, rounded styling). Include compelling copy encouraging hospitals to book demos or consultations about compliance and licensing support."
         }
       ]
     }
