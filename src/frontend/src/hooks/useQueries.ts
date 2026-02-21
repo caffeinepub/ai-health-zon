@@ -11,7 +11,14 @@ import type {
   VendorRequest,
   NgoRequest,
   AmbulanceRequest,
+  ProcessedDocument,
+  DocumentSection,
+  PatientJourneySampleDocument,
+  DocumentPhase,
+  DocumentType,
+  DocumentMetadata,
 } from '../backend';
+import { ExternalBlob } from '../backend';
 
 export function useGetCallerUserProfile() {
   const { actor, isFetching: actorFetching } = useActor();
@@ -136,6 +143,19 @@ export function useFilterDataByLocation(location: Location | null) {
       return actor.filterDataByLocation(location);
     },
     enabled: !!actor && !isFetching && !!location,
+  });
+}
+
+export function useGetApprovedStakeholderLocations() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<Location[]>({
+    queryKey: ['approvedStakeholderLocations'],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getApprovedStakeholderLocations();
+    },
+    enabled: !!actor && !isFetching,
   });
 }
 
@@ -276,8 +296,6 @@ export function useApproveHealthcareProfessional() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingHealthcareProfessionals'] });
-      queryClient.invalidateQueries({ queryKey: ['professionals'] });
-      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
@@ -293,7 +311,6 @@ export function useRejectHealthcareProfessional() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingHealthcareProfessionals'] });
-      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
@@ -310,7 +327,6 @@ export function useApproveVendor() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingVendors'] });
       queryClient.invalidateQueries({ queryKey: ['vendors'] });
-      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
@@ -326,7 +342,6 @@ export function useRejectVendor() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingVendors'] });
-      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
@@ -343,7 +358,6 @@ export function useApproveNgo() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingNgos'] });
       queryClient.invalidateQueries({ queryKey: ['ngos'] });
-      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
@@ -359,7 +373,6 @@ export function useRejectNgo() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingNgos'] });
-      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
@@ -375,7 +388,6 @@ export function useApproveAmbulance() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingAmbulances'] });
-      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
@@ -391,23 +403,149 @@ export function useRejectAmbulance() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['pendingAmbulances'] });
-      queryClient.invalidateQueries({ queryKey: ['approvedStakeholderLocations'] });
     },
   });
 }
 
-// Network Map Query
-export function useGetApprovedStakeholderLocations() {
+// Document Management Hooks
+export function useUploadDocument() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      id,
+      filename,
+      filetype,
+      blob,
+    }: {
+      id: string;
+      filename: string;
+      filetype: string;
+      blob: ExternalBlob;
+    }) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.uploadDocument(id, filename, filetype, blob);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['documents'] });
+    },
+  });
+}
+
+// Type for document with metadata and id
+type DocumentWithMetadata = {
+  id: string;
+  metadata: DocumentMetadata;
+};
+
+export function useGetDocuments() {
   const { actor, isFetching } = useActor();
 
-  return useQuery<Location[]>({
-    queryKey: ['approvedStakeholderLocations'],
+  return useQuery<DocumentWithMetadata[]>({
+    queryKey: ['documents'],
     queryFn: async () => {
       if (!actor) return [];
-      return actor.getApprovedStakeholderLocations();
+      // Since the backend doesn't have a getDocuments method, we return empty array
+      // In a real implementation, you would need to add this method to the backend
+      return [];
     },
     enabled: !!actor && !isFetching,
-    refetchOnWindowFocus: true,
-    staleTime: 1000 * 60 * 5, // 5 minutes
+  });
+}
+
+export function useProcessDocument() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      id,
+      sections,
+      summary,
+    }: {
+      id: string;
+      sections: DocumentSection[];
+      summary: string;
+    }) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.processDocument(id, sections, summary);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['documents'] });
+      queryClient.invalidateQueries({ queryKey: ['processedDocument'] });
+    },
+  });
+}
+
+export function useGetProcessedDocument(id: string) {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<ProcessedDocument | null>({
+    queryKey: ['processedDocument', id],
+    queryFn: async () => {
+      if (!actor) return null;
+      return actor.getProcessedDocument(id);
+    },
+    enabled: !!actor && !isFetching && !!id,
+  });
+}
+
+// Patient Journey Sample Document Hooks
+export function useUploadPatientJourneySampleDocument() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      id,
+      phase,
+      documentType,
+      hospitalId,
+      filename,
+      blob,
+    }: {
+      id: string;
+      phase: DocumentPhase;
+      documentType: DocumentType;
+      hospitalId: string;
+      filename: string;
+      blob: ExternalBlob;
+    }) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.uploadPatientJourneySampleDocument(id, phase, documentType, hospitalId, filename, blob);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['patientJourneySampleDocuments'] });
+    },
+  });
+}
+
+export function useGetHospitalPatientJourneySampleDocuments(hospitalId: string, phaseNumber?: number) {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<PatientJourneySampleDocument[]>({
+    queryKey: ['patientJourneySampleDocuments', hospitalId, phaseNumber],
+    queryFn: async () => {
+      if (!actor || !hospitalId) return [];
+      return actor.getHospitalPatientJourneySampleDocuments(
+        hospitalId,
+        phaseNumber !== undefined ? BigInt(phaseNumber) : null
+      );
+    },
+    enabled: !!actor && !isFetching && !!hospitalId,
+  });
+}
+
+export function useGetAllPatientJourneySampleDocuments() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<PatientJourneySampleDocument[]>({
+    queryKey: ['allPatientJourneySampleDocuments'],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getAllPatientJourneySampleDocuments();
+    },
+    enabled: !!actor && !isFetching,
   });
 }

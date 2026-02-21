@@ -7,9 +7,9 @@ export default function Footer() {
   const appIdentifier = encodeURIComponent(window.location.hostname || 'ai-health-zon');
 
   return (
-    <footer className="border-t border-border bg-muted/20">
-      <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="border-t border-border bg-muted/20 w-full overflow-x-hidden">
+      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
           {/* Brand */}
           <div>
             <div className="flex items-center space-x-2.5 mb-5">
@@ -115,7 +115,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
             <p>© {currentYear} AI Health Zon. All rights reserved.</p>
-            <p>
+            <p className="text-center">
               Built with <Heart className="inline h-3.5 w-3.5 text-primary fill-primary mx-0.5" /> using{' '}
               <a
                 href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${appIdentifier}`}

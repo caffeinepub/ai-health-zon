@@ -10,19 +10,19 @@ export default function Home() {
 
   const heroSlides = [
     {
-      image: '/assets/generated/hero-slide-1.dim_1920x800.png',
-      title: 'Transforming Healthcare Through Innovation',
-      subtitle: 'Connect with verified healthcare professionals, hospitals, and services across India',
+      image: '/assets/generated/home-hero-rcm.dim_1920x1080.png',
+      title: 'Revenue Cycle Management Excellence',
+      subtitle: 'Optimize your healthcare revenue cycle with AI-powered solutions and expert support',
     },
     {
-      image: '/assets/generated/hero-slide-2.dim_1920x800.png',
-      title: 'Your Health, Our Priority',
-      subtitle: 'Access comprehensive healthcare solutions and medical tourism services',
+      image: '/assets/generated/home-hero-technology.dim_1920x1080.png',
+      title: 'Advanced Healthcare Technology',
+      subtitle: 'Leverage cutting-edge technology solutions for enhanced patient care and operational efficiency',
     },
     {
-      image: '/assets/generated/hero-slide-3.dim_1920x800.png',
-      title: 'Building a Healthier Tomorrow',
-      subtitle: 'Join our network of healthcare providers and make a difference',
+      image: '/assets/generated/home-hero-connecting.dim_1920x1080.png',
+      title: 'Connecting Healthcare Ecosystem',
+      subtitle: 'Join our comprehensive network connecting all healthcare stakeholders across India',
     },
   ];
 
@@ -52,9 +52,9 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen w-full overflow-x-hidden">
       {/* Hero Carousel */}
-      <section className="relative h-[600px] overflow-hidden">
+      <section className="relative h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden w-full">
         {heroSlides.map((slide, index) => (
           <div
             key={index}
@@ -65,12 +65,12 @@ export default function Home() {
             <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30" />
             <div className="absolute inset-0 flex items-center">
-              <div className="container mx-auto px-6">
+              <div className="container mx-auto px-4 sm:px-6">
                 <div className="max-w-2xl">
-                  <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white drop-shadow-lg">
                     {slide.title}
                   </h1>
-                  <p className="text-xl md:text-2xl mb-8 text-white/95 drop-shadow-md">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-white/95 drop-shadow-md">
                     {slide.subtitle}
                   </p>
                   <Button
@@ -87,7 +87,7 @@ export default function Home() {
         ))}
 
         {/* Carousel Indicators */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
           {heroSlides.map((_, index) => (
             <button
               key={index}
@@ -102,23 +102,23 @@ export default function Home() {
       </section>
 
       {/* Value Propositions */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+      <section className="py-12 sm:py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
               Why Choose AI Health Zon
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
               Experience healthcare excellence with our comprehensive platform
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {valueProps.map((prop, index) => (
               <Card key={index} className="border-2 hover:border-primary/50 transition-all hover:shadow-lg">
                 <CardHeader>
                   <div className="mb-4">{prop.icon}</div>
-                  <CardTitle className="text-2xl gradient-text-alt">{prop.title}</CardTitle>
+                  <CardTitle className="text-xl sm:text-2xl gradient-text-alt">{prop.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-base">{prop.description}</CardDescription>
@@ -130,18 +130,18 @@ export default function Home() {
       </section>
 
       {/* Services Overview */}
-      <section className="py-24 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text-vibrant">
+      <section className="py-12 sm:py-16 md:py-24 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text-vibrant">
               Comprehensive Healthcare Solutions
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
               From medical professionals to research facilities, we connect you with the best healthcare resources
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               { icon: Stethoscope, title: 'Healthcare Professionals', path: '/careers' },
               { icon: Users, title: 'Corporate Healthcare', path: '/healthcare-support' },
@@ -154,8 +154,8 @@ export default function Home() {
                 onClick={() => navigate({ to: service.path })}
               >
                 <CardHeader>
-                  <service.icon className="w-12 h-12 text-primary mb-4" />
-                  <CardTitle className="gradient-text-alt">{service.title}</CardTitle>
+                  <service.icon className="w-10 h-10 sm:w-12 sm:h-12 text-primary mb-4" />
+                  <CardTitle className="text-base sm:text-lg gradient-text-alt">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Button variant="ghost" className="w-full">
@@ -169,12 +169,12 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+      <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 gradient-text">
             Ready to Transform Healthcare?
           </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto">
             Join thousands of healthcare professionals and organizations making a difference
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

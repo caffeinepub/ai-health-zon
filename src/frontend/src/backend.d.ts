@@ -14,13 +14,14 @@ export class ExternalBlob {
     static fromBytes(blob: Uint8Array<ArrayBuffer>): ExternalBlob;
     withUploadProgress(onProgress: (percentage: number) => void): ExternalBlob;
 }
-export interface MedicalRecord {
-    documents: Array<ExternalBlob>;
-    patientId: string;
-    treatment: string;
-    diagnosis: string;
-    patientName: string;
-    recordId: string;
+export interface Location {
+    country: string;
+    city: string;
+    state: string;
+}
+export interface DocumentType {
+    name: string;
+    description: string;
 }
 export interface VendorRequest {
     id: string;
@@ -32,30 +33,22 @@ export interface VendorRequest {
     products: Array<string>;
     location: Location;
 }
-export interface RecordFilter {
-    patientId?: string;
-    diagnosis?: string;
-    dateRange?: {
-        endDate: string;
-        startDate: string;
-    };
-}
-export interface Location {
-    country: string;
-    city: string;
-    state: string;
-}
-export interface HealthcareProfessionalRequest {
+export type Time = bigint;
+export interface PatientJourneySampleDocument {
     id: string;
-    status: RequestStatus;
-    requester: Principal;
-    contact: ContactInfo;
-    name: string;
-    role: string;
-    experience: bigint;
-    credentials: Array<ExternalBlob>;
-    specialties: Array<string>;
-    location: Location;
+    hospital: Principal;
+    verified: boolean;
+    documentType: DocumentType;
+    blob: ExternalBlob;
+    filename: string;
+    hospitalId: string;
+    phase: DocumentPhase;
+    uploadTime: Time;
+}
+export interface ResearchFilter {
+    institution?: string;
+    ethicsApproval?: boolean;
+    keyword?: string;
 }
 export interface TourismService {
     id: string;
@@ -66,6 +59,10 @@ export interface TourismService {
     description: string;
     category: string;
     location: Location;
+}
+export interface TableContent {
+    rows: Array<Array<string>>;
+    headers: Array<string>;
 }
 export interface NgoRequest {
     id: string;
@@ -78,32 +75,20 @@ export interface NgoRequest {
     location: Location;
     services: Array<string>;
 }
-export interface HealthcareProfessional {
-    id: string;
-    verified: boolean;
-    contact: ContactInfo;
-    name: string;
-    role: string;
-    experience: bigint;
-    credentials: Array<ExternalBlob>;
-    specialties: Array<string>;
-    location: Location;
+export interface UserProfile {
+    userType: string;
+    professionalProfile?: HealthcareProfessional;
 }
-export interface HealthRecord {
-    id: string;
-    documents: Array<ExternalBlob>;
-    labResults: Array<MedicalRecord>;
-    userId: string;
-    imagingStudies: Array<ExternalBlob>;
-    medications: Array<string>;
-    medicalHistory: Array<string>;
-    personalInfo: {
-        dob: string;
-        bloodType: string;
-        name: string;
-        gender: string;
-    };
-    allergies: Array<string>;
+export interface DocumentMetadata {
+    status: string;
+    blob: ExternalBlob;
+    filename: string;
+    filetype: string;
+    uploader: Principal;
+    uploadTime: bigint;
+}
+export interface ListContent {
+    items: Array<string>;
 }
 export interface Ngo {
     id: string;
@@ -125,11 +110,86 @@ export interface ResearchProject {
     projectId: string;
     abstract: string;
 }
+export interface Vendor {
+    id: string;
+    verified: boolean;
+    contact: ContactInfo;
+    name: string;
+    category: string;
+    products: Array<string>;
+    location: Location;
+}
+export interface LuxuryDebtService {
+    id: string;
+    serviceType: string;
+    applicantName: string;
+    approvalStatus: string;
+    amountRequested: bigint;
+}
 export interface ContactInfo {
     email: string;
     website: string;
     address: string;
     phone: string;
+}
+export interface HealthcareProfessional {
+    id: string;
+    verified: boolean;
+    contact: ContactInfo;
+    name: string;
+    role: string;
+    experience: bigint;
+    credentials: Array<ExternalBlob>;
+    specialties: Array<string>;
+    location: Location;
+}
+export interface MedicalRecord {
+    documents: Array<ExternalBlob>;
+    patientId: string;
+    treatment: string;
+    diagnosis: string;
+    patientName: string;
+    recordId: string;
+}
+export interface RecordFilter {
+    patientId?: string;
+    diagnosis?: string;
+    dateRange?: {
+        endDate: string;
+        startDate: string;
+    };
+}
+export interface HealthRecord {
+    id: string;
+    documents: Array<ExternalBlob>;
+    labResults: Array<MedicalRecord>;
+    userId: string;
+    imagingStudies: Array<ExternalBlob>;
+    medications: Array<string>;
+    medicalHistory: Array<string>;
+    personalInfo: {
+        dob: string;
+        bloodType: string;
+        name: string;
+        gender: string;
+    };
+    allergies: Array<string>;
+}
+export interface DocumentPhase {
+    name: string;
+    phaseNumber: bigint;
+}
+export interface ProcessedDocument {
+    metadata: DocumentMetadata;
+    summary: string;
+    documentId: string;
+    sections: Array<DocumentSection>;
+}
+export interface DocumentSection {
+    paragraphs: Array<string>;
+    heading: string;
+    lists: Array<ListContent>;
+    tables: Array<TableContent>;
 }
 export interface Hospital {
     id: string;
@@ -151,30 +211,17 @@ export interface AmbulanceRequest {
     name: string;
     location: Location;
 }
-export interface Vendor {
+export interface HealthcareProfessionalRequest {
     id: string;
-    verified: boolean;
+    status: RequestStatus;
+    requester: Principal;
     contact: ContactInfo;
     name: string;
-    category: string;
-    products: Array<string>;
+    role: string;
+    experience: bigint;
+    credentials: Array<ExternalBlob>;
+    specialties: Array<string>;
     location: Location;
-}
-export interface LuxuryDebtService {
-    id: string;
-    serviceType: string;
-    applicantName: string;
-    approvalStatus: string;
-    amountRequested: bigint;
-}
-export interface ResearchFilter {
-    institution?: string;
-    ethicsApproval?: boolean;
-    keyword?: string;
-}
-export interface UserProfile {
-    userType: string;
-    professionalProfile?: HealthcareProfessional;
 }
 export enum RequestStatus {
     pending = "pending",
@@ -211,6 +258,7 @@ export interface backendInterface {
     }>;
     getAllHospitals(): Promise<Array<Hospital>>;
     getAllNgos(): Promise<Array<Ngo>>;
+    getAllPatientJourneySampleDocuments(): Promise<Array<PatientJourneySampleDocument>>;
     getAllRecords(): Promise<Array<MedicalRecord>>;
     getAllTourismServices(): Promise<Array<TourismService>>;
     getAllVendors(): Promise<Array<Vendor>>;
@@ -221,6 +269,7 @@ export interface backendInterface {
     getHealthcareProfessionalById(id: string): Promise<HealthcareProfessional | null>;
     getHealthcareProfessionalsByLocation(city: string): Promise<Array<HealthcareProfessional>>;
     getHealthcareProfessionalsByRole(role: string): Promise<Array<HealthcareProfessional>>;
+    getHospitalPatientJourneySampleDocuments(hospitalId: string, phaseNumber: bigint | null): Promise<Array<PatientJourneySampleDocument>>;
     getHospitalsByLocation(city: string): Promise<Array<Hospital>>;
     getLuxuryDebtApplications(): Promise<Array<LuxuryDebtService>>;
     getMyRecords(): Promise<Array<MedicalRecord>>;
@@ -229,11 +278,13 @@ export interface backendInterface {
     getPendingHealthcareProfessionalRequests(): Promise<Array<HealthcareProfessionalRequest>>;
     getPendingNgoRequests(): Promise<Array<NgoRequest>>;
     getPendingVendorRequests(): Promise<Array<VendorRequest>>;
+    getProcessedDocument(id: string): Promise<ProcessedDocument | null>;
     getRecord(recordId: string): Promise<MedicalRecord>;
     getResearchProject(projectId: string): Promise<ResearchProject | null>;
     getUserProfile(user: Principal): Promise<UserProfile | null>;
     initializeSampleData(): Promise<void>;
     isCallerAdmin(): Promise<boolean>;
+    processDocument(id: string, sections: Array<DocumentSection>, summary: string): Promise<void>;
     rejectAmbulance(id: string): Promise<void>;
     rejectHealthcareProfessional(id: string): Promise<void>;
     rejectNgo(id: string): Promise<void>;
@@ -246,4 +297,6 @@ export interface backendInterface {
     submitNgoRegistration(request: NgoRequest): Promise<void>;
     submitVendorRegistration(request: VendorRequest): Promise<void>;
     updateRecord(record: MedicalRecord): Promise<void>;
+    uploadDocument(id: string, filename: string, filetype: string, blob: ExternalBlob): Promise<void>;
+    uploadPatientJourneySampleDocument(id: string, phase: DocumentPhase, documentType: DocumentType, hospitalId: string, filename: string, blob: ExternalBlob): Promise<void>;
 }

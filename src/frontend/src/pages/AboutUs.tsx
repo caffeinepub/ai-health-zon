@@ -65,7 +65,14 @@ export default function AboutUs() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <Card className="border-2 hover:border-primary/50 transition-all">
+            <Card className="border-2 hover:border-primary/50 transition-all overflow-hidden">
+              <div className="relative h-64">
+                <img 
+                  src="/assets/generated/about-mission-vision.dim_1200x800.png" 
+                  alt="Our Mission" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader>
                 <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
                   <Target className="w-8 h-8 text-primary" />
@@ -80,7 +87,14 @@ export default function AboutUs() {
               </CardContent>
             </Card>
 
-            <Card className="border-2 hover:border-primary/50 transition-all">
+            <Card className="border-2 hover:border-primary/50 transition-all overflow-hidden">
+              <div className="relative h-64">
+                <img 
+                  src="/assets/generated/about-mission-vision.dim_1200x800.png" 
+                  alt="Our Vision" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader>
                 <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
                   <Eye className="w-8 h-8 text-primary" />
@@ -106,6 +120,14 @@ export default function AboutUs() {
             <p className="text-xl text-gray-600">The principles that guide everything we do</p>
           </div>
 
+          <div className="mb-12 max-w-4xl mx-auto">
+            <img 
+              src="/assets/generated/about-core-values.dim_1200x800.png" 
+              alt="Our Core Values" 
+              className="w-full h-80 object-cover rounded-lg shadow-lg"
+            />
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {values.map((value, index) => (
               <Card key={index} className="text-center border-2 hover:border-primary/50 transition-all hover:shadow-lg">
@@ -124,15 +146,49 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Service Verticals */}
+      {/* Why Choose Us */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4 gradient-text">Our Service Verticals</h2>
-              <p className="text-xl text-gray-600">Comprehensive healthcare solutions across multiple domains</p>
-            </div>
+          <div className="max-w-5xl mx-auto">
+            <Card className="border-2 overflow-hidden">
+              <div className="relative h-80">
+                <img 
+                  src="/assets/generated/about-why-choose.dim_1200x800.png" 
+                  alt="Why Choose Us" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <CardHeader>
+                <CardTitle className="text-3xl gradient-text-alt">Why Choose AI Health Zon</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription className="text-lg leading-relaxed">
+                  We bring together the best of healthcare technology, professional expertise, and comprehensive
+                  services to create an unparalleled healthcare ecosystem that serves all stakeholders effectively.
+                </CardDescription>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
 
+      {/* Three Verticals Overview */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 gradient-text">Our Three Verticals</h2>
+            <p className="text-xl text-gray-600">Comprehensive healthcare solutions across multiple domains</p>
+          </div>
+
+          <div className="max-w-5xl mx-auto mb-12">
+            <img 
+              src="/assets/generated/about-three-verticals.dim_1200x800.png" 
+              alt="Our Three Verticals" 
+              className="w-full h-80 object-cover rounded-lg shadow-lg"
+            />
+          </div>
+
+          <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-6">
               {services.map((service, index) => (
                 <Card key={index} className="border-l-4 border-l-primary hover:shadow-lg transition-all">
@@ -148,10 +204,17 @@ export default function AboutUs() {
       </section>
 
       {/* Compliance & Standards */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <Card className="border-2">
+            <Card className="border-2 overflow-hidden">
+              <div className="relative h-80">
+                <img 
+                  src="/assets/generated/about-compliance.dim_1200x800.png" 
+                  alt="Compliance & Standards" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
@@ -184,11 +247,19 @@ export default function AboutUs() {
       </section>
 
       {/* Impact Metrics */}
-      <section className="py-20 bg-white">
+      <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 gradient-text-vibrant">Our Impact</h2>
             <p className="text-xl text-gray-600">Making a difference in healthcare delivery across India</p>
+          </div>
+
+          <div className="mb-12 max-w-4xl mx-auto">
+            <img 
+              src="/assets/generated/about-our-impact.dim_1200x800.png" 
+              alt="Our Impact" 
+              className="w-full h-80 object-cover rounded-lg shadow-lg"
+            />
           </div>
 
           <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
@@ -205,22 +276,19 @@ export default function AboutUs() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <Globe className="w-16 h-16 mx-auto mb-6 text-primary" />
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">Join Our Healthcare Revolution</h2>
-            <p className="text-xl text-gray-700 mb-8">
-              Be part of India's most comprehensive healthcare network
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" onClick={() => navigate({ to: '/directory' })}>
-                Explore Network
-              </Button>
-              <Button size="lg" variant="outline" onClick={() => navigate({ to: '/contact' })}>
-                Contact Us
-              </Button>
-            </div>
+      <section className="py-20 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold mb-6 gradient-text">Join Our Healthcare Network</h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Be part of India's leading healthcare platform connecting professionals, institutions, and services
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" onClick={() => navigate({ to: '/directory' })}>
+              Explore Network
+            </Button>
+            <Button size="lg" variant="outline" onClick={() => navigate({ to: '/contact' })}>
+              Get in Touch
+            </Button>
           </div>
         </div>
       </section>

@@ -1,71 +1,84 @@
 {
   "kind": "build_request",
-  "title": "Remove multicolor gradient text from images",
+  "title": "Update dropdown styling with white text and Royal Teal background",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-105",
-      "text": "Remove multicolor gradient text styling from all text elements that appear over or within image content across the Home page (frontend/src/pages/Home.tsx) hero section carousel",
+      "id": "REQ-177",
+      "text": "Update all dropdown/select components across the application to display option text in white color when the dropdown menu is open",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-user-final"
         ],
         "quotes": [
-          "dont apply on word or sentences which are on the pics. because pics are not visualizing"
+          "when i click dropdown, option for selection should be properly display with white color font"
         ]
       },
       "acceptanceCriteria": [
-        "Text overlaid on hero carousel images renders in solid colors without gradient effects",
-        "Hero section headings and CTA button text remain fully visible and readable over background images",
-        "Gradient text effects are preserved for non-image sections of the page"
+        "All dropdown option text displays in white color (#FFFFFF or equivalent)",
+        "Text color applies to options in open dropdown state",
+        "White text remains readable against Royal Teal background"
       ]
     },
     {
-      "id": "REQ-106",
-      "text": "Remove multicolor gradient text styling from any text overlays on the Healthcare Support System page (frontend/src/pages/HealthcareSupportSystem.tsx) video thumbnail sections",
+      "id": "REQ-178",
+      "text": "Update all dropdown/select components across the application to display Royal Teal background color for the entire dropdown menu when opened",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-user-final"
         ],
         "quotes": [
-          "dont apply on word or sentences which are on the pics. because pics are not visualizing"
+          "whole dropdown should be Royal Teal"
         ]
       },
       "acceptanceCriteria": [
-        "Text overlaid on video thumbnails or image placeholders renders in solid colors",
-        "All text over visual media remains clearly visible without gradient styling"
+        "Dropdown menu background displays in Royal Teal color when opened",
+        "Background color applies to entire dropdown panel including all options",
+        "Royal Teal background matches the existing platform color scheme"
       ]
     },
     {
-      "id": "REQ-107",
-      "text": "Ensure multicolor gradient typography is only applied to text rendered directly on solid background colors, not on text overlaying images, photos, or video content across all pages",
+      "id": "REQ-179",
+      "text": "Update global CSS in frontend/index.css to define dropdown styling rules that set white text color and Royal Teal background for all select/dropdown option elements",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
-        ],
-        "quotes": [
-          "dont apply on word or sentences which are on the pics. because pics are not visualizing"
+          "msg-user-final"
         ]
       },
       "acceptanceCriteria": [
-        "Text on solid backgrounds displays with multicolor gradients as designed",
-        "Text over images, carousels, or media content displays in solid colors with high contrast",
-        "Visual hierarchy and readability are maintained across all page sections"
+        "CSS rules target dropdown option elements across all form components",
+        "Styling applies consistently to dropdowns in Careers, Vendors, Ambulance Services, NGO Listing, and Admin Dashboard pages",
+        "Hover and focus states maintain white text visibility"
+      ]
+    },
+    {
+      "id": "REQ-180",
+      "text": "Update Tailwind configuration in frontend/tailwind.config.js to ensure Royal Teal color is available for dropdown styling and matches existing color tokens",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-final"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Royal Teal color token is defined in Tailwind theme",
+        "Color value matches existing Royal Teal usage in the platform",
+        "Dropdown components can reference the color token consistently"
       ]
     }
   ],
   "constraints": [
-    "Preserve existing multicolor gradient styling for text on solid backgrounds",
-    "Do not modify the gradient utility classes in frontend/tailwind.config.js",
-    "Maintain all existing page layouts and content structure"
+    "Do not modify immutable frontend paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui",
+    "Maintain existing dropdown functionality and user interactions",
+    "Ensure dropdown styling changes do not affect other UI components"
   ],
   "nonGoals": [
-    "Removing gradient effects from all text site-wide",
-    "Changing the color scheme or typography hierarchy",
-    "Modifying image content or carousel functionality"
+    "Changing dropdown options content or values",
+    "Modifying dropdown positioning or layout structure",
+    "Updating backend data structures or logic"
   ],
   "imageRequirements": {
     "required": [],

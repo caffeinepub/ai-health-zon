@@ -2,9 +2,10 @@ import Map "mo:core/Map";
 import Array "mo:core/Array";
 import Principal "mo:core/Principal";
 import Text "mo:core/Text";
+import Time "mo:core/Time";
 import Runtime "mo:core/Runtime";
-import Order "mo:core/Order";
 import Iter "mo:core/Iter";
+import Order "mo:core/Order";
 import AccessControl "authorization/access-control";
 import MixinAuthorization "authorization/MixinAuthorization";
 import MixinStorage "blob-storage/Mixin";
@@ -210,7 +211,64 @@ actor {
     userType : Text; // "professional", "hospital", "vendor", "ngo"
   };
 
-  // Internal Data Stores
+  // Patient Journey Sample Document Types
+  public type DocumentPhase = {
+    phaseNumber : Nat;
+    name : Text;
+  };
+
+  public type DocumentType = {
+    name : Text;
+    description : Text;
+  };
+
+  public type PatientJourneySampleDocument = {
+    id : Text;
+    phase : DocumentPhase;
+    documentType : DocumentType;
+    blob : Storage.ExternalBlob;
+    filename : Text;
+    uploadTime : Time.Time;
+    hospital : Principal;
+    hospitalId : Text;
+    verified : Bool;
+  };
+
+  // Document Metadata Types
+  public type DocumentMetadata = {
+    filename : Text;
+    filetype : Text;
+    uploadTime : Nat;
+    status : Text;
+    blob : Storage.ExternalBlob;
+    uploader : Principal;
+  };
+
+  public type DocumentSection = {
+    heading : Text;
+    paragraphs : [Text];
+    tables : [TableContent];
+    lists : [ListContent];
+  };
+
+  public type TableContent = {
+    headers : [Text];
+    rows : [[Text]];
+  };
+
+  public type ListContent = {
+    items : [Text];
+  };
+
+  public type ProcessedDocument = {
+    documentId : Text;
+    metadata : DocumentMetadata;
+    sections : [DocumentSection];
+    summary : Text;
+  };
+
+  // Storage Maps
+
   let userProfiles = Map.empty<Principal, UserProfile>();
   let professionalProfiles = Map.empty<Principal, HealthcareProfessional>();
   let hospitals = Map.empty<Text, Hospital>();
@@ -233,10 +291,14 @@ actor {
   let ngoRequests = Map.empty<Text, NgoRequest>();
   let ambulanceRequests = Map.empty<Text, AmbulanceRequest>();
 
+  let patientJourneySampleDocuments = Map.empty<Text, PatientJourneySampleDocument>();
+  let documentStore = Map.empty<Text, DocumentMetadata>();
+  let processedDocuments = Map.empty<Text, ProcessedDocument>();
+
   // Required User Profile Functions
   public query ({ caller }) func getCallerUserProfile() : async ?UserProfile {
     if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
-      Runtime.trap("Unauthorized: Only users can access profiles");
+      Runtime.trap("Unauthorized: Only authenticated users can retrieve profiles");
     };
     userProfiles.get(caller);
   };
@@ -253,6 +315,78 @@ actor {
       Runtime.trap("Unauthorized: Only users can save profiles");
     };
     userProfiles.add(caller, profile);
+  };
+
+  // Patient Journey Sample Document Management
+  public shared ({ caller }) func uploadPatientJourneySampleDocument(
+    id : Text,
+    phase : DocumentPhase,
+    documentType : DocumentType,
+    hospitalId : Text,
+    filename : Text,
+    blob : Storage.ExternalBlob,
+  ) : async () {
+    // Only hospital owners can upload
+    switch (hospitalOwners.get(hospitalId)) {
+      case (null) {
+        Runtime.trap("Hospital not found. Only hospital owners can upload sample documents");
+      };
+      case (?owner) {
+        if (owner != caller) {
+          Runtime.trap("Unauthorized: Only hospital owners can upload sample documents");
+        };
+      };
+    };
+
+    if (patientJourneySampleDocuments.containsKey(id)) {
+      Runtime.trap("Document with this ID already exists");
+    };
+
+    let newSample : PatientJourneySampleDocument = {
+      id;
+      phase;
+      documentType;
+      blob;
+      filename;
+      uploadTime = Time.now();
+      hospital = caller;
+      hospitalId;
+      verified = false;
+    };
+
+    patientJourneySampleDocuments.add(id, newSample);
+  };
+
+  public query ({ caller }) func getHospitalPatientJourneySampleDocuments(hospitalId : Text, phaseNumber : ?Nat) : async [PatientJourneySampleDocument] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only authenticated users can access sample documents");
+    };
+
+    // Check if caller is the hospital owner or admin
+    let isOwner = switch (hospitalOwners.get(hospitalId)) {
+      case (null) { false };
+      case (?owner) { owner == caller };
+    };
+
+    if (not isOwner and not AccessControl.isAdmin(accessControlState, caller)) {
+      Runtime.trap("Unauthorized: Only hospital owner or admin can view hospital sample documents");
+    };
+
+    patientJourneySampleDocuments.values().toArray().filter(
+      func(doc) {
+        doc.hospitalId == hospitalId and (switch (phaseNumber) {
+          case (?phaseNum) { doc.phase.phaseNumber == phaseNum };
+          case (null) { true };
+        });
+      }
+    );
+  };
+
+  public query ({ caller }) func getAllPatientJourneySampleDocuments() : async [PatientJourneySampleDocument] {
+    if (not AccessControl.isAdmin(accessControlState, caller)) {
+      Runtime.trap("Unauthorized: Only admins can view all sample documents");
+    };
+    patientJourneySampleDocuments.values().toArray();
   };
 
   // Helper for initializing sample data
@@ -1041,5 +1175,76 @@ actor {
     ).map(func(r) { r.location });
 
     healthcareLocations.concat(vendorLocations).concat(ambulanceLocations).concat(ngoLocations);
+  };
+
+  // Document Upload Functionality
+  public shared ({ caller }) func uploadDocument(id : Text, filename : Text, filetype : Text, blob : Storage.ExternalBlob) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only authenticated users can upload documents");
+    };
+
+    if (documentStore.containsKey(id)) {
+      Runtime.trap("Document with this ID already exists");
+    };
+
+    let metadata : DocumentMetadata = {
+      filename;
+      filetype;
+      uploadTime = 0;
+      status = "uploaded";
+      blob;
+      uploader = caller;
+    };
+
+    documentStore.add(id, metadata);
+  };
+
+  // Document Processing - Owner or admin only
+  public shared ({ caller }) func processDocument(id : Text, sections : [DocumentSection], summary : Text) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only authenticated users can process documents");
+    };
+
+    let metadata = switch (documentStore.get(id)) {
+      case (null) { Runtime.trap("Document not found") };
+      case (?meta) { meta };
+    };
+
+    // Check ownership or admin
+    if (metadata.uploader != caller and not AccessControl.isAdmin(accessControlState, caller)) {
+      Runtime.trap("Unauthorized: Only document owner or admin can process this document");
+    };
+
+    let updatedMetadata = {
+      metadata with status = "processed";
+    };
+
+    let processedDocument : ProcessedDocument = {
+      documentId = id;
+      metadata = updatedMetadata;
+      sections;
+      summary;
+    };
+
+    processedDocuments.add(id, processedDocument);
+    documentStore.add(id, updatedMetadata);
+  };
+
+  // Export Processed Document - Owner or admin only
+  public query ({ caller }) func getProcessedDocument(id : Text) : async ?ProcessedDocument {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only authenticated users can access processed documents");
+    };
+
+    switch (processedDocuments.get(id)) {
+      case (null) { null };
+      case (?doc) {
+        // Check ownership or admin
+        if (doc.metadata.uploader != caller and not AccessControl.isAdmin(accessControlState, caller)) {
+          Runtime.trap("Unauthorized: Only document owner or admin can view this processed document");
+        };
+        ?doc;
+      };
+    };
   };
 };

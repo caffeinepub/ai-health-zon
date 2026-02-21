@@ -1,11 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Remove multicolor gradient text styling from text overlaid on images to improve readability.
+**Goal:** Update dropdown/select component styling to display white text on Royal Teal background when opened.
 
 **Planned changes:**
-- Remove gradient text effects from hero carousel text overlays on the Home page
-- Remove gradient text effects from video thumbnail text overlays on the Healthcare Support System page
-- Preserve gradient styling for text on solid backgrounds throughout the site
+- Add global CSS rules in frontend/index.css to style dropdown option elements with white text color and Royal Teal background
+- Update Tailwind configuration in frontend/tailwind.config.js to ensure Royal Teal color token is defined and available
+- Apply styling consistently across all dropdown components including Careers, Vendors, Ambulance Services, NGO Listing, and Admin Dashboard pages
+- Ensure hover and focus states maintain white text visibility against Royal Teal background
 
-**User-visible outcome:** Text overlaid on images and media content displays in solid colors with better visibility and contrast, while maintaining gradient effects for text on solid backgrounds.
+**User-visible outcome:** All dropdown menus across the application display options with white text on a Royal Teal background when opened, providing consistent visual styling that matches the platform's color scheme.

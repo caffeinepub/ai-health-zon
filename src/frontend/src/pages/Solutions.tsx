@@ -14,7 +14,14 @@ export default function Solutions() {
 
           <div className="max-w-5xl mx-auto space-y-12">
             {/* Vertical 1: RCM */}
-            <Card>
+            <Card className="overflow-hidden">
+              <div className="relative h-96">
+                <img
+                  src="/assets/generated/solutions-rcm.dim_1200x800.png"
+                  alt="Revenue Cycle Management"
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader>
                 <div className="flex items-center gap-4 mb-4">
                   <img
@@ -81,7 +88,14 @@ export default function Solutions() {
             </Card>
 
             {/* Vertical 2: Healthcare Technology */}
-            <Card>
+            <Card className="overflow-hidden">
+              <div className="relative h-96">
+                <img
+                  src="/assets/generated/solutions-technology.dim_1200x800.png"
+                  alt="Healthcare Technology"
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader>
                 <div className="flex items-center gap-4 mb-4">
                   <img
@@ -148,7 +162,14 @@ export default function Solutions() {
             </Card>
 
             {/* Vertical 3: Connecting Platform */}
-            <Card>
+            <Card className="overflow-hidden">
+              <div className="relative h-96">
+                <img
+                  src="/assets/generated/solutions-connecting-platform.dim_1200x800.png"
+                  alt="Healthcare Connecting Platform"
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader>
                 <div className="flex items-center gap-4 mb-4">
                   <img

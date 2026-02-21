@@ -75,11 +75,21 @@ export default function NetworkDirectory() {
 
   return (
     <div className="w-full bg-background">
-      {/* Header Section */}
-      <section className="py-12 lg:py-16 border-b">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-semibold mb-4 tracking-tight">Network Directory</h1>
-          <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
+      {/* Header Section with Hero Image */}
+      <section className="relative py-20 lg:py-28 border-b overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src="/assets/generated/directory-hero.dim_1000x400.png" 
+            alt="Network Directory" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <h1 className="text-4xl md:text-5xl font-semibold mb-4 tracking-tight text-white drop-shadow-lg">
+            Network Directory
+          </h1>
+          <p className="text-lg text-white/95 max-w-3xl leading-relaxed drop-shadow-md">
             Connect with healthcare professionals, hospitals, vendors, and service providers in our comprehensive network.
           </p>
         </div>

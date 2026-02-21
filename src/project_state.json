@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 33,
-  "summary": "AI Health Zon: A comprehensive AI-powered healthcare platform website with RCM, Healthcare Technology solutions, and a Healthcare Connecting Platform linking hospitals, medical professionals, vendors, NGOs, and services",
+  "projectStateVersion": 51,
+  "summary": "AI Health Zon: A comprehensive AI-powered healthcare platform website with RCM, Healthcare Technology solutions, and a Healthcare Connecting Platform. The opening animation displays a 10-phase healthcare revenue cycle management workflow from patient registration through payment reconciliation and closure.",
   "architectural_notes": [
     "Multi-stakeholder platform requiring role-based authentication and dashboards",
     "Searchable directory with filters (location, category, services)",
@@ -9,14 +9,15 @@
     "AI chatbot integration for contact page",
     "WhatsApp integration for contact",
     "Multi-page website with 12 distinct pages plus dashboard variations",
-    "Interactive landing page with gamified animation showing stakeholder requests and approvals",
     "Admin approval workflow for stakeholder registrations (careers, vendors, ambulance, NGO)",
     "Status tracking system: Pending → Approved → Rejected",
-    "PIN code-based auto-fill for city/state in registration forms using PIN code lookup API or database"
+    "PIN code-based auto-fill for city/state in registration forms using PIN code lookup API or database",
+    "Opening animation showcases 10-phase RCM workflow: Registration & Eligibility → Pre-Authorization → Admission & Documentation → Medical Coding → Billing & Claims → Submission → Query Management → Adjudication → Payment Posting → Reconciliation & Closure"
   ],
   "known_issues": [
     "Chatbot not functioning on the website",
-    "Text with multicolor gradient overlays on images is not displaying/visualizing properly"
+    "Text with multicolor gradient overlays on images is not displaying/visualizing properly",
+    "Content not displaying completely on small/mobile viewports - layout overflow or sizing issue"
   ],
   "isFixRequest": true,
   "existing_features": [
@@ -707,6 +708,422 @@
         "REQ-107"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-home-page-frontend-src-pages-home-tsx-hero-section-carousel-images-to-visually-represent-the-core-healthcare-platform-messaging-about-rcm-healthcare-technology-solutions-and-connecting-platform-services",
+      "title": "Update the Home page (frontend/src/pages/Home.tsx) hero section carousel images to visually represent the core healthcare platform messaging about RCM, Healthcare Technology solutions, and connecting platform services",
+      "reqIds": [
+        "REQ-108"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-images-on-the-about-us-page-frontend-src-pages-aboutus-tsx-to-match-section-headings-including-mission-vision-core-values-why-choose-us-three-verticals-overview-compliance-accreditation-and-our-impact",
+      "title": "Update images on the About Us page (frontend/src/pages/AboutUs.tsx) to match section headings including mission, vision, core values, why choose us, three verticals overview, compliance & accreditation, and our impact",
+      "reqIds": [
+        "REQ-109"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-images-on-the-solutions-page-frontend-src-pages-solutions-tsx-to-match-the-three-vertical-sections-revenue-cycle-management-rcm-healthcare-technology-and-healthcare-connecting-platform",
+      "title": "Update images on the Solutions page (frontend/src/pages/Solutions.tsx) to match the three vertical sections: Revenue Cycle Management (RCM), Healthcare Technology, and Healthcare Connecting Platform",
+      "reqIds": [
+        "REQ-110"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-images-on-the-healthcare-support-system-page-frontend-src-pages-healthcaresupportsystem-tsx-to-match-the-12-service-category-headings-workforce-support-emergency-ambulance-diagnostics-labs-pharmacy-medicines-home-healthcare-mental-health-wellness-vendors-suppliers-ngos-community-support-compliance-quality-support-insurance-tpa-coordination-training-education-and-logistics-supply-chain",
+      "title": "Update images on the Healthcare Support System page (frontend/src/pages/HealthcareSupportSystem.tsx) to match the 12 service category headings: Workforce Support, Emergency & Ambulance, Diagnostics & Labs, Pharmacy & Medicines, Home Healthcare, Mental Health & Wellness, Vendors & Suppliers, NGOs & Community Support, Compliance & Quality Support, Insurance & TPA Coordination, Training & Education, and Logistics & Supply Chain",
+      "reqIds": [
+        "REQ-111"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-images-on-the-network-directory-page-frontend-src-pages-networkdirectory-tsx-to-include-representative-images-for-the-stakeholder-categories-hospitals-clinics-healthcare-professionals-ambulance-services-diagnostics-labs-pharmacies-vendors-suppliers-and-ngos",
+      "title": "Update images on the Network Directory page (frontend/src/pages/NetworkDirectory.tsx) to include representative images for the stakeholder categories: Hospitals & Clinics, Healthcare Professionals, Ambulance Services, Diagnostics & Labs, Pharmacies, Vendors & Suppliers, and NGOs",
+      "reqIds": [
+        "REQ-112"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-all-existing-hero-carousel-images-on-the-home-page-frontend-src-pages-home-tsx-with-full-hd-versions-1920x1080-resolution-minimum-representing-rcm-healthcare-technology-solutions-and-connecting-platform-services",
+      "title": "Replace all existing hero carousel images on the Home page (frontend/src/pages/Home.tsx) with full HD versions (1920x1080 resolution minimum) representing RCM, Healthcare Technology solutions, and connecting platform services",
+      "reqIds": [
+        "REQ-119"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-all-section-images-on-the-about-us-page-frontend-src-pages-aboutus-tsx-with-full-hd-versions-minimum-1200x800-matching-section-headings-mission-vision-core-values-why-choose-us-three-verticals-overview-compliance-accreditation-and-our-impact",
+      "title": "Replace all section images on the About Us page (frontend/src/pages/AboutUs.tsx) with full HD versions (minimum 1200x800) matching section headings: mission, vision, core values, why choose us, three verticals overview, compliance & accreditation, and our impact",
+      "reqIds": [
+        "REQ-120"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-all-vertical-section-images-on-the-solutions-page-frontend-src-pages-solutions-tsx-with-full-hd-versions-minimum-1200x800-for-revenue-cycle-management-rcm-healthcare-technology-and-healthcare-connecting-platform",
+      "title": "Replace all vertical section images on the Solutions page (frontend/src/pages/Solutions.tsx) with full HD versions (minimum 1200x800) for Revenue Cycle Management (RCM), Healthcare Technology, and Healthcare Connecting Platform",
+      "reqIds": [
+        "REQ-121"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-new-home-page-for-the-document-processing-application-with-a-hero-section-explaining-the-app-s-purpose-converting-pdf-and-scanned-documents-into-structured-formats",
+      "title": "Create a new Home page for the document processing application with a hero section explaining the app's purpose: converting PDF and scanned documents into structured formats",
+      "reqIds": [
+        "REQ-130"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-file-upload-interface-on-the-home-page-that-accepts-pdf-files-and-common-image-formats-jpeg-png-tiff-for-scanned-documents",
+      "title": "Implement a file upload interface on the Home page that accepts PDF files and common image formats (JPEG, PNG, TIFF) for scanned documents",
+      "reqIds": [
+        "REQ-131"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-documents-page-that-displays-a-list-of-all-uploaded-documents-with-their-processing-status-filename-upload-date-and-action-buttons",
+      "title": "Create a Documents page that displays a list of all uploaded documents with their processing status, filename, upload date, and action buttons",
+      "reqIds": [
+        "REQ-134"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-document-viewer-page-that-displays-the-structured-output-of-a-processed-document-with-proper-formatting-for-headings-paragraphs-tables-and-lists",
+      "title": "Create a Document Viewer page that displays the structured output of a processed document with proper formatting for headings, paragraphs, tables, and lists",
+      "reqIds": [
+        "REQ-136"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-export-functionality-that-allows-users-to-download-structured-document-data-in-json-and-plain-text-formats",
+      "title": "Add export functionality that allows users to download structured document data in JSON and plain text formats",
+      "reqIds": [
+        "REQ-137"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-navigation-component-to-include-links-to-home-upload-documents-list-and-user-authentication",
+      "title": "Update the Navigation component to include links to Home (upload), Documents (list), and user authentication",
+      "reqIds": [
+        "REQ-138"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-react-query-hooks-in-frontend-src-hooks-usequeries-ts-for-uploading-documents-fetching-document-list-retrieving-structured-output-and-exporting-data",
+      "title": "Implement React Query hooks in frontend/src/hooks/useQueries.ts for uploading documents, fetching document list, retrieving structured output, and exporting data",
+      "reqIds": [
+        "REQ-139"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-the-existing-mckinsey-inspired-professional-design-theme-with-multicolor-gradient-typography-to-all-new-pages-and-components",
+      "title": "Apply the existing McKinsey-inspired professional design theme with multicolor gradient typography to all new pages and components",
+      "reqIds": [
+        "REQ-140"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-patientjourney-page-component-at-frontend-src-pages-patientjourney-tsx-that-displays-a-hero-section-explaining-the-patient-journey-document-library-feature-for-hospitals-to-organize-and-save-sample-documents-across-patient-care-phases",
+      "title": "Create a PatientJourney page component at frontend/src/pages/PatientJourney.tsx that displays a hero section explaining the patient journey document library feature for hospitals to organize and save sample documents across patient care phases",
+      "reqIds": [
+        "REQ-141"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-the-10-phase-patient-journey-document-flow-on-the-patientjourney-page-with-expandable-or-card-based-sections-for-1-patient-entry-registration-2-initial-clinical-evaluation-3-investigation-diagnostics-4-treatment-planning-5-nursing-care-monitoring-6-pre-operative-phase-7-intra-procedure-ot-phase-8-post-procedure-recovery-phase-9-discharge-planning-exit-10-legal-record-closure",
+      "title": "Display the 10-phase Patient Journey Document Flow on the PatientJourney page with expandable or card-based sections for: (1) Patient Entry & Registration, (2) Initial Clinical Evaluation, (3) Investigation & Diagnostics, (4) Treatment Planning, (5) Nursing Care & Monitoring, (6) Pre-Operative Phase, (7) Intra-Procedure / OT Phase, (8) Post-Procedure / Recovery Phase, (9) Discharge Planning & Exit, (10) Legal & Record Closure",
+      "reqIds": [
+        "REQ-142"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-document-type-lists-within-each-phase-section-showing-all-required-document-types-phase-1-registration-form-general-consent-phase-2-clinical-assessment-progress-notes-for-initial-assessment-phase-3-microbiology-requisition-form-monitoring-sheet-for-vitals-inputs-outputs-observations-phase-4-medication-chart-progress-notes-for-treatment-plan-daily-review-phase-5-nursing-chart-monitoring-sheet-ongoing-phase-6-pre-anaesthetic-checkup-form-pre-operative-orders-surgical-docket-booklet-procedure-consent-phase-7-procedure-consent-verified-progress-notes-for-operative-procedure-notes-phase-8-monitoring-sheet-medication-chart-nursing-chart-progress-notes-post-op-post-procedure-phase-9-discharge-document-progress-notes-for-final-summary-instructions-phase-10-all-consents-general-procedure-completed-charts-forms-filed-in-patient-record",
+      "title": "Display document type lists within each phase section showing all required document types: Phase 1 (Registration Form, General Consent), Phase 2 (Clinical Assessment, Progress Notes for initial assessment), Phase 3 (Microbiology Requisition Form, Monitoring Sheet for vitals/inputs-outputs/observations), Phase 4 (Medication Chart, Progress Notes for treatment plan & daily review), Phase 5 (Nursing Chart, Monitoring Sheet ongoing), Phase 6 (Pre-Anaesthetic Checkup Form, Pre-Operative Orders/Surgical Docket Booklet, Procedure Consent), Phase 7 (Procedure Consent verified, Progress Notes for operative/procedure notes), Phase 8 (Monitoring Sheet, Medication Chart, Nursing Chart, Progress Notes post-op/post-procedure), Phase 9 (Discharge Document, Progress Notes for final summary & instructions), Phase 10 (All Consents general + procedure, Completed Charts & Forms filed in patient record)",
+      "reqIds": [
+        "REQ-143"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-file-upload-functionality-within-each-phase-section-that-allows-hospitals-to-upload-and-save-sample-documents-for-each-document-type-to-their-library",
+      "title": "Implement file upload functionality within each phase section that allows hospitals to upload and save sample documents for each document type to their library",
+      "reqIds": [
+        "REQ-144"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-uploaded-sample-documents-within-each-phase-section-showing-filename-upload-date-and-action-buttons-for-preview-download",
+      "title": "Display uploaded sample documents within each phase section showing filename, upload date, and action buttons for preview/download",
+      "reqIds": [
+        "REQ-148"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-react-query-hooks-in-frontend-src-hooks-usequeries-ts-for-uploading-patient-journey-sample-documents-fetching-document-lists-by-phase-and-retrieving-document-blobs",
+      "title": "Add React Query hooks in frontend/src/hooks/useQueries.ts for uploading patient journey sample documents, fetching document lists by phase, and retrieving document blobs",
+      "reqIds": [
+        "REQ-149"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-patient-journey-navigation-link-in-the-navigation-component-frontend-src-components-navigation-tsx-that-routes-to-patient-journey",
+      "title": "Add a 'Patient Journey' navigation link in the Navigation component (frontend/src/components/Navigation.tsx) that routes to /patient-journey",
+      "reqIds": [
+        "REQ-150"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-route-definition-for-patient-journey-in-frontend-src-app-tsx-that-renders-the-patientjourney-page-component-within-the-layout-wrapper",
+      "title": "Add route definition for /patient-journey in frontend/src/App.tsx that renders the PatientJourney page component within the Layout wrapper",
+      "reqIds": [
+        "REQ-151"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-onboarding-animation-sequence-on-the-onboarding-page-frontend-src-pages-onboarding-tsx-with-a-new-10-phase-healthcare-revenue-cycle-management-workflow-animation-that-displays-the-complete-patient-journey-from-registration-through-payment-reconciliation-and-closure",
+      "title": "Replace the existing onboarding animation sequence on the Onboarding page (frontend/src/pages/Onboarding.tsx) with a new 10-phase healthcare revenue cycle management workflow animation that displays the complete patient journey from registration through payment reconciliation and closure",
+      "reqIds": [
+        "REQ-152"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-phase-1-patient-registration-eligibility-verification-section-displaying-objective-ensure-correct-patient-insurance-data-before-treatment-starts-process-steps-patient-demographic-entry-abha-policy-id-capture-scheme-verification-tpa-insurance-govt-panel-e-card-validation-pre-existing-condition-check-and-control-points-id-proof-upload-active-policy-confirmation-correct-beneficiary-details",
+      "title": "Implement Phase 1 - Patient Registration & Eligibility Verification section displaying objective (Ensure correct patient & insurance data before treatment starts), process steps (Patient demographic entry, ABHA/Policy ID capture, Scheme verification TPA/Insurance/Govt panel, E-card validation, Pre-existing condition check), and control points (ID proof upload, Active policy confirmation, Correct beneficiary details)",
+      "reqIds": [
+        "REQ-153"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-phase-2-financial-clearance-pre-authorization-section-displaying-objective-secure-treatment-approval-before-procedure-process-steps-clinical-summary-preparation-tentative-package-selection-medical-documents-upload-portal-submission-tracking-approval-status-special-note-for-ayushman-bharat-scheme-compliance-and-control-points-correct-package-coding-clinical-justification-matching-guidelines-document-checklist-completeness",
+      "title": "Implement Phase 2 - Financial Clearance & Pre-Authorization section displaying objective (Secure treatment approval before procedure), process steps (Clinical summary preparation, Tentative package selection, Medical documents upload, Portal submission, Tracking approval status), special note for Ayushman Bharat scheme compliance, and control points (Correct package coding, Clinical justification matching guidelines, Document checklist completeness)",
+      "reqIds": [
+        "REQ-154"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-phase-3-admission-treatment-documentation-section-displaying-objective-maintain-complete-medico-legal-billing-support-record-documents-required-list-admission-note-investigation-reports-doctor-daily-progress-notes-ot-notes-if-surgery-implant-stickers-if-applicable-nursing-charts-and-control-points-time-consistency-clinical-correlation-avoid-over-documentation-mismatch",
+      "title": "Implement Phase 3 - Admission & Treatment Documentation section displaying objective (Maintain complete medico-legal & billing support record), documents required list (Admission note, Investigation reports, Doctor daily progress notes, OT notes if surgery, Implant stickers if applicable, Nursing charts), and control points (Time consistency, Clinical correlation, Avoid over-documentation mismatch)",
+      "reqIds": [
+        "REQ-155"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-phase-4-medical-coding-package-mapping-section-displaying-objective-convert-clinical-data-into-billable-codes-steps-icd-coding-procedure-mapping-package-validation-los-validation-length-of-stay-and-control-points-code-vs-diagnosis-match-no-unbundled-billing-scheme-rate-compliance",
+      "title": "Implement Phase 4 - Medical Coding & Package Mapping section displaying objective (Convert clinical data into billable codes), steps (ICD coding, Procedure mapping, Package validation, LOS validation Length of Stay), and control points (Code vs diagnosis match, No unbundled billing, Scheme rate compliance)",
+      "reqIds": [
+        "REQ-156"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-phase-5-billing-claim-file-preparation-section-displaying-objective-prepare-clean-claim-file-with-zero-deficiencies-claim-file-includes-list-final-bill-discharge-summary-investigation-reports-implant-invoice-if-applicable-pre-auth-approval-copy-and-control-points-arithmetic-accuracy-same-diagnosis-everywhere-proper-document-indexing",
+      "title": "Implement Phase 5 - Billing & Claim File Preparation section displaying objective (Prepare clean claim file with zero deficiencies), claim file includes list (Final bill, Discharge summary, Investigation reports, Implant invoice if applicable, Pre-auth approval copy), and control points (Arithmetic accuracy, Same diagnosis everywhere, Proper document indexing)",
+      "reqIds": [
+        "REQ-157"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-phase-6-claim-submission-section-displaying-submission-channels-insurance-portal-tpa-portal-govt-scheme-portal-process-steps-online-upload-claim-id-generation-acknowledgment-tracking-and-control-points-submission-within-timeline-correct-amount-declaration-no-missing-attachment",
+      "title": "Implement Phase 6 - Claim Submission section displaying submission channels (Insurance Portal, TPA Portal, Govt Scheme Portal), process steps (Online upload, Claim ID generation, Acknowledgment tracking), and control points (Submission within timeline, Correct amount declaration, No missing attachment)",
+      "reqIds": [
+        "REQ-158"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-phase-7-query-management-section-displaying-objective-prevent-rejection-defend-claim-medically-process-steps-track-query-timeline-root-cause-analysis-draft-structured-reply-upload-additional-docs-strong-reply-structure-requirements-clinical-necessity-radiological-evidence-guideline-reference-package-justification",
+      "title": "Implement Phase 7 - Query Management section displaying objective (Prevent rejection & defend claim medically), process steps (Track query timeline, Root cause analysis, Draft structured reply, Upload additional docs), strong reply structure requirements (Clinical necessity, Radiological evidence, Guideline reference, Package justification)",
+      "reqIds": [
+        "REQ-159"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-phase-8-claim-adjudication-approval-section-displaying-possible-outcomes-full-approval-partial-deduction-rejection-and-action-items-deduction-analysis-compare-against-approved-package-validate-medical-reasoning",
+      "title": "Implement Phase 8 - Claim Adjudication & Approval section displaying possible outcomes (Full approval, Partial deduction, Rejection), and action items (Deduction analysis, Compare against approved package, Validate medical reasoning)",
+      "reqIds": [
+        "REQ-160"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-phase-9-payment-posting-section-displaying-objective-match-approved-amount-with-bank-credit-and-steps-bank-reconciliation-claim-id-mapping-deduction-entry-outstanding-balance-recording",
+      "title": "Implement Phase 9 - Payment Posting section displaying objective (Match approved amount with bank credit), and steps (Bank reconciliation, Claim ID mapping, Deduction entry, Outstanding balance recording)",
+      "reqIds": [
+        "REQ-161"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-phase-10-payment-reconciliation-closure-section-displaying-final-reconciliation-checklist-approved-vs-received-amount-match-tds-deducted-calculation-short-payment-identification-appeal-for-unjustified-deduction-claim-status-marked-closed",
+      "title": "Implement Phase 10 - Payment Reconciliation & Closure section displaying final reconciliation checklist (Approved vs Received Amount Match, TDS deducted calculation, Short payment identification, Appeal for unjustified deduction, Claim status marked Closed)",
+      "reqIds": [
+        "REQ-162"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-the-existing-mckinsey-inspired-professional-design-theme-with-multicolor-gradient-typography-to-the-updated-onboarding-animation-ensuring-consistent-visual-presentation-with-the-rest-of-the-platform",
+      "title": "Apply the existing McKinsey-inspired professional design theme with multicolor gradient typography to the updated onboarding animation, ensuring consistent visual presentation with the rest of the platform",
+      "reqIds": [
+        "REQ-163"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-smooth-transitions-or-animations-between-the-10-phases-in-the-onboarding-sequence-with-either-automatic-progression-or-user-triggered-navigation-to-advance-through-phases",
+      "title": "Implement smooth transitions or animations between the 10 phases in the onboarding sequence, with either automatic progression or user-triggered navigation to advance through phases",
+      "reqIds": [
+        "REQ-164"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-maintain-the-existing-routing-behavior-where-the-onboarding-page-displays-first-and-then-progresses-to-the-main-home-page-but-update-the-content-to-show-the-new-10-phase-rcm-workflow-instead-of-the-stakeholder-join-request-animation",
+      "title": "Maintain the existing routing behavior where the onboarding page displays first and then progresses to the main home page, but update the content to show the new 10-phase RCM workflow instead of the stakeholder join request animation",
+      "reqIds": [
+        "REQ-165"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-verify-the-onboarding-page-frontend-src-pages-onboarding-tsx-displaying-the-10-phase-healthcare-revenue-cycle-management-workflow-animation-remains-as-the-initial-landing-page-before-progression-to-the-home-page",
+      "title": "Verify the Onboarding page (frontend/src/pages/Onboarding.tsx) displaying the 10-phase healthcare revenue cycle management workflow animation remains as the initial landing page before progression to the Home page",
+      "reqIds": [
+        "REQ-167"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-confirm-the-routing-configuration-in-frontend-src-app-tsx-maintains-both-the-onboarding-workflow-as-initial-landing-and-the-home-page-as-secondary-destination-with-proper-navigation-flow-between-them",
+      "title": "Confirm the routing configuration in frontend/src/App.tsx maintains both the onboarding workflow (as initial landing) and the home page (as secondary destination) with proper navigation flow between them",
+      "reqIds": [
+        "REQ-168"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-home-page-frontend-src-pages-home-tsx-responsive-layout-to-ensure-the-hero-carousel-section-with-rotating-images-and-text-content-displays-completely-without-overflow-on-mobile-and-small-screen-viewports-768px-width",
+      "title": "Update the Home page (frontend/src/pages/Home.tsx) responsive layout to ensure the hero carousel section with rotating images and text content displays completely without overflow on mobile and small screen viewports (< 768px width)",
+      "reqIds": [
+        "REQ-169"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-onboarding-page-frontend-src-pages-onboarding-tsx-10-phase-rcm-workflow-animation-layout-to-ensure-all-phase-sections-display-completely-without-overflow-on-mobile-and-small-screen-viewports-768px-width",
+      "title": "Update the Onboarding page (frontend/src/pages/Onboarding.tsx) 10-phase RCM workflow animation layout to ensure all phase sections display completely without overflow on mobile and small screen viewports (< 768px width)",
+      "reqIds": [
+        "REQ-170"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-responsive-breakpoints-and-container-max-widths-in-frontend-tailwind-config-js-to-ensure-consistent-mobile-friendly-layouts-across-all-pages-that-prevent-content-overflow-on-viewports-smaller-than-768px",
+      "title": "Update responsive breakpoints and container max-widths in frontend/tailwind.config.js to ensure consistent mobile-friendly layouts across all pages that prevent content overflow on viewports smaller than 768px",
+      "reqIds": [
+        "REQ-171"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-responsive-viewport-meta-tag-verification-and-mobile-specific-css-rules-in-frontend-index-css-to-prevent-content-overflow-ensuring-proper-scaling-on-mobile-devices-with-viewport-widths-from-320px-to-768px",
+      "title": "Add responsive viewport meta tag verification and mobile-specific CSS rules in frontend/index.css to prevent content overflow, ensuring proper scaling on mobile devices with viewport widths from 320px to 768px",
+      "reqIds": [
+        "REQ-172"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-navigation-component-frontend-src-components-navigation-tsx-to-ensure-the-mobile-menu-navigation-links-and-notification-badges-display-completely-without-overflow-on-small-screen-viewports-768px-width",
+      "title": "Update the Navigation component (frontend/src/components/Navigation.tsx) to ensure the mobile menu, navigation links, and notification badges display completely without overflow on small screen viewports (< 768px width)",
+      "reqIds": [
+        "REQ-173"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-review-and-update-all-page-components-about-us-solutions-healthcare-support-system-network-directory-patient-journey-contact-to-ensure-responsive-layouts-prevent-content-overflow-on-mobile-viewports-768px-width-with-proper-text-wrapping-and-image-scaling",
+      "title": "Review and update all page components (About Us, Solutions, Healthcare Support System, Network Directory, Patient Journey, Contact) to ensure responsive layouts prevent content overflow on mobile viewports (< 768px width) with proper text wrapping and image scaling",
+      "reqIds": [
+        "REQ-174"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-show-interest-to-join-button-to-each-of-the-12-service-category-sections-on-the-healthcare-support-system-page-frontend-src-pages-healthcaresupportsystem-tsx-for-workforce-support-emergency-ambulance-services-diagnostics-labs-pharmacy-medicines-home-healthcare-mental-health-wellness-vendors-suppliers-ngos-community-support-compliance-quality-support-insurance-tpa-coordination-training-education-and-logistics-supply-chain",
+      "title": "Add a 'Show Interest to Join' button to each of the 12 service category sections on the Healthcare Support System page (frontend/src/pages/HealthcareSupportSystem.tsx) for: Workforce Support, Emergency & Ambulance Services, Diagnostics & Labs, Pharmacy & Medicines, Home Healthcare, Mental Health & Wellness, Vendors & Suppliers, NGOs & Community Support, Compliance & Quality Support, Insurance & TPA Coordination, Training & Education, and Logistics & Supply Chain",
+      "reqIds": [
+        "REQ-175"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-click-handler-functionality-for-the-show-interest-to-join-buttons-on-the-healthcare-support-system-page-that-displays-a-toast-notification-confirming-the-interest-submission-or-navigates-to-the-appropriate-registration-page-based-on-the-service-category-e-g-workforce-support-careers-page-vendors-vendors-page-ngos-ngo-listing-page-ambulance-ambulance-services-page",
+      "title": "Implement click handler functionality for the 'Show Interest to Join' buttons on the Healthcare Support System page that displays a toast notification confirming the interest submission or navigates to the appropriate registration page based on the service category (e.g., Workforce Support → Careers page, Vendors → Vendors page, NGOs → NGO Listing page, Ambulance → Ambulance Services page)",
+      "reqIds": [
+        "REQ-176"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-dropdown-select-components-across-the-application-to-display-option-text-in-white-color-when-the-dropdown-menu-is-open",
+      "title": "Update all dropdown/select components across the application to display option text in white color when the dropdown menu is open",
+      "reqIds": [
+        "REQ-177"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-dropdown-select-components-across-the-application-to-display-royal-teal-background-color-for-the-entire-dropdown-menu-when-opened",
+      "title": "Update all dropdown/select components across the application to display Royal Teal background color for the entire dropdown menu when opened",
+      "reqIds": [
+        "REQ-178"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-global-css-in-frontend-index-css-to-define-dropdown-styling-rules-that-set-white-text-color-and-royal-teal-background-for-all-select-dropdown-option-elements",
+      "title": "Update global CSS in frontend/index.css to define dropdown styling rules that set white text color and Royal Teal background for all select/dropdown option elements",
+      "reqIds": [
+        "REQ-179"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-tailwind-configuration-in-frontend-tailwind-config-js-to-ensure-royal-teal-color-is-available-for-dropdown-styling-and-matches-existing-color-tokens",
+      "title": "Update Tailwind configuration in frontend/tailwind.config.js to ensure Royal Teal color is available for dropdown styling and matches existing color tokens",
+      "reqIds": [
+        "REQ-180"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -1044,6 +1461,246 @@
       "reqIds": [
         "REQ-103"
       ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-61",
+      "summary": "Update all page images to align with respective page headings and content themes throughout the website",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-67",
+      "summary": "Update images on the Careers page (frontend/src/pages/Careers.tsx) to match the job opportunity categories and benefits sections, representing doctors, nurses, radiologists, physiotherapists, dietitians, and other healthcare roles",
+      "reqIds": [
+        "REQ-113"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-68",
+      "summary": "Update images on the Vendors page (frontend/src/pages/Vendors.tsx) to represent vendor categories: Equipment, IT & Software, Pharmacy, and Facility Services",
+      "reqIds": [
+        "REQ-114"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-69",
+      "summary": "Update images on the Ambulance Services page (frontend/src/pages/AmbulanceServices.tsx) to represent emergency services, ICU transport, and ambulance operations",
+      "reqIds": [
+        "REQ-115"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-70",
+      "summary": "Update images on the NGO Listing page (frontend/src/pages/NgoListing.tsx) to represent health NGOs, blood banks, relief organizations, and community healthcare programs",
+      "reqIds": [
+        "REQ-116"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-71",
+      "summary": "Update images on the Contact page (frontend/src/pages/Contact.tsx) to represent customer support, communication channels, and the AI Health Zon support team",
+      "reqIds": [
+        "REQ-117"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-72",
+      "summary": "Update the Network Map page (frontend/src/pages/NetworkMap.tsx) to include a representative image showing geographical healthcare network distribution or map visualization concept",
+      "reqIds": [
+        "REQ-118"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-73",
+      "summary": "Replace all images across the website with full HD versions at maximum resolution",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-77",
+      "summary": "Replace all 12 service category images on the Healthcare Support System page (frontend/src/pages/HealthcareSupportSystem.tsx) with full HD versions (minimum 1200x800) matching: Workforce Support, Emergency & Ambulance, Diagnostics & Labs, Pharmacy & Medicines, Home Healthcare, Mental Health & Wellness, Vendors & Suppliers, NGOs & Community Support, Compliance & Quality Support, Insurance & TPA Coordination, Training & Education, and Logistics & Supply Chain",
+      "reqIds": [
+        "REQ-122"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-78",
+      "summary": "Replace all stakeholder category images on the Network Directory page (frontend/src/pages/NetworkDirectory.tsx) with full HD versions (minimum 1200x800) for: Hospitals & Clinics, Healthcare Professionals, Ambulance Services, Diagnostics & Labs, Pharmacies, Vendors & Suppliers, and NGOs",
+      "reqIds": [
+        "REQ-123"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-79",
+      "summary": "Replace all images on the Careers page (frontend/src/pages/Careers.tsx) with full HD versions (minimum 1200x800) representing job categories: doctors, nurses, radiologists, physiotherapists, dietitians, medical coders, RCM staff, and other healthcare roles",
+      "reqIds": [
+        "REQ-124"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-80",
+      "summary": "Replace all images on the Vendors page (frontend/src/pages/Vendors.tsx) with full HD versions (minimum 1200x800) representing vendor categories: Equipment, IT & Software, Pharmacy, and Facility Services",
+      "reqIds": [
+        "REQ-125"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-81",
+      "summary": "Replace all images on the Ambulance Services page (frontend/src/pages/AmbulanceServices.tsx) with full HD versions (minimum 1200x800) representing emergency services, ICU transport, and ambulance operations",
+      "reqIds": [
+        "REQ-126"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-82",
+      "summary": "Replace all images on the NGO Listing page (frontend/src/pages/NgoListing.tsx) with full HD versions (minimum 1200x800) representing health NGOs, blood banks, relief organizations, and community healthcare programs",
+      "reqIds": [
+        "REQ-127"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-83",
+      "summary": "Replace all images on the Contact page (frontend/src/pages/Contact.tsx) with full HD versions (minimum 1200x800) representing customer support, communication channels, and the AI Health Zon support team",
+      "reqIds": [
+        "REQ-128"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-84",
+      "summary": "Replace the Network Map page (frontend/src/pages/NetworkMap.tsx) representative image with a full HD version (minimum 1920x1080) showing geographical healthcare network distribution or map visualization concept",
+      "reqIds": [
+        "REQ-129"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-85",
+      "summary": "Create a new document processing app that converts PDF and scanned documents into structured format",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-88",
+      "summary": "Create backend data structures in backend/main.mo to store uploaded document metadata including filename, file type, upload timestamp, processing status, and user identity",
+      "reqIds": [
+        "REQ-132"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-89",
+      "summary": "Implement backend methods in backend/main.mo to receive and store uploaded PDF and scan files as blobs with associated metadata",
+      "reqIds": [
+        "REQ-133"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-91",
+      "summary": "Implement backend logic in backend/main.mo to extract text content from uploaded documents and structure it into organized sections with headings, paragraphs, tables, and lists",
+      "reqIds": [
+        "REQ-135"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-92",
+      "summary": "Create a Patient Journey Document Library page at /patient-journey that displays the complete patient care workflow across 10 phases",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-93",
+      "summary": "Implement backend data structure in backend/main.mo to store patient journey document templates organized by 10 phases: Registration, Clinical Evaluation, Diagnostics, Treatment Planning, Nursing Care, Pre-Operative, Intra-Procedure, Post-Procedure, Discharge, and Legal/Record Closure",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-94",
+      "summary": "Display Patient Journey Document Flow with 10 collapsible or card-based sections on the Patient Journey page, each showing phase name and associated document types (e.g., Registration Form, Consent Forms, Progress Notes, Medication Chart, etc.)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-95",
+      "summary": "Add document upload functionality to each phase section allowing hospitals to save sample documents for each document type in their library",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-96",
+      "summary": "Implement document listing/viewer within each phase showing uploaded sample documents with filename, upload date, and preview/download options",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-97",
+      "summary": "Add a navigation link to 'Patient Journey' in the Navigation component that routes to the new patient journey document library page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-102",
+      "summary": "Create backend data structure in backend/main.mo to store patient journey document templates with fields for phase number, phase name, document type name, uploaded file blob, filename, upload timestamp, and hospital identity",
+      "reqIds": [
+        "REQ-145"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-103",
+      "summary": "Implement backend methods in backend/main.mo to save uploaded patient journey sample documents with phase, document type, file blob, and metadata",
+      "reqIds": [
+        "REQ-146"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-104",
+      "summary": "Implement backend query method in backend/main.mo to retrieve all patient journey sample documents for the authenticated hospital, optionally filtered by phase number",
+      "reqIds": [
+        "REQ-147"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-105",
+      "summary": "Ensure the existing Home page (frontend/src/pages/Home.tsx) remains accessible and fully functional with all current content including hero carousel with rotating images, three vertical overview cards (RCM, Healthcare Technology, Connecting Platform), value propositions with icons, and CTA buttons ('Request Demo' and 'Join Network')",
+      "reqIds": [
+        "REQ-166"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-106",
+      "summary": "Adjust responsive layout/viewport sizing to ensure all content is fully visible on smaller screens without overflow",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-107",
+      "summary": "Add 'Show Interest to Join' buttons to all 12 service categories on Healthcare Support System page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-108",
+      "summary": "Update dropdown styling to display options with white text on Royal Teal background",
+      "reqIds": [],
       "status": "pending"
     }
   ],

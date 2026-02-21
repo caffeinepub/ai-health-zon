@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-remove-multicolor-gradient-text-styling-from-all-text-elements-that-appear-over-or-within-image-content-across-the-home-page-frontend-src-pages-home-tsx-hero-section-carousel",
-      "featureTitle": "Remove multicolor gradient text styling from all text elements that appear over or within image content across the Home page (frontend/src/pages/Home.tsx) hero section carousel",
+      "featureId": "feature-update-all-dropdown-select-components-across-the-application-to-display-option-text-in-white-color-when-the-dropdown-menu-is-open",
+      "featureTitle": "Update all dropdown/select components across the application to display option text in white color when the dropdown menu is open",
       "files": [
-        "frontend/src/pages/Home.tsx"
+        "frontend/src/index.css"
       ],
       "components": [
         "authorization@4.0.0",
@@ -18,15 +18,15 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-105"
+        "REQ-177"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-remove-multicolor-gradient-text-styling-from-any-text-overlays-on-the-healthcare-support-system-page-frontend-src-pages-healthcaresupportsystem-tsx-video-thumbnail-sections",
-      "featureTitle": "Remove multicolor gradient text styling from any text overlays on the Healthcare Support System page (frontend/src/pages/HealthcareSupportSystem.tsx) video thumbnail sections",
+      "featureId": "feature-update-all-dropdown-select-components-across-the-application-to-display-royal-teal-background-color-for-the-entire-dropdown-menu-when-opened",
+      "featureTitle": "Update all dropdown/select components across the application to display Royal Teal background color for the entire dropdown menu when opened",
       "files": [
-        "frontend/src/pages/HealthcareSupportSystem.tsx"
+        "frontend/src/index.css"
       ],
       "components": [
         "authorization@4.0.0",
@@ -39,17 +39,15 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-106"
+        "REQ-178"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-ensure-multicolor-gradient-typography-is-only-applied-to-text-rendered-directly-on-solid-background-colors-not-on-text-overlaying-images-photos-or-video-content-across-all-pages",
-      "featureTitle": "Ensure multicolor gradient typography is only applied to text rendered directly on solid background colors, not on text overlaying images, photos, or video content across all pages",
+      "featureId": "feature-update-global-css-in-frontend-index-css-to-define-dropdown-styling-rules-that-set-white-text-color-and-royal-teal-background-for-all-select-dropdown-option-elements",
+      "featureTitle": "Update global CSS in frontend/index.css to define dropdown styling rules that set white text color and Royal Teal background for all select/dropdown option elements",
       "files": [
-        "frontend/src/pages/AboutUs.tsx",
-        "frontend/src/pages/NetworkMap.tsx",
-        "frontend/src/pages/Onboarding.tsx"
+        "frontend/src/index.css"
       ],
       "components": [
         "authorization@4.0.0",
@@ -62,7 +60,28 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-107"
+        "REQ-179"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-tailwind-configuration-in-frontend-tailwind-config-js-to-ensure-royal-teal-color-is-available-for-dropdown-styling-and-matches-existing-color-tokens",
+      "featureTitle": "Update Tailwind configuration in frontend/tailwind.config.js to ensure Royal Teal color is available for dropdown styling and matches existing color tokens",
+      "files": [
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-180"
       ],
       "confidence": "high"
     }

@@ -24,6 +24,22 @@ export interface ContactInfo {
   'address' : string,
   'phone' : string,
 }
+export interface DocumentMetadata {
+  'status' : string,
+  'blob' : ExternalBlob,
+  'filename' : string,
+  'filetype' : string,
+  'uploader' : Principal,
+  'uploadTime' : bigint,
+}
+export interface DocumentPhase { 'name' : string, 'phaseNumber' : bigint }
+export interface DocumentSection {
+  'paragraphs' : Array<string>,
+  'heading' : string,
+  'lists' : Array<ListContent>,
+  'tables' : Array<TableContent>,
+}
+export interface DocumentType { 'name' : string, 'description' : string }
 export type ExternalBlob = Uint8Array;
 export interface HealthRecord {
   'id' : string,
@@ -76,6 +92,7 @@ export interface Hospital {
   'location' : Location,
   'services' : Array<string>,
 }
+export interface ListContent { 'items' : Array<string> }
 export interface Location {
   'country' : string,
   'city' : string,
@@ -117,6 +134,23 @@ export interface NgoRequest {
   'location' : Location,
   'services' : Array<string>,
 }
+export interface PatientJourneySampleDocument {
+  'id' : string,
+  'hospital' : Principal,
+  'verified' : boolean,
+  'documentType' : DocumentType,
+  'blob' : ExternalBlob,
+  'filename' : string,
+  'hospitalId' : string,
+  'phase' : DocumentPhase,
+  'uploadTime' : Time,
+}
+export interface ProcessedDocument {
+  'metadata' : DocumentMetadata,
+  'summary' : string,
+  'documentId' : string,
+  'sections' : Array<DocumentSection>,
+}
 export interface RecordFilter {
   'patientId' : [] | [string],
   'diagnosis' : [] | [string],
@@ -140,6 +174,11 @@ export interface ResearchProject {
   'projectId' : string,
   'abstract' : string,
 }
+export interface TableContent {
+  'rows' : Array<Array<string>>,
+  'headers' : Array<string>,
+}
+export type Time = bigint;
 export interface TourismService {
   'id' : string,
   'verified' : boolean,
@@ -234,6 +273,10 @@ export interface _SERVICE {
   >,
   'getAllHospitals' : ActorMethod<[], Array<Hospital>>,
   'getAllNgos' : ActorMethod<[], Array<Ngo>>,
+  'getAllPatientJourneySampleDocuments' : ActorMethod<
+    [],
+    Array<PatientJourneySampleDocument>
+  >,
   'getAllRecords' : ActorMethod<[], Array<MedicalRecord>>,
   'getAllTourismServices' : ActorMethod<[], Array<TourismService>>,
   'getAllVendors' : ActorMethod<[], Array<Vendor>>,
@@ -253,6 +296,10 @@ export interface _SERVICE {
     [string],
     Array<HealthcareProfessional>
   >,
+  'getHospitalPatientJourneySampleDocuments' : ActorMethod<
+    [string, [] | [bigint]],
+    Array<PatientJourneySampleDocument>
+  >,
   'getHospitalsByLocation' : ActorMethod<[string], Array<Hospital>>,
   'getLuxuryDebtApplications' : ActorMethod<[], Array<LuxuryDebtService>>,
   'getMyRecords' : ActorMethod<[], Array<MedicalRecord>>,
@@ -264,11 +311,16 @@ export interface _SERVICE {
   >,
   'getPendingNgoRequests' : ActorMethod<[], Array<NgoRequest>>,
   'getPendingVendorRequests' : ActorMethod<[], Array<VendorRequest>>,
+  'getProcessedDocument' : ActorMethod<[string], [] | [ProcessedDocument]>,
   'getRecord' : ActorMethod<[string], MedicalRecord>,
   'getResearchProject' : ActorMethod<[string], [] | [ResearchProject]>,
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'initializeSampleData' : ActorMethod<[], undefined>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
+  'processDocument' : ActorMethod<
+    [string, Array<DocumentSection>, string],
+    undefined
+  >,
   'rejectAmbulance' : ActorMethod<[string], undefined>,
   'rejectHealthcareProfessional' : ActorMethod<[string], undefined>,
   'rejectNgo' : ActorMethod<[string], undefined>,
@@ -287,6 +339,14 @@ export interface _SERVICE {
   'submitNgoRegistration' : ActorMethod<[NgoRequest], undefined>,
   'submitVendorRegistration' : ActorMethod<[VendorRequest], undefined>,
   'updateRecord' : ActorMethod<[MedicalRecord], undefined>,
+  'uploadDocument' : ActorMethod<
+    [string, string, string, ExternalBlob],
+    undefined
+  >,
+  'uploadPatientJourneySampleDocument' : ActorMethod<
+    [string, DocumentPhase, DocumentType, string, string, ExternalBlob],
+    undefined
+  >,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

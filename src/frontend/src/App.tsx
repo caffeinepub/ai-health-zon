@@ -17,6 +17,10 @@ import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsConditions from './pages/TermsConditions';
 import RefundPolicy from './pages/RefundPolicy';
+import DocumentHome from './pages/DocumentHome';
+import Documents from './pages/Documents';
+import DocumentViewer from './pages/DocumentViewer';
+import PatientJourney from './pages/PatientJourney';
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -124,6 +128,30 @@ const refundRoute = createRoute({
   component: RefundPolicy,
 });
 
+const documentHomeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/document-home',
+  component: DocumentHome,
+});
+
+const documentsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/documents',
+  component: Documents,
+});
+
+const documentViewerRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/documents/$documentId',
+  component: DocumentViewer,
+});
+
+const patientJourneyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/patient-journey',
+  component: PatientJourney,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   homeRoute,
@@ -142,6 +170,10 @@ const routeTree = rootRoute.addChildren([
   privacyRoute,
   termsRoute,
   refundRoute,
+  documentHomeRoute,
+  documentsRoute,
+  documentViewerRoute,
+  patientJourneyRoute,
 ]);
 
 const router = createRouter({ routeTree });
