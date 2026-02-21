@@ -2,10 +2,12 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-create-a-knowledgeboard-page-component-at-frontend-src-pages-knowledgeboard-tsx-that-displays-comprehensive-information-about-hospital-licenses-and-regulatory-requirements",
-      "featureTitle": "Create a KnowledgeBoard page component at frontend/src/pages/KnowledgeBoard.tsx that displays comprehensive information about hospital licenses and regulatory requirements",
+      "featureId": "feature-create-a-new-frontend-page-route-clean-claim-intelligence-that-displays-comprehensive-information-about-the-ai-health-zon-clean-claim-intelligence-system-product-including-hero-section-with-headline-ai-health-zon-ai-driven-clean-claim-intelligence-system-and-subheadline-maximize-approvals-eliminate-rejections-prevent-claim-losses",
+      "featureTitle": "Create a new frontend page route '/clean-claim-intelligence' that displays comprehensive information about the AI HEALTH ZON Clean Claim Intelligence System product, including hero section with headline 'AI HEALTH ZON – AI-Driven Clean Claim Intelligence System' and subheadline 'Maximize Approvals. Eliminate Rejections. Prevent Claim Losses.'",
       "files": [
-        "frontend/src/pages/KnowledgeBoard.tsx"
+        "frontend/src/App.tsx",
+        "frontend/src/components/Navigation.tsx",
+        "frontend/src/pages/CleanClaimIntelligence.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -18,15 +20,15 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-236"
+        "REQ-1"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-display-hospital-license-types-and-categories-on-the-knowledge-board-page-including-license-classifications-regulatory-bodies-and-compliance-requirements-based-on-the-reference-document-from-https-www-researchgate-net-publication-398379014-licence-required-for-hospitals",
-      "featureTitle": "Display hospital license types and categories on the Knowledge Board page including license classifications, regulatory bodies, and compliance requirements based on the reference document from https://www.researchgate.net/publication/398379014_LICENCE_REQUIRED_FOR_HOSPITALS",
+      "featureId": "feature-add-why-hospitals-lose-revenue-section-listing-six-key-revenue-loss-factors-preventable-claim-rejections-billing-coding-errors-policy-package-mismatches-delayed-settlements-cash-flow-gaps-documentation-deficiencies-and-undetected-fraud-abuse-patterns",
+      "featureTitle": "Add 'Why Hospitals Lose Revenue' section listing six key revenue loss factors: preventable claim rejections, billing & coding errors, policy & package mismatches, delayed settlements & cash flow gaps, documentation deficiencies, and undetected fraud & abuse patterns",
       "files": [
-        "frontend/src/pages/KnowledgeBoard.tsx"
+        "frontend/src/pages/CleanClaimIntelligence.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -39,15 +41,15 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-237"
+        "REQ-2"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-display-regulatory-compliance-requirements-on-the-knowledge-board-page-covering-hospital-registration-accreditation-standards-nabh-iso-and-legal-obligations-for-healthcare-facilities",
-      "featureTitle": "Display regulatory compliance requirements on the Knowledge Board page covering hospital registration, accreditation standards (NABH, ISO), and legal obligations for healthcare facilities",
+      "featureId": "feature-add-our-solution-section-explaining-that-ai-health-zon-clean-claim-intelligence-system-is-a-multi-layer-validation-decision-engine-that-transforms-claim-processing-from-manual-verification-to-ai-driven-intelligence-with-emphasis-on-prediction-prevention-and-correction-of-risks-across-the-entire-claim-lifecycle",
+      "featureTitle": "Add 'Our Solution' section explaining that AI HEALTH ZON Clean Claim Intelligence System is a multi-layer validation & decision engine that transforms claim processing from manual verification to AI-driven intelligence, with emphasis on prediction, prevention, and correction of risks across the entire claim lifecycle",
       "files": [
-        "frontend/src/pages/KnowledgeBoard.tsx"
+        "frontend/src/pages/CleanClaimIntelligence.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -60,15 +62,15 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-238"
+        "REQ-3"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-the-route-configuration-in-frontend-src-app-tsx-to-replace-the-existing-dashboard-route-with-a-knowledge-board-route-that-renders-the-knowledgeboard-page-component",
-      "featureTitle": "Update the route configuration in frontend/src/App.tsx to replace the existing '/dashboard' route with a '/knowledge-board' route that renders the KnowledgeBoard page component",
+      "featureId": "feature-create-core-validation-intelligence-layers-section-with-expandable-accordion-or-card-layout-displaying-all-10-validation-layers-1-patient-identity-eligibility-intelligence-with-5-features-2-pre-authorization-policy-logic-engine-with-5-features-3-clinical-validity-medical-necessity-engine-with-5-features-4-medical-coding-classification-integrity-with-5-features-5-treatment-billing-consistency-controls-with-5-features-6-documentation-record-integrity-validation-with-5-features-7-claim-lifecycle-aging-intelligence-with-5-features-8-advanced-fraud-abuse-analytics-with-5-features-9-financial-accuracy-leakage-prevention-with-5-features-10-compliance-regulatory-safeguards-with-5-features",
+      "featureTitle": "Create 'Core Validation & Intelligence Layers' section with expandable accordion or card layout displaying all 10 validation layers: (1) Patient Identity & Eligibility Intelligence with 5 features, (2) Pre-Authorization & Policy Logic Engine with 5 features, (3) Clinical Validity & Medical Necessity Engine with 5 features, (4) Medical Coding & Classification Integrity with 5 features, (5) Treatment & Billing Consistency Controls with 5 features, (6) Documentation & Record Integrity Validation with 5 features, (7) Claim Lifecycle & Aging Intelligence with 5 features, (8) Advanced Fraud & Abuse Analytics with 5 features, (9) Financial Accuracy & Leakage Prevention with 5 features, (10) Compliance & Regulatory Safeguards with 5 features",
       "files": [
-        "frontend/src/App.tsx"
+        "frontend/src/pages/CleanClaimIntelligence.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -81,13 +83,118 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-239"
+        "REQ-4"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-the-navigation-component-frontend-src-components-navigation-tsx-to-replace-the-dashboard-link-with-a-knowledge-board-link-that-routes-to-knowledge-board",
-      "featureTitle": "Update the Navigation component (frontend/src/components/Navigation.tsx) to replace the 'Dashboard' link with a 'Knowledge Board' link that routes to '/knowledge-board'",
+      "featureId": "feature-add-what-makes-ai-health-zon-different-section-highlighting-five-differentiators-with-checkmarks-rejection-prevention-intelligence-clinical-financial-policy-aware-validation-predictive-denial-risk-models-ai-driven-fraud-detection-and-audit-compliance-protection-with-closing-statement-we-move-beyond-error-detection-toward-decision-intelligence",
+      "featureTitle": "Add 'What Makes AI HEALTH ZON Different' section highlighting five differentiators with checkmarks: Rejection Prevention Intelligence, Clinical + Financial + Policy-Aware Validation, Predictive Denial & Risk Models, AI-Driven Fraud Detection, and Audit & Compliance Protection, with closing statement 'We move beyond error detection toward decision intelligence'",
+      "files": [
+        "frontend/src/pages/CleanClaimIntelligence.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-business-impact-for-hospitals-section-listing-six-benefits-with-bullet-points-higher-claim-approval-rates-reduced-rejection-resubmission-cycles-faster-settlements-improved-cash-flow-lower-audit-exposure-controlled-billing-leakage-and-stronger-compliance-posture",
+      "featureTitle": "Add 'Business Impact for Hospitals' section listing six benefits with bullet points: higher claim approval rates, reduced rejection & resubmission cycles, faster settlements & improved cash flow, lower audit exposure, controlled billing leakage, and stronger compliance posture",
+      "files": [
+        "frontend/src/pages/CleanClaimIntelligence.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-who-benefits-section-with-checkmarks-listing-five-stakeholder-types-hospitals-medical-colleges-multi-hospital-chains-tpas-insurers-government-health-schemes-and-claim-processing-units",
+      "featureTitle": "Add 'Who Benefits' section with checkmarks listing five stakeholder types: Hospitals & Medical Colleges, Multi-hospital Chains, TPAs & Insurers, Government Health Schemes, and Claim Processing Units",
+      "files": [
+        "frontend/src/pages/CleanClaimIntelligence.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-call-to-action-section-with-heading-transform-claim-processing-into-a-revenue-protection-system-and-subheading-stop-losing-revenue-to-preventable-errors-and-hidden-risks-deploy-an-ai-driven-clean-claim-intelligence-system-built-for-modern-healthcare-finance",
+      "featureTitle": "Add call-to-action section with heading 'Transform Claim Processing into a Revenue Protection System' and subheading 'Stop losing revenue to preventable errors and hidden risks. Deploy an AI-driven Clean Claim Intelligence System built for modern healthcare finance.'",
+      "files": [
+        "frontend/src/pages/CleanClaimIntelligence.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-get-in-touch-contact-section-displaying-ai-health-zon-branding-with-website-url-www-aihealthzon-com-email-info-aihealthzon-com-and-phone-number-8233393456-maintaining-consistency-with-existing-contact-information-on-other-pages",
+      "featureTitle": "Add 'Get in Touch' contact section displaying AI HEALTH ZON branding with website URL www.aihealthzon.com, email info@aihealthzon.com, and phone number 8233393456, maintaining consistency with existing contact information on other pages",
+      "files": [
+        "frontend/src/pages/CleanClaimIntelligence.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-navigation-link-to-the-clean-claim-intelligence-page-in-the-main-navigation-menu-under-solutions-or-as-a-separate-menu-item-ensuring-it-is-accessible-from-all-pages",
+      "featureTitle": "Add navigation link to the Clean Claim Intelligence page in the main navigation menu under Solutions or as a separate menu item, ensuring it is accessible from all pages",
       "files": [
         "frontend/src/components/Navigation.tsx"
       ],
@@ -102,49 +209,7 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-240"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-apply-the-existing-enterprise-design-theme-white-background-deep-blue-text-professional-typography-to-the-knowledge-board-page-ensuring-visual-consistency-with-other-pages",
-      "featureTitle": "Apply the existing enterprise design theme (White background, Deep Blue text, professional typography) to the Knowledge Board page ensuring visual consistency with other pages",
-      "files": [
-        "frontend/src/pages/KnowledgeBoard.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-241"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-multiple-ctas-on-the-knowledge-board-page-including-top-cta-in-hero-section-mid-page-cta-in-content-area-and-bottom-cta-before-footer-all-encouraging-demo-bookings",
-      "featureTitle": "Add multiple CTAs on the Knowledge Board page including top CTA in hero section, mid-page CTA in content area, and bottom CTA before footer, all encouraging demo bookings",
-      "files": [
-        "frontend/src/pages/KnowledgeBoard.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-242"
+        "REQ-10"
       ],
       "confidence": "high"
     }

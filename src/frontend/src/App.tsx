@@ -14,6 +14,7 @@ import NgoListing from './pages/NgoListing';
 import NetworkDirectory from './pages/NetworkDirectory';
 import NetworkMap from './pages/NetworkMap';
 import KnowledgeBoard from './pages/KnowledgeBoard';
+import CleanClaimIntelligence from './pages/CleanClaimIntelligence';
 import AdminDashboard from './pages/AdminDashboard';
 import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
@@ -108,6 +109,12 @@ const knowledgeBoardRoute = createRoute({
   component: KnowledgeBoard,
 });
 
+const cleanClaimIntelligenceRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/clean-claim-intelligence',
+  component: CleanClaimIntelligence,
+});
+
 const adminDashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin',
@@ -163,6 +170,7 @@ const routeTree = rootRoute.addChildren([
   networkMapRoute,
   membersRoute,
   knowledgeBoardRoute,
+  cleanClaimIntelligenceRoute,
   adminDashboardRoute,
   contactRoute,
   privacyRoute,

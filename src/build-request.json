@@ -1,156 +1,214 @@
 {
   "kind": "build_request",
-  "title": "Replace Dashboard with Knowledge Board for Hospital Licenses",
+  "title": "Add AI HEALTH ZON Clean Claim Intelligence System product page",
   "projectName": "AI Health Zon",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-236",
-      "text": "Create a KnowledgeBoard page component at frontend/src/pages/KnowledgeBoard.tsx that displays comprehensive information about hospital licenses and regulatory requirements",
+      "id": "REQ-1",
+      "text": "Create a new frontend page route '/clean-claim-intelligence' that displays comprehensive information about the AI HEALTH ZON Clean Claim Intelligence System product, including hero section with headline 'AI HEALTH ZON – AI-Driven Clean Claim Intelligence System' and subheadline 'Maximize Approvals. Eliminate Rejections. Prevent Claim Losses.'",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-final"
+          "msg-latest"
         ],
         "quotes": [
-          "remove dashboard and create knowledge Board instead of this. information about Licences - reference link https://www.researchgate.net/publication/398379014_LICENCE_REQUIRED_FOR_HOSPITALS"
+          "Add in website page about following information AI HEALTH ZON – AI-Driven Clean Claim Intelligence System"
         ]
       },
       "acceptanceCriteria": [
-        "KnowledgeBoard.tsx component exists at frontend/src/pages/KnowledgeBoard.tsx",
-        "Component displays hero section explaining hospital licensing information",
-        "Content is sourced from or references https://www.researchgate.net/publication/398379014_LICENCE_REQUIRED_FOR_HOSPITALS",
-        "Page follows the existing McKinsey-inspired professional design theme"
+        "New route '/clean-claim-intelligence' is accessible from the navigation menu",
+        "Hero section displays the main headline and subheadline prominently",
+        "Page follows the existing Royal Teal color scheme and design patterns"
       ]
     },
     {
-      "id": "REQ-237",
-      "text": "Display hospital license types and categories on the Knowledge Board page including license classifications, regulatory bodies, and compliance requirements based on the reference document from https://www.researchgate.net/publication/398379014_LICENCE_REQUIRED_FOR_HOSPITALS",
+      "id": "REQ-2",
+      "text": "Add 'Why Hospitals Lose Revenue' section listing six key revenue loss factors: preventable claim rejections, billing & coding errors, policy & package mismatches, delayed settlements & cash flow gaps, documentation deficiencies, and undetected fraud & abuse patterns",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-final"
+          "msg-latest"
         ],
         "quotes": [
-          "information about Licences - reference link https://www.researchgate.net/publication/398379014_LICENCE_REQUIRED_FOR_HOSPITALS"
+          "Why Hospitals Lose Revenue",
+          "Hospitals typically face: • Preventable claim rejections • Billing & coding errors"
         ]
       },
       "acceptanceCriteria": [
-        "Knowledge Board displays organized sections covering license types",
-        "Content references the ResearchGate publication on hospital licenses",
-        "Information is structured with clear headings and bullet points",
-        "Sections are visually organized with cards or expandable panels"
+        "Section displays all six revenue loss factors with bullet points",
+        "Section includes introductory text about healthcare claim rejections and payment delays"
       ]
     },
     {
-      "id": "REQ-238",
-      "text": "Display regulatory compliance requirements on the Knowledge Board page covering hospital registration, accreditation standards (NABH, ISO), and legal obligations for healthcare facilities",
+      "id": "REQ-3",
+      "text": "Add 'Our Solution' section explaining that AI HEALTH ZON Clean Claim Intelligence System is a multi-layer validation & decision engine that transforms claim processing from manual verification to AI-driven intelligence, with emphasis on prediction, prevention, and correction of risks across the entire claim lifecycle",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-final"
+          "msg-latest"
         ],
         "quotes": [
-          "information about Licences"
+          "Our Solution",
+          "AI HEALTH ZON Clean Claim Intelligence System is a multi-layer validation & decision engine"
         ]
       },
       "acceptanceCriteria": [
-        "Regulatory compliance section is visible on Knowledge Board",
-        "Content covers registration processes and accreditation standards",
-        "Legal obligations and requirements are clearly outlined",
-        "Information is presented in a scannable, easy-to-read format"
+        "Solution section clearly describes the system as a validation and decision engine",
+        "Text emphasizes the transformation from manual to AI-driven processes"
       ]
     },
     {
-      "id": "REQ-239",
-      "text": "Update the route configuration in frontend/src/App.tsx to replace the existing '/dashboard' route with a '/knowledge-board' route that renders the KnowledgeBoard page component",
+      "id": "REQ-4",
+      "text": "Create 'Core Validation & Intelligence Layers' section with expandable accordion or card layout displaying all 10 validation layers: (1) Patient Identity & Eligibility Intelligence with 5 features, (2) Pre-Authorization & Policy Logic Engine with 5 features, (3) Clinical Validity & Medical Necessity Engine with 5 features, (4) Medical Coding & Classification Integrity with 5 features, (5) Treatment & Billing Consistency Controls with 5 features, (6) Documentation & Record Integrity Validation with 5 features, (7) Claim Lifecycle & Aging Intelligence with 5 features, (8) Advanced Fraud & Abuse Analytics with 5 features, (9) Financial Accuracy & Leakage Prevention with 5 features, (10) Compliance & Regulatory Safeguards with 5 features",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-final"
+          "msg-latest"
         ],
         "quotes": [
-          "remove dashboard and create knowledge Board instead of this"
+          "Core Validation & Intelligence Layers",
+          "1. Patient Identity & Eligibility Intelligence",
+          "10. Compliance & Regulatory Safeguards"
         ]
       },
       "acceptanceCriteria": [
-        "Route '/knowledge-board' exists in frontend/src/App.tsx",
-        "Route renders KnowledgeBoard page component within Layout wrapper",
-        "Previous '/dashboard' route is removed or replaced",
-        "Route is accessible to authenticated users"
+        "All 10 validation layers are displayed with numbered titles",
+        "Each layer shows its descriptive subtitle and all 5 feature checkmarks",
+        "Layout uses accordion or card pattern similar to existing KnowledgeBoard page",
+        "All checkmark items are displayed with proper formatting"
       ]
     },
     {
-      "id": "REQ-240",
-      "text": "Update the Navigation component (frontend/src/components/Navigation.tsx) to replace the 'Dashboard' link with a 'Knowledge Board' link that routes to '/knowledge-board'",
+      "id": "REQ-5",
+      "text": "Add 'What Makes AI HEALTH ZON Different' section highlighting five differentiators with checkmarks: Rejection Prevention Intelligence, Clinical + Financial + Policy-Aware Validation, Predictive Denial & Risk Models, AI-Driven Fraud Detection, and Audit & Compliance Protection, with closing statement 'We move beyond error detection toward decision intelligence'",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-final"
+          "msg-latest"
         ],
         "quotes": [
-          "remove dashboard and create knowledge Board instead of this"
+          "What Makes AI HEALTH ZON Different",
+          "✔ Rejection Prevention Intelligence",
+          "We move beyond error detection toward decision intelligence"
         ]
       },
       "acceptanceCriteria": [
-        "Navigation displays 'Knowledge Board' link instead of 'Dashboard'",
-        "Link routes to '/knowledge-board' path",
-        "Link is conditionally displayed based on authentication state",
-        "Active route highlighting works for Knowledge Board link"
+        "Section displays all five differentiators with checkmark styling",
+        "Closing statement is prominently displayed",
+        "Section is visually distinct from other content areas"
       ]
     },
     {
-      "id": "REQ-241",
-      "text": "Apply the existing enterprise design theme (White background, Deep Blue text, professional typography) to the Knowledge Board page ensuring visual consistency with other pages",
+      "id": "REQ-6",
+      "text": "Add 'Business Impact for Hospitals' section listing six benefits with bullet points: higher claim approval rates, reduced rejection & resubmission cycles, faster settlements & improved cash flow, lower audit exposure, controlled billing leakage, and stronger compliance posture",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-final"
+          "msg-latest"
+        ],
+        "quotes": [
+          "Business Impact for Hospitals",
+          "Hospitals using intelligent claim validation typically achieve"
         ]
       },
       "acceptanceCriteria": [
-        "Knowledge Board uses consistent color scheme with rest of site",
-        "Typography matches enterprise design standards",
-        "Spacing and layout follow existing design patterns",
-        "Page is fully responsive on mobile and desktop viewports"
+        "Section displays all six business impact items",
+        "Introduction text 'Hospitals using intelligent claim validation typically achieve:' is included"
       ]
     },
     {
-      "id": "REQ-242",
-      "text": "Add multiple CTAs on the Knowledge Board page including top CTA in hero section, mid-page CTA in content area, and bottom CTA before footer, all encouraging demo bookings",
+      "id": "REQ-7",
+      "text": "Add 'Who Benefits' section with checkmarks listing five stakeholder types: Hospitals & Medical Colleges, Multi-hospital Chains, TPAs & Insurers, Government Health Schemes, and Claim Processing Units",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-final"
+          "msg-latest"
+        ],
+        "quotes": [
+          "Who Benefits",
+          "✔ Hospitals & Medical Colleges",
+          "✔ Claim Processing Units"
         ]
       },
       "acceptanceCriteria": [
-        "At least three CTAs are present on Knowledge Board page",
-        "CTAs are strategically placed (top, middle, bottom)",
-        "All CTAs encourage demo booking or consultation",
-        "CTAs follow existing button styling and interaction patterns"
+        "All five stakeholder types are listed with checkmark styling",
+        "Section uses consistent visual treatment with other checkmarked lists"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add call-to-action section with heading 'Transform Claim Processing into a Revenue Protection System' and subheading 'Stop losing revenue to preventable errors and hidden risks. Deploy an AI-driven Clean Claim Intelligence System built for modern healthcare finance.'",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "Transform Claim Processing into a Revenue Protection System",
+          "Stop losing revenue to preventable errors and hidden risks"
+        ]
+      },
+      "acceptanceCriteria": [
+        "CTA section is visually prominent with large heading",
+        "Section includes demo booking button or link to contact form"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Add 'Get in Touch' contact section displaying AI HEALTH ZON branding with website URL www.aihealthzon.com, email info@aihealthzon.com, and phone number 8233393456, maintaining consistency with existing contact information on other pages",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "Get in Touch",
+          "🌐 Website: www.aihealthzon.com",
+          "📧 Email: info@aihealthzon.com",
+          "📞 Contact: 8233393456"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Contact section displays all three contact methods with icons",
+        "Website URL, email, and phone number are clickable/copyable",
+        "Section styling matches existing contact sections on other pages"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Add navigation link to the Clean Claim Intelligence page in the main navigation menu under Solutions or as a separate menu item, ensuring it is accessible from all pages",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Navigation link is added to Navigation component",
+        "Link is visible in both desktop and mobile navigation menus",
+        "Link routing works correctly to the new page"
       ]
     }
   ],
   "constraints": [
-    "Do not modify backend/main.mo unless absolutely necessary for new data structures",
-    "Preserve existing authentication and authorization logic",
-    "Maintain read-only status of frontend/src/hooks/useInternetIdentity.ts and frontend/src/hooks/useActor.ts",
-    "Do not modify frontend/src/components/ui components",
-    "Keep the existing single-actor backend architecture"
+    "Maintain existing Royal Teal color scheme and design patterns from other pages",
+    "Use accordion or card layout patterns consistent with KnowledgeBoard page",
+    "Ensure responsive design for mobile and desktop viewports",
+    "Do not modify immutable frontend paths (useInternetIdentity, useActor, main.tsx, ui components)"
   ],
   "nonGoals": [
-    "Implementing a full CMS for managing Knowledge Board content",
-    "Creating admin interface for editing license information",
-    "Building PDF document upload functionality for license documents",
-    "Implementing user-generated content or comments on Knowledge Board",
-    "Creating separate pages for each license type"
+    "Backend functionality or data storage for claim intelligence features",
+    "Integration with external claim processing systems",
+    "Interactive calculators or ROI tools",
+    "User authentication requirements for viewing the page",
+    "Video demonstrations or interactive tutorials"
   ],
   "imageRequirements": {
     "required": [
-      "Professional illustration showing hospital license documents and regulatory compliance (hospital-licenses-hero.dim_1920x1080.png)",
-      "Icon or illustration representing healthcare regulatory compliance and accreditation (compliance-standards.dim_800x600.png)",
-      "Visual representation of hospital registration and licensing process flowchart (licensing-process.dim_1200x800.png)"
+      "Hero banner image showing healthcare professionals reviewing digital claim data on screens with AI visualization overlays (claim-intelligence-hero.dim_1200x600.png)",
+      "Icon illustration representing validation checkmarks and shield symbol for security and compliance (validation-security-icon.dim_256x256.png)",
+      "Diagram showing 10 interconnected layers of the validation system in a circular or flow pattern (validation-layers-diagram.dim_800x600.png)"
     ],
     "edits": []
   }

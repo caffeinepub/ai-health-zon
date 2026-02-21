@@ -1,5 +1,5 @@
 {
-  "frontend/src/App.tsx": "Main application router configuration with KnowledgeBoard route replacing Dashboard route, using TanStack Router with Layout component.",
+  "frontend/src/App.tsx": "Main application router configuration with all routes including the new Clean Claim Intelligence route at '/clean-claim-intelligence', using TanStack Router with Layout component.",
   "frontend/src/pages/Dashboard.tsx": "Role-based dashboard page that displays different metrics and features based on user type (hospital, professional, vendor, or NGO), with authentication check and profile setup flow.",
   "frontend/src/pages/Contact.tsx": "Contact page with company information cards, inquiry form, and integrated Chatbot component positioned as a floating widget.",
   "frontend/src/pages/PrivacyPolicy.tsx": "Privacy policy legal page displaying information collection, usage, sharing, security, and user rights policies.",
@@ -9,7 +9,7 @@
   "frontend/src/main.tsx": "Application entry point that sets up React Query, Internet Identity provider, and Sonner toast notifications.",
   "frontend/src/components/Chatbot.tsx": "AI chatbot component with floating button, expandable chat interface, message history, and contextual responses about healthcare services with info@aihealthzon.com as the primary contact email using Royal Teal accent colors.",
   "frontend/src/pages/Onboarding.tsx": "Onboarding page with updated hero section displaying complete Healthcare Revenue Cycle Management title with multicolor gradient styling and 10-phase interactive journey display.",
-  "frontend/src/components/Navigation.tsx": "Navigation component with mobile-responsive hamburger menu, proper touch targets, and Knowledge Board link replacing Dashboard link.",
+  "frontend/src/components/Navigation.tsx": "Navigation component with mobile-responsive hamburger menu, proper touch targets, and Clean Claim Intelligence link added to the navigation menu for both desktop and mobile views.",
   "frontend/src/hooks/useQueries.ts": "Comprehensive React Query hooks for all backend operations including user profiles, admin checks, stakeholder data, registration requests, approval/rejection mutations, demo booking, document management, patient journey sample documents, and unified members query with automatic cache invalidation.",
   "frontend/src/pages/AdminDashboard.tsx": "Admin dashboard page with access control using useIsCallerAdmin hook, corrected hook names (useGetPendingHealthcareProfessionals, useGetPendingVendors, useGetPendingNgos, useGetPendingAmbulances), tabbed interface for different stakeholder types, summary cards showing pending counts, and integration with PendingRequestsList component.",
   "frontend/src/components/PendingRequestsList.tsx": "Reusable component that displays a list of pending registration requests in card format, handles loading and empty states, and renders RequestDetailCard for each request.",
@@ -37,5 +37,6 @@
   "frontend/src/pages/Members.tsx": "Members directory page displaying all approved stakeholders (professionals, vendors, NGOs) in a responsive grid with profile cards, type badges, and click-to-view detailed profile functionality.",
   "frontend/src/components/MemberDetailView.tsx": "Modal dialog component displaying comprehensive member profile details with type-specific information, contact details, WhatsApp/email action buttons, and scrollable content layout.",
   "frontend/src/components/DemoBookingForm.tsx": "Demo booking form component with form description referencing info@aihealthzon.com, success and error toast messages that include the contact email, and all form fields with validation.",
-  "frontend/src/pages/KnowledgeBoard.tsx": "Comprehensive knowledge board page displaying hospital licensing information, regulatory compliance requirements, accreditation standards, and registration processes with multiple CTAs for demo booking and consultation."
+  "frontend/src/pages/KnowledgeBoard.tsx": "Comprehensive knowledge board page displaying hospital licensing information, regulatory compliance requirements, accreditation standards, and registration processes with multiple CTAs for demo booking and consultation.",
+  "frontend/src/pages/CleanClaimIntelligence.tsx": "New comprehensive product page for AI HEALTH ZON's Clean Claim Intelligence System featuring hero section, revenue loss factors, solution overview, 10 validation layers in accordion format, differentiators, business impact, stakeholder benefits, CTA section with demo booking, and contact information with Royal Teal color scheme."
 }

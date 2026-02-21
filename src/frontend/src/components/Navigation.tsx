@@ -42,6 +42,7 @@ export default function Navigation() {
     { to: '/network-map', label: 'Network Map' },
     { to: '/members', label: 'Members' },
     { to: '/knowledge-board', label: 'Knowledge Board' },
+    { to: '/clean-claim-intelligence', label: 'Clean Claim Intelligence' },
     { to: '/contact', label: 'Contact' },
   ];
 
