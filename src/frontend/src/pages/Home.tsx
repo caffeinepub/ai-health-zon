@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from '@tanstack/react-router';
-import { ArrowRight, CheckCircle, TrendingUp, Users, Shield, Clock } from 'lucide-react';
+import { ArrowRight, CheckCircle, TrendingUp, Users, Shield, Clock, FileCheck, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -257,6 +257,104 @@ export default function Home() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Clean Claim Intelligence Section */}
+      <section className="py-20 md:py-32 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+            <div className="relative order-2 lg:order-1">
+              <img
+                src="/assets/generated/claim-intelligence-hero.dim_1200x600.png"
+                alt="Clean Claim Intelligence"
+                className="w-full h-auto rounded-lg shadow-2xl"
+                loading="lazy"
+              />
+            </div>
+            <div className="order-1 lg:order-2">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 rounded-lg bg-royal-teal/10 flex items-center justify-center mr-4">
+                  <FileCheck className="w-6 h-6 text-royal-teal" />
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-royal-teal">
+                  Clean Claim Intelligence
+                </h2>
+              </div>
+              <p className="text-lg text-gray-600 mb-6">
+                Protect your revenue with our advanced 10-layer validation intelligence system that ensures claim accuracy before submission
+              </p>
+              <div className="space-y-4 mb-8">
+                {[
+                  'Revenue Protection: Prevent denials before they happen',
+                  'Claim Accuracy: 10-layer validation intelligence',
+                  'Denial Prevention: Proactive error detection',
+                  'Compliance Assurance: Regulatory standards met',
+                ].map((benefit, index) => (
+                  <div key={index} className="flex items-start">
+                    <CheckCircle className="w-6 h-6 text-royal-teal mr-3 flex-shrink-0 mt-0.5" />
+                    <p className="text-base text-gray-700">{benefit}</p>
+                  </div>
+                ))}
+              </div>
+              <Button
+                size="lg"
+                onClick={() => navigate({ to: '/clean-claim-intelligence' })}
+                className="bg-royal-teal hover:bg-royal-teal/90 text-white min-h-[44px]"
+              >
+                Explore Clean Claim Intelligence <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Knowledge Board Section */}
+      <section className="py-20 md:py-32 bg-enterprise-grey">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+            <div>
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 rounded-lg bg-royal-teal/10 flex items-center justify-center mr-4">
+                  <BookOpen className="w-6 h-6 text-royal-teal" />
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-royal-teal">
+                  Knowledge Board
+                </h2>
+              </div>
+              <p className="text-lg text-gray-600 mb-6">
+                Your comprehensive resource for hospital licensing, regulatory compliance, and accreditation standards across India
+              </p>
+              <div className="space-y-4 mb-8">
+                {[
+                  'Hospital Licensing: Complete state-specific requirements',
+                  'NABH Standards: Accreditation guidelines and processes',
+                  'Regulatory Compliance: Stay updated with latest regulations',
+                  'Compliance Checklist: Step-by-step implementation guides',
+                ].map((benefit, index) => (
+                  <div key={index} className="flex items-start">
+                    <CheckCircle className="w-6 h-6 text-royal-teal mr-3 flex-shrink-0 mt-0.5" />
+                    <p className="text-base text-gray-700">{benefit}</p>
+                  </div>
+                ))}
+              </div>
+              <Button
+                size="lg"
+                onClick={() => navigate({ to: '/knowledge-board' })}
+                className="bg-royal-teal hover:bg-royal-teal/90 text-white min-h-[44px]"
+              >
+                Explore Knowledge Board <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+            <div className="relative">
+              <img
+                src="/assets/generated/hospital-licenses-hero.dim_1920x1080.png"
+                alt="Knowledge Board"
+                className="w-full h-auto rounded-lg shadow-2xl"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </section>

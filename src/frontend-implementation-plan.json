@@ -1,171 +1,56 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add AI HEALTH ZON Clean Claim Intelligence System Product Page",
+  "title": "Update homepage with Clean Claim Intelligence and Knowledge Board information",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Create new Clean Claim Intelligence product page route with hero section displaying main headline and subheadline",
+      "summary": "Add Clean Claim Intelligence section to homepage highlighting 10-layer validation system and revenue protection benefits",
       "acceptanceCriteria": [
-        "New route '/clean-claim-intelligence' is accessible from the navigation menu",
-        "Hero section displays the main headline and subheadline prominently",
-        "Page follows the existing Royal Teal color scheme and design patterns"
+        "Clean Claim Intelligence section appears on homepage with visual prominence",
+        "Section includes reference to 10-layer validation intelligence",
+        "Section includes link or CTA to navigate to /clean-claim-intelligence page",
+        "Content emphasizes revenue cycle management and claim accuracy benefits"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/CleanClaimIntelligence.tsx",
-          "operation": "create",
-          "description": "Create new page component for Clean Claim Intelligence System with hero section containing headline 'AI HEALTH ZON – AI-Driven Clean Claim Intelligence System' and subheadline 'Maximize Approvals. Eliminate Rejections. Prevent Claim Losses.' Use generated hero image frontend/public/assets/generated/claim-intelligence-hero.dim_1200x600.png with Royal Teal gradient overlay and white text styling similar to existing Solutions page hero"
-        },
-        {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/pages/Home.tsx",
           "operation": "modify",
-          "description": "Add new route for '/clean-claim-intelligence' path mapped to CleanClaimIntelligence page component in the router configuration alongside existing routes"
-        },
-        {
-          "path": "frontend/src/components/Navigation.tsx",
-          "operation": "modify",
-          "description": "Add 'Clean Claim Intelligence' navigation link under Solutions dropdown menu or as a separate menu item in both desktop and mobile navigation, linking to '/clean-claim-intelligence'"
+          "description": "Add a new CleanClaimIntelligenceSection component between the solutions cards section and metrics display. Include heading, description highlighting the 10-layer validation system, key benefits list (revenue protection, claim accuracy, denial prevention), and a prominent CTA button linking to /clean-claim-intelligence. Use the existing generated image asset frontend/public/assets/generated/claim-intelligence-hero.dim_1200x600.png. Follow the Royal Teal color scheme and maintain consistency with existing section styling."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Add 'Why Hospitals Lose Revenue' section listing six key revenue loss factors with introductory text",
+      "summary": "Add Knowledge Board section to homepage promoting hospital licensing and regulatory compliance resources",
       "acceptanceCriteria": [
-        "Section displays all six revenue loss factors with bullet points",
-        "Section includes introductory text about healthcare claim rejections and payment delays"
+        "Knowledge Board section appears on homepage",
+        "Section references hospital licensing and regulatory compliance topics",
+        "Section includes CTA or link to navigate to /knowledge-board page",
+        "Visual design maintains consistency with existing homepage sections"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/CleanClaimIntelligence.tsx",
+          "path": "frontend/src/pages/Home.tsx",
           "operation": "modify",
-          "description": "Add 'Why Hospitals Lose Revenue' section below hero with introductory text explaining claim rejections and payment delays, followed by six bullet points: preventable claim rejections, billing & coding errors, policy & package mismatches, delayed settlements & cash flow gaps, documentation deficiencies, and undetected fraud & abuse patterns. Use Royal Teal accent styling for section heading"
+          "description": "Add a new KnowledgeBoardSection component after the CleanClaimIntelligenceSection and before the metrics display. Include heading, description promoting hospital licensing and regulatory compliance resources, highlight key topics (NABH standards, state-specific requirements, compliance checklist), and a CTA button linking to /knowledge-board. Use the existing generated image asset frontend/public/assets/generated/hospital-licenses-hero.dim_1920x1080.png. Follow the established design patterns and Royal Teal color scheme."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Add 'Our Solution' section explaining the Clean Claim Intelligence System as a multi-layer validation and decision engine",
+      "summary": "Ensure updated homepage sections integrate seamlessly with existing components and maintain all current functionality",
       "acceptanceCriteria": [
-        "Solution section clearly describes the system as a validation and decision engine",
-        "Text emphasizes the transformation from manual to AI-driven processes"
+        "All existing homepage sections remain functional",
+        "New sections follow the established Royal Teal color scheme and design patterns",
+        "Page layout remains responsive across mobile and desktop",
+        "Demo booking modal continues to work from all CTAs"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/CleanClaimIntelligence.tsx",
+          "path": "frontend/src/pages/Home.tsx",
           "operation": "modify",
-          "description": "Add 'Our Solution' section describing the AI HEALTH ZON Clean Claim Intelligence System as a multi-layer validation & decision engine that transforms claim processing from manual verification to AI-driven intelligence, emphasizing prediction, prevention, and correction of risks across the entire claim lifecycle. Use card or highlighted box styling with Royal Teal border"
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Create 'Core Validation & Intelligence Layers' section with expandable layout for 10 validation layers with 5 features each",
-      "acceptanceCriteria": [
-        "All 10 validation layers are displayed with numbered titles",
-        "Each layer shows its descriptive subtitle and all 5 feature checkmarks",
-        "Layout uses accordion or card pattern similar to existing KnowledgeBoard page",
-        "All checkmark items are displayed with proper formatting"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/CleanClaimIntelligence.tsx",
-          "operation": "modify",
-          "description": "Add 'Core Validation & Intelligence Layers' section with accordion pattern (similar to KnowledgeBoard page FAQ accordion) displaying all 10 numbered validation layers: (1) Patient Identity & Eligibility Intelligence, (2) Pre-Authorization & Policy Logic Engine, (3) Clinical Validity & Medical Necessity Engine, (4) Medical Coding & Classification Integrity, (5) Treatment & Billing Consistency Controls, (6) Documentation & Record Integrity Validation, (7) Claim Lifecycle & Aging Intelligence, (8) Advanced Fraud & Abuse Analytics, (9) Financial Accuracy & Leakage Prevention, (10) Compliance & Regulatory Safeguards. Each accordion item shows the layer number, title, subtitle, and 5 checkmarked features when expanded. Use generated diagram image frontend/public/assets/generated/validation-layers-diagram.dim_800x600.png as a visual overview above the accordion"
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Add 'What Makes AI HEALTH ZON Different' section with five differentiators and closing statement",
-      "acceptanceCriteria": [
-        "Section displays all five differentiators with checkmark styling",
-        "Closing statement is prominently displayed",
-        "Section is visually distinct from other content areas"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/CleanClaimIntelligence.tsx",
-          "operation": "modify",
-          "description": "Add 'What Makes AI HEALTH ZON Different' section with five checkmarked items: Rejection Prevention Intelligence, Clinical + Financial + Policy-Aware Validation, Predictive Denial & Risk Models, AI-Driven Fraud Detection, and Audit & Compliance Protection. Display closing statement 'We move beyond error detection toward decision intelligence' in bold or highlighted text. Use frontend/public/assets/generated/validation-security-icon.dim_256x256.png as section icon. Apply distinctive background color or border to make section stand out"
-        }
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "summary": "Add 'Business Impact for Hospitals' section listing six benefits with introductory text",
-      "acceptanceCriteria": [
-        "Section displays all six business impact items",
-        "Introduction text 'Hospitals using intelligent claim validation typically achieve:' is included"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/CleanClaimIntelligence.tsx",
-          "operation": "modify",
-          "description": "Add 'Business Impact for Hospitals' section with introductory text 'Hospitals using intelligent claim validation typically achieve:' followed by six bullet points: higher claim approval rates, reduced rejection & resubmission cycles, faster settlements & improved cash flow, lower audit exposure, controlled billing leakage, and stronger compliance posture. Use grid or card layout with Royal Teal accent icons"
-        }
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "summary": "Add 'Who Benefits' section listing five stakeholder types with checkmarks",
-      "acceptanceCriteria": [
-        "All five stakeholder types are listed with checkmark styling",
-        "Section uses consistent visual treatment with other checkmarked lists"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/CleanClaimIntelligence.tsx",
-          "operation": "modify",
-          "description": "Add 'Who Benefits' section with five checkmarked stakeholder types: Hospitals & Medical Colleges, Multi-hospital Chains, TPAs & Insurers, Government Health Schemes, and Claim Processing Units. Use same checkmark styling as other checkmarked lists for visual consistency"
-        }
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "summary": "Add call-to-action section with prominent heading and demo booking capability",
-      "acceptanceCriteria": [
-        "CTA section is visually prominent with large heading",
-        "Section includes demo booking button or link to contact form"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/CleanClaimIntelligence.tsx",
-          "operation": "modify",
-          "description": "Add call-to-action section with large heading 'Transform Claim Processing into a Revenue Protection System' and subheading 'Stop losing revenue to preventable errors and hidden risks. Deploy an AI-driven Clean Claim Intelligence System built for modern healthcare finance.' Include demo booking button that opens DemoBookingForm modal (reuse existing DemoBookingForm component). Apply Royal Teal background with white text for visual prominence"
-        }
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "summary": "Add 'Get in Touch' contact section with AI HEALTH ZON branding and contact information",
-      "acceptanceCriteria": [
-        "Contact section displays all three contact methods with icons",
-        "Website URL, email, and phone number are clickable/copyable",
-        "Section styling matches existing contact sections on other pages"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/CleanClaimIntelligence.tsx",
-          "operation": "modify",
-          "description": "Add 'Get in Touch' contact section displaying AI HEALTH ZON branding with three contact methods using icons: website URL www.aihealthzon.com (clickable link), email info@aihealthzon.com (mailto link), and phone number 8233393456 (tel link). Use styling consistent with contact sections on existing pages like Contact.tsx"
-        }
-      ]
-    },
-    {
-      "id": "REQ-10",
-      "summary": "Add navigation link to Clean Claim Intelligence page in main navigation menu",
-      "acceptanceCriteria": [
-        "Navigation link is added to Navigation component",
-        "Link is visible in both desktop and mobile navigation menus",
-        "Link routing works correctly to the new page"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/Navigation.tsx",
-          "operation": "modify",
-          "description": "This file operation was already covered in REQ-1 to wire the new page into the navigation menu for both desktop and mobile views"
+          "description": "Verify that the auto-rotating hero carousel, why-choose-us section, solutions cards, and metrics display remain intact and functional. Ensure new sections use consistent spacing (section padding, margins), responsive grid/flex layouts, Card components from shadcn/ui where appropriate, and button styling matching existing CTAs. Test that all demo booking modal triggers continue to work. Verify mobile responsiveness for all new content using Tailwind responsive classes."
         }
       ]
     }

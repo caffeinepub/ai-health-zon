@@ -1,92 +1,32 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "AI HEALTH ZON website - healthcare claim intelligence system information platform with licensing knowledge board",
-  "architectural_notes": [
-    "Multi-page website structure with knowledge board and product information sections",
-    "Healthcare-focused content management for claim intelligence system features"
-  ],
+  "summary": "New project",
+  "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Hero banner image showing healthcare professionals reviewing digital claim data on screens with AI visualization overlays (claim-intelligence-hero.dim_1200x600.png)\n- Icon illustration representing validation checkmarks and shield symbol for security and compliance (validation-security-icon.dim_256x256.png)\n- Diagram showing 10 interconnected layers of the validation system in a circular or flow pattern (validation-layers-diagram.dim_800x600.png)",
   "existing_features": [
     {
-      "id": "feature-create-a-new-frontend-page-route-clean-claim-intelligence-that-displays-comprehensive-information-about-the-ai-health-zon-clean-claim-intelligence-system-product-including-hero-section-with-headline-ai-health-zon-ai-driven-clean-claim-intelligence-system-and-subheadline-maximize-approvals-eliminate-rejections-prevent-claim-losses",
-      "title": "Create a new frontend page route '/clean-claim-intelligence' that displays comprehensive information about the AI HEALTH ZON Clean Claim Intelligence System product, including hero section with headline 'AI HEALTH ZON – AI-Driven Clean Claim Intelligence System' and subheadline 'Maximize Approvals. Eliminate Rejections. Prevent Claim Losses.'",
+      "id": "feature-add-a-dedicated-section-to-the-homepage-highlighting-the-clean-claim-intelligence-solution-with-key-messaging-about-the-10-layer-validation-system-and-revenue-protection-benefits",
+      "title": "Add a dedicated section to the homepage highlighting the Clean Claim Intelligence solution with key messaging about the 10-layer validation system and revenue protection benefits",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-why-hospitals-lose-revenue-section-listing-six-key-revenue-loss-factors-preventable-claim-rejections-billing-coding-errors-policy-package-mismatches-delayed-settlements-cash-flow-gaps-documentation-deficiencies-and-undetected-fraud-abuse-patterns",
-      "title": "Add 'Why Hospitals Lose Revenue' section listing six key revenue loss factors: preventable claim rejections, billing & coding errors, policy & package mismatches, delayed settlements & cash flow gaps, documentation deficiencies, and undetected fraud & abuse patterns",
+      "id": "feature-add-a-knowledge-board-section-to-the-homepage-promoting-the-hospital-licensing-and-regulatory-compliance-resources-with-link-to-the-knowledge-board-page",
+      "title": "Add a Knowledge Board section to the homepage promoting the hospital licensing and regulatory compliance resources with link to the knowledge board page",
       "reqIds": [
         "REQ-2"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-our-solution-section-explaining-that-ai-health-zon-clean-claim-intelligence-system-is-a-multi-layer-validation-decision-engine-that-transforms-claim-processing-from-manual-verification-to-ai-driven-intelligence-with-emphasis-on-prediction-prevention-and-correction-of-risks-across-the-entire-claim-lifecycle",
-      "title": "Add 'Our Solution' section explaining that AI HEALTH ZON Clean Claim Intelligence System is a multi-layer validation & decision engine that transforms claim processing from manual verification to AI-driven intelligence, with emphasis on prediction, prevention, and correction of risks across the entire claim lifecycle",
+      "id": "feature-ensure-the-updated-homepage-sections-integrate-seamlessly-with-existing-auto-rotating-hero-carousel-why-choose-us-section-solutions-cards-and-metrics-display-without-disrupting-current-functionality",
+      "title": "Ensure the updated homepage sections integrate seamlessly with existing auto-rotating hero carousel, why-choose-us section, solutions cards, and metrics display without disrupting current functionality",
       "reqIds": [
         "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-core-validation-intelligence-layers-section-with-expandable-accordion-or-card-layout-displaying-all-10-validation-layers-1-patient-identity-eligibility-intelligence-with-5-features-2-pre-authorization-policy-logic-engine-with-5-features-3-clinical-validity-medical-necessity-engine-with-5-features-4-medical-coding-classification-integrity-with-5-features-5-treatment-billing-consistency-controls-with-5-features-6-documentation-record-integrity-validation-with-5-features-7-claim-lifecycle-aging-intelligence-with-5-features-8-advanced-fraud-abuse-analytics-with-5-features-9-financial-accuracy-leakage-prevention-with-5-features-10-compliance-regulatory-safeguards-with-5-features",
-      "title": "Create 'Core Validation & Intelligence Layers' section with expandable accordion or card layout displaying all 10 validation layers: (1) Patient Identity & Eligibility Intelligence with 5 features, (2) Pre-Authorization & Policy Logic Engine with 5 features, (3) Clinical Validity & Medical Necessity Engine with 5 features, (4) Medical Coding & Classification Integrity with 5 features, (5) Treatment & Billing Consistency Controls with 5 features, (6) Documentation & Record Integrity Validation with 5 features, (7) Claim Lifecycle & Aging Intelligence with 5 features, (8) Advanced Fraud & Abuse Analytics with 5 features, (9) Financial Accuracy & Leakage Prevention with 5 features, (10) Compliance & Regulatory Safeguards with 5 features",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-what-makes-ai-health-zon-different-section-highlighting-five-differentiators-with-checkmarks-rejection-prevention-intelligence-clinical-financial-policy-aware-validation-predictive-denial-risk-models-ai-driven-fraud-detection-and-audit-compliance-protection-with-closing-statement-we-move-beyond-error-detection-toward-decision-intelligence",
-      "title": "Add 'What Makes AI HEALTH ZON Different' section highlighting five differentiators with checkmarks: Rejection Prevention Intelligence, Clinical + Financial + Policy-Aware Validation, Predictive Denial & Risk Models, AI-Driven Fraud Detection, and Audit & Compliance Protection, with closing statement 'We move beyond error detection toward decision intelligence'",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-business-impact-for-hospitals-section-listing-six-benefits-with-bullet-points-higher-claim-approval-rates-reduced-rejection-resubmission-cycles-faster-settlements-improved-cash-flow-lower-audit-exposure-controlled-billing-leakage-and-stronger-compliance-posture",
-      "title": "Add 'Business Impact for Hospitals' section listing six benefits with bullet points: higher claim approval rates, reduced rejection & resubmission cycles, faster settlements & improved cash flow, lower audit exposure, controlled billing leakage, and stronger compliance posture",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-who-benefits-section-with-checkmarks-listing-five-stakeholder-types-hospitals-medical-colleges-multi-hospital-chains-tpas-insurers-government-health-schemes-and-claim-processing-units",
-      "title": "Add 'Who Benefits' section with checkmarks listing five stakeholder types: Hospitals & Medical Colleges, Multi-hospital Chains, TPAs & Insurers, Government Health Schemes, and Claim Processing Units",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-call-to-action-section-with-heading-transform-claim-processing-into-a-revenue-protection-system-and-subheading-stop-losing-revenue-to-preventable-errors-and-hidden-risks-deploy-an-ai-driven-clean-claim-intelligence-system-built-for-modern-healthcare-finance",
-      "title": "Add call-to-action section with heading 'Transform Claim Processing into a Revenue Protection System' and subheading 'Stop losing revenue to preventable errors and hidden risks. Deploy an AI-driven Clean Claim Intelligence System built for modern healthcare finance.'",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-get-in-touch-contact-section-displaying-ai-health-zon-branding-with-website-url-www-aihealthzon-com-email-info-aihealthzon-com-and-phone-number-8233393456-maintaining-consistency-with-existing-contact-information-on-other-pages",
-      "title": "Add 'Get in Touch' contact section displaying AI HEALTH ZON branding with website URL www.aihealthzon.com, email info@aihealthzon.com, and phone number 8233393456, maintaining consistency with existing contact information on other pages",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-navigation-link-to-the-clean-claim-intelligence-page-in-the-main-navigation-menu-under-solutions-or-as-a-separate-menu-item-ensuring-it-is-accessible-from-all-pages",
-      "title": "Add navigation link to the Clean Claim Intelligence page in the main navigation menu under Solutions or as a separate menu item, ensuring it is accessible from all pages",
-      "reqIds": [
-        "REQ-10"
       ],
       "version": 1
     }
@@ -94,12 +34,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add comprehensive AI HEALTH ZON product information page with 10 validation layers",
+      "summary": "Upgrade homepage based upon new information added",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "AI HEALTH ZON",
+  "projectName": "AI Health Zon",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }
