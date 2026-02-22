@@ -1,56 +1,159 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update homepage with Clean Claim Intelligence and Knowledge Board information",
+  "title": "Implement PIN code-based auto-fill with locked address fields",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Add Clean Claim Intelligence section to homepage highlighting 10-layer validation system and revenue protection benefits",
+      "summary": "Lock district, state, and nation fields as read-only in all address forms",
       "acceptanceCriteria": [
-        "Clean Claim Intelligence section appears on homepage with visual prominence",
-        "Section includes reference to 10-layer validation intelligence",
-        "Section includes link or CTA to navigate to /clean-claim-intelligence page",
-        "Content emphasizes revenue cycle management and claim accuracy benefits"
+        "District field is disabled/read-only and cannot be manually edited",
+        "State field is disabled/read-only and cannot be manually edited",
+        "Nation field is disabled/read-only and cannot be manually edited",
+        "Fields display auto-filled values from PIN code lookup",
+        "Visual styling indicates fields are locked (e.g., reduced opacity, disabled cursor)"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/Home.tsx",
+          "path": "frontend/src/pages/Careers.tsx",
           "operation": "modify",
-          "description": "Add a new CleanClaimIntelligenceSection component between the solutions cards section and metrics display. Include heading, description highlighting the 10-layer validation system, key benefits list (revenue protection, claim accuracy, denial prevention), and a prominent CTA button linking to /clean-claim-intelligence. Use the existing generated image asset frontend/public/assets/generated/claim-intelligence-hero.dim_1200x600.png. Follow the Royal Teal color scheme and maintain consistency with existing section styling."
+          "description": "Add disabled prop to district, state, and nation input fields. Apply visual styling (opacity-60, cursor-not-allowed classes) to indicate read-only state. Ensure these fields are registered with react-hook-form but marked as disabled to prevent manual editing while displaying auto-filled values."
+        },
+        {
+          "path": "frontend/src/pages/Vendors.tsx",
+          "operation": "modify",
+          "description": "Add disabled prop to district, state, and nation input fields. Apply visual styling (opacity-60, cursor-not-allowed classes) to indicate read-only state. Ensure these fields are registered with react-hook-form but marked as disabled to prevent manual editing while displaying auto-filled values."
+        },
+        {
+          "path": "frontend/src/pages/AmbulanceServices.tsx",
+          "operation": "modify",
+          "description": "Add disabled prop to district, state, and nation input fields. Apply visual styling (opacity-60, cursor-not-allowed classes) to indicate read-only state. Ensure these fields are registered with react-hook-form but marked as disabled to prevent manual editing while displaying auto-filled values."
+        },
+        {
+          "path": "frontend/src/pages/NgoListing.tsx",
+          "operation": "modify",
+          "description": "Add disabled prop to district, state, and nation input fields. Apply visual styling (opacity-60, cursor-not-allowed classes) to indicate read-only state. Ensure these fields are registered with react-hook-form but marked as disabled to prevent manual editing while displaying auto-filled values."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Add Knowledge Board section to homepage promoting hospital licensing and regulatory compliance resources",
+      "summary": "Add post office name field to all address forms",
       "acceptanceCriteria": [
-        "Knowledge Board section appears on homepage",
-        "Section references hospital licensing and regulatory compliance topics",
-        "Section includes CTA or link to navigate to /knowledge-board page",
-        "Visual design maintains consistency with existing homepage sections"
+        "Post office name field is present in Careers registration form",
+        "Post office name field is present in Vendors registration form",
+        "Post office name field is present in AmbulanceServices registration form",
+        "Post office name field is present in NgoListing registration form",
+        "Field is disabled/read-only like other location fields",
+        "Field displays value populated from PIN code lookup"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/Home.tsx",
+          "path": "frontend/src/pages/Careers.tsx",
           "operation": "modify",
-          "description": "Add a new KnowledgeBoardSection component after the CleanClaimIntelligenceSection and before the metrics display. Include heading, description promoting hospital licensing and regulatory compliance resources, highlight key topics (NABH standards, state-specific requirements, compliance checklist), and a CTA button linking to /knowledge-board. Use the existing generated image asset frontend/public/assets/generated/hospital-licenses-hero.dim_1920x1080.png. Follow the established design patterns and Royal Teal color scheme."
+          "description": "Add a new post office name input field in the location section of the form. Register it with react-hook-form as 'location.postOffice'. Make the field disabled and apply read-only styling (opacity-60, cursor-not-allowed). Position it logically within the address fields group, after PIN code and before or after city."
+        },
+        {
+          "path": "frontend/src/pages/Vendors.tsx",
+          "operation": "modify",
+          "description": "Add a new post office name input field in the location section of the form. Register it with react-hook-form as 'location.postOffice'. Make the field disabled and apply read-only styling (opacity-60, cursor-not-allowed). Position it logically within the address fields group, after PIN code and before or after city."
+        },
+        {
+          "path": "frontend/src/pages/AmbulanceServices.tsx",
+          "operation": "modify",
+          "description": "Add a new post office name input field in the location section of the form. Register it with react-hook-form as 'location.postOffice'. Make the field disabled and apply read-only styling (opacity-60, cursor-not-allowed). Position it logically within the address fields group, after PIN code and before or after city."
+        },
+        {
+          "path": "frontend/src/pages/NgoListing.tsx",
+          "operation": "modify",
+          "description": "Add a new post office name input field in the location section of the form. Register it with react-hook-form as 'location.postOffice'. Make the field disabled and apply read-only styling (opacity-60, cursor-not-allowed). Position it logically within the address fields group, after PIN code and before or after city."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Ensure updated homepage sections integrate seamlessly with existing components and maintain all current functionality",
+      "summary": "Auto-fill district, state, nation, and post office name fields when PIN code is entered",
       "acceptanceCriteria": [
-        "All existing homepage sections remain functional",
-        "New sections follow the established Royal Teal color scheme and design patterns",
-        "Page layout remains responsive across mobile and desktop",
-        "Demo booking modal continues to work from all CTAs"
+        "When user enters a valid PIN code, district field is automatically populated",
+        "When user enters a valid PIN code, state field is automatically populated",
+        "When user enters a valid PIN code, nation field is automatically populated with 'India'",
+        "When user enters a valid PIN code, post office name field is automatically populated",
+        "Auto-fill occurs without requiring manual submission or button click",
+        "Invalid PIN codes show appropriate error feedback",
+        "Loading state is displayed while PIN code lookup is in progress"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/Home.tsx",
+          "path": "frontend/src/pages/Careers.tsx",
           "operation": "modify",
-          "description": "Verify that the auto-rotating hero carousel, why-choose-us section, solutions cards, and metrics display remain intact and functional. Ensure new sections use consistent spacing (section padding, margins), responsive grid/flex layouts, Card components from shadcn/ui where appropriate, and button styling matching existing CTAs. Test that all demo booking modal triggers continue to work. Verify mobile responsiveness for all new content using Tailwind responsive classes."
+          "description": "Enhance the PIN code onChange handler to call the updated pinCodeLookup utility and use setValue() from react-hook-form to populate district (from city in API response), state, nation ('India'), and postOffice fields. Add loading state management while lookup is in progress. Display error toast for invalid PIN codes. Ensure auto-fill triggers immediately on valid 6-digit PIN code entry without requiring blur or button click."
+        },
+        {
+          "path": "frontend/src/pages/Vendors.tsx",
+          "operation": "modify",
+          "description": "Enhance the PIN code onChange handler to call the updated pinCodeLookup utility and use setValue() from react-hook-form to populate district (from city in API response), state, nation ('India'), and postOffice fields. Add loading state management while lookup is in progress. Display error toast for invalid PIN codes. Ensure auto-fill triggers immediately on valid 6-digit PIN code entry without requiring blur or button click."
+        },
+        {
+          "path": "frontend/src/pages/AmbulanceServices.tsx",
+          "operation": "modify",
+          "description": "Enhance the PIN code onChange handler to call the updated pinCodeLookup utility and use setValue() from react-hook-form to populate district (from city in API response), state, nation ('India'), and postOffice fields. Add loading state management while lookup is in progress. Display error toast for invalid PIN codes. Ensure auto-fill triggers immediately on valid 6-digit PIN code entry without requiring blur or button click."
+        },
+        {
+          "path": "frontend/src/pages/NgoListing.tsx",
+          "operation": "modify",
+          "description": "Enhance the PIN code onChange handler to call the updated pinCodeLookup utility and use setValue() from react-hook-form to populate district (from city in API response), state, nation ('India'), and postOffice fields. Add loading state management while lookup is in progress. Display error toast for invalid PIN codes. Ensure auto-fill triggers immediately on valid 6-digit PIN code entry without requiring blur or button click."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Update pinCodeLookup utility to return post office name",
+      "acceptanceCriteria": [
+        "pinCodeLookup function returns post office name from India Post API response",
+        "Return type includes postOffice field in the result object",
+        "Post office name is extracted from the API's PostOffice array",
+        "Function handles cases where post office name may be missing"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/pinCodeLookup.ts",
+          "operation": "modify",
+          "description": "Update the PinCodeLookupResult interface to include 'postOffice?: string' field. Extract post office name from the API response's PostOffice array (typically response[0].PostOffice[0].Name). Update the success return object to include postOffice field. Handle cases where PostOffice array is empty or Name is undefined by returning undefined for postOffice. Maintain existing error handling and validation logic."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Ensure only PIN code field accepts manual input in address forms",
+      "acceptanceCriteria": [
+        "PIN code field accepts keyboard input",
+        "District field cannot be manually edited",
+        "State field cannot be manually edited",
+        "Nation field cannot be manually edited",
+        "Post office field cannot be manually edited",
+        "City field remains editable as it was before (not explicitly mentioned in request)",
+        "Form validation ensures locked fields have values before submission"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/Careers.tsx",
+          "operation": "modify",
+          "description": "Verify PIN code input field remains enabled and accepts keyboard input. Confirm district, state, nation, and postOffice fields have disabled prop set to true. Keep city field editable (no disabled prop). Add form validation to check that auto-filled fields (district, state, nation, postOffice) have values before allowing form submission. Display validation errors if user attempts to submit without entering a valid PIN code first."
+        },
+        {
+          "path": "frontend/src/pages/Vendors.tsx",
+          "operation": "modify",
+          "description": "Verify PIN code input field remains enabled and accepts keyboard input. Confirm district, state, nation, and postOffice fields have disabled prop set to true. Keep city field editable (no disabled prop). Add form validation to check that auto-filled fields (district, state, nation, postOffice) have values before allowing form submission. Display validation errors if user attempts to submit without entering a valid PIN code first."
+        },
+        {
+          "path": "frontend/src/pages/AmbulanceServices.tsx",
+          "operation": "modify",
+          "description": "Verify PIN code input field remains enabled and accepts keyboard input. Confirm district, state, nation, and postOffice fields have disabled prop set to true. Keep city field editable (no disabled prop). Add form validation to check that auto-filled fields (district, state, nation, postOffice) have values before allowing form submission. Display validation errors if user attempts to submit without entering a valid PIN code first."
+        },
+        {
+          "path": "frontend/src/pages/NgoListing.tsx",
+          "operation": "modify",
+          "description": "Verify PIN code input field remains enabled and accepts keyboard input. Confirm district, state, nation, and postOffice fields have disabled prop set to true. Keep city field editable (no disabled prop). Add form validation to check that auto-filled fields (district, state, nation, postOffice) have values before allowing form submission. Display validation errors if user attempts to submit without entering a valid PIN code first."
         }
       ]
     }

@@ -1,11 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Enhance the homepage by adding dedicated sections for Clean Claim Intelligence and Knowledge Board to highlight these new solutions and drive navigation to their respective detail pages.
+**Goal:** Implement PIN code-based auto-fill functionality with locked address fields across all registration forms.
 
 **Planned changes:**
-- Add a Clean Claim Intelligence section on the homepage showcasing the 10-layer validation system and revenue protection benefits with a CTA linking to /clean-claim-intelligence
-- Add a Knowledge Board section on the homepage promoting hospital licensing and regulatory compliance resources with a CTA linking to /knowledge-board
-- Integrate both new sections seamlessly with existing homepage components (hero carousel, why-choose-us, solutions cards, metrics) while maintaining responsive design and Royal Teal branding
+- Lock district, state, and nation fields as read-only in all address forms (Careers, Vendors, AmbulanceServices, NgoListing)
+- Add post office name field to all address forms
+- Auto-fill district, state, nation, and post office fields when PIN code is entered
+- Update pinCodeLookup utility to return post office name from India Post API
+- Ensure only PIN code field accepts manual input; all other location fields are auto-populated and read-only
 
-**User-visible outcome:** Users visiting the homepage will see two new prominent sections highlighting Clean Claim Intelligence and Knowledge Board, with clear calls-to-action to explore these solutions in detail.
+**User-visible outcome:** Users can enter only their PIN code in registration forms, and district, state, nation, and post office name fields will automatically populate and remain locked, streamlining the address entry process.

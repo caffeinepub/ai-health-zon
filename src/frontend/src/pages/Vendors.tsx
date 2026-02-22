@@ -20,8 +20,10 @@ export default function Vendors() {
     email: '',
     pinCode: '',
     city: '',
+    district: '',
     state: '',
     country: 'India',
+    postOffice: '',
   });
   const [pinLookupLoading, setPinLookupLoading] = useState(false);
 
@@ -29,15 +31,11 @@ export default function Vendors() {
   const { data: vendors = [], isLoading } = useGetAllVendors();
 
   const categories = [
-    'Medical Equipment',
-    'Pharmaceuticals',
-    'Laboratory Supplies',
-    'IT Solutions',
-    'Facility Management',
-    'Catering Services',
+    'Medical Equipment', 'Pharmaceuticals', 'Laboratory Supplies',
+    'Hospital Furniture', 'IT Solutions', 'Facility Management'
   ];
 
-  // Auto-fill city and state when PIN code is entered
+  // Auto-fill location fields when PIN code is entered
   useEffect(() => {
     const fetchLocationFromPin = async () => {
       if (formData.pinCode.length === 6) {
@@ -48,8 +46,9 @@ export default function Vendors() {
         if (result.success) {
           setFormData(prev => ({
             ...prev,
-            city: result.city,
+            district: result.district,
             state: result.state,
+            postOffice: result.postOffice,
           }));
         } else if (result.error) {
           toast.error(result.error);
@@ -62,6 +61,12 @@ export default function Vendors() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate that PIN code has been filled and location fields are populated
+    if (!formData.district || !formData.state || !formData.postOffice) {
+      toast.error('Please enter a valid PIN code to auto-fill location details');
+      return;
+    }
 
     const request: VendorRequest = {
       id: `vendor_${Date.now()}`,
@@ -96,8 +101,10 @@ export default function Vendors() {
         email: '',
         pinCode: '',
         city: '',
+        district: '',
         state: '',
         country: 'India',
+        postOffice: '',
       });
     } catch (error) {
       console.error('Registration error:', error);
@@ -109,10 +116,10 @@ export default function Vendors() {
     <div className="w-full">
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center">Vendor Network</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center">Healthcare Vendors</h1>
           <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-12">
-            Connect with healthcare facilities and expand your business opportunities
-            by joining our trusted vendor network.
+            Connect with verified healthcare vendors and suppliers for medical equipment,
+            pharmaceuticals, and hospital supplies.
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
@@ -126,22 +133,22 @@ export default function Vendors() {
                   <div className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
                     <div>
-                      <h3 className="font-semibold mb-1">Direct Access</h3>
-                      <p className="text-sm text-muted-foreground">Connect with hospitals directly</p>
+                      <h3 className="font-semibold mb-1">Hospital Network</h3>
+                      <p className="text-sm text-muted-foreground">Access to verified hospitals</p>
                     </div>
                   </div>
                   <div className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
                     <div>
-                      <h3 className="font-semibold mb-1">Verified Listing</h3>
-                      <p className="text-sm text-muted-foreground">Build trust with verification</p>
+                      <h3 className="font-semibold mb-1">Direct Inquiries</h3>
+                      <p className="text-sm text-muted-foreground">Receive purchase requests</p>
                     </div>
                   </div>
                   <div className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
                     <div>
-                      <h3 className="font-semibold mb-1">Business Growth</h3>
-                      <p className="text-sm text-muted-foreground">Expand your customer base</p>
+                      <h3 className="font-semibold mb-1">Verified Badge</h3>
+                      <p className="text-sm text-muted-foreground">Build trust with customers</p>
                     </div>
                   </div>
                 </CardContent>
@@ -153,12 +160,12 @@ export default function Vendors() {
               <Card>
                 <CardHeader>
                   <CardTitle>Register as Vendor</CardTitle>
-                  <CardDescription>Provide your business details to join our network</CardDescription>
+                  <CardDescription>Join our network of healthcare suppliers</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <Label htmlFor="name">Business Name *</Label>
+                      <Label htmlFor="name">Company Name *</Label>
                       <Input
                         id="name"
                         value={formData.name}
@@ -188,10 +195,10 @@ export default function Vendors() {
                     </div>
 
                     <div>
-                      <Label htmlFor="products">Products/Services *</Label>
+                      <Label htmlFor="products">Products/Services (comma-separated) *</Label>
                       <Textarea
                         id="products"
-                        placeholder="Enter products or services (comma-separated)"
+                        placeholder="e.g., Surgical instruments, Hospital beds, Medical imaging equipment"
                         value={formData.products}
                         onChange={(e) => setFormData({ ...formData, products: e.target.value })}
                         required
@@ -242,11 +249,21 @@ export default function Vendors() {
                         )}
                       </div>
                       <p className="text-xs text-muted-foreground mt-1">
-                        City and state will be auto-filled based on PIN code
+                        Location details will be auto-filled based on PIN code
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="postOffice">Post Office *</Label>
+                        <Input
+                          id="postOffice"
+                          value={formData.postOffice}
+                          className="opacity-60 cursor-not-allowed"
+                          disabled
+                          required
+                        />
+                      </div>
                       <div>
                         <Label htmlFor="city">City *</Label>
                         <Input
@@ -256,21 +273,36 @@ export default function Vendors() {
                           required
                         />
                       </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <Label htmlFor="district">District *</Label>
+                        <Input
+                          id="district"
+                          value={formData.district}
+                          className="opacity-60 cursor-not-allowed"
+                          disabled
+                          required
+                        />
+                      </div>
                       <div>
                         <Label htmlFor="state">State *</Label>
                         <Input
                           id="state"
                           value={formData.state}
-                          onChange={(e) => setFormData({ ...formData, state: e.target.value })}
+                          className="opacity-60 cursor-not-allowed"
+                          disabled
                           required
                         />
                       </div>
                       <div>
-                        <Label htmlFor="country">Country *</Label>
+                        <Label htmlFor="country">Nation *</Label>
                         <Input
                           id="country"
                           value={formData.country}
-                          onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                          className="opacity-60 cursor-not-allowed"
+                          disabled
                           required
                         />
                       </div>
@@ -285,13 +317,21 @@ export default function Vendors() {
             </div>
           </div>
 
-          {/* Verified Vendors List */}
+          {/* Verified Vendors Directory */}
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold mb-8 text-center">Verified Vendors</h2>
             {isLoading ? (
-              <p className="text-center text-muted-foreground">Loading vendors...</p>
+              <div className="text-center py-12">
+                <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary" />
+                <p className="text-muted-foreground mt-4">Loading vendors...</p>
+              </div>
             ) : vendors.length === 0 ? (
-              <p className="text-center text-muted-foreground">No verified vendors yet.</p>
+              <Card>
+                <CardContent className="py-12 text-center">
+                  <Package className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                  <p className="text-muted-foreground">No verified vendors yet. Be the first to register!</p>
+                </CardContent>
+              </Card>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {vendors.map((vendor) => (
@@ -307,18 +347,10 @@ export default function Vendors() {
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-2 text-sm">
-                        <p className="text-muted-foreground">
-                          <strong>Products:</strong> {vendor.products.join(', ')}
-                        </p>
-                        <p className="text-muted-foreground">
-                          <strong>Location:</strong> {vendor.location.city}, {vendor.location.state}
-                        </p>
-                        <p className="text-muted-foreground">
-                          📞 {vendor.contact.phone}
-                        </p>
-                        <p className="text-muted-foreground">
-                          ✉️ {vendor.contact.email}
-                        </p>
+                        <p><strong>Products:</strong> {vendor.products.join(', ')}</p>
+                        <p><strong>Location:</strong> {vendor.location.city}, {vendor.location.state}</p>
+                        <p><strong>Contact:</strong> {vendor.contact.phone}</p>
+                        <p><strong>Email:</strong> {vendor.contact.email}</p>
                       </div>
                     </CardContent>
                   </Card>

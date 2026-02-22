@@ -21,8 +21,10 @@ export default function NgoListing() {
     email: '',
     pinCode: '',
     city: '',
+    district: '',
     state: '',
     country: 'India',
+    postOffice: '',
   });
   const [locationFilter, setLocationFilter] = useState('');
   const [focusAreaFilter, setFocusAreaFilter] = useState('all');
@@ -34,7 +36,7 @@ export default function NgoListing() {
   const focusAreas = ['Health NGOs', 'Blood Banks', 'Relief Organizations'];
   const programs = ['Blood Drives', 'Health Camps', 'Awareness Campaigns', 'Disaster Support'];
 
-  // Auto-fill city and state when PIN code is entered
+  // Auto-fill location fields when PIN code is entered
   useEffect(() => {
     const fetchLocationFromPin = async () => {
       if (formData.pinCode.length === 6) {
@@ -45,8 +47,9 @@ export default function NgoListing() {
         if (result.success) {
           setFormData(prev => ({
             ...prev,
-            city: result.city,
+            district: result.district,
             state: result.state,
+            postOffice: result.postOffice,
           }));
         } else if (result.error) {
           toast.error(result.error);
@@ -59,6 +62,12 @@ export default function NgoListing() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate that PIN code has been filled and location fields are populated
+    if (!formData.district || !formData.state || !formData.postOffice) {
+      toast.error('Please enter a valid PIN code to auto-fill location details');
+      return;
+    }
 
     const request: NgoRequest = {
       id: `ngo_${Date.now()}`,
@@ -95,8 +104,10 @@ export default function NgoListing() {
         email: '',
         pinCode: '',
         city: '',
+        district: '',
         state: '',
         country: 'India',
+        postOffice: '',
       });
     } catch (error) {
       console.error('Registration error:', error);
@@ -185,10 +196,10 @@ export default function NgoListing() {
                   </div>
 
                   <div>
-                    <Label htmlFor="services">Services Offered *</Label>
+                    <Label htmlFor="services">Services Offered (comma-separated) *</Label>
                     <Textarea
                       id="services"
-                      placeholder="Enter services (comma-separated)"
+                      placeholder="e.g., Blood donation camps, Health awareness, Emergency relief"
                       value={formData.services}
                       onChange={(e) => setFormData({ ...formData, services: e.target.value })}
                       required
@@ -239,11 +250,21 @@ export default function NgoListing() {
                       )}
                     </div>
                     <p className="text-xs text-muted-foreground mt-1">
-                      City and state will be auto-filled based on PIN code
+                      Location details will be auto-filled based on PIN code
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="postOffice">Post Office *</Label>
+                      <Input
+                        id="postOffice"
+                        value={formData.postOffice}
+                        className="opacity-60 cursor-not-allowed"
+                        disabled
+                        required
+                      />
+                    </div>
                     <div>
                       <Label htmlFor="city">City *</Label>
                       <Input
@@ -253,21 +274,36 @@ export default function NgoListing() {
                         required
                       />
                     </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <Label htmlFor="district">District *</Label>
+                      <Input
+                        id="district"
+                        value={formData.district}
+                        className="opacity-60 cursor-not-allowed"
+                        disabled
+                        required
+                      />
+                    </div>
                     <div>
                       <Label htmlFor="state">State *</Label>
                       <Input
                         id="state"
                         value={formData.state}
-                        onChange={(e) => setFormData({ ...formData, state: e.target.value })}
+                        className="opacity-60 cursor-not-allowed"
+                        disabled
                         required
                       />
                     </div>
                     <div>
-                      <Label htmlFor="country">Country *</Label>
+                      <Label htmlFor="country">Nation *</Label>
                       <Input
                         id="country"
                         value={formData.country}
-                        onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                        className="opacity-60 cursor-not-allowed"
+                        disabled
                         required
                       />
                     </div>
@@ -281,25 +317,23 @@ export default function NgoListing() {
             </Card>
           </div>
 
-          {/* NGO Directory */}
+          {/* NGO Directory with Filters */}
           <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-              <h2 className="text-3xl font-bold">NGO Directory</h2>
-              <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+            <div className="flex flex-col md:flex-row gap-4 mb-8">
+              <div className="flex-1">
                 <Input
-                  placeholder="Filter by location..."
+                  placeholder="Search by location..."
                   value={locationFilter}
                   onChange={(e) => setLocationFilter(e.target.value)}
-                  className="w-full sm:w-64"
                 />
+              </div>
+              <div className="w-full md:w-64">
                 <Select value={focusAreaFilter} onValueChange={setFocusAreaFilter}>
-                  <SelectTrigger className="w-full sm:w-48 bg-[#006B7D] text-white border-white/30 focus:border-white [&>span]:text-white">
-                    <SelectValue placeholder="All Focus Areas" className="text-white" />
+                  <SelectTrigger className="bg-[#006B7D] text-white border-white/30 focus:border-white [&>span]:text-white">
+                    <SelectValue placeholder="Filter by focus area" />
                   </SelectTrigger>
                   <SelectContent className="bg-[#006B7D] text-white border-white/30">
-                    <SelectItem value="all" className="text-white focus:bg-white/20 focus:text-white">
-                      All Focus Areas
-                    </SelectItem>
+                    <SelectItem value="all" className="text-white focus:bg-white/20 focus:text-white">All Focus Areas</SelectItem>
                     {focusAreas.map((area) => (
                       <SelectItem 
                         key={area} 
@@ -314,40 +348,38 @@ export default function NgoListing() {
               </div>
             </div>
 
+            <h2 className="text-3xl font-bold mb-8 text-center">Registered NGOs</h2>
             {isLoading ? (
-              <p className="text-center text-muted-foreground">Loading NGOs...</p>
+              <div className="text-center py-12">
+                <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary" />
+                <p className="text-muted-foreground mt-4">Loading NGOs...</p>
+              </div>
             ) : filteredNgos.length === 0 ? (
-              <p className="text-center text-muted-foreground">No NGOs found matching your criteria.</p>
+              <Card>
+                <CardContent className="py-12 text-center">
+                  <Heart className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                  <p className="text-muted-foreground">
+                    {locationFilter || focusAreaFilter !== 'all' 
+                      ? 'No NGOs found matching your filters.' 
+                      : 'No registered NGOs yet. Be the first to register!'}
+                  </p>
+                </CardContent>
+              </Card>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredNgos.map((ngo) => (
                   <Card key={ngo.id}>
                     <CardHeader>
-                      <CardTitle className="flex items-center justify-between">
-                        <span>{ngo.name}</span>
-                        {ngo.verified && (
-                          <Heart className="h-5 w-5 text-primary fill-primary" />
-                        )}
-                      </CardTitle>
+                      <CardTitle>{ngo.name}</CardTitle>
                       <CardDescription>{ngo.focusArea}</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-2 text-sm">
-                        <p className="text-muted-foreground">
-                          <strong>Registration:</strong> {ngo.registrationNo}
-                        </p>
-                        <p className="text-muted-foreground">
-                          <strong>Services:</strong> {ngo.services.join(', ')}
-                        </p>
-                        <p className="text-muted-foreground">
-                          <strong>Location:</strong> {ngo.location.city}, {ngo.location.state}
-                        </p>
-                        <p className="text-muted-foreground">
-                          📞 {ngo.contact.phone}
-                        </p>
-                        <p className="text-muted-foreground">
-                          ✉️ {ngo.contact.email}
-                        </p>
+                        <p><strong>Registration:</strong> {ngo.registrationNo}</p>
+                        <p><strong>Services:</strong> {ngo.services.join(', ')}</p>
+                        <p><strong>Location:</strong> {ngo.location.city}, {ngo.location.state}</p>
+                        <p><strong>Contact:</strong> {ngo.contact.phone}</p>
+                        <p><strong>Email:</strong> {ngo.contact.email}</p>
                       </div>
                     </CardContent>
                   </Card>

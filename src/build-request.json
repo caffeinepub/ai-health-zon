@@ -1,75 +1,126 @@
 {
   "kind": "build_request",
-  "title": "Update homepage with Clean Claim Intelligence and Knowledge Board information",
+  "title": "Implement PIN code-based auto-fill with locked address fields",
   "projectName": "AI Health Zon",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Add a dedicated section to the homepage highlighting the Clean Claim Intelligence solution with key messaging about the 10-layer validation system and revenue protection benefits",
+      "text": "Lock district, state, and nation fields as read-only in all forms that collect address information (Careers, Vendors, AmbulanceServices, NgoListing)",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-6"
         ],
         "quotes": [
-          "Upgrade homepage based upon new information added"
+          "Please make insure that PIN code related fields are locked like district, State and nation"
         ]
       },
       "acceptanceCriteria": [
-        "Clean Claim Intelligence section appears on homepage with visual prominence",
-        "Section includes reference to 10-layer validation intelligence",
-        "Section includes link or CTA to navigate to /clean-claim-intelligence page",
-        "Content emphasizes revenue cycle management and claim accuracy benefits"
+        "District field is disabled/read-only and cannot be manually edited",
+        "State field is disabled/read-only and cannot be manually edited",
+        "Nation field is disabled/read-only and cannot be manually edited",
+        "Fields display auto-filled values from PIN code lookup",
+        "Visual styling indicates fields are locked (e.g., reduced opacity, disabled cursor)"
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Add a Knowledge Board section to the homepage promoting the hospital licensing and regulatory compliance resources with link to the knowledge board page",
+      "text": "Add post office name field to all forms that collect address information (Careers, Vendors, AmbulanceServices, NgoListing)",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-6"
         ],
         "quotes": [
-          "Upgrade homepage based upon new information added"
+          "Also add post office name in all forms"
         ]
       },
       "acceptanceCriteria": [
-        "Knowledge Board section appears on homepage",
-        "Section references hospital licensing and regulatory compliance topics",
-        "Section includes CTA or link to navigate to /knowledge-board page",
-        "Visual design maintains consistency with existing homepage sections"
+        "Post office name field is present in Careers registration form",
+        "Post office name field is present in Vendors registration form",
+        "Post office name field is present in AmbulanceServices registration form",
+        "Post office name field is present in NgoListing registration form",
+        "Field is disabled/read-only like other location fields",
+        "Field displays value populated from PIN code lookup"
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Ensure the updated homepage sections integrate seamlessly with existing auto-rotating hero carousel, why-choose-us section, solutions cards, and metrics display without disrupting current functionality",
+      "text": "Auto-fill district, state, nation, and post office name fields when PIN code is entered in all address forms, using the existing pinCodeLookup utility",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-6"
+        ],
+        "quotes": [
+          "When PIN CODE is filled then all information auto filled"
         ]
       },
       "acceptanceCriteria": [
-        "All existing homepage sections remain functional",
-        "New sections follow the established Royal Teal color scheme and design patterns",
-        "Page layout remains responsive across mobile and desktop",
-        "Demo booking modal continues to work from all CTAs"
+        "When user enters a valid PIN code, district field is automatically populated",
+        "When user enters a valid PIN code, state field is automatically populated",
+        "When user enters a valid PIN code, nation field is automatically populated with 'India'",
+        "When user enters a valid PIN code, post office name field is automatically populated",
+        "Auto-fill occurs without requiring manual submission or button click",
+        "Invalid PIN codes show appropriate error feedback",
+        "Loading state is displayed while PIN code lookup is in progress"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Update pinCodeLookup utility to return post office name in addition to city and state",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "Also add post office name in all forms",
+          "When PIN CODE is filled then all information auto filled"
+        ]
+      },
+      "acceptanceCriteria": [
+        "pinCodeLookup function returns post office name from India Post API response",
+        "Return type includes postOffice field in the result object",
+        "Post office name is extracted from the API's PostOffice array",
+        "Function handles cases where post office name may be missing"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Ensure only PIN code field accepts manual input in address forms; all other location fields (district, state, nation, post office) are auto-populated and read-only",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "No manual feed except pin code"
+        ]
+      },
+      "acceptanceCriteria": [
+        "PIN code field accepts keyboard input",
+        "District field cannot be manually edited",
+        "State field cannot be manually edited",
+        "Nation field cannot be manually edited",
+        "Post office field cannot be manually edited",
+        "City field remains editable as it was before (not explicitly mentioned in request)",
+        "Form validation ensures locked fields have values before submission"
       ]
     }
   ],
   "constraints": [
-    "Do not modify the existing auto-rotating hero carousel functionality",
-    "Maintain the current Royal Teal color scheme and design language",
-    "Preserve all existing CTAs and demo booking functionality",
-    "Keep the chatbot component integration intact"
+    "Use the existing pinCodeLookup utility function in frontend/src/utils/pinCodeLookup.ts",
+    "Maintain the current India Post API integration pattern",
+    "Do not modify the backend schema or main.mo actor",
+    "Keep existing form validation and submission logic intact"
   ],
   "nonGoals": [
-    "Redesigning the entire homepage layout",
-    "Modifying the Clean Claim Intelligence page content",
-    "Changing the Knowledge Board page structure",
-    "Altering backend data models or API endpoints"
+    "Changing the PIN code lookup API provider",
+    "Adding PIN code auto-fill to forms that don't currently collect addresses",
+    "Modifying the backend data models for address storage",
+    "Implementing international address formats beyond India"
   ],
   "imageRequirements": {
     "required": [],

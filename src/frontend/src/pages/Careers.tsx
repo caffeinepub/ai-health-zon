@@ -17,7 +17,13 @@ export default function Careers() {
     role: '',
     experience: '',
     pinCode: '',
-    location: { city: '', state: '', country: 'India' },
+    location: { 
+      city: '', 
+      district: '',
+      state: '', 
+      country: 'India',
+      postOffice: ''
+    },
     phone: '',
     email: '',
   });
@@ -32,7 +38,7 @@ export default function Careers() {
     'Medical Coder', 'RCM Staff', 'Insurance Staff', 'Security', 'Housekeeping', 'Admin'
   ];
 
-  // Auto-fill city and state when PIN code is entered
+  // Auto-fill location fields when PIN code is entered
   useEffect(() => {
     const fetchLocationFromPin = async () => {
       if (formData.pinCode.length === 6) {
@@ -45,8 +51,9 @@ export default function Careers() {
             ...prev,
             location: {
               ...prev.location,
-              city: result.city,
+              district: result.district,
               state: result.state,
+              postOffice: result.postOffice,
             }
           }));
         } else if (result.error) {
@@ -66,6 +73,12 @@ export default function Careers() {
       return;
     }
 
+    // Validate that PIN code has been filled and location fields are populated
+    if (!formData.location.district || !formData.location.state || !formData.location.postOffice) {
+      toast.error('Please enter a valid PIN code to auto-fill location details');
+      return;
+    }
+
     try {
       const cvBytes = new Uint8Array(await cvFile.arrayBuffer());
       const cvBlob = ExternalBlob.fromBytes(cvBytes).withUploadProgress((percentage) => {
@@ -78,7 +91,11 @@ export default function Careers() {
         role: formData.role,
         specialties: [],
         experience: BigInt(formData.experience || 0),
-        location: formData.location,
+        location: {
+          city: formData.location.city,
+          state: formData.location.state,
+          country: formData.location.country,
+        },
         contact: {
           phone: formData.phone,
           email: formData.email,
@@ -99,7 +116,13 @@ export default function Careers() {
         role: '',
         experience: '',
         pinCode: '',
-        location: { city: '', state: '', country: 'India' },
+        location: { 
+          city: '', 
+          district: '',
+          state: '', 
+          country: 'India',
+          postOffice: ''
+        },
         phone: '',
         email: '',
       });
@@ -245,11 +268,21 @@ export default function Careers() {
                         )}
                       </div>
                       <p className="text-xs text-white/70 mt-1">
-                        City and state will be auto-filled based on PIN code
+                        Location details will be auto-filled based on PIN code
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="postOffice" className="text-white">Post Office *</Label>
+                        <Input
+                          id="postOffice"
+                          value={formData.location.postOffice}
+                          className="bg-[#006B7D] text-white placeholder:text-white/70 border-white/30 opacity-60 cursor-not-allowed"
+                          disabled
+                          required
+                        />
+                      </div>
                       <div>
                         <Label htmlFor="city" className="text-white">City *</Label>
                         <Input
@@ -260,23 +293,36 @@ export default function Careers() {
                           required
                         />
                       </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <Label htmlFor="district" className="text-white">District *</Label>
+                        <Input
+                          id="district"
+                          value={formData.location.district}
+                          className="bg-[#006B7D] text-white placeholder:text-white/70 border-white/30 opacity-60 cursor-not-allowed"
+                          disabled
+                          required
+                        />
+                      </div>
                       <div>
                         <Label htmlFor="state" className="text-white">State *</Label>
                         <Input
                           id="state"
                           value={formData.location.state}
-                          onChange={(e) => setFormData({ ...formData, location: { ...formData.location, state: e.target.value } })}
-                          className="bg-[#006B7D] text-white placeholder:text-white/70 border-white/30 focus:border-white"
+                          className="bg-[#006B7D] text-white placeholder:text-white/70 border-white/30 opacity-60 cursor-not-allowed"
+                          disabled
                           required
                         />
                       </div>
                       <div>
-                        <Label htmlFor="country" className="text-white">Country *</Label>
+                        <Label htmlFor="country" className="text-white">Nation *</Label>
                         <Input
                           id="country"
                           value={formData.location.country}
-                          onChange={(e) => setFormData({ ...formData, location: { ...formData.location, country: e.target.value } })}
-                          className="bg-[#006B7D] text-white placeholder:text-white/70 border-white/30 focus:border-white"
+                          className="bg-[#006B7D] text-white placeholder:text-white/70 border-white/30 opacity-60 cursor-not-allowed"
+                          disabled
                           required
                         />
                       </div>

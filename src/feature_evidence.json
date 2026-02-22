@@ -2,10 +2,13 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-a-dedicated-section-to-the-homepage-highlighting-the-clean-claim-intelligence-solution-with-key-messaging-about-the-10-layer-validation-system-and-revenue-protection-benefits",
-      "featureTitle": "Add a dedicated section to the homepage highlighting the Clean Claim Intelligence solution with key messaging about the 10-layer validation system and revenue protection benefits",
+      "featureId": "feature-lock-district-state-and-nation-fields-as-read-only-in-all-forms-that-collect-address-information-careers-vendors-ambulanceservices-ngolisting",
+      "featureTitle": "Lock district, state, and nation fields as read-only in all forms that collect address information (Careers, Vendors, AmbulanceServices, NgoListing)",
       "files": [
-        "frontend/src/pages/Home.tsx"
+        "frontend/src/pages/AmbulanceServices.tsx",
+        "frontend/src/pages/Careers.tsx",
+        "frontend/src/pages/NgoListing.tsx",
+        "frontend/src/pages/Vendors.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -23,10 +26,13 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-a-knowledge-board-section-to-the-homepage-promoting-the-hospital-licensing-and-regulatory-compliance-resources-with-link-to-the-knowledge-board-page",
-      "featureTitle": "Add a Knowledge Board section to the homepage promoting the hospital licensing and regulatory compliance resources with link to the knowledge board page",
+      "featureId": "feature-add-post-office-name-field-to-all-forms-that-collect-address-information-careers-vendors-ambulanceservices-ngolisting",
+      "featureTitle": "Add post office name field to all forms that collect address information (Careers, Vendors, AmbulanceServices, NgoListing)",
       "files": [
-        "frontend/src/pages/Home.tsx"
+        "frontend/src/pages/AmbulanceServices.tsx",
+        "frontend/src/pages/Careers.tsx",
+        "frontend/src/pages/NgoListing.tsx",
+        "frontend/src/pages/Vendors.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -44,10 +50,13 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-ensure-the-updated-homepage-sections-integrate-seamlessly-with-existing-auto-rotating-hero-carousel-why-choose-us-section-solutions-cards-and-metrics-display-without-disrupting-current-functionality",
-      "featureTitle": "Ensure the updated homepage sections integrate seamlessly with existing auto-rotating hero carousel, why-choose-us section, solutions cards, and metrics display without disrupting current functionality",
+      "featureId": "feature-auto-fill-district-state-nation-and-post-office-name-fields-when-pin-code-is-entered-in-all-address-forms-using-the-existing-pincodelookup-utility",
+      "featureTitle": "Auto-fill district, state, nation, and post office name fields when PIN code is entered in all address forms, using the existing pinCodeLookup utility",
       "files": [
-        "frontend/src/pages/Home.tsx"
+        "frontend/src/pages/AmbulanceServices.tsx",
+        "frontend/src/pages/Careers.tsx",
+        "frontend/src/pages/NgoListing.tsx",
+        "frontend/src/pages/Vendors.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -61,6 +70,51 @@
       ],
       "testIds": [
         "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-pincodelookup-utility-to-return-post-office-name-in-addition-to-city-and-state",
+      "featureTitle": "Update pinCodeLookup utility to return post office name in addition to city and state",
+      "files": [
+        "frontend/src/utils/pinCodeLookup.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-only-pin-code-field-accepts-manual-input-in-address-forms-all-other-location-fields-district-state-nation-post-office-are-auto-populated-and-read-only",
+      "featureTitle": "Ensure only PIN code field accepts manual input in address forms; all other location fields (district, state, nation, post office) are auto-populated and read-only",
+      "files": [
+        "frontend/src/pages/AmbulanceServices.tsx",
+        "frontend/src/pages/Careers.tsx",
+        "frontend/src/pages/NgoListing.tsx",
+        "frontend/src/pages/Vendors.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
       ],
       "confidence": "high"
     }

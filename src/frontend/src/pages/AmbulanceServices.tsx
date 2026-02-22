@@ -17,8 +17,10 @@ export default function AmbulanceServices() {
     email: '',
     pinCode: '',
     city: '',
+    district: '',
     state: '',
     country: 'India',
+    postOffice: '',
     services: {
       emergency: false,
       icu: false,
@@ -29,7 +31,7 @@ export default function AmbulanceServices() {
 
   const submitRegistration = useSubmitAmbulanceRegistration();
 
-  // Auto-fill city and state when PIN code is entered
+  // Auto-fill location fields when PIN code is entered
   useEffect(() => {
     const fetchLocationFromPin = async () => {
       if (formData.pinCode.length === 6) {
@@ -40,8 +42,9 @@ export default function AmbulanceServices() {
         if (result.success) {
           setFormData(prev => ({
             ...prev,
-            city: result.city,
+            district: result.district,
             state: result.state,
+            postOffice: result.postOffice,
           }));
         } else if (result.error) {
           toast.error(result.error);
@@ -61,6 +64,12 @@ export default function AmbulanceServices() {
 
     if (selectedServices.length === 0) {
       toast.error('Please select at least one service type');
+      return;
+    }
+
+    // Validate that PIN code has been filled and location fields are populated
+    if (!formData.district || !formData.state || !formData.postOffice) {
+      toast.error('Please enter a valid PIN code to auto-fill location details');
       return;
     }
 
@@ -93,8 +102,10 @@ export default function AmbulanceServices() {
         email: '',
         pinCode: '',
         city: '',
+        district: '',
         state: '',
         country: 'India',
+        postOffice: '',
         services: {
           emergency: false,
           icu: false,
@@ -254,11 +265,21 @@ export default function AmbulanceServices() {
                         )}
                       </div>
                       <p className="text-xs text-muted-foreground mt-1">
-                        City and state will be auto-filled based on PIN code
+                        Location details will be auto-filled based on PIN code
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="postOffice">Post Office *</Label>
+                        <Input
+                          id="postOffice"
+                          value={formData.postOffice}
+                          className="opacity-60 cursor-not-allowed"
+                          disabled
+                          required
+                        />
+                      </div>
                       <div>
                         <Label htmlFor="city">City *</Label>
                         <Input
@@ -268,21 +289,36 @@ export default function AmbulanceServices() {
                           required
                         />
                       </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <Label htmlFor="district">District *</Label>
+                        <Input
+                          id="district"
+                          value={formData.district}
+                          className="opacity-60 cursor-not-allowed"
+                          disabled
+                          required
+                        />
+                      </div>
                       <div>
                         <Label htmlFor="state">State *</Label>
                         <Input
                           id="state"
                           value={formData.state}
-                          onChange={(e) => setFormData({ ...formData, state: e.target.value })}
+                          className="opacity-60 cursor-not-allowed"
+                          disabled
                           required
                         />
                       </div>
                       <div>
-                        <Label htmlFor="country">Country *</Label>
+                        <Label htmlFor="country">Nation *</Label>
                         <Input
                           id="country"
                           value={formData.country}
-                          onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                          className="opacity-60 cursor-not-allowed"
+                          disabled
                           required
                         />
                       </div>

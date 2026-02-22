@@ -1,46 +1,92 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-21T23:58:19.884Z",
+  "generatedAt": "2026-02-22T00:25:31.530Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 3,
-    "implemented": 3,
+    "total": 5,
+    "implemented": 5,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Add a dedicated section to the homepage highlighting the Clean Claim Intelligence solution with key messaging about the 10-layer validation system and revenue protection benefits",
+        "summary": "Lock district, state, and nation fields as read-only in all forms that collect address information (Careers, Vendors, AmbulanceServices, NgoListing)",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/Home.tsx"
+          "frontend/src/pages/Careers.tsx",
+          "frontend/src/pages/Vendors.tsx",
+          "frontend/src/pages/AmbulanceServices.tsx",
+          "frontend/src/pages/NgoListing.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/Home.tsx"
+          "frontend/src/pages/Careers.tsx",
+          "frontend/src/pages/Vendors.tsx",
+          "frontend/src/pages/AmbulanceServices.tsx",
+          "frontend/src/pages/NgoListing.tsx"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Add a Knowledge Board section to the homepage promoting the hospital licensing and regulatory compliance resources with link to the knowledge board page",
+        "summary": "Add post office name field to all forms that collect address information (Careers, Vendors, AmbulanceServices, NgoListing)",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/Home.tsx"
+          "frontend/src/pages/Careers.tsx",
+          "frontend/src/pages/Vendors.tsx",
+          "frontend/src/pages/AmbulanceServices.tsx",
+          "frontend/src/pages/NgoListing.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/Home.tsx"
+          "frontend/src/pages/Careers.tsx",
+          "frontend/src/pages/Vendors.tsx",
+          "frontend/src/pages/AmbulanceServices.tsx",
+          "frontend/src/pages/NgoListing.tsx"
         ]
       },
       {
         "id": "REQ-3",
-        "summary": "Ensure the updated homepage sections integrate seamlessly with existing auto-rotating hero carousel, why-choose-us section, solutions cards, and metrics display without disrupting current functionality",
+        "summary": "Auto-fill district, state, nation, and post office name fields when PIN code is entered in all address forms, using the existing pinCodeLookup utility",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/Home.tsx"
+          "frontend/src/pages/Careers.tsx",
+          "frontend/src/pages/Vendors.tsx",
+          "frontend/src/pages/AmbulanceServices.tsx",
+          "frontend/src/pages/NgoListing.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/Home.tsx"
+          "frontend/src/pages/Careers.tsx",
+          "frontend/src/pages/Vendors.tsx",
+          "frontend/src/pages/AmbulanceServices.tsx",
+          "frontend/src/pages/NgoListing.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Update pinCodeLookup utility to return post office name in addition to city and state",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/utils/pinCodeLookup.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/utils/pinCodeLookup.ts"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Ensure only PIN code field accepts manual input in address forms; all other location fields (district, state, nation, post office) are auto-populated and read-only",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/Careers.tsx",
+          "frontend/src/pages/Vendors.tsx",
+          "frontend/src/pages/AmbulanceServices.tsx",
+          "frontend/src/pages/NgoListing.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/Careers.tsx",
+          "frontend/src/pages/Vendors.tsx",
+          "frontend/src/pages/AmbulanceServices.tsx",
+          "frontend/src/pages/NgoListing.tsx"
         ]
       }
     ]
@@ -50,7 +96,11 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/pages/Home.tsx",
+    "frontend/src/pages/AmbulanceServices.tsx",
+    "frontend/src/pages/Careers.tsx",
+    "frontend/src/pages/NgoListing.tsx",
+    "frontend/src/pages/Vendors.tsx",
+    "frontend/src/utils/pinCodeLookup.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",
