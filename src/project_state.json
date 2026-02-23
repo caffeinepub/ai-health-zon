@@ -5,44 +5,21 @@
   "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Professional healthcare technology office environment with modern team collaboration, natural lighting, diverse professionals working with medical technology and data analytics displays (about-hero.dim_1920x1080.png)",
   "existing_features": [
     {
-      "id": "feature-lock-district-state-and-nation-fields-as-read-only-in-all-forms-that-collect-address-information-careers-vendors-ambulanceservices-ngolisting",
-      "title": "Lock district, state, and nation fields as read-only in all forms that collect address information (Careers, Vendors, AmbulanceServices, NgoListing)",
+      "id": "feature-generate-a-high-definition-1920x1080-realistic-image-suitable-for-the-about-us-page-hero-section",
+      "title": "Generate a high-definition (1920x1080) realistic image suitable for the About Us page hero section",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-post-office-name-field-to-all-forms-that-collect-address-information-careers-vendors-ambulanceservices-ngolisting",
-      "title": "Add post office name field to all forms that collect address information (Careers, Vendors, AmbulanceServices, NgoListing)",
+      "id": "feature-integrate-the-generated-hd-image-into-the-about-us-page-hero-section-replacing-or-enhancing-the-current-visual-presentation",
+      "title": "Integrate the generated HD image into the About Us page hero section, replacing or enhancing the current visual presentation",
       "reqIds": [
         "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-auto-fill-district-state-nation-and-post-office-name-fields-when-pin-code-is-entered-in-all-address-forms-using-the-existing-pincodelookup-utility",
-      "title": "Auto-fill district, state, nation, and post office name fields when PIN code is entered in all address forms, using the existing pinCodeLookup utility",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-pincodelookup-utility-to-return-post-office-name-in-addition-to-city-and-state",
-      "title": "Update pinCodeLookup utility to return post office name in addition to city and state",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-ensure-only-pin-code-field-accepts-manual-input-in-address-forms-all-other-location-fields-district-state-nation-post-office-are-auto-populated-and-read-only",
-      "title": "Ensure only PIN code field accepts manual input in address forms; all other location fields (district, state, nation, post office) are auto-populated and read-only",
-      "reqIds": [
-        "REQ-5"
       ],
       "version": 1
     }
@@ -50,19 +27,7 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Lock district, state, and nation fields based on PIN code",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Add post office name field to all forms",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-3",
-      "summary": "Auto-fill address fields when PIN code is entered",
+      "summary": "Create HD realistic image for about page",
       "reqIds": [],
       "status": "pending"
     }

@@ -1,129 +1,57 @@
 {
   "kind": "build_request",
-  "title": "Implement PIN code-based auto-fill with locked address fields",
+  "title": "Add HD realistic image for About page",
   "projectName": "AI Health Zon",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Lock district, state, and nation fields as read-only in all forms that collect address information (Careers, Vendors, AmbulanceServices, NgoListing)",
+      "text": "Generate a high-definition (1920x1080) realistic image suitable for the About Us page hero section",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-6"
+          "msg-7"
         ],
         "quotes": [
-          "Please make insure that PIN code related fields are locked like district, State and nation"
+          "Make image more for about page. It should be in HD and should like real."
         ]
       },
       "acceptanceCriteria": [
-        "District field is disabled/read-only and cannot be manually edited",
-        "State field is disabled/read-only and cannot be manually edited",
-        "Nation field is disabled/read-only and cannot be manually edited",
-        "Fields display auto-filled values from PIN code lookup",
-        "Visual styling indicates fields are locked (e.g., reduced opacity, disabled cursor)"
+        "Image is generated in HD resolution (1920x1080 pixels)",
+        "Image has a realistic photographic quality appropriate for a healthcare technology company's About page",
+        "Image is saved in the frontend/public/assets/generated directory"
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Add post office name field to all forms that collect address information (Careers, Vendors, AmbulanceServices, NgoListing)",
+      "text": "Integrate the generated HD image into the About Us page hero section, replacing or enhancing the current visual presentation",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "Also add post office name in all forms"
+          "msg-7"
         ]
       },
       "acceptanceCriteria": [
-        "Post office name field is present in Careers registration form",
-        "Post office name field is present in Vendors registration form",
-        "Post office name field is present in AmbulanceServices registration form",
-        "Post office name field is present in NgoListing registration form",
-        "Field is disabled/read-only like other location fields",
-        "Field displays value populated from PIN code lookup"
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Auto-fill district, state, nation, and post office name fields when PIN code is entered in all address forms, using the existing pinCodeLookup utility",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "When PIN CODE is filled then all information auto filled"
-        ]
-      },
-      "acceptanceCriteria": [
-        "When user enters a valid PIN code, district field is automatically populated",
-        "When user enters a valid PIN code, state field is automatically populated",
-        "When user enters a valid PIN code, nation field is automatically populated with 'India'",
-        "When user enters a valid PIN code, post office name field is automatically populated",
-        "Auto-fill occurs without requiring manual submission or button click",
-        "Invalid PIN codes show appropriate error feedback",
-        "Loading state is displayed while PIN code lookup is in progress"
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Update pinCodeLookup utility to return post office name in addition to city and state",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "Also add post office name in all forms",
-          "When PIN CODE is filled then all information auto filled"
-        ]
-      },
-      "acceptanceCriteria": [
-        "pinCodeLookup function returns post office name from India Post API response",
-        "Return type includes postOffice field in the result object",
-        "Post office name is extracted from the API's PostOffice array",
-        "Function handles cases where post office name may be missing"
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Ensure only PIN code field accepts manual input in address forms; all other location fields (district, state, nation, post office) are auto-populated and read-only",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "No manual feed except pin code"
-        ]
-      },
-      "acceptanceCriteria": [
-        "PIN code field accepts keyboard input",
-        "District field cannot be manually edited",
-        "State field cannot be manually edited",
-        "Nation field cannot be manually edited",
-        "Post office field cannot be manually edited",
-        "City field remains editable as it was before (not explicitly mentioned in request)",
-        "Form validation ensures locked fields have values before submission"
+        "The generated image is displayed in the About Us page hero section",
+        "Image maintains responsive behavior across different screen sizes",
+        "Visual presentation is cohesive with the existing Royal Teal theme and company branding"
       ]
     }
   ],
   "constraints": [
-    "Use the existing pinCodeLookup utility function in frontend/src/utils/pinCodeLookup.ts",
-    "Maintain the current India Post API integration pattern",
-    "Do not modify the backend schema or main.mo actor",
-    "Keep existing form validation and submission logic intact"
+    "Do not modify backend files",
+    "Do not change existing frontend routing or navigation structure",
+    "Preserve the existing About Us page content and layout structure"
   ],
   "nonGoals": [
-    "Changing the PIN code lookup API provider",
-    "Adding PIN code auto-fill to forms that don't currently collect addresses",
-    "Modifying the backend data models for address storage",
-    "Implementing international address formats beyond India"
+    "Modifying other pages beyond the About Us page",
+    "Changing the color scheme or branding guidelines",
+    "Adding new sections or content to the About Us page"
   ],
   "imageRequirements": {
-    "required": [],
+    "required": [
+      "Professional healthcare technology office environment with modern team collaboration, natural lighting, diverse professionals working with medical technology and data analytics displays (about-hero.dim_1920x1080.png)"
+    ],
     "edits": []
   }
 }

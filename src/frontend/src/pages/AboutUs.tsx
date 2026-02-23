@@ -35,12 +35,27 @@ export default function AboutUs() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-enterprise-grey py-20 md:py-24">
-        <div className="container mx-auto px-4 sm:px-6">
+      {/* Hero Section with HD Background Image */}
+      <section className="relative py-20 md:py-32 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/assets/generated/about-hero.dim_1920x1080.png" 
+            alt="AI Health Zon Team" 
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
+          {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-enterprise-blue/90 via-enterprise-blue/80 to-enterprise-blue/70"></div>
+        </div>
+
+        {/* Content */}
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-enterprise-blue">About AI Health Zon</h1>
-            <p className="text-xl md:text-2xl text-gray-700">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
+              About AI Health Zon
+            </h1>
+            <p className="text-xl md:text-2xl text-white drop-shadow-md">
               Transforming healthcare delivery through technology, collaboration, and excellence
             </p>
           </div>

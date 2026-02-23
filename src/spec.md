@@ -1,13 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Implement PIN code-based auto-fill functionality with locked address fields across all registration forms.
+**Goal:** Add a high-definition realistic hero image to the About Us page.
 
 **Planned changes:**
-- Lock district, state, and nation fields as read-only in all address forms (Careers, Vendors, AmbulanceServices, NgoListing)
-- Add post office name field to all address forms
-- Auto-fill district, state, nation, and post office fields when PIN code is entered
-- Update pinCodeLookup utility to return post office name from India Post API
-- Ensure only PIN code field accepts manual input; all other location fields are auto-populated and read-only
+- Generate a new HD (1920x1080) realistic image showing a professional healthcare technology environment
+- Integrate the new image into the About Us page hero section
+- Ensure responsive display across different screen sizes
 
-**User-visible outcome:** Users can enter only their PIN code in registration forms, and district, state, nation, and post office name fields will automatically populate and remain locked, streamlining the address entry process.
+**User-visible outcome:** The About Us page displays a professional, realistic HD hero image that enhances the visual presentation of the company's story and values.

@@ -1,92 +1,35 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-22T00:25:31.530Z",
+  "generatedAt": "2026-02-22T09:47:11.570Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 5,
-    "implemented": 5,
+    "total": 2,
+    "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Lock district, state, and nation fields as read-only in all forms that collect address information (Careers, Vendors, AmbulanceServices, NgoListing)",
+        "summary": "Generate a high-definition (1920x1080) realistic image suitable for the About Us page hero section",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/Careers.tsx",
-          "frontend/src/pages/Vendors.tsx",
-          "frontend/src/pages/AmbulanceServices.tsx",
-          "frontend/src/pages/NgoListing.tsx"
+          "frontend/public/assets/generated/about-hero.dim_1920x1080.png"
         ],
         "matchedFiles": [
-          "frontend/src/pages/Careers.tsx",
-          "frontend/src/pages/Vendors.tsx",
-          "frontend/src/pages/AmbulanceServices.tsx",
-          "frontend/src/pages/NgoListing.tsx"
+          "frontend/public/assets/generated/about-hero.dim_1920x1080.png"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Add post office name field to all forms that collect address information (Careers, Vendors, AmbulanceServices, NgoListing)",
+        "summary": "Integrate the generated HD image into the About Us page hero section, replacing or enhancing the current visual presentation",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/Careers.tsx",
-          "frontend/src/pages/Vendors.tsx",
-          "frontend/src/pages/AmbulanceServices.tsx",
-          "frontend/src/pages/NgoListing.tsx"
+          "frontend/src/pages/AboutUs.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/Careers.tsx",
-          "frontend/src/pages/Vendors.tsx",
-          "frontend/src/pages/AmbulanceServices.tsx",
-          "frontend/src/pages/NgoListing.tsx"
-        ]
-      },
-      {
-        "id": "REQ-3",
-        "summary": "Auto-fill district, state, nation, and post office name fields when PIN code is entered in all address forms, using the existing pinCodeLookup utility",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/Careers.tsx",
-          "frontend/src/pages/Vendors.tsx",
-          "frontend/src/pages/AmbulanceServices.tsx",
-          "frontend/src/pages/NgoListing.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/Careers.tsx",
-          "frontend/src/pages/Vendors.tsx",
-          "frontend/src/pages/AmbulanceServices.tsx",
-          "frontend/src/pages/NgoListing.tsx"
-        ]
-      },
-      {
-        "id": "REQ-4",
-        "summary": "Update pinCodeLookup utility to return post office name in addition to city and state",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/utils/pinCodeLookup.ts"
-        ],
-        "matchedFiles": [
-          "frontend/src/utils/pinCodeLookup.ts"
-        ]
-      },
-      {
-        "id": "REQ-5",
-        "summary": "Ensure only PIN code field accepts manual input in address forms; all other location fields (district, state, nation, post office) are auto-populated and read-only",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/Careers.tsx",
-          "frontend/src/pages/Vendors.tsx",
-          "frontend/src/pages/AmbulanceServices.tsx",
-          "frontend/src/pages/NgoListing.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/Careers.tsx",
-          "frontend/src/pages/Vendors.tsx",
-          "frontend/src/pages/AmbulanceServices.tsx",
-          "frontend/src/pages/NgoListing.tsx"
+          "frontend/src/pages/AboutUs.tsx"
         ]
       }
     ]
@@ -96,11 +39,8 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/pages/AmbulanceServices.tsx",
-    "frontend/src/pages/Careers.tsx",
-    "frontend/src/pages/NgoListing.tsx",
-    "frontend/src/pages/Vendors.tsx",
-    "frontend/src/utils/pinCodeLookup.ts",
+    "frontend/public/assets/generated/about-hero.dim_1920x1080.png",
+    "frontend/src/pages/AboutUs.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

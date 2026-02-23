@@ -1,159 +1,37 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Implement PIN code-based auto-fill with locked address fields",
+  "title": "Add HD realistic image for About page",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Lock district, state, and nation fields as read-only in all address forms",
+      "summary": "Generate a high-definition (1920x1080) realistic image suitable for the About Us page hero section",
       "acceptanceCriteria": [
-        "District field is disabled/read-only and cannot be manually edited",
-        "State field is disabled/read-only and cannot be manually edited",
-        "Nation field is disabled/read-only and cannot be manually edited",
-        "Fields display auto-filled values from PIN code lookup",
-        "Visual styling indicates fields are locked (e.g., reduced opacity, disabled cursor)"
+        "Image is generated in HD resolution (1920x1080 pixels)",
+        "Image has a realistic photographic quality appropriate for a healthcare technology company's About page",
+        "Image is saved in the frontend/public/assets/generated directory"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/Careers.tsx",
-          "operation": "modify",
-          "description": "Add disabled prop to district, state, and nation input fields. Apply visual styling (opacity-60, cursor-not-allowed classes) to indicate read-only state. Ensure these fields are registered with react-hook-form but marked as disabled to prevent manual editing while displaying auto-filled values."
-        },
-        {
-          "path": "frontend/src/pages/Vendors.tsx",
-          "operation": "modify",
-          "description": "Add disabled prop to district, state, and nation input fields. Apply visual styling (opacity-60, cursor-not-allowed classes) to indicate read-only state. Ensure these fields are registered with react-hook-form but marked as disabled to prevent manual editing while displaying auto-filled values."
-        },
-        {
-          "path": "frontend/src/pages/AmbulanceServices.tsx",
-          "operation": "modify",
-          "description": "Add disabled prop to district, state, and nation input fields. Apply visual styling (opacity-60, cursor-not-allowed classes) to indicate read-only state. Ensure these fields are registered with react-hook-form but marked as disabled to prevent manual editing while displaying auto-filled values."
-        },
-        {
-          "path": "frontend/src/pages/NgoListing.tsx",
-          "operation": "modify",
-          "description": "Add disabled prop to district, state, and nation input fields. Apply visual styling (opacity-60, cursor-not-allowed classes) to indicate read-only state. Ensure these fields are registered with react-hook-form but marked as disabled to prevent manual editing while displaying auto-filled values."
+          "path": "frontend/public/assets/generated/about-hero.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Generate and save the HD realistic hero image depicting a professional healthcare technology office environment with modern team collaboration, natural lighting, and diverse professionals working with medical technology and data analytics displays. The image will be used in the About Us page hero section."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Add post office name field to all address forms",
+      "summary": "Integrate the generated HD image into the About Us page hero section, replacing or enhancing the current visual presentation",
       "acceptanceCriteria": [
-        "Post office name field is present in Careers registration form",
-        "Post office name field is present in Vendors registration form",
-        "Post office name field is present in AmbulanceServices registration form",
-        "Post office name field is present in NgoListing registration form",
-        "Field is disabled/read-only like other location fields",
-        "Field displays value populated from PIN code lookup"
+        "The generated image is displayed in the About Us page hero section",
+        "Image maintains responsive behavior across different screen sizes",
+        "Visual presentation is cohesive with the existing Royal Teal theme and company branding"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/Careers.tsx",
+          "path": "frontend/src/pages/AboutUs.tsx",
           "operation": "modify",
-          "description": "Add a new post office name input field in the location section of the form. Register it with react-hook-form as 'location.postOffice'. Make the field disabled and apply read-only styling (opacity-60, cursor-not-allowed). Position it logically within the address fields group, after PIN code and before or after city."
-        },
-        {
-          "path": "frontend/src/pages/Vendors.tsx",
-          "operation": "modify",
-          "description": "Add a new post office name input field in the location section of the form. Register it with react-hook-form as 'location.postOffice'. Make the field disabled and apply read-only styling (opacity-60, cursor-not-allowed). Position it logically within the address fields group, after PIN code and before or after city."
-        },
-        {
-          "path": "frontend/src/pages/AmbulanceServices.tsx",
-          "operation": "modify",
-          "description": "Add a new post office name input field in the location section of the form. Register it with react-hook-form as 'location.postOffice'. Make the field disabled and apply read-only styling (opacity-60, cursor-not-allowed). Position it logically within the address fields group, after PIN code and before or after city."
-        },
-        {
-          "path": "frontend/src/pages/NgoListing.tsx",
-          "operation": "modify",
-          "description": "Add a new post office name input field in the location section of the form. Register it with react-hook-form as 'location.postOffice'. Make the field disabled and apply read-only styling (opacity-60, cursor-not-allowed). Position it logically within the address fields group, after PIN code and before or after city."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Auto-fill district, state, nation, and post office name fields when PIN code is entered",
-      "acceptanceCriteria": [
-        "When user enters a valid PIN code, district field is automatically populated",
-        "When user enters a valid PIN code, state field is automatically populated",
-        "When user enters a valid PIN code, nation field is automatically populated with 'India'",
-        "When user enters a valid PIN code, post office name field is automatically populated",
-        "Auto-fill occurs without requiring manual submission or button click",
-        "Invalid PIN codes show appropriate error feedback",
-        "Loading state is displayed while PIN code lookup is in progress"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/Careers.tsx",
-          "operation": "modify",
-          "description": "Enhance the PIN code onChange handler to call the updated pinCodeLookup utility and use setValue() from react-hook-form to populate district (from city in API response), state, nation ('India'), and postOffice fields. Add loading state management while lookup is in progress. Display error toast for invalid PIN codes. Ensure auto-fill triggers immediately on valid 6-digit PIN code entry without requiring blur or button click."
-        },
-        {
-          "path": "frontend/src/pages/Vendors.tsx",
-          "operation": "modify",
-          "description": "Enhance the PIN code onChange handler to call the updated pinCodeLookup utility and use setValue() from react-hook-form to populate district (from city in API response), state, nation ('India'), and postOffice fields. Add loading state management while lookup is in progress. Display error toast for invalid PIN codes. Ensure auto-fill triggers immediately on valid 6-digit PIN code entry without requiring blur or button click."
-        },
-        {
-          "path": "frontend/src/pages/AmbulanceServices.tsx",
-          "operation": "modify",
-          "description": "Enhance the PIN code onChange handler to call the updated pinCodeLookup utility and use setValue() from react-hook-form to populate district (from city in API response), state, nation ('India'), and postOffice fields. Add loading state management while lookup is in progress. Display error toast for invalid PIN codes. Ensure auto-fill triggers immediately on valid 6-digit PIN code entry without requiring blur or button click."
-        },
-        {
-          "path": "frontend/src/pages/NgoListing.tsx",
-          "operation": "modify",
-          "description": "Enhance the PIN code onChange handler to call the updated pinCodeLookup utility and use setValue() from react-hook-form to populate district (from city in API response), state, nation ('India'), and postOffice fields. Add loading state management while lookup is in progress. Display error toast for invalid PIN codes. Ensure auto-fill triggers immediately on valid 6-digit PIN code entry without requiring blur or button click."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Update pinCodeLookup utility to return post office name",
-      "acceptanceCriteria": [
-        "pinCodeLookup function returns post office name from India Post API response",
-        "Return type includes postOffice field in the result object",
-        "Post office name is extracted from the API's PostOffice array",
-        "Function handles cases where post office name may be missing"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/utils/pinCodeLookup.ts",
-          "operation": "modify",
-          "description": "Update the PinCodeLookupResult interface to include 'postOffice?: string' field. Extract post office name from the API response's PostOffice array (typically response[0].PostOffice[0].Name). Update the success return object to include postOffice field. Handle cases where PostOffice array is empty or Name is undefined by returning undefined for postOffice. Maintain existing error handling and validation logic."
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Ensure only PIN code field accepts manual input in address forms",
-      "acceptanceCriteria": [
-        "PIN code field accepts keyboard input",
-        "District field cannot be manually edited",
-        "State field cannot be manually edited",
-        "Nation field cannot be manually edited",
-        "Post office field cannot be manually edited",
-        "City field remains editable as it was before (not explicitly mentioned in request)",
-        "Form validation ensures locked fields have values before submission"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/Careers.tsx",
-          "operation": "modify",
-          "description": "Verify PIN code input field remains enabled and accepts keyboard input. Confirm district, state, nation, and postOffice fields have disabled prop set to true. Keep city field editable (no disabled prop). Add form validation to check that auto-filled fields (district, state, nation, postOffice) have values before allowing form submission. Display validation errors if user attempts to submit without entering a valid PIN code first."
-        },
-        {
-          "path": "frontend/src/pages/Vendors.tsx",
-          "operation": "modify",
-          "description": "Verify PIN code input field remains enabled and accepts keyboard input. Confirm district, state, nation, and postOffice fields have disabled prop set to true. Keep city field editable (no disabled prop). Add form validation to check that auto-filled fields (district, state, nation, postOffice) have values before allowing form submission. Display validation errors if user attempts to submit without entering a valid PIN code first."
-        },
-        {
-          "path": "frontend/src/pages/AmbulanceServices.tsx",
-          "operation": "modify",
-          "description": "Verify PIN code input field remains enabled and accepts keyboard input. Confirm district, state, nation, and postOffice fields have disabled prop set to true. Keep city field editable (no disabled prop). Add form validation to check that auto-filled fields (district, state, nation, postOffice) have values before allowing form submission. Display validation errors if user attempts to submit without entering a valid PIN code first."
-        },
-        {
-          "path": "frontend/src/pages/NgoListing.tsx",
-          "operation": "modify",
-          "description": "Verify PIN code input field remains enabled and accepts keyboard input. Confirm district, state, nation, and postOffice fields have disabled prop set to true. Keep city field editable (no disabled prop). Add form validation to check that auto-filled fields (district, state, nation, postOffice) have values before allowing form submission. Display validation errors if user attempts to submit without entering a valid PIN code first."
+          "description": "Update the hero section to display the generated HD image frontend/public/assets/generated/about-hero.dim_1920x1080.png as a background or foreground element. Ensure the image is properly integrated with responsive design using Tailwind CSS utilities (object-cover, w-full, h-auto) and maintains visual cohesion with the existing Royal Teal theme. The hero section should display the image while preserving existing content such as the page title, mission statement, and CTA buttons."
         }
       ]
     }
