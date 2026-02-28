@@ -1,0 +1,38 @@
+{
+  "kind": "build_request",
+  "title": "Move Health Network navigation bar down by 2 inches",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Move the Health Network landing page navigation/header bar approximately 2 inches (roughly 192px) downward from its current position by adding top padding or margin to the Navigation component or its wrapper on the HealthNetworkLanding page.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "please health network bar 2 inch down"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The navigation bar on the Health Network landing page appears approximately 2 inches lower than its previous position",
+        "The navigation bar remains fully visible and functional after the positional change",
+        "No other pages are affected by this positional change"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under frontend/src/hooks/ or frontend/src/components/ui/",
+    "Do not alter the navigation bar's content, links, or interactive behavior"
+  ],
+  "nonGoals": [
+    "Changing navigation bar styling beyond vertical position",
+    "Modifying navigation on any page other than the Health Network landing page",
+    "Altering backend logic"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
